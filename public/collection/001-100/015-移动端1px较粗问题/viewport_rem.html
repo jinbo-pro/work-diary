@@ -1,0 +1,47 @@
+<head>
+  <meta
+    name="viewport"
+    content="width=device-width,user-scalable=no,initial-scale=1,
+              minimum-scale=1,maximum-scale=1,viewport-fit=cover"
+  />
+  <style>
+    .text {
+      width: 500px;
+      height: 500px;
+      font-size: 32px;
+      border: 1px solid #999;
+    }
+  </style>
+  <p>
+    参考文章：
+    <a href="https://juejin.cn/post/6870691193353666568">最后一次探究1px</a>
+  </p>
+  <p class="text">
+    Flexible 的大致实现思路是，首先根据 dpr 来动态修改 meta 标签中 viewport 中的
+    initial-scale 的值，以此来动态改变 viewport 的大小；然后页面上统一使用 rem
+    来布局，viewport 宽度变化会动态影响 html 中的font-size 值，以此来实现适配。
+  </p>
+  <script type="text/javascript">
+    // 动态设置 viewport 的 initial-scale
+    var viewport = document.querySelector('meta[name=viewport]')
+    var dpr = window.devicePixelRatio || 1
+    var scale = 1 / dpr
+    viewport.setAttribute(
+      'content',
+      'width=device-width,' +
+        'initial-scale=' +
+        scale +
+        ', maximum-scale=' +
+        scale +
+        ', minimum-scale=' +
+        scale +
+        ', user-scalable=no'
+    )
+    // 计算 rem font-size
+    var clientWidth =
+      document.documentElement.clientWidth || document.body.clientWidth
+    clientWidth > 750 && (clientWidth = 750)
+    var ft = (clientWidth / 7.5).toFixed(2) // 以750设计稿为例
+    document.documentElement.style.fontSize = ft + 'px'
+  </script>
+</head>

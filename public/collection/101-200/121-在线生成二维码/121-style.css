@@ -1,0 +1,77 @@
+.box {
+  padding: 20px;
+  box-shadow: none;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.textarea-box {
+  width: 50%;
+  border: 1px solid rgba(120, 130, 140, 0.2);
+  position: relative;
+}
+
+.main_text {
+  border: 0 none;
+  width: 100%;
+  outline: 0;
+  height: 258px;
+  resize: none;
+  font-size: 16px;
+  font-family: inherit;
+  padding: 24px;
+  overflow: auto;
+  color: inherit;
+  touch-action: manipulation;
+  box-sizing: border-box;
+  padding-bottom: 18px;
+  padding-top: 18px;
+}
+
+.none {
+  display: none;
+}
+
+.wordcount-box {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+}
+
+.food_but {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.but {
+  min-width: 128px;
+  padding: 0.5rem 1rem;
+  line-height: 1.4;
+  background-color: #3cb067;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 500;
+  outline: 0;
+  border-width: 0;
+  display: inline-block;
+  font-size: 1rem;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  user-select: none;
+  border: 0.0625rem solid transparent;
+  border-radius: 0.25rem;
+}
+
+#createQrcode {
+  margin-right: 100px;
+}
+
+.qrcode_content {
+  border: 1px solid rgba(120, 130, 140, 0.2);
+}

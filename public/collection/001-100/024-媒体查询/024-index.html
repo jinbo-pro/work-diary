@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>024-媒体查询</title>
+    <style>
+      .box {
+        padding: 20px;
+      }
+
+      /* 屏幕宽度【大于】380px时生效 */
+      @media (min-width: 380px) {
+        .box-red {
+          color: red;
+        }
+      }
+
+      /* 屏幕宽度【小于】380px时生效 */
+      @media (max-width: 380px) {
+        .box-green {
+          color: green;
+        }
+      }
+
+      /* 设备的最宽度小于320px【或】为纵向模式的屏幕设备时生效 */
+      /* 
+            orientation: portrait （竖屏，即设备中的页面可见区域高度>=宽度）
+　　        orientation: landscape （横屏，即设备中的页面可见区域高度<=宽度）
+        */
+      @media (max-width: 320px), screen and (orientation: landscape) {
+        .box-blue {
+          color: blue;
+        }
+      }
+
+      /* 设备宽度大于330px【且】小于380px时生效 */
+      @media screen and (max-width: 380px) and (min-width: 330px) {
+        .box-gray {
+          color: yellow;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box box-red">宽度大于380px时字体为红色</div>
+    <div class="box box-green">宽度小于380px是字体为绿色</div>
+    <div class="box box-blue">
+      用户设备的最宽度小于320px或为纵向模式的屏幕设备时字体为蓝色
+    </div>
+    <div class="box box-gray">设备宽度大于330px【且】小于380px时字体为黄色</div>
+    <hr />
+    <a href="./常用的媒体查询.html">常用的媒体查询</a>
+  </body>
+</html>

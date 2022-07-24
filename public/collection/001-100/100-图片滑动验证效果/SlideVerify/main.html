@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <link rel="stylesheet" href="./index.css" />
+    <title>vue-monoplasty-slide-verify</title>
+  </head>
+  <body>
+    <p>
+      <a
+        href="https://www.npmjs.com/package/vue-monoplasty-slide-verify"
+        target="_blank"
+        >vue-monoplasty-slide-verify</a
+      >
+    </p>
+
+    <template id="slideVerify-template">
+      <div
+        id="slideVerify"
+        class="slide-verify"
+        :style="{ width: w + 'px' }"
+        onselectstart="return false;"
+      >
+        <div :class="{ 'slider-verify-loading': loadBlock }"></div>
+        <canvas :width="w" :height="h" ref="canvas"></canvas>
+        <div
+          v-if="show"
+          @click="refresh"
+          class="slide-verify-refresh-icon"
+        ></div>
+        <canvas
+          :width="w"
+          :height="h"
+          ref="block"
+          class="slide-verify-block"
+        ></canvas>
+
+        <div
+          class="slide-verify-slider"
+          :class="{
+            'container-active': containerActive,
+            'container-success': containerSuccess,
+            'container-fail': containerFail
+          }"
+        >
+          <div
+            class="slide-verify-slider-mask"
+            :style="{ width: sliderMaskWidth }"
+          >
+            <div
+              @mousedown="sliderDown"
+              @touchstart="touchStartEvent"
+              @touchmove="handleMoveEvent($event, 'touch')"
+              @touchend="handleMoveEndEvent($event, 'touch')"
+              class="slide-verify-slider-mask-item"
+              :style="{ left: sliderLeft }"
+            >
+              <div class="slide-verify-slider-mask-item-icon"></div>
+            </div>
+          </div>
+          <span class="slide-verify-slider-text">{{ sliderText }}</span>
+        </div>
+      </div>
+    </template>
+
+    <div id="app">
+      <slide-verify
+        ref="slideblock"
+        :imgs="slideImgs"
+        @again="onAgain"
+        @fulfilled="onFulfilled"
+        @success="onSuccess"
+        @fail="onFail"
+        @refresh="onRefresh"
+        :accuracy="accuracy"
+        :slider-text="text"
+      ></slide-verify>
+      <p>
+        <button @click="handleClick">刷新</button>
+      </p>
+      <p>{{ msg }}</p>
+    </div>
+    <script src="./SlideVerify.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        components: {
+          'slide-verify': SlideVerify
+        },
+        data() {
+          return {
+            msg: '',
+            text: '向右滑',
+            // 精确度小，可允许的误差范围小；为1时，则表示滑块要与凹槽完全重叠，才能验证成功。默认值为5
+            accuracy: 3,
+            slideImgs: [] // 可自定义拼图图片数组，未传则使用插件内默认的图片数组 canvas 加载注意图片跨域问题
+          }
+        },
+        methods: {
+          onSuccess(times) {
+            if (times > 5e3) {
+              console.log(times, '超时了')
+              return
+            }
+            this.msg = `login success, 耗时${(times / 1000).toFixed(1)}s`
+            console.log('去登录')
+            this.$emit('slideSuccess') // 验证成功向父组件发送函数
+          },
+          onFail() {
+            console.log('验证不通过')
+            this.msg = ''
+          },
+          onRefresh() {
+            console.log('点击了刷新小图标')
+            this.msg = ''
+          },
+          onFulfilled() {
+            console.log('刷新成功啦！')
+          },
+          onAgain() {
+            console.log('检测到非人为操作的哦！')
+            this.msg = 'try again'
+            // 刷新
+            this.$refs.slideblock.reset()
+          },
+          handleClick() {
+            // 父组件直接可以调用刷新方法
+            this.$refs.slideblock.reset()
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

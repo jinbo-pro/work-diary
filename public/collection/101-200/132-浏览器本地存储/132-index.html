@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>132-浏览器本地存储</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>浏览器本地存储入门必看</p>
+      <a href="https://zhuanlan.zhihu.com/p/128155801" target="_blank">
+        sessionStorage 、cookie 、localStorage的使用和区别
+      </a>
+      <p>数据共享</p>
+      <a href="https://www.php.cn/faq/463215.html" target="_blank">
+        sessionStorage 、 localStorage 的数据共享
+      </a>
+
+      <ul>
+        <li>
+          <p>[1] localStorage 数据监听 - onstorage</p>
+          <a href="./onstorage.html" target="_blank">
+            使用 onstorage 监听 localStorage 数据- demo
+          </a>
+          <br />
+          <a href="https://zhuanlan.zhihu.com/p/70497745" target="_blank">
+            onstorage 介绍 - 转载
+          </a>
+        </li>
+        <li>
+          <p>[2] localStorage 数据监听 - storage-proxy</p>
+          <a href="./storage-proxy.html" target="_blank">
+            使用 proxy 监听 localStorage 数据- demo
+          </a>
+        </li>
+      </ul>
+
+      <p>两种方案的区别</p>
+      <ol>
+        <li>
+          方案一： onstorage
+          <p>优点：跨页面监听</p>
+          <p>缺点：同页面不能触发， 不支持 sessionStorage</p>
+        </li>
+        <li>
+          方案二： proxy
+          <p>优点：同页面实时监听， 支持 sessionStorage、localStorage</p>
+          <p>缺点：不支持跨页面监听</p>
+        </li>
+      </ol>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>154-12款汉堡图标动画</title>
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <style>
+      /* ALL */
+
+      .container {
+        display: grid;
+        grid-row-gap: 16px;
+        grid-column-gap: 16px;
+        grid-template-columns: auto auto auto;
+      }
+
+      .three {
+        padding: 80px 30px;
+        box-sizing: border-box;
+        background-color: #2c3e50;
+        color: #ecf0f1;
+        text-align: center;
+      }
+
+      .hamburger .line {
+        width: 50px;
+        height: 5px;
+        background-color: #ecf0f1;
+        display: block;
+        margin: 8px auto;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .hamburger:hover {
+        cursor: pointer;
+      }
+
+      /* ONE */
+
+      #hamburger-1.is-active .line:nth-child(2) {
+        opacity: 0;
+      }
+
+      #hamburger-1.is-active .line:nth-child(1) {
+        transform: translateY(13px) rotate(45deg);
+      }
+
+      #hamburger-1.is-active .line:nth-child(3) {
+        transform: translateY(-13px) rotate(-45deg);
+      }
+
+      /* TWO */
+
+      #hamburger-2.is-active .line:nth-child(1) {
+        transform: translateY(13px);
+      }
+
+      #hamburger-2.is-active .line:nth-child(3) {
+        transform: translateY(-13px);
+      }
+
+      /* THREE */
+
+      #hamburger-3.is-active .line:nth-child(1),
+      #hamburger-3.is-active .line:nth-child(3) {
+        width: 40px;
+      }
+
+      #hamburger-3.is-active .line:nth-child(1) {
+        transform: translateX(-10px) rotate(-45deg);
+      }
+
+      #hamburger-3.is-active .line:nth-child(3) {
+        transform: translateX(-10px) rotate(45deg);
+      }
+
+      /* FOUR */
+
+      #hamburger-4.is-active .line:nth-child(1),
+      #hamburger-4.is-active .line:nth-child(3) {
+        width: 40px;
+      }
+
+      #hamburger-4.is-active .line:nth-child(1) {
+        transform: translateX(10px) rotate(45deg);
+      }
+
+      #hamburger-4.is-active .line:nth-child(3) {
+        transform: translateX(10px) rotate(-45deg);
+      }
+
+      /* FIVE */
+
+      #hamburger-5.is-active {
+        transform: rotate(90deg);
+      }
+
+      #hamburger-5.is-active .line:nth-child(2) {
+        transition: none;
+      }
+
+      #hamburger-5 .line:nth-child(2) {
+        transition-delay: 0.3s;
+      }
+
+      #hamburger-5.is-active .line:nth-child(2) {
+        opacity: 0;
+      }
+
+      #hamburger-5.is-active .line:nth-child(1),
+      #hamburger-5.is-active .line:nth-child(3) {
+        width: 35px;
+        transform-origin: right;
+      }
+
+      #hamburger-5.is-active .line:nth-child(1) {
+        transform: translateY(15px) rotate(45deg);
+      }
+
+      #hamburger-5.is-active .line:nth-child(3) {
+        transform: translateY(-15px) rotate(-45deg);
+      }
+
+      /* SIX */
+
+      #hamburger-6.is-active {
+        transition: all 0.3s ease-in-out;
+        transition-delay: 0.6s;
+        transform: rotate(45deg);
+      }
+
+      #hamburger-6.is-active .line:nth-child(2) {
+        width: 0px;
+      }
+
+      #hamburger-6.is-active .line:nth-child(1),
+      #hamburger-6.is-active .line:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+
+      #hamburger-6.is-active .line:nth-child(1) {
+        transform: translateY(13px);
+      }
+
+      #hamburger-6.is-active .line:nth-child(3) {
+        transform: translateY(-13px) rotate(90deg);
+      }
+
+      /* SEVEN */
+
+      #hamburger-7.is-active .line:nth-child(1) {
+        width: 30px;
+      }
+
+      #hamburger-7.is-active .line:nth-child(2) {
+        width: 40px;
+      }
+
+      #hamburger-7.is-active .line {
+        transform: rotate(30deg);
+      }
+
+      /* EIGHT */
+
+      #hamburger-8.is-active .line:nth-child(2) {
+        opacity: 0;
+      }
+
+      #hamburger-8.is-active .line:nth-child(1) {
+        transform: translateY(13px);
+      }
+
+      #hamburger-8.is-active .line:nth-child(3) {
+        transform: translateY(-13px) rotate(90deg);
+      }
+
+      /* NINE */
+
+      #hamburger-9 {
+        position: relative;
+        transition: all 0.3s ease-in-out;
+      }
+
+      #hamburger-9.is-active {
+        transform: rotate(45deg);
+      }
+
+      #hamburger-9:before {
+        content: '';
+        position: absolute;
+        box-sizing: border-box;
+        width: 70px;
+        height: 70px;
+        border: 5px solid transparent;
+        top: calc(50% - 35px);
+        left: calc(50% - 35px);
+        border-radius: 100%;
+        transition: all 0.3s ease-in-out;
+      }
+
+      #hamburger-9.is-active:before {
+        border: 5px solid #ecf0f1;
+      }
+
+      #hamburger-9.is-active .line {
+        width: 35px;
+      }
+
+      #hamburger-9.is-active .line:nth-child(2) {
+        opacity: 0;
+      }
+
+      #hamburger-9.is-active .line:nth-child(1) {
+        transform: translateY(13px);
+      }
+
+      #hamburger-9.is-active .line:nth-child(3) {
+        transform: translateY(-13px) rotate(90deg);
+      }
+
+      /* TEN */
+
+      #hamburger-10 {
+        transition: all 0.3s ease-in-out;
+      }
+
+      #hamburger-10.is-active {
+        transform: rotate(90deg);
+      }
+
+      #hamburger-10.is-active .line:nth-child(1) {
+        width: 30px;
+      }
+
+      #hamburger-10.is-active .line:nth-child(2) {
+        width: 40px;
+      }
+
+      /* ELEVEN */
+
+      #hamburger-11 {
+        transition: all 0.3s ease-in-out;
+      }
+
+      #hamburger-11.is-active {
+        animation: smallbig 0.6s forwards;
+      }
+
+      @keyframes smallbig {
+        0%,
+        100% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(0);
+        }
+      }
+
+      #hamburger-11.is-active .line:nth-child(1),
+      #hamburger-11.is-active .line:nth-child(2),
+      #hamburger-11.is-active .line:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+
+      #hamburger-11.is-active .line:nth-child(2) {
+        opacity: 0;
+      }
+
+      #hamburger-11.is-active .line:nth-child(1) {
+        transform: translateY(13px) rotate(45deg);
+      }
+
+      #hamburger-11.is-active .line:nth-child(3) {
+        transform: translateY(-13px) rotate(-45deg);
+      }
+
+      /* TWELVE */
+
+      #hamburger-12.is-active .line:nth-child(1) {
+        opacity: 0;
+        transform: translateX(-100%);
+      }
+
+      #hamburger-12.is-active .line:nth-child(3) {
+        opacity: 0;
+        transform: translateX(100%);
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>12 款汉堡图标动画</h1>
+    <div class="container"></div>
+
+    <script>
+      $(document).ready(function () {
+        for (let i = 0; i < 12; i++) {
+          const dom = $(`
+            <div class="three">
+                <div class="hamburger is-active" id="hamburger-${i + 1}">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+                </div>
+            </div>
+            `)
+          dom.on('click', function () {
+            $(this).find('.hamburger').toggleClass('is-active')
+          })
+          $('.container').append(dom)
+        }
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>124-回流与重绘的研究</title>
+    <style>
+      .box1 {
+        width: 500px;
+        height: 500px;
+        background-color: #999;
+      }
+      .box2 {
+        width: 300px;
+        height: 300px;
+        background-color: blue;
+      }
+      .box3 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        <a
+          href="https://www.jianshu.com/p/e32bb09e53a1"
+          target="_blank"
+          rel="noopener noreferrer"
+          >回流和重绘 简介</a
+        >
+      </p>
+      <p><button onclick="reflow()">点击 - 回流</button></p>
+      <p><button onclick="repaint()">点击 - 重绘</button></p>
+      <div class="box1">
+        1
+        <div class="box2">
+          3
+          <div class="box3">3</div>
+        </div>
+      </div>
+      <ul>
+        <li>111</li>
+        <li>333</li>
+        <li>222</li>
+      </ul>
+      <div id="point">位置</div>
+
+    </div>
+    <script>
+      function reflow() {
+        var i = 0
+        setInterval(() => {
+          i++
+          $('ul').append(`<li>add - ${i}</li>`)
+          // 改变dom 并获取 offset 浏览器会实时计算高度 发生回流和重绘
+          var point = $('#point').offset()
+          console.log(point.top)
+        }, 1200)
+      }
+      function repaint() {
+        $('.box3').css({
+          'background-color': 'green'
+        })
+      }
+    </script>
+  </body>
+</html>

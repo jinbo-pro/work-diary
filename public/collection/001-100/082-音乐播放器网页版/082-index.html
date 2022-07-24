@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="./082-style.css" />
+    <title>082-音乐播放器网页版</title>
+  </head>
+
+  <body>
+    <div class="search_max search_max_fixed">
+      <input class="search" type="text" placeholder="搜索关键字" />
+      <button id="serach">搜索</button>
+      <button id="reset">重置</button>
+    </div>
+    <div class="music_box"></div>
+    <div class="audio_play" style="display: none">
+      <div class="top_box">
+        <div class="audio_title">
+          <div></div>
+          <div></div>
+        </div>
+        <div class="play_type">
+          <img class="shunxu" src="./icon/shunxu.png" />
+          <img
+            class="suiji"
+            style="display: none"
+            src="./icon/suiji.png"
+          />
+        </div>
+      </div>
+      <div class="audio_content">
+        <div class="audio"></div>
+        <img class="next" src="./icon/next.png" />
+      </div>
+    </div>
+    <script src="./082-main.js"></script>
+  </body>
+</html>

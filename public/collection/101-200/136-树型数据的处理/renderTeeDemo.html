@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>渲染树型数据测试</title>
+  </head>
+  <body>
+    <ol id="treeMax"></ol>
+    <script>
+      function renderList(list) {
+        let html = ''
+        for (let item of list) {
+          if (item.c) {
+            html += `
+            <li>
+              <div>${item.n}</div>
+              <ol>${renderList(item.c)}</ol>
+            </li>`
+          } else {
+            html += `<li>${item.n}</li>`
+          }
+        }
+        return html
+      }
+
+      async function main() {
+        const resData = await fetch('./treeData.json')
+        if (!resData.ok) return
+        const treeList = await resData.json()
+        document.getElementById('treeMax').innerHTML = renderList(treeList)
+      }
+
+      main()
+    </script>
+  </body>
+</html>

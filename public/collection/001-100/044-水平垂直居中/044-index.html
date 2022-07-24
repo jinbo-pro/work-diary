@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>044-水平垂直居中</title>
+    <style>
+      .box {
+        width: 320px;
+        height: 160px;
+        margin: 14px;
+        border: 1px solid #999;
+      }
+
+      .inside {
+        width: 80px;
+        height: 80px;
+        background-color: rgb(108, 196, 108);
+      }
+
+      /* 1. flex布局 */
+      .flex_middle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 1. grid布局 */
+      .grid_max {
+        display: grid;
+        place-items: center;
+      }
+
+      /* 3. position margin */
+      .margin_box {
+        position: relative;
+      }
+
+      .margin_box .inside {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        margin: auto;
+      }
+
+      /* 4. position transform */
+      .position_box {
+        position: relative;
+      }
+
+      .position_box .inside {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+    </style>
+  </head>
+
+  <body>
+    <ol>
+      <li>
+        <p>flex 布局</p>
+        <div class="box flex_middle">
+          <div class="inside">flex</div>
+        </div>
+      </li>
+      <li>
+        <p>grid 布局</p>
+        <div class="grid_max box">
+          <div class="inside">grid</div>
+        </div>
+      </li>
+      <li>
+        <p>position margin</p>
+        <div class="box margin_box">
+          <div class="inside">position margin</div>
+        </div>
+      </li>
+      <li>
+        <p>position transform</p>
+        <div class="box position_box">
+          <div class="inside">position transform</div>
+        </div>
+      </li>
+    </ol>
+  </body>
+</html>

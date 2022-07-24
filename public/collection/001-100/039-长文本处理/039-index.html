@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>039-长文本处理</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 100px;
+        margin: 14px;
+        border: 1px solid #999;
+      }
+
+      /* 一行显示 */
+      .onerow {
+        width: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* 两行显示 */
+      .row2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .row2_h {
+        height: 2.8em;
+      }
+
+      /* 三行显示 */
+      .row3 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+
+      .row3_h {
+        height: 4em;
+      }
+
+      /* 文字换行 */
+      .word_back {
+        word-wrap: break-word;
+        word-break: break-all;
+        /* white-space: pre-line; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <p class="source"></p>
+    <div class="box_max">
+      <ol>
+        <li>
+          <p>onerow: 强制一行显示末尾加点</p>
+          <div class="box onerow"></div>
+        </li>
+        <li>
+          <p>row2: 强制两行显示末尾加点，需设置容器为两行高度</p>
+          <div class="box row2 row2_h"></div>
+        </li>
+        <li>
+          <p>row2: 强制三行显示末尾加点，需设置容器为三行高度</p>
+          <div class="box row3 row3_h"></div>
+        </li>
+      </ol>
+    </div>
+    <script>
+      var text =
+        '华为解答了如果不慎删除小艺建议后如何恢复，为什么桌面图标下方有白条，纯净模式功能是什么，升级 HarmonyOS 2 后是否会出现发热、耗电、变慢、变卡顿等异常，HarmonyOS 2 设备的控制中心的播控中心是否可以自定义，HarmonyOS 2 手机支持的超级终端功能是什么等问题。'
+      $('.source').text(text)
+      $('.box').text(text)
+    </script>
+  </body>
+</html>

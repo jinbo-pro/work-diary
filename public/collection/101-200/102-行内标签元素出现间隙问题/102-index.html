@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>102-行内标签元素出现间隙问题</title>
+    <style>
+      .box p {
+        padding: 30px;
+        display: inline-block;
+        border: 1px solid #999;
+      }
+
+      .father1 {
+        font-size: 0;
+      }
+
+      .father1 p {
+        font-size: 16px;
+      }
+
+      .father2 p {
+        float: left;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>设置 inline-block 有间隙</p>
+    <div class="box">
+      <p>111</p>
+      <p>222</p>
+      <p>333</p>
+    </div>
+    <p>方案一：设置父级字体大小为0，子级在单独设置</p>
+    <div class="box father1">
+      <p>111</p>
+      <p>222</p>
+      <p>333</p>
+    </div>
+    <p>方案二：浮动</p>
+    <div class="box father2">
+      <p>111</p>
+      <p>222</p>
+      <p>333</p>
+    </div>
+    <script></script>
+  </body>
+</html>

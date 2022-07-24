@@ -1,0 +1,36 @@
+{
+  "name": "work-diary",
+  "version": "3.0.0",
+  "description": "my work diary",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "build": "node script/build/index.js",
+    "create": "node script/createFile/createFileBase.js",
+    "deploy": "tcb hosting deploy public -e deer-8gs83hs84deaf967",
+    "login": "tcb login",
+    "start": "node index.js -start"
+  },
+  "author": "lijinbo",
+  "license": "ISC",
+  "dependencies": {
+    "@types/jquery": "^3.5.13",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-router": "^9.0.1",
+    "koa-static": "^5.0.0",
+    "mockjs": "^1.1.0",
+    "nodemon": "^2.0.4"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "public/*",
+      "script/*",
+      "views/*",
+      "dist/*"
+    ]
+  },
+  "browserslist": [
+    "> 5%"
+  ]
+}

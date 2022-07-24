@@ -1,0 +1,160 @@
+/* 弹性布局 */
+
+.fdc,
+.jc,
+.ac,
+.as,
+.jac,
+.jsa,
+.jsb,
+.jsbw,
+.fw,
+.jend,
+.aend,
+.no-blank {
+  display: flex;
+}
+
+.fdc {
+  flex-direction: column;
+}
+
+.jc {
+  justify-content: center;
+}
+
+.ac {
+  align-items: center;
+}
+
+.as {
+  align-items: flex-start;
+}
+
+.aend {
+  align-items: flex-end;
+}
+
+.jac {
+  justify-content: center;
+  align-items: center;
+}
+
+.jsa {
+  justify-content: space-around;
+}
+
+.jsb {
+  justify-content: space-between;
+}
+
+.jend {
+  justify-content: flex-end;
+}
+
+.jsbw {
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.fw {
+  flex-wrap: wrap;
+}
+
+/* 空处理 */
+.no_data {
+  align-items: center;
+  justify-content: center;
+  color: #999;
+  font-size: 13px;
+  padding: 10px 0;
+}
+
+/* 一行显示 */
+.onerow {
+  width: 50px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 两行显示 */
+.row2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  /*! autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+}
+
+/* 三行显示 */
+.row3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  /*! autoprefixer: off */
+  -webkit-box-orient: vertical;
+  /* autoprefixer: on */
+}
+
+/* 文字换行 */
+.word_back {
+  word-wrap: break-word;
+  word-break: break-all;
+  /* white-space: pre-line; */
+}
+
+/* 三角 */
+.triangle {
+  width: 0;
+  height: 0;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid #000;
+  transition: 0.3s;
+}
+
+.triangle_top {
+  transform: rotate(0);
+}
+
+.triangle_down {
+  transform: rotate(180deg);
+}
+
+.triangle_left {
+  transform: rotate(-90deg);
+}
+
+.triangle_right {
+  transform: rotate(90deg);
+}
+
+/* 箭头 */
+.arrow {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #999;
+  border-left: 0 !important;
+  border-bottom: 0 !important;
+  transition: 0.3s;
+}
+
+.arrow_up {
+  transform: rotate(-45deg);
+}
+
+.arrow_down {
+  transform: rotate(135deg);
+}
+
+.arrow_left {
+  transform: rotate(-135deg);
+}
+
+.arrow_right {
+  transform: rotate(45deg);
+}

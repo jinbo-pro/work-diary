@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>getCanvasFp</title>
+  </head>
+  <style>
+    #result {
+      word-break: break-all;
+    }
+  </style>
+  <body>
+    由于不同的系统显卡绘制 canvas
+    时渲染参数、抗锯齿等算法不同，因此绘制成图片数据的 CRC 校验也不一样。
+    <p id="result"></p>
+    <script>
+      function getCanvasFp() {
+        const canvas = document.createElement('canvas')
+        const ctx = canvas.getContext('2d')
+        ctx.font = '14px Arial'
+        ctx.fillStyle = '#ccc'
+        ctx.fillText('hello, shanyue', 2, 2)
+        return canvas.toDataURL('image/jpeg')
+      }
+      document.getElementById('result').innerHTML = getCanvasFp()
+    </script>
+  </body>
+</html>

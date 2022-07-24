@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <script src="https://lib.baomitu.com/axios/0.21.1/axios.min.js"></script>
+    <script src="https://lib.baomitu.com/spark-md5/3.0.0/spark-md5.min.js"></script>
+    <title>068-大文件上传和断点续传</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <button @click="location.reload()">重置</button>
+      <p>
+        <span>每个分片大小：</span>
+        <input v-model="chunkSize" min="1" type="number" placeholder="请输入" />
+        <span>(单位Mb)</span>
+      </p>
+      <input type="file" @change="selectFile" />
+      <div class="progress">
+        <span>已上传: {{ uploadSize | fileSize }}</span>
+        <span>总文件大小: {{ fileSizeTotal | fileSize }}</span><br />
+        <span>上传进度：{{ uploadProgress }}</span>
+      </div>
+      <div>
+        <button @click="handleBtn">{{ btn ? '继续' : '暂停' }}</button>
+      </div>
+    </div>
+
+    <script src="./068-main.js"></script>
+  </body>
+</html>

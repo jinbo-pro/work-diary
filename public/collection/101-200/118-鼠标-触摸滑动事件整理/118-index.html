@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>118-鼠标-触摸滑动事件整理</title>
+    <style>
+      .container {
+        display: flex;
+      }
+      .max,
+      .max2 {
+        width: 400px;
+        height: 400px;
+        box-sizing: border-box;
+        border: 1px solid #999;
+        position: relative;
+      }
+      .max2 {
+        width: 300px;
+        height: 300px;
+      }
+      .box {
+        width: 50px;
+        height: 50px;
+        background-color: #999;
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: move;
+        text-align: center;
+        user-select: none;
+      }
+      #app3 {
+        left: 80%;
+      }
+      #tips {
+        margin-top: 100px;
+        font-size: 14px;
+        text-align: center;
+        color: rgb(115, 181, 80);
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      <a href="./jqmousemoveEvent.html" target="_blank"> jquery 简易拖动 </a>
+    </p>
+    <p>
+      <a href="http://www.sortablejs.com/" target="_blank"
+        >强大拖拽库 sortablejs</a
+      >
+    </p>
+    <p>超级强大拖拽库</p>
+    <ul>
+      <li>
+        <a href="https://github.com/clauderic/dnd-kit" target="_blank">
+          dnd-kit github
+        </a>
+      </li>
+      <li>
+        <a href="https://docs.dndkit.com" target="_blank">dnd-kit 官方文档</a>
+      </li>
+    </ul>
+
+    <div class="container">
+      <div class="max">
+        <div id="app1" class="box">1</div>
+      </div>
+      <div class="max2">
+        <div id="app2" class="box">2</div>
+      </div>
+    </div>
+    <div id="app3" class="box">3</div>
+    <div id="tips"></div>
+    <script type="module" src="./118-main.js"></script>
+  </body>
+</html>

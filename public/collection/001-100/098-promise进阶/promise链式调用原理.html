@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>promise链式简单实现</title>
+  </head>
+
+  <body>
+    <div class="box">看控制台</div>
+    <p>
+      【规范】
+      <a href="https://promisesaplus.com/#notes">原文：Promises/A+</a>
+      <a href="https://www.ituring.com.cn/article/66566"
+        >【翻译】Promises/A+规范</a
+      >
+    </p>
+    <p>
+      参考：
+      <a href="https://zhuanlan.zhihu.com/p/144058361">从零开始手写Promise</a>
+    </p>
+    <p>省去了很多的判断 简单实现了 promise 链式调用的核心原理</p>
+    <script>
+      /**
+       * promise 是一个拥有 then 方法的对象或函数，其行为符合本规范；
+       * 一个 Promise 的当前状态必须为以下三种状态中的一种：
+       * 等待态（Pending）、执行态（Fulfilled）和拒绝态（Rejected）。
+       */
+      const PENDING = 'pending'
+      const FULFILLED = 'fulfilled'
+      const REJECTED = 'rejected'
+      // 解析 链式 promise
+      function parseResolve(prevValue, resolve, reject) {
+        var x = prevValue
+        /**
+         * 省略了 结果的细致判断，函数执行的异常等判断 ，这里只是针对 promise 判断
+         * */
+        // 如果上一个结果返回的是 promise 那么继续解析
+        if (x instanceof MyPromise) {
+          // 让then执行 第一个参数是this   后面是成功的回调 和 失败的回调
+          x.then.call(
+            x,
+            (res) => {
+              // 递归解析 resolve 直到不为 promise 为止
+              parseResolve(res, resolve, reject)
+            },
+            (err) => {
+              reject(err) // 失败了就失败了
+            }
+          )
+        } else {
+          // 不是 promise 直接返回即可
+          resolve(x)
+        }
+      }
+      class MyPromise {
+        constructor(executor) {
+          this.state = PENDING // 状态
+          this.value = undefined // 成功结果
+          this.reason = undefined // 失败原因
+          // 使用数组存储回调函数是因为多次调用then时能够正常运行，而变量会被覆盖
+          this.onResolvedCallbacks = [] // 存储成功的回调
+          this.onRejectedCallbacks = [] // 存储失败的回调
+          // 由于状态由pending变为其他状态后不可改变，所以此处需判断状态的可变性
+          const resolve = (value) => {
+            if (this.state === PENDING) {
+              this.state = FULFILLED
+              this.value = value
+              this.onResolvedCallbacks.forEach((fn) => fn(value))
+            }
+          }
+          const reject = (reason) => {
+            if (this.state === PENDING) {
+              this.state = REJECTED
+              this.reason = reason
+              this.onRejectedCallbacks.forEach((fn) => fn(reason))
+            }
+          }
+          try {
+            executor(resolve, reject) // 当实例化Promise时，构造函数会马上调用传入的执行函数executor
+          } catch (e) {
+            reject(e)
+          }
+        }
+        // then 方法必须返回一个 promise 对象，以便后面进行链式调用
+        then(onFulfilled, onRejected) {
+          // onFulfilled如果不是函数，就忽略onFulfilled，直接返回value
+          onFulfilled =
+            typeof onFulfilled === 'function' ? onFulfilled : (value) => value
+          // onRejected如果不是函数，就忽略onRejected，直接扔出错误
+          onRejected =
+            typeof onRejected === 'function'
+              ? onRejected
+              : (err) => {
+                  throw err
+                }
+          const promise2 = new MyPromise((resolve, reject) => {
+            if (this.state === FULFILLED) {
+              let x = onFulfilled(this.value)
+              parseResolve(x, resolve, reject)
+            }
+            if (this.state === REJECTED) {
+              let x = onRejected(this.reason)
+              parseResolve(x, resolve, reject)
+            }
+            if (this.state === PENDING) {
+              this.onResolvedCallbacks.push(() => {
+                let x = onFulfilled(this.value)
+                parseResolve(x, resolve, reject)
+              })
+              this.onRejectedCallbacks.push(() => {
+                let x = onRejected(this.reason)
+                parseResolve(x, resolve, reject)
+              })
+            }
+          })
+
+          return promise2
+        }
+        catch(fn) {
+          return this.then(null, fn)
+        }
+      }
+
+      // MyPromise 测试
+      function api(time = 0) {
+        return new MyPromise(function (resolve, reject) {
+          setTimeout(function () {
+            if (time < 100) {
+              reject(time)
+            } else {
+              resolve(time)
+            }
+          }, time)
+        })
+      }
+
+      api(500)
+        .then((res) => {
+          console.log(res, '-->>> res 500')
+          return api(300)
+        })
+        .then((res) => {
+          console.log(res, '-->>> res 500')
+          return api(200)
+        })
+        .then((res) => {
+          console.log(res, '-->>> res 100')
+        })
+        .catch((err) => {
+          console.log(err, '-->>> err')
+        })
+    </script>
+  </body>
+</html>

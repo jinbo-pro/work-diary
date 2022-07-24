@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>mc-fetch 请求测试</title>
+  </head>
+  <style>
+    button {
+      margin: 16px;
+      display: block;
+    }
+  </style>
+  <body>
+    <button id="mcGetData">get请求 - 数据</button>
+    <button id="mcGetText">get请求 - 文本</button>
+    <button id="mcPost">post请求</button>
+    <button id="mcPostJson">post请求 - json</button>
+    <input type="file" id="selectFile" />
+    <button id="mcPostFormData">post请求 - ForData</button>
+
+    <script type="module">
+      import { RequestFetch } from '/utils/module/RequestFetch.js'
+      const request = new RequestFetch()
+
+      $('#mcGetData').on('click', async () => {
+        const res = await request.get('/api/listData')
+        console.log(res, '-->>> mcGetData')
+      })
+      $('#mcGetText').on('click', async () => {
+        const res = await request.get('/lib/css/css3-flex.css')
+        console.log(res, '-->>> mcGetText')
+      })
+
+      $('#mcPost').on('click', async () => {
+        const data = {
+          pageSize: 3
+        }
+        const res = await request.post('/api/userListData', data)
+        console.log(res, '-->>> mcPost')
+      })
+
+      $('#mcPostJson').on('click', async () => {
+        const data = {
+          pageSize: 3
+        }
+        const res = await request.postJson('/api/userListData', data)
+        console.log(res, '-->>> mcPostJson')
+      })
+
+      let file = null
+      const selectFile = document.getElementById('selectFile')
+      selectFile.oninput = function (e) {
+        const files = e.target.files
+        file = files[0]
+      }
+      $('#mcPostFormData').on('click', async () => {
+        const data = new FormData()
+        data.append('file', file)
+        const res = await request.postFormData('/fileUpload', data)
+        console.log(res, '-->>> mcPostFormData')
+      })
+    </script>
+  </body>
+</html>

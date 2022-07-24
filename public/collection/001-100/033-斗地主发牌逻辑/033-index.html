@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>033-斗地主发牌逻辑</title>
+    <style>
+      .brand_list {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .brand_item {
+        width: 50px;
+        height: 80px;
+        cursor: pointer;
+        border: 1px solid #666;
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+
+      .brand_item:hover {
+        transform: translateY(-20%);
+        transition: 0.3s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <button id="reset">洗牌</button>
+    <div id="box"></div>
+    <script src="./033-main.js"></script>
+  </body>
+</html>

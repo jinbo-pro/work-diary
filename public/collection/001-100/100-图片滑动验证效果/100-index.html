@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>100-图片滑动验证效果</title>
+    <style>
+      :root {
+        --w: 500px;
+        --sw: 50px;
+      }
+      .box {
+        width: var(--w);
+        height: 200px;
+        border-radius: 2px;
+        background-color: #999;
+        position: relative;
+      }
+      .slider_top,
+      .empty_box {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: var(--sw);
+        height: var(--sw);
+        background-color: #fff;
+        z-index: 100;
+        border: 1px solid #999;
+        box-sizing: border-box;
+      }
+      .slider_top {
+        z-index: 110;
+        border: 1px solid rgb(146, 192, 97);
+      }
+      /* 滑块 */
+      .slider_max {
+        width: var(--w);
+        height: var(--sw);
+        position: relative;
+        background-color: rgb(207, 160, 160);
+      }
+
+      .slider_block {
+        width: var(--sw);
+        height: var(--sw);
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        background-color: rgb(93, 147, 75);
+        z-index: 100;
+        cursor: move;
+      }
+      /* 提示信息 */
+      .tips {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>简易的图片滑动验证</p>
+    <p>
+      更好用的 图片滑动验证 参考
+      <a href="./SlideVerify/main.html" target="_blank"
+        >vue-monoplasty-slide-verify</a
+      >
+    </p>
+    <div class="box">
+      <div class="slider_top"></div>
+      <div class="empty_box"></div>
+    </div>
+    <div class="slider_max">
+      <div class="slider_block"></div>
+    </div>
+    <p>
+      <button onclick="location.reload()">重置</button>
+    </p>
+    <p id="tips"></p>
+    <script src="./100-main.js"></script>
+  </body>
+</html>

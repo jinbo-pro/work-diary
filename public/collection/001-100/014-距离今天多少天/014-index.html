@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>014-距离今天多少天</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div>
+      <p>
+        <span>开始时间:</span>
+        <input type="text" id="dateStart" placeholder="如: 2014-05-01" />
+      </p>
+      <p>
+        <span>结束时间:</span>
+        <input type="text" id="dateEnd" placeholder="如: 2014-05-01" />
+      </p>
+      <button id="butCount">计算时间距离</button>
+      <br />
+      <p id="year"></p>
+      <p id="day"></p>
+    </div>
+    <script>
+      function valiDate(time) {
+        return /^\d{4}-\d{2}-\d{2}$/.test(time)
+      }
+      var now = new Date()
+      $('#dateEnd').val(now.toJSON().slice(0, 10))
+      $('#butCount').on('click', function () {
+        var dateStart = $('#dateStart').val()
+        var dateEnd = $('#dateEnd').val()
+        if (!valiDate(dateStart) || !valiDate(dateEnd)) {
+          return alert('时间格式不正确')
+        }
+        let s = new Date(dateStart)
+        let e = new Date(dateEnd)
+        const oneDayTime = 24 * 3600 * 1000
+        let year = (e - s) / (365 * oneDayTime)
+        let day = (e - s) / oneDayTime
+        $('#year')
+          .text(year + ' 年')
+          .next()
+          .text(day + ' 天')
+      })
+    </script>
+  </body>
+</html>

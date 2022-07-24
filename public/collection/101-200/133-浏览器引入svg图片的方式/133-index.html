@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>133-浏览器引入svg图片的方式</title>
+    <style>
+      .svg_box {
+        width: 200px;
+        height: 100px;
+        background: url('https://gitee.com/static/images/logo-black.svg')
+          no-repeat center;
+        background-size: 200px 200px;
+      }
+      li {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <p>区别：</p>
+      <p>
+        object、embed 和 iframe 标签均为浏览器顶层渲染， 无法覆盖，
+        无法修改样式，无法绑定事件
+      </p>
+      <p>推荐 img 标签引入 或 css 背景图片引入、 方便控制</p>
+    </div>
+    <hr />
+    <ol>
+      <li>
+        <p>object 标签引入</p>
+        <object data="https://gitee.com/static/images/logo-black.svg"></object>
+      </li>
+      <li>
+        <p>embed 标签引入</p>
+        <embed
+          src="https://gitee.com/static/images/logo-black.svg"
+          type="image/svg+xml"
+        />
+      </li>
+      <li>
+        <p>iframe 标签引入</p>
+        <iframe
+          src="https://gitee.com/static/images/logo-black.svg"
+          frameborder="0"
+        ></iframe>
+      </li>
+      <li>
+        <p>img 标签引入</p>
+        <img src="https://gitee.com/static/images/logo-black.svg" />
+      </li>
+      <li>
+        <p>css 背景图片引入</p>
+        <div class="svg_box"></div>
+      </li>
+    </ol>
+
+    <script>
+      $('li').on('click', function () {
+        console.log(this, '-->>> 678')
+      })
+    </script>
+  </body>
+</html>

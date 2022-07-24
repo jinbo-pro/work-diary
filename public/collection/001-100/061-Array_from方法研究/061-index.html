@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>061-Array_from方法研究</title>
+  </head>
+
+  <body>
+    <div class="box">看控制台</div>
+    <script>
+      var 列表 = [1, 2, 3, 4]
+      var 张三 = { age: 23, position: '北京' }
+
+      var parson = {
+        我是: 张三,
+        他是: 列表,
+        null: 8,
+        undefined: undefined,
+        2: 10,
+        length: 4
+      }
+      // Array.from 将对象转换成数组
+      var list = Array.from(parson)
+
+      console.log(list, '-->>>') // list: [ undefined, undefined, 10, undefined]    【V】
+
+      // Array.from 伪代码如下
+      var list2 = new Array(parson.length)
+      for (var i = 0; i < parson.length; i++) {
+        list2[i] = parson[i] ? parson[i] : undefined
+      }
+      console.log(list2, '-->>> 678')
+    </script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>084-m禁止点击高亮</title>
+    <style>
+      * {
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .but1 {
+        width: 100%;
+        height: 50px;
+        color: #fff;
+        border-radius: 999px;
+        background-color: goldenrod;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>触摸元素会出现半透明灰色遮罩，不想要！</p>
+    <p>设置 -webkit-tap-highlight-color: transparent; 即可</p>
+    <button class="but1">点击</button>
+  </body>
+</html>

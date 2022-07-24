@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>030-电脑1毫秒计算数</title>
+    <style>
+      body {
+        background: #333;
+        color: #fff;
+        width: 100%;
+        padding: 0;
+        margin: 0;
+      }
+      h1 {
+        text-align: center;
+      }
+      #info {
+        padding: 10px;
+        text-align: center;
+      }
+      button {
+        background: #00b8ff;
+        border: 1px solid #fff;
+        color: #fff;
+        border-radius: 30px;
+        padding: 10px 33px;
+        font-size: 15px;
+        outline: none;
+        margin: auto;
+        display: block;
+      }
+
+      button:active {
+        background: #008abf;
+      }
+      .line {
+        height: 10px;
+      }
+      .result {
+        color: #04dc74;
+        font-size: 26px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <h1>测试你手机/电脑的性能</h1>
+      <div class="line"></div>
+      <button onclick="testRun()">测试</button>
+      <div class="line"></div>
+      <div id="info">
+        此方法可以大致对比出PC、手机、ipad的性能。 不同浏览器性能也有所区别。
+      </div>
+    </div>
+    <script>
+      // 测试计算数 t 测试时间(ms)
+      function run(t = 100) {
+        var i = 1
+        var time = Date.now()
+        var now = time
+        console.time('run')
+        while (now - time < t) {
+          now = Date.now()
+          i++
+        }
+        console.timeEnd('run')
+        var f = ~~(i / t)
+        return { i, f }
+      }
+      var test = document.getElementById('test')
+      var testTime = document.getElementById('testTime')
+      var info = document.getElementById('info')
+
+      function testRun() {
+        var t = 300
+        var { i, f } = run(t)
+        info.innerHTML = `
+        <p>你的计算机在 <i>${t}</i> 毫秒运行了 <i>${i}</i> 次计算 </p>
+        <p>平均每毫秒运行约 
+          <i class="result">${f}</i> 次
+        </p>`
+      }
+    </script>
+  </body>
+</html>

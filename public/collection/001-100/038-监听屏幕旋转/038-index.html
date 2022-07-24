@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>038-监听屏幕旋转</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box1">js 监听屏幕旋转</div>
+    <script>
+      // js监听屏幕旋转的方案
+      console.log(screen.orientation)
+      console.log(screen.orientation.angle) // [0竖屏]  [90向左横屏]    [-90/270向右横屏]   [180倒屏]
+      window.addEventListener(
+        'onorientationchange',
+        () => {
+          console.log(screen.orientation)
+        },
+        true
+      )
+    </script>
+  </body>
+</html>

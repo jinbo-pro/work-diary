@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>142-移动端横屏竖屏css检测</title>
+    <style>
+      /* 竖屏 */
+      @media all and (orientation: portrait) {
+        .text {
+          color: blue;
+        }
+      }
+      /* 横屏 */
+      @media all and (orientation: landscape) {
+        .text {
+          color: red;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p class="text">竖屏下是蓝色</p>
+      <p class="text">横屏下是红色</p>
+      <hr />
+      常见运用
+      <p>
+        <a href="./提示用户改变屏幕方向.html" target="_blank">
+          提示用户改变屏幕方向
+        </a>
+      </p>
+    </div>
+    <script defer type="module" src="./142-main.js"></script>
+  </body>
+</html>

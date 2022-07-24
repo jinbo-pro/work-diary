@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>144-js浮点数精度的问题初探</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>浮点数大小比较 可以参考</p>
+      <a href="https://q.shanyue.tech/fe/js/583.html" target="_blank">
+        浮点数大小比较
+      </a>
+    </div>
+    <script>
+      function equal(a, b) {
+        return Math.abs(a - b) < Number.EPSILON
+      }
+    </script>
+  </body>
+</html>

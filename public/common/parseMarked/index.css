@@ -1,0 +1,70 @@
+.container {
+  display: flex;
+  background-color: #f0f2f7;
+}
+#content {
+  width: 75%;
+  border-radius: 16px;
+  margin: 30px 16px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 13px 15px rgb(31 45 61 / 10%);
+}
+#nav {
+  width: 20%;
+  height: 80vh;
+  overflow-y: scroll;
+  position: fixed;
+  top: 32px;
+  right: 8px;
+  z-index: 100;
+  border-radius: 16px;
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: #fff;
+  box-shadow: 0 13px 15px rgb(31 45 61 / 10%);
+}
+.tag_H2 {
+  padding-left: 16px;
+}
+.tag_H3 {
+  padding-left: 32px;
+}
+
+/* 行号样式 */
+.hljs-ln-numbers {
+  user-select: none;
+  text-align: center;
+  color: #999;
+  border-right: 1px solid #999;
+  vertical-align: top;
+  padding-right: 5px;
+}
+
+.hljs-ln-code {
+  padding: 0 10px;
+}
+
+.hljs-ln td {
+  padding: 2px 6px 2px 8px;
+}
+
+/* 滚动条美化 */
+#nav::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: transparent;
+}
+
+/* 滚动条轨道部分 */
+#nav::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+/* 滚动条滑块部分 */
+#nav::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-image: linear-gradient(135deg, #09f, #3c9);
+}

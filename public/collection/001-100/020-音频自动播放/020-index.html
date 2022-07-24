@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>020-音频自动播放</title>
+    <style></style>
+  </head>
+
+  <body>
+    <h1>音乐自动播放测试</h1>
+    <!-- 
+		【audio标签的属性】
+		loop		设置循环播放
+		controls 	浏览器自带控件样式
+		autoplay	设置音频在加载完后立即播放 
+		
+		直接设置自动播放属性【autoplay】 		pc端有效，微信浏览器有些有效有些无效  Ios无效，Android无效
+		控制自动播放背景音乐【再添加初始化事件】 pc端有效，微信浏览器有效  Ios无效，Android无效
+		控制自动播放背景音乐【再添加滑动事件】 pc端有效，微信浏览器有效  Ios有效，Android无效
+		
+		-->
+    <!-- <audio id="music" class="hidden" controls autoplay loop src="./yueyawan.mp3"> </audio> -->
+    <audio id="music" class="hidden" controls loop src="./yueyawan.mp3"></audio>
+
+    <h2>浏览器信息</h2>
+    <p id="browser" style="word-wrap: break-word"></p>
+    <p id="browser2"></p>
+    <p id="browser3">0</p>
+    <div style="height: 800px; background-color: #999999; text-align: center">
+      拉伸高度 使其可出发话滑动事件
+    </div>
+    <script src="./020-main.js"></script>
+  </body>
+</html>

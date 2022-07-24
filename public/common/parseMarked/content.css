@@ -1,0 +1,77 @@
+#content {
+  width: 90%;
+  padding: 0 50px;
+}
+
+#content pre {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  line-height: 1.2;
+  color: #fff;
+  background: #111;
+  border-radius: 5px;
+  overflow-x: scroll;
+}
+
+#content code {
+  color: #a6e22e;
+  font-size: 0.7rem;
+  font-weight: normal;
+  font-family: Consolas, 'Courier New', Courier, FreeMono, monospace;
+  background: #111;
+  border-radius: 2px;
+}
+
+#content p code,
+#content li > code,
+#content h2 > code,
+#content h3 > code {
+  padding-left: 3px;
+  padding-right: 3px;
+  color: #c7254e;
+  background: #f9f2f4;
+}
+
+#content h2 {
+  margin-top: 50px;
+  margin-bottom: 0px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  font-size: 18px;
+  text-align: left;
+  border-top: 2px solid #666;
+  counter-increment: section;
+}
+
+#content h2:before {
+  content: counter(section) '. ';
+}
+
+#content h3 {
+  margin-top: 50px;
+  margin-bottom: 0px;
+  padding-top: 20px;
+  padding-bottom: 0px;
+  text-align: left;
+  border-top: 1px dotted #777;
+}
+
+#content h2:hover,
+#content h3:hover {
+  color: #ed1c24;
+}
+
+code[class*='language-'],
+pre[class*='language-'] {
+  color: #a6e22e;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+  direction: ltr;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  tab-size: 4;
+  hyphens: none;
+}

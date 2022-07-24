@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>003-防页面复制</title>
+    <style>
+      .user_no_select {
+        user-select: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h3>方式一： css： user-select: none;</h3>
+    <p class="user_no_select">【当前内容不可复制，O(∩_∩)O哈哈~】</p>
+
+    <h3>方式二： js 监听 selectstart 事件禁止选中 同时 监听 copy 事件禁止复制</h3>
+    <p id="selectTxt">我是文案， 我无法被选中， 也没法复制了 哈哈</p>
+    <script>
+      const selectTxt = document.getElementById('selectTxt')
+      selectTxt.onselectstart = (e) => {
+        e.preventDefault()
+      }
+      selectTxt.oncopy = (e) => {
+        e.preventDefault()
+      }
+    </script>
+  </body>
+</html>

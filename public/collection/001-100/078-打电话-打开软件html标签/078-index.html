@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>078-打电话-打开软件html标签</title>
+  </head>
+
+  <body>
+    <button id="call">点击打电话js方式</button>
+    <script>
+      var call = document.getElementById('call')
+      call.onclick = function () {
+        window.location.href = 'tel://' + '15775861587'
+      }
+    </script>
+
+    <!-- 拨打电话 -->
+    <p><a href="tel:10086">拨打电话给10086小姐姐</a></p>
+
+    <!-- 发送短信 -->
+    <p><a href="sms:10086">发送短信给10086小姐姐</a></p>
+
+    <!-- 发送邮件 -->
+    <p><a href="mailto:young.joway@aliyun.com">发送邮件给JowayYoung</a></p>
+
+    <!-- 选择照片或拍摄照片 -->
+    <span>选择照片或拍摄照片</span>
+    <p><input type="file" accept="image/*" /></p>
+
+    <!-- 选择视频或拍摄视频 -->
+    <span>选择视频或拍摄视频</span>
+    <p><input type="file" accept="video/*" /></p>
+
+    <!-- 多选文件 -->
+    <span>多选文件</span>
+    <p><input type="file" multiple /></p>
+
+    <!-- 打开微信 -->
+    <p><a href="weixin://">打开微信</a></p>
+
+    <!-- 打开支付宝 -->
+    <p><a href="alipays://">打开支付宝</a></p>
+
+    <!-- 打开支付宝的扫一扫 -->
+    <p>
+      <a href="alipays://platformapi/startapp?saId=10000007"
+        >打开支付宝的扫一扫</a
+      >
+    </p>
+
+    <!-- 打开支付宝的蚂蚁森林 -->
+    <p>
+      <a href="alipays://platformapi/startapp?appId=60000002"
+        >打开支付宝的蚂蚁森林</a
+      >
+    </p>
+  </body>
+</html>

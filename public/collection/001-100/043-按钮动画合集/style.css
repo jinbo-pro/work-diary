@@ -1,0 +1,386 @@
+/* 1. 流光 */
+.btn1 {
+  width: 100px;
+
+  height: 40px;
+
+  border-radius: 10px;
+
+  background-color: #00b16a;
+
+  overflow: hidden;
+
+  position: relative;
+
+  margin: 10px auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+.btn1::before {
+  content: '';
+
+  display: block;
+
+  width: 25px;
+
+  height: 50px;
+
+  background: rgba(255, 255, 255, 0.3);
+
+  transform: skewX(-25deg);
+
+  position: absolute;
+
+  left: -35px;
+
+  animation: guang infinite 0.8s ease-in;
+}
+
+@keyframes guang {
+  50% {
+    left: -45px;
+  }
+
+  100% {
+    left: 110px;
+  }
+}
+
+/*2.边框*/
+.btn2-wrapper {
+  overflow: hidden;
+  margin: 10px auto;
+  width: 106px;
+  height: 46px;
+}
+
+.btn2 {
+  width: 100px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #186d4b;
+  background-color: #00b16a;
+}
+
+.btn2 span:nth-child(1) {
+  width: 100px;
+  height: 3px;
+  border-radius: 0 10px 10px 0;
+  position: absolute;
+  top: -3px;
+  left: -103px;
+  animation: bordertop 2s linear infinite;
+  background: linear-gradient(to right, #186d4b, #fff);
+}
+
+.btn2 span:nth-child(2) {
+  width: 3px;
+  height: 40px;
+  border-radius: 0 0 10px 10px;
+  position: absolute;
+  top: -43px;
+  right: -3px;
+  animation: borderright 2s linear 1s infinite;
+  background: linear-gradient(to bottom, #186d4b, #fff);
+}
+
+.btn2 span:nth-child(3) {
+  width: 100px;
+  height: 3px;
+  border-radius: 10px 0 0 10px;
+  position: absolute;
+  top: 40px;
+  right: -103px;
+  animation: borderbottom 2s linear 2s infinite;
+  background: linear-gradient(to left, #186d4b, #fff);
+}
+
+.btn2 span:nth-child(4) {
+  width: 3px;
+  height: 40px;
+  border-radius: 10px 10px 0 0;
+  position: absolute;
+  top: 43px;
+  left: -3px;
+  animation: borderleft 2s linear 3s infinite;
+  background: linear-gradient(to top, #186d4b, #fff);
+}
+
+@keyframes bordertop {
+  100% {
+    left: 100px;
+  }
+}
+
+@keyframes borderright {
+  100% {
+    top: 40px;
+  }
+}
+
+@keyframes borderbottom {
+  100% {
+    right: 100px;
+  }
+}
+
+@keyframes borderleft {
+  100% {
+    top: -43px;
+  }
+}
+
+/*3.开关*/
+.btn3 {
+  margin: 10px auto;
+  width: 60px;
+  height: 60px;
+  line-height: 2.6;
+  font-size: 24px;
+  text-align: center;
+  color: #e1dada;
+  text-shadow: 0px -1px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 100px;
+  text-decoration: none;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #f4f4f4),
+    color-stop(100%, #e3e3e3)
+  );
+  background-image: -moz-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #f4f4f4),
+    color-stop(100%, #e3e3e3)
+  );
+  box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25), 10px 10px 15px #e3e3e3,
+    -10px 10px 15px #e3e3e3, -15px -15px 15px rgba(255, 255, 255, 0.4),
+    15px -15px 15px rgba(255, 255, 255, 0.4), inset 0px 2px 0px white;
+}
+
+.btn3.active {
+  color: #00d0b0;
+  text-shadow: 0px 0px 1px #37ffb1;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #e3e3e3),
+    color-stop(100%, #f4f4f4)
+  );
+  background-image: -moz-gradient(
+    linear,
+    left top,
+    left bottom,
+    color-stop(0%, #e3e3e3),
+    color-stop(100%, #f4f4f4)
+  );
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.15),
+    10px 10px 15px rgba(255, 255, 255, 0.4),
+    -10px 10px 15px rgba(255, 255, 255, 0.4), -10px -10px 15px #e3e3e3,
+    10px -10px 15px #e3e3e3, inset 0px -3px 0px rgba(255, 255, 255, 0.4),
+    inset 0px 3px 3px rgba(0, 0, 0, 0.04);
+}
+
+/*4.*/
+.btn4 {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: btn4Ani 2s linear infinite;
+}
+
+@keyframes btn4Ani {
+  0% {
+    width: 100px;
+    height: 40px;
+  }
+
+  30% {
+    width: 140px;
+    height: 56px;
+    transform: rotate(0deg);
+  }
+
+  40% {
+    width: 140px;
+    height: 56px;
+    transform: rotate(-5deg);
+  }
+
+  50% {
+    width: 140px;
+    height: 56px;
+    transform: rotate(5deg);
+  }
+
+  60% {
+    width: 140px;
+    height: 56px;
+    transform: rotate(-5deg);
+  }
+
+  70% {
+    width: 140px;
+    height: 56px;
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+    width: 100px;
+    height: 40px;
+  }
+}
+
+/*5.*/
+.btn5 {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.btn5::before {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  border: 3px solid rgba(255, 255, 255, 1);
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  animation: btn5AniBefore 2s ease-in-out infinite;
+}
+
+.btn5::after {
+  content: '';
+  display: block;
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  border: 3px solid rgba(255, 255, 255, 1);
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  animation: btn5AniAfter 2s ease-in-out infinite;
+}
+
+@keyframes btn5AniBefore {
+  0% {
+    top: -3px;
+    left: -3px;
+    border: 3px solid rgba(255, 255, 255, 1);
+  }
+
+  100% {
+    top: -12px;
+    left: -12px;
+    border: 12px solid rgba(255, 255, 255, 0.5);
+  }
+}
+
+@keyframes btn5AniAfter {
+  0% {
+    top: -3px;
+    left: -3px;
+    border: 3px solid rgba(255, 255, 255, 1);
+  }
+
+  100% {
+    border-radius: 60px;
+    top: -30px;
+    left: -30px;
+    border: 30px solid rgba(255, 255, 255, 0.3);
+  }
+}
+
+/*6.*/
+.btn6 {
+  width: 100px;
+  height: 40px;
+  border-radius: 30px;
+  border: 3px solid #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.btn6 span {
+  position: absolute;
+  font-family: 'Margarine';
+  animation: btn6Ani 0.8s infinite;
+}
+
+.btn6 span:nth-child(1) {
+  top: -40px;
+  left: -10px;
+  transform: rotate(15deg);
+  animation-duration: 1s;
+}
+
+.btn6 span:nth-child(2) {
+  top: -38px;
+  left: 60px;
+  transform: rotate(5deg);
+  animation-duration: 0.3s;
+}
+
+.btn6 span:nth-child(2) {
+  top: -58px;
+  left: 60px;
+  transform: rotate(0deg);
+  animation-duration: 0.5s;
+}
+
+.btn6 span:nth-child(3) {
+  top: -18px;
+  left: 110px;
+  transform: rotate(10deg);
+  animation-duration: 0.7s;
+}
+
+.btn6 span:nth-child(4) {
+  top: 50px;
+  left: 80px;
+  transform: rotate(-40deg);
+  animation-duration: 1.2s;
+}
+
+.btn6 span:nth-child(5) {
+  top: 60px;
+  left: 10px;
+  transform: rotate(10deg);
+  animation-duration: 0.8s;
+}
+
+@keyframes btn6Ani {
+  0% {
+    color: #fff;
+  }
+
+  100% {
+    color: transparent;
+  }
+}

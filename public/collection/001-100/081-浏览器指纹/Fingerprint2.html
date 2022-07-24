@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/fingerprintjs2/2.1.5/fingerprint2.min.js"></script>
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="info">
+      <p>
+        Fingerprint2 Github:
+        <a href="https://github.com/Valve/fingerprintjs2" target="_blank"
+          >https://github.com/Valve/fingerprintjs2</a
+        >
+      </p>
+      <p>
+        纯前端实现的浏览器指纹采集器，通过获取浏览器中所有能获取到的信息(部分通过base64转成String)，最后生成出md5，用于该用户在该设备上的唯一标识码，官方宣称准确度高达99.5%
+      </p>
+    </div>
+    <div id="control">
+      <button onclick="start()">开始</button>
+      <label>
+        <span>userAgent:</span>
+        <input type="checkbox" data-id="userAgent" checked="checked" />
+      </label>
+      <label>
+        <span>fonts:</span>
+        <input type="checkbox" data-id="fonts" checked="checked" />
+      </label>
+      <label>
+        <span>fontsFlash:</span>
+        <input type="checkbox" data-id="fontsFlash" checked="checked" />
+      </label>
+      <label>
+        <span>canvas:</span>
+        <input type="checkbox" data-id="canvas" checked="checked" />
+      </label>
+      <label>
+        <span>webgl:</span>
+        <input type="checkbox" data-id="webgl" checked="checked" />
+      </label>
+      <label>
+        <span>audio:</span>
+        <input type="checkbox" data-id="audio" checked="checked" />
+      </label>
+      <label>
+        <span>enumerateDevices:</span>
+        <input type="checkbox" data-id="enumerateDevices" />
+      </label>
+    </div>
+    <div id="view"></div>
+    <script>
+      function start() {
+        const start = new Date().getTime()
+        let view = document.querySelector('#view')
+        view.innerHTML = ''
+        let options = {}
+        $('input:checked').each((i, item) => {
+          var key = $(item).attr('data-id')
+          options[key] = true
+        })
+        Fingerprint2.get(options, function (components) {
+          // 参数
+          const values = components.map(function (component) {
+            return component.value
+          })
+          // 指纹
+          const murmur = Fingerprint2.x64hash128(values.join(''), 31)
+          view.innerHTML += '<p>指纹 : ' + murmur + '</p>'
+          view.innerHTML +=
+            '<p>消耗 : ' + (new Date().getTime() - start) + ' 毫秒</p>'
+          view.innerHTML += '<p>使用的参数 : </p>'
+          for (const c of components) {
+            view.innerHTML += '<p>' + c.key + ' : ' + c.value + '</p>'
+          }
+        })
+      }
+      start()
+    </script>
+  </body>
+</html>

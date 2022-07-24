@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>007-斐波那契数列</title>
+  </head>
+
+  <body>
+    <input id="num" type="number" min="5" placeholder="最大不要超过50" />
+    <button id="hendel">计算</button>
+    <p id="result"></p>
+    <script>
+      var num = document.getElementById('num')
+      var hendel = document.getElementById('hendel')
+      var result = document.getElementById('result')
+
+      // 递归求解
+      function f(n) {
+        if (n == 1) return 1
+        if (n == 2) return 2
+        return f(n - 1) + f(n - 2)
+      }
+      hendel.onclick = function () {
+        var count = +num.value
+        result.innerText = f(count)
+      }
+      // console.log(f(64));
+
+      /**
+       * 斐波那契数列
+       * 解 64 一般电脑基本上卡不出来
+       */
+
+      // function f(n){if(n==1) return 1;if (n==2) return 2; return f(n-1)+f(n-2);};console.log(f(64));
+    </script>
+  </body>
+</html>

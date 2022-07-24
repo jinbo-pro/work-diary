@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { SnapshotSandbox } from './jsSandBox.js'
+
+      console.log('133-js快照沙箱')
+
+      let sandbox = new SnapshotSandbox()
+      var a = '主应用A'
+      var c = '主应用C'
+      console.log('主应用原来的Window:', a, c)
+      function beforeMounted() {
+        sandbox.active()
+        console.log('加载子应用前')
+      }
+      function beforeUnMounted() {
+        sandbox.inactive()
+        console.log('卸载子应用前')
+      }
+      function app1() {
+        beforeMounted()
+        window.a = 'app1A' //修改
+        window.c = null //删除
+        window.d = 'app1D' //新增
+        console.log('子应用的Window:', window.a, window.c, window.d)
+        beforeUnMounted()
+      }
+      app1()
+      console.log('主应用现在的Window:', a, c, d)
+    </script>
+  </body>
+</html>

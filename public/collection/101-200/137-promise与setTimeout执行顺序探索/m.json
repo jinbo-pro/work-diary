@@ -1,0 +1,5 @@
+{
+	"sort": "137",
+	"name": "137-promise与setTimeout执行顺序探索",
+	"tag": "宏任务,微任务,EventLoop"
+}

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>模拟vue</title>
+</head>
+<style>
+    .p_color {
+        color: red;
+    }
+
+    .aa {
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <div>
+        <p>参考地址：</p>
+        <a href="https://blog.csdn.net/jiandan1127/article/details/82414768">CSDN</a>
+        <a href="https://zhuanlan.zhihu.com/p/60053287">知乎</a>
+    </div>
+    <div id="app">
+        <!-- 解析指令 -->
+        <p>{{ name }}</p>
+        <button v-on:click="show">点我</button>
+        <p v-text="msg"></p>
+        <p v-html="msg"></p>
+        <p class="aa" v-class="myClass">{{ name }}</p>
+
+        <!-- 数据绑定 *更新data中的属性数据(页面更新)-->
+        <p>{{ name }}</p>
+        <p>{{ age }}</p>
+        <button v-on:click="update">更新</button>
+        <input type="text" v-model="info">
+        <p>{{ info }}</p>
+    </div>
+</body>
+<!-- 双向数据绑定 -->
+<script src="mvvm.js"></script>
+<!-- 指令编译 -->
+<script src="compile.js"></script>
+<!-- 数据绑定(数据劫持) -->
+<script src="observe.js"></script>
+<!-- 订阅者 -->
+<script src="watcher.js"></script>
+
+<script>
+    var vm = new EasyVue({
+        el: '#app',
+        data: {
+            name: '懂懂',
+            age: 17,
+            msg: '<a href="https://www.baidu.com" target="_blank">百度一下</a>',
+            myClass: 'p_color',
+            info: '西北望'
+        },
+        methods: {
+            show: function () {
+                alert('弹窗')
+            },
+            update: function () {
+                this.name = "dongdong";
+                this.age = 18
+            }
+        }
+    });
+</script>
+
+</html>

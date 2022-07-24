@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>112-函数new关键字执行的操作</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>而根据 MDN，new 关键字会进行如下的操作：</p>
+      <ol>
+        <li>创建一个空的简单JavaScript对象（即{}）</li>
+        <li>链接该对象（设置该对象的constructor）到另一个对象</li>
+        <li>将步骤1新创建的对象作为this的上下文</li>
+        <li>如果该函数没有返回对象，则返回this</li>
+      </ol>
+    </div>
+    <script src="./112-main.js"></script>
+  </body>
+</html>

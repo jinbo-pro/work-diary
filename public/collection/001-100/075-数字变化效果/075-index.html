@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/countup.js/2.0.8/countUp.umd.js"></script>
+    <title>075-数字变化效果</title>
+    <style>
+      .content {
+        margin: 16px;
+        padding: 16px;
+        font-size: 18px;
+        border: 1px solid #f1f1f1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <span>开始</span>
+      <input type="number" name="start" placeholder="开始" value="1" />
+      <span>结束</span>
+      <input type="number" name="end" placeholder="结束" value="075" />
+      <br />
+      <span>动画时长</span>
+      <input
+        type="text"
+        name="duration"
+        placeholder="动画时长(毫秒)"
+        value="1200"
+      />
+      <p>
+        <button id="active">运行</button>
+        <button id="clickAdd">点击增加 100</button>
+        <button id="reset">重置</button>
+      </p>
+
+      <ol>
+        <li>
+          <h2>定时器方式</h2>
+          <div class="content" id="setTime"></div>
+        </li>
+        <li>
+          <h2>requestAnimationFrame 方式</h2>
+          <div class="content" id="animationFrame"></div>
+        </li>
+        <li>
+          <h2>使用开源插件 countUp.js</h2>
+          <p>countUp.js 也是基于 requestAnimationFrame 方式</p>
+          <a href="https://inorganik.github.io/countUp.js/">countUp.js</a>
+          <div class="content" id="myTargetElement"></div>
+        </li>
+      </ol>
+      <p>记录：</p>
+      <div>
+        <p>
+          requestAnimationFrame 比起 setTimeout、setInterval的优势主要有两点：
+        </p>
+        <p>
+          1、requestAnimationFrame
+          会把每一帧中的所有DOM操作集中起来，在一次重绘或回流中就完成，
+          并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+        </p>
+        <p>
+          2、在隐藏或不可见的元素中，requestAnimationFrame将不会进行重绘或回流，这当然就意味着更少的的cpu，gpu和内存使用量。
+        </p>
+      </div>
+    </div>
+    <script src="./075-main.js"></script>
+  </body>
+</html>

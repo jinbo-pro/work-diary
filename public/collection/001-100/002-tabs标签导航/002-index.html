@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/Mock.js/1.0.1-beta3/mock-min.js"></script>
+    <title>002-tabs标签导航</title>
+    <style>
+      .nav_max {
+        display: flex;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+      }
+
+      .nav_item {
+        height: 30px;
+        padding: 18px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        border-radius: 3px;
+        margin-right: 16px;
+        cursor: pointer;
+      }
+      .active {
+        color: #409eff;
+      }
+
+      .active_bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 2px;
+        background-color: #409eff;
+        z-index: 1;
+        transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        list-style: none;
+      }
+
+      .nav_max_stand {
+        width: 300px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav_max_stand .nav_item {
+        justify-content: flex-end;
+      }
+
+      .active_bar_stand {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 2px;
+        background-color: #409eff;
+        z-index: 1;
+        transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+        list-style: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>横向</p>
+    <div class="nav_max">
+      <div class="active_bar"></div>
+    </div>
+    <p>纵向</p>
+    <div class="nav_max_stand">
+      <div class="active_bar_stand"></div>
+    </div>
+    <script src="./002-main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
+    />
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <script src="https://lib.baomitu.com/Mock.js/1.0.0/mock-min.js"></script>
+    <title>062-m导航条联动</title>
+    <link rel="stylesheet" href="./062-style.css" />
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="banner_max">
+        <div>
+          动画滚动
+          <input type="radio" v-model="isAnimation" :value="1" />是
+          <input type="radio" v-model="isAnimation" :value="0" />否
+          <br />
+          <a href="./2.html" target="_blank">锚点方式导航条联动</a>
+        </div>
+      </div>
+      <div id="nav_box" class="nav_box sticky">
+        <span
+          v-for="(item,index) in navList"
+          :key="index"
+          :class="[ 'nav_item', { 'nav_item_active':activeIndex == index } ]"
+          @click="selectItem(index)"
+          >{{ item.title }}</span
+        >
+      </div>
+
+      <div v-for="(item, index) in navList" :key="index" class="box">
+        <h2 :id="`title-${index}`">{{ item.title }}</h2>
+        <div class="content_max">
+          <div v-for="(e, i) in item.content" :key="i" class="content">
+            {{ e }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./062-main.js"></script>
+  </body>
+</html>
