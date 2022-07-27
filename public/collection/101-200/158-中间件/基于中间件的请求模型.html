@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>
+      <a href="https://github.com/umijs/umi-request" target="_blank">
+        本示例借鉴自 umi-request
+      </a>
+    </p>
+    <script>
+      const sleep = (t = 0) => new Promise((a) => setTimeout(a, t))
+
+      // https://github.com/umijs/umi-request/blob/master/src/onion/compose.js
+
+      function compose(middlewares) {
+        return function wrapMiddlewares(params) {
+          function dispatch(i) {
+            const fn = middlewares[i]
+            if (!fn) return Promise.resolve()
+            return Promise.resolve(fn(params, () => dispatch(i + 1)))
+          }
+          return dispatch(0)
+        }
+      }
+
+      // 核心请求中间件
+      async function requestMiddlewares(ctx, next) {
+        await sleep(800)
+        ctx.res = { code: 0, list: [1, 2, 3] } // 模拟请求返回
+        return next()
+      }
+
+      class Onion {
+        constructor() {
+          this.middlewares = []
+        }
+        // 存储中间件
+        use(newMiddleware) {
+          this.middlewares.push(newMiddleware)
+        }
+        // 执行中间件
+        execute(params = null) {
+          const fn = compose([...this.middlewares, requestMiddlewares])
+          return fn(params)
+        }
+      }
+
+      // 实例化对象
+      const app = new Onion()
+
+      app.use(async function (ctx, next) {
+        console.log(1)
+        await sleep(300)
+        await next()
+        console.log(6, ctx)
+      })
+      app.use(async function (ctx, next) {
+        console.log(2)
+        await sleep(500)
+        await next()
+        console.log(5)
+      })
+
+      /**请求测试 */
+      const config = {
+        name: 'tom',
+        age: 1
+      }
+
+      async function request() {
+        const ctx = {
+          req: config,
+          res: null
+        }
+        await app.execute(ctx)
+        return ctx.res
+      }
+
+      request().then((res) => {
+        console.log(res, '-->>> res')
+      })
+    </script>
+  </body>
+</html>
