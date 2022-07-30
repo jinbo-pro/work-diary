@@ -1,10 +1,5 @@
 <template>
-  <div
-    class="back_page_top"
-    :style="`bottom: ${bottom};`"
-    v-show="show && showTopBtn"
-    @click="toTop"
-  >
+  <div :class="['back_page_top', { show_box: show && showTopBtn }]" :style="`bottom: ${bottom};`" @click.stop="toTop">
     <svg class="ionicon" viewBox="0 0 512 512">
       <title>Caret Up</title>
       <path
@@ -25,7 +20,7 @@ export default {
     },
     // 距离底部位置
     bottom: {
-      type: Number,
+      type: String,
       default: '20%'
     },
     // 自定义返回顶部操作
@@ -64,10 +59,8 @@ export default {
     onScrollFn() {
       if (this.thr) return
       this.thr = true
-      let scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop
-      let screeHeight =
-        document.documentElement.clientHeight || document.body.clientHeight // 屏幕高
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+      let screeHeight = document.documentElement.clientHeight || document.body.clientHeight // 屏幕高
       // 超过两屏显示返回顶部按钮
       if (scrollTop > screeHeight * 2) {
         this.showTopBtn = true
@@ -95,12 +88,19 @@ export default {
   font-size: 20px;
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
   cursor: pointer;
-  z-index: 5;
   right: 16px;
   z-index: 999;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.3s;
   .ionicon {
     width: 30px;
     height: 30px;
   }
+}
+.show_box {
+  opacity: 1;
+  transform: scale(1);
+  transition: 0.3s;
 }
 </style>
