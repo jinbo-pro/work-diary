@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>162-跨文档通信</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      我是父页面
+      <button id="btn">父传给子</button>
+      <iframe id="childHtmlId" src="http://localhost:7586/collection/101-200/162-跨文档通信/child.html"></iframe>
+    </div>
+    <script>
+      window.addEventListener('message', function (event) {
+        console.log('父页面接收到信息', event.data)
+      })
+      document.getElementById('btn').addEventListener('click', () => {
+        const iframeDom = document.getElementById('childHtmlId')
+        iframeDom.contentWindow.postMessage(
+          '父->子',
+          'http://localhost:7586/collection/101-200/162-跨文档通信/child.html'
+        )
+      })
+    </script>
+  </body>
+</html>

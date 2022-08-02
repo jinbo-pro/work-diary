@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    我是子页面
+    <button id="btn">子传给父</button>
+    <script>
+      window.addEventListener('message', function (event) {
+        console.log('子页面接收到信息', event.data)
+      })
+
+      document.getElementById('btn').addEventListener('click', () => {
+        parent.postMessage('子->父', 'http://localhost:7586/collection/101-200/162-跨文档通信/index.html')
+      })
+    </script>
+  </body>
+</html>
