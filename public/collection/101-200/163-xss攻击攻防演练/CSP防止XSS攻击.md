@@ -54,4 +54,3 @@ style-src cdn.example.org third-party.org; child-src https:
 
 js 加载自己的和 `https://lib.baomitu.com` 的
 css 加载自己的
-

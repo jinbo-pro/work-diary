@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>反射型XSS</title>
+  </head>
+  <body>
+    <p>攻击主要是 mvc 方式开发的网页 服务端解析并保存url参数，然后直接写到 html 页面就返回</p>
+    <input id="input" type="text" />
+    <button id="search">搜索</button>
+    <p>您搜索的关键词是：</p>
+    <div id="result"></div>
+
+    <script>
+      const search = location.search
+      // 模拟服务端解析url并添加到 html 中
+      $('#result').html(decodeURIComponent(search))
+
+      $('#search').on('click', function () {
+        const key = $('#input').val()
+        window.open(`${location.pathname}?key=${key}`)
+      })
+    </script>
+  </body>
+</html>

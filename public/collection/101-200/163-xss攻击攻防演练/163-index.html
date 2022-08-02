@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>163-xss攻击攻防演练</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        参考文章：
+        <a href="https://www.freebuf.com/articles/web/185654.html"> 前端安全系列（一）：如何防止XSS攻击？ </a>
+      </p>
+      <p>
+        <a href="./1-存储型XSS.html" target="_blank">1-存储型XSS.html</a>
+      </p>
+      <p>
+        <a href="./2-反射型XSS.html" target="_blank">2-反射型XSS.html</a>
+      </p>
+      <p>3-Dom类型 - 略</p>
+      <hr />
+      预防xss攻击的方式
+      <ol>
+        <li>转义要渲染的内容</li>
+        <li>替换关键字标签</li>
+        <li>使用 vue/react 框架开发，他们内部都封装了 xss 转义</li>
+      </ol>
+    </div>
+  </body>
+</html>
