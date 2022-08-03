@@ -30,6 +30,7 @@ function addLongPress(dom, fn, time = 300) {
 
 function longPress(e) {
   console.log(e, '-->>> touchArea')
+  document.body.append('长按事件触发')
 }
 
 var touchArea = document.getElementById('touchArea')

@@ -10,17 +10,20 @@
       .ball {
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
       }
 
       .ball div {
-        width: 50px;
-        height: 50px;
+        width: 70px;
+        height: 70px;
         margin: 12px;
         display: flex;
         align-items: center;
         justify-content: center;
         border: 1px solid #666;
         border-radius: 50%;
+        font-size: 22px;
+        font-weight: bold;
       }
 
       .red {
@@ -40,6 +43,7 @@
         <a href="./mocktest.html">模拟测试</a>
       </p>
       <div class="ball red"></div>
+      <hr />
       <div class="ball blue"></div>
     </div>
     <script src="./049-main.js"></script>

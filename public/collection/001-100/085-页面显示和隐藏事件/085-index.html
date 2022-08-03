@@ -10,24 +10,23 @@
   <body>
     <div class="box">
       <h2>
-        visibilitychange 事件 当其选项卡的内容变得可见或被隐藏时，会在文档上触发
-        visibilitychange (能见度更改)事件。
-        <a
-          href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/visibilitychange_event"
-          >visibilitychange</a
-        >
+        visibilitychange 事件 当其选项卡的内容变得可见或被隐藏时，会在文档上触发 visibilitychange (能见度更改)事件。
+        <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Document/visibilitychange_event">visibilitychange</a>
       </h2>
-      <pre>
-            document.addEventListener("visibilitychange", function () {
-                console.log(document.visibilityState);
-                //页面显示时document.visibilityState值为visible，隐藏显示时document.visibilityState值为hidden， 
-                //或者
-                document.title = document.hidden ? '离开这个页面了' : '又回到这个页面了';
-                //这个是判断document.hidden，页面的隐藏状态
-            });
-        </pre
-      >
     </div>
-    <script src="./085-main.js"></script>
+    <script>
+      /**
+       * 此事件类似于小程序的 onShow 和 onHide
+       * uni-app H5端的 onShow 和 onHide 事件也是通过此方法实现
+       */
+
+      document.addEventListener('visibilitychange', function () {
+        console.log(document.visibilityState)
+        //页面显示时document.visibilityState值为visible，隐藏显示时document.visibilityState值为hidden，
+        //或者
+        document.title = document.hidden ? '离开这个页面了' : '又回到这个页面了'
+        //这个是判断document.hidden，页面的隐藏状态
+      })
+    </script>
   </body>
 </html>

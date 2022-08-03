@@ -10,19 +10,10 @@
 
   <body>
     <p>选择要登录的账号</p>
-    <label
-      ><span>张三</span
-      ><input name="user" type="radio" value="张三" checked /></label
-    ><br />
-    <label
-      ><span>李四</span><input name="user" type="radio" value="李四" /></label
-    ><br />
-    <label
-      ><span>汤姆</span><input name="user" type="radio" value="汤姆" /></label
-    ><br />
-    <label
-      ><span>鲍勃</span><input name="user" type="radio" value="鲍勃" /></label
-    ><br />
+    <label><span>张三</span><input name="user" type="radio" value="张三" checked /></label><br />
+    <label><span>李四</span><input name="user" type="radio" value="李四" /></label><br />
+    <label><span>汤姆</span><input name="user" type="radio" value="汤姆" /></label><br />
+    <label><span>鲍勃</span><input name="user" type="radio" value="鲍勃" /></label><br />
     <p>
       <button id="login">登录</button>
     </p>
@@ -40,9 +31,7 @@
           const { type, userInfo } = res.data
           if (type == 1) {
             $('#result')
-              .html(
-                `浏览器已登录账户: ${userInfo.name} <br> 登录二维码已失效 请返回浏览器查看`
-              )
+              .html(`浏览器已登录账户: ${userInfo.name} <br> 登录二维码已失效 请返回浏览器查看`)
               .css('color', 'red')
           } else {
             $('#result').text(`${userInfo.name} 登录成功`)
