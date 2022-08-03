@@ -83,8 +83,7 @@ export default {
     border-color: #20a0ff;
     color: #fff;
     text-shadow: 0 -1px #0087ec;
-    box-shadow: 0 3px 3px rgba(32, 160, 255, 0.35),
-      0 0 3px 16px rgba(32, 160, 255, 1) inset;
+    box-shadow: 0 3px 3px rgba(32, 160, 255, 0.35), 0 0 3px 16px rgba(32, 160, 255, 1) inset;
     .iconfont {
       color: #fff;
     }

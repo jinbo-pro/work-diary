@@ -12,9 +12,7 @@
     <p>
       参考：
       <a href="https://zhuanlan.zhihu.com/p/144058361">从零开始手写Promise</a>
-      <a href="https://www.cnblogs.com/sugar-tomato/p/11353546.html"
-        >史上最最最详细的手写Promise教程</a
-      >
+      <a href="https://www.cnblogs.com/sugar-tomato/p/11353546.html">史上最最最详细的手写Promise教程</a>
     </p>
     <script>
       /**
@@ -115,8 +113,7 @@
         // A+规定：then 方法必须返回一个 promise 对象，以便后面进行链式调用
         then(onFulfilled, onRejected) {
           // onFulfilled如果不是函数，就忽略onFulfilled，直接返回value
-          onFulfilled =
-            typeof onFulfilled === 'function' ? onFulfilled : (value) => value
+          onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (value) => value
           // onRejected如果不是函数，就忽略onRejected，直接扔出错误
           onRejected =
             typeof onRejected === 'function'

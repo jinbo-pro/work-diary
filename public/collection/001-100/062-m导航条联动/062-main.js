@@ -42,8 +42,7 @@ new Vue({
   methods: {
     scrollHandel() {
       // 获取当前文档流的 scrollTop
-      var scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop
+      var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       // 点亮导航下标
       for (var i = this.offsetTopArr.length - 1; i >= 0; i--) {
         if (scrollTop >= this.offsetTopArr[i]) {

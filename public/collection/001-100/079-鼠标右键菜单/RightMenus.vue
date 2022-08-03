@@ -1,10 +1,5 @@
 <template>
-  <div
-    v-show="show"
-    @click.stop="() => 0"
-    class="right_menu_max"
-    :style="`top: ${y}px;left: ${x}px;`"
-  >
+  <div v-show="show" @click.stop="() => 0" class="right_menu_max" :style="`top: ${y}px;left: ${x}px;`">
     <slot />
   </div>
 </template>

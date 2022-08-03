@@ -1,1 +1,1 @@
-console.log("138-vue异步组件")
+console.log('138-vue异步组件')

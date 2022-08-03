@@ -2,21 +2,13 @@
   <div class="article_box" :data-id="article.id">
     <div class="card">
       <div class="meta_box" @click="$emit('linkInfo', article)">
-        <h2
-          class="search_height"
-          v-show="article.searchHeight"
-          v-html="article.searchHeight"
-        ></h2>
+        <h2 class="search_height" v-show="article.searchHeight" v-html="article.searchHeight"></h2>
         <h2 v-show="!article.searchHeight" class="file_name">
           {{ article.fileName }}
         </h2>
       </div>
       <div class="tags">
-        <span
-          v-for="(item, index) in tagList"
-          :class="`tag tag_theme_${index % 3}`"
-          :key="index"
-        >
+        <span v-for="(item, index) in tagList" :class="`tag tag_theme_${index % 3}`" :key="index">
           {{ item }}
         </span>
       </div>

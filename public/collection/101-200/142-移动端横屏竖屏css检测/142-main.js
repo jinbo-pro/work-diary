@@ -1,1 +1,1 @@
-console.log("142-移动端横屏竖屏css检测")
+console.log('142-移动端横屏竖屏css检测')

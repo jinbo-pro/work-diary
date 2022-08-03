@@ -1,18 +1,13 @@
 {
-    "compilerOptions": {
-        "module": "commonjs",
-        "target": "es2020",
-        "jsx": "preserve",
-        "strictFunctionTypes": true,
-        "baseUrl": "./public",
-        "paths": {
-            "/*": [
-                "./*"
-            ]
-        }
-    },
-    "exclude": [
-        "node_modules",
-        "**/node_modules/*"
-    ]
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2020",
+    "jsx": "preserve",
+    "strictFunctionTypes": true,
+    "baseUrl": "./public",
+    "paths": {
+      "/*": ["./*"]
+    }
+  },
+  "exclude": ["node_modules", "**/node_modules/*"]
 }

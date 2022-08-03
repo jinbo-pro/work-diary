@@ -1,12 +1,6 @@
 <template>
   <div class="search_max search_max_fixed">
-    <input
-      v-model="searchKey"
-      @input="input"
-      class="search"
-      type="text"
-      placeholder="输入关键字搜索"
-    />
+    <input v-model="searchKey" @input="input" class="search" type="text" placeholder="输入关键字搜索" />
     <button @click="reset" class="reset">重置</button>
   </div>
 </template>
@@ -57,8 +51,7 @@ export default {
   .search:focus {
     border-color: #66afe9;
     outline: 0;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075),
-      0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
   }
 
   .reset {

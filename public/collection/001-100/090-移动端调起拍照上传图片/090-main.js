@@ -23,10 +23,7 @@ takePicture.onchange = function (event) {
         }
         fileReader.readAsDataURL(file)
       } catch (e) {
-        alert(
-          common.MESSAGE.title.error,
-          '拍照失败,请联系客服或尝试更换手机再试!'
-        )
+        alert(common.MESSAGE.title.error, '拍照失败,请联系客服或尝试更换手机再试!')
       }
     }
   }

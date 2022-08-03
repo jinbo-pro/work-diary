@@ -80,9 +80,7 @@ decreaseBtn.addEventListener('click', () => {
 })
 
 colorEl.addEventListener('change', (e) => (color = e.target.value))
-clearEl.addEventListener('click', () =>
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-)
+clearEl.addEventListener('click', () => ctx.clearRect(0, 0, canvas.width, canvas.height))
 
 /**
  * 保存 canvas 为图片
@@ -93,22 +91,6 @@ function saveFile() {
   saveLink.href = dataURL
   saveLink.download = 'canvas'
   const event = document.createEvent('MouseEvents')
-  event.initMouseEvent(
-    'click',
-    true,
-    false,
-    window,
-    0,
-    0,
-    0,
-    0,
-    0,
-    false,
-    false,
-    false,
-    false,
-    0,
-    null
-  )
+  event.initMouseEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null)
   saveLink.dispatchEvent(event)
 }

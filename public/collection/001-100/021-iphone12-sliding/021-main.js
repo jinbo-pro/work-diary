@@ -1,11 +1,7 @@
 const R = (num) => ~~(Math.random() * num) + 1
 
 for (var i = 0; i < 50; i++) {
-  $('#ui ul').append(
-    `<li><img src="https://assets.codepen.io/2002878/iphone12-5g_show_0${R(
-      7
-    )}.jpg" /></li>`
-  )
+  $('#ui ul').append(`<li><img src="https://assets.codepen.io/2002878/iphone12-5g_show_0${R(7)}.jpg" /></li>`)
 }
 
 const rows = document.querySelectorAll('#ui ul li')

@@ -13,12 +13,7 @@
     <div id="app">
       <div class="box">
         <input v-model="user.name" type="text" placeholder="账户名" />
-        <input
-          v-model="user.initMoney"
-          type="number"
-          min="1"
-          placeholder="初始金额"
-        />
+        <input v-model="user.initMoney" type="number" min="1" placeholder="初始金额" />
         <input v-model="user.rate" type="number" min="0.3" placeholder="利率" />
         <button @click="createAccount">创建账户</button>
       </div>
@@ -26,11 +21,7 @@
         <p>时间： 第 {{ currentDate }} 天</p>
       </div>
       <div id="accountList">
-        <div
-          v-for="(item,index) in accountList"
-          :key="index"
-          class="show_user_box"
-        >
+        <div v-for="(item,index) in accountList" :key="index" class="show_user_box">
           <div>
             <p><input v-model="money" type="number" placeholder="金额" /></p>
             <button @click="deposit(item)">存入</button>
@@ -41,8 +32,8 @@
           <ol>
             <li v-for="(order, oIndex) in item.orderList" :key="oIndex">
               <span
-                >时间: {{ order.date }} 金额: {{ order.amount }} 总利息: {{
-                order.interestSum }} 本息合计: {{ order.sumBalanceInter }}</span
+                >时间: {{ order.date }} 金额: {{ order.amount }} 总利息: {{ order.interestSum }} 本息合计: {{
+                order.sumBalanceInter }}</span
               >
             </li>
           </ol>

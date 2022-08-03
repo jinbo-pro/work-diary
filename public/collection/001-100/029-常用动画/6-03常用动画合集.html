@@ -54,9 +54,7 @@
     <button onclick="reset()">重置</button>
     <button onclick="start()">开始</button>
     <div class="content">
-      <div class="box box_lang" id="box5" onclick="closeDialog()">
-        点击关闭弹窗
-      </div>
+      <div class="box box_lang" id="box5" onclick="closeDialog()">点击关闭弹窗</div>
     </div>
     <h2>基础使用</h2>
     <div class="max1">
@@ -96,20 +94,10 @@
           })
       }
       function openDialog() {
-        startAnimation(
-          document.getElementById('box5'),
-          { top: '500px' },
-          1200,
-          'easeOutBack'
-        )
+        startAnimation(document.getElementById('box5'), { top: '500px' }, 1200, 'easeOutBack')
       }
       function closeDialog() {
-        startAnimation(
-          document.getElementById('box5'),
-          { top: '-300px' },
-          800,
-          'easeOutExpo'
-        )
+        startAnimation(document.getElementById('box5'), { top: '-300px' }, 800, 'easeOutExpo')
       }
       var box4 = document.getElementById('box4')
       let box4Ani = new Ani(box4)

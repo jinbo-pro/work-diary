@@ -31,12 +31,7 @@
 - 常规验证
 
 ```html
-<el-form
-  :model="formData"
-  :rules="formDataRules"
-  ref="formData"
-  class="demo-formData"
->
+<el-form :model="formData" :rules="formDataRules" ref="formData" class="demo-formData">
   <el-form-item label="名称" prop="name">
     <el-input v-model="formData.name"></el-input>
   </el-form-item>
@@ -80,11 +75,7 @@ formDataRules: {
 ## 异步加载级联
 
 ```html
-<el-cascader
-  v-model="activPc"
-  :props="Pcprops"
-  @change="handleChange"
-></el-cascader>
+<el-cascader v-model="activPc" :props="Pcprops" @change="handleChange"></el-cascader>
 ```
 
 ```js
@@ -357,16 +348,10 @@ ElementUI.Dialog.props.closeOnClickModal.default = false
 - 改用在组件上面添加属性 `:close-on-click-modal="false"` 实现，示例
 
 ````html
-<el-dialog
-  title="提示"
-  :visible.sync="centerDialogVisible"
-  center
-  :close-on-click-modal="false"
->
+<el-dialog title="提示" :visible.sync="centerDialogVisible" center :close-on-click-modal="false">
   <span></span>
 </el-dialog>
-​``` ## vue-element-admin配置文件 - webpack配置获取配置文件 >
-process.env.VUE_APP_BASE_API
+​``` ## vue-element-admin配置文件 - webpack配置获取配置文件 > process.env.VUE_APP_BASE_API
 ````
 
 ## 图片拖动排序
@@ -426,12 +411,7 @@ process.env.VUE_APP_BASE_API
 ```vue
 <template>
   <el-tooltip effect="dark" content="theme" placement="bottom">
-    <el-color-picker
-      v-model="theme"
-      class="theme-picker"
-      size="small"
-      popper-class="theme-picker-dropdown"
-    />
+    <el-color-picker v-model="theme" class="theme-picker" size="small" popper-class="theme-picker-dropdown" />
   </el-tooltip>
 </template>
 
@@ -454,14 +434,8 @@ export default {
       console.log(themeCluster, originalCluster)
       const getHandler = (variable, id) => {
         return () => {
-          const originalCluster = this.getThemeCluster(
-            ORIGINAL_THEME.replace('#', '')
-          )
-          const newStyle = this.updateStyle(
-            this[variable],
-            originalCluster,
-            themeCluster
-          )
+          const originalCluster = this.getThemeCluster(ORIGINAL_THEME.replace('#', ''))
+          const newStyle = this.updateStyle(this[variable], originalCluster, themeCluster)
 
           let styleTag = document.getElementById(id)
           if (!styleTag) {
@@ -482,22 +456,14 @@ export default {
         chalkHandler()
       }
 
-      const styles = [].slice
-        .call(document.querySelectorAll('style'))
-        .filter((style) => {
-          const text = style.innerText
-          return (
-            new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
-          )
-        })
+      const styles = [].slice.call(document.querySelectorAll('style')).filter((style) => {
+        const text = style.innerText
+        return new RegExp(oldVal, 'i').test(text) && !/Chalk Variables/.test(text)
+      })
       styles.forEach((style) => {
         const { innerText } = style
         if (typeof innerText !== 'string') return
-        style.innerText = this.updateStyle(
-          innerText,
-          originalCluster,
-          themeCluster
-        )
+        style.innerText = this.updateStyle(innerText, originalCluster, themeCluster)
       })
       this.$message({
         message: '换肤成功',

@@ -22,14 +22,7 @@
   <body>
     <div id="app">
       <ol id="content">
-        <li
-          v-for="(e, i) in list"
-          :key="i"
-          class="item_box"
-          @click="copyText(e)"
-        >
-          {{ e }}
-        </li>
+        <li v-for="(e, i) in list" :key="i" class="item_box" @click="copyText(e)">{{ e }}</li>
       </ol>
     </div>
     <script src="./071-main.js"></script>

@@ -12,9 +12,7 @@
     <p>
       【规范】
       <a href="https://promisesaplus.com/#notes">原文：Promises/A+</a>
-      <a href="https://www.ituring.com.cn/article/66566"
-        >【翻译】Promises/A+规范</a
-      >
+      <a href="https://www.ituring.com.cn/article/66566">【翻译】Promises/A+规范</a>
     </p>
     <p>
       参考：
@@ -86,8 +84,7 @@
         // then 方法必须返回一个 promise 对象，以便后面进行链式调用
         then(onFulfilled, onRejected) {
           // onFulfilled如果不是函数，就忽略onFulfilled，直接返回value
-          onFulfilled =
-            typeof onFulfilled === 'function' ? onFulfilled : (value) => value
+          onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : (value) => value
           // onRejected如果不是函数，就忽略onRejected，直接扔出错误
           onRejected =
             typeof onRejected === 'function'

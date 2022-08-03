@@ -12,9 +12,7 @@ function getRandomList(list) {
 }
 // 创建音乐播放组件
 function createAudio(item) {
-  var audio = $(
-    `<audio controls="controls" autoplay="autoplay" src="${item.wma}"></audio>`
-  )
+  var audio = $(`<audio controls="controls" autoplay="autoplay" src="${item.wma}"></audio>`)
   audio.on('play', function () {
     console.log(item.mname, '开始播放')
   })
@@ -22,10 +20,7 @@ function createAudio(item) {
     console.log(item.mname, '播放结束')
     nextMusic(item)
   })
-  audioTitle
-    .attr('data-id', item.id)
-    .find('div')
-    .text(`[${item.index}] ${item.mname} - ${item.singer}`)
+  audioTitle.attr('data-id', item.id).find('div').text(`[${item.index}] ${item.mname} - ${item.singer}`)
   audioContent.find('.audio').empty().append(audio)
 }
 // 下一首音乐

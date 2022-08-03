@@ -102,14 +102,8 @@ const SlideVerify = {
       this.img = img
     },
     drawBlock() {
-      this.block_x = this.getRandomNumberByRange(
-        this.L + 10,
-        this.w - (this.L + 10)
-      )
-      this.block_y = this.getRandomNumberByRange(
-        10 + this.r * 2,
-        this.h - (this.L + 10)
-      )
+      this.block_x = this.getRandomNumberByRange(this.L + 10, this.w - (this.L + 10))
+      this.block_y = this.getRandomNumberByRange(10 + this.r * 2, this.h - (this.L + 10))
       this.draw(this.canvasCtx, this.block_x, this.block_y, 'fill')
       this.draw(this.blockCtx, this.block_x, this.block_y, 'clip')
     },
@@ -148,8 +142,7 @@ const SlideVerify = {
       const len = this.imgs.length
       return len > 0
         ? this.imgs[this.getRandomNumberByRange(0, len - 1)]
-        : 'https://picsum.photos/300/150/?image=' +
-            this.getRandomNumberByRange(0, 1084)
+        : 'https://picsum.photos/300/150/?image=' + this.getRandomNumberByRange(0, 1084)
     },
     getRandomNumberByRange(start, end) {
       return Math.round(Math.random() * (end - start) + start)
@@ -179,14 +172,8 @@ const SlideVerify = {
     // 处理函数抽离
     handleMoveEvent(e, type = 'mouse') {
       if (!this.isMouseDown) return false
-      const moveX =
-        type === 'mouse'
-          ? e.clientX - this.originX
-          : e.changedTouches[0].pageX - this.originX
-      const moveY =
-        type === 'mouse'
-          ? e.clientY - this.originY
-          : e.changedTouches[0].pageY - this.originY
+      const moveX = type === 'mouse' ? e.clientX - this.originX : e.changedTouches[0].pageX - this.originX
+      const moveY = type === 'mouse' ? e.clientY - this.originY : e.changedTouches[0].pageY - this.originY
       if (moveX < 0 || moveX + 38 >= this.w) return false
       this.sliderLeft = moveX + 'px'
       let blockLeft = ((this.w - 40 - 20) / (this.w - 40)) * moveX
@@ -238,8 +225,7 @@ const SlideVerify = {
       const deviations = arr.map((x) => x - average) // deviation array
       const stddev = Math.sqrt(deviations.map(square).reduce(sum) / arr.length) // standard deviation
       const left = parseInt(this.block.style.left)
-      const accuracy =
-        this.accuracy <= 1 ? 1 : this.accuracy > 10 ? 10 : this.accuracy
+      const accuracy = this.accuracy <= 1 ? 1 : this.accuracy > 10 ? 10 : this.accuracy
       return {
         spliced: Math.abs(left - this.block_x) <= accuracy,
         TuringTest: average !== stddev // equal => not person operate

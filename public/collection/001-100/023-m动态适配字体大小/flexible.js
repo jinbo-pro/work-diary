@@ -57,13 +57,7 @@
     metaEl.setAttribute('name', 'viewport')
     metaEl.setAttribute(
       'content',
-      'initial-scale=' +
-        scale +
-        ', maximum-scale=' +
-        scale +
-        ', minimum-scale=' +
-        scale +
-        ', user-scalable=no'
+      'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no'
     )
     if (docEl.firstElementChild) {
       docEl.firstElementChild.appendChild(metaEl)

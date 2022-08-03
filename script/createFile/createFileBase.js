@@ -55,9 +55,7 @@ function getFileIndex(outPath) {
 /**获取文件模板 */
 function getFileTemp(fileInfo) {
   let tempStr = template.toString()
-  tempStr = tempStr
-    .replace(/\{fileName\}/, fileInfo.fileName)
-    .replace(/\{count\}/, fileInfo.count)
+  tempStr = tempStr.replace(/\{fileName\}/, fileInfo.fileName).replace(/\{count\}/, fileInfo.count)
   return tempStr
 }
 /**根据最大索引创建对应文件夹 */
@@ -84,10 +82,7 @@ async function create() {
   const m = { sort: count, name: fileName, tag }
   fs.writeFileSync(getPath('m.json'), JSON.stringify(m, null, '\t'))
   fs.writeFileSync(getPath(`${count}-main.js`), `console.log("${fileName}")`)
-  fs.writeFileSync(
-    getPath(`${count}-index.html`),
-    getFileTemp({ fileName, count })
-  )
+  fs.writeFileSync(getPath(`${count}-index.html`), getFileTemp({ fileName, count }))
 
   console.log(fileName, '创建成功')
 }

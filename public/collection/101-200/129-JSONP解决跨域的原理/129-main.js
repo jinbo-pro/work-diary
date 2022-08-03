@@ -14,7 +14,7 @@ function jsonp({ url, params, callBack }) {
   // 2. 默认 callback 函数为 cbFnName
   script.src = `${url}?${getQueryString({ callback: cbFnName, ...params })}`
   // 3. 保存回调函数，用于接收数据 请求 script 之后会执行该回调函数
-  window.jsonpCallBackMap[cbFnName] = function(res) {
+  window.jsonpCallBackMap[cbFnName] = function (res) {
     callBack(res)
     // 5. 回调函数执行完毕 则可以释放 jsonpCallBackMap 对应的函数
     jsonpCallBackMap[cbFnName] = null

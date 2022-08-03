@@ -28,14 +28,7 @@ canvas.width = canvas2.width = w
 canvas.height = canvas2.height = h
 
 class Branch {
-  constructor(
-    position = { x: 0, y: 0 },
-    length = 100,
-    divergeAt = 0.5,
-    angle = 0,
-    depth = 0,
-    spread = 45 * TO_RADIAN
-  ) {
+  constructor(position = { x: 0, y: 0 }, length = 100, divergeAt = 0.5, angle = 0, depth = 0, spread = 45 * TO_RADIAN) {
     this.position = position
     this.length = length
     this.divergeAt = divergeAt
@@ -60,22 +53,8 @@ class Branch {
     const nextDepth = this.depth + 1
 
     this.branches.push(
-      new Branch(
-        this.growPosition,
-        nextLength,
-        this.divergeAt,
-        this.angle + this.spread,
-        nextDepth,
-        this.spread
-      ),
-      new Branch(
-        this.growPosition,
-        nextLength,
-        this.divergeAt,
-        this.angle - this.spread,
-        nextDepth,
-        this.spread
-      )
+      new Branch(this.growPosition, nextLength, this.divergeAt, this.angle + this.spread, nextDepth, this.spread),
+      new Branch(this.growPosition, nextLength, this.divergeAt, this.angle - this.spread, nextDepth, this.spread)
     )
   }
 
@@ -100,14 +79,7 @@ class Branch {
   }
 }
 
-const rootBranch = new Branch(
-  { x: midX, y: midY },
-  midY * 0.5,
-  divergeAt,
-  -90 * TO_RADIAN,
-  0,
-  spread
-)
+const rootBranch = new Branch({ x: midX, y: midY }, midY * 0.5, divergeAt, -90 * TO_RADIAN, 0, spread)
 
 const drawBranch = (branch, phase) => {
   const h = ~~(200 + 160 * phase)
@@ -142,8 +114,7 @@ const drawBranch = (branch, phase) => {
   })
 }
 
-const map = (value, start1, stop1, start2, stop2) =>
-  ((value - start1) / (stop1 - start1)) * (stop2 - start2) + start2
+const map = (value, start1, stop1, start2, stop2) => ((value - start1) / (stop1 - start1)) * (stop2 - start2) + start2
 
 const clear = () => {
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)

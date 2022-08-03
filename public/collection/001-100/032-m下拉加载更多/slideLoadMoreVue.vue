@@ -2,11 +2,7 @@
   <div class="container_max">
     <div class="banner_box">广告位招租(●ˇ∀ˇ●)</div>
     <div class="goods_max" id="slide_load_more">
-      <div
-        v-for="(item, index) in dataListMixin"
-        :key="index"
-        class="item_goods"
-      >
+      <div v-for="(item, index) in dataListMixin" :key="index" class="item_goods">
         <p>{{ item.page }} --- {{ item.name }}</p>
       </div>
       <p v-if="loadEndMixin" class="load_end">==== 到底了o(*￣▽￣*)o ===</p>

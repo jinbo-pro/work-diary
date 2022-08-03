@@ -43,14 +43,7 @@ console.log(index) // 2
 ```js
 function IsPC() {
   var userAgentInfo = navigator.userAgent
-  var Agents = [
-    'Android',
-    'iPhone',
-    'SymbianOS',
-    'Windows Phone',
-    'iPad',
-    'iPod'
-  ]
+  var Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPad', 'iPod']
   var flag = true
   for (var v = 0; v < Agents.length; v++) {
     if (userAgentInfo.indexOf(Agents[v]) > 0) {
@@ -191,9 +184,7 @@ Cat.prototype.constructor = Cat
 
 ```html
 <!-- 方案二div背景图 -->
-<div
-  style="background: url('./img.png') no-repeat; background-size:100% auto;"
-></div>
+<div style="background: url('./img.png') no-repeat; background-size:100% auto;"></div>
 ```
 
 ## a 标签的样式
@@ -630,10 +621,7 @@ devServer: {
 
 ```json
 {
-  "body": [
-    "console.log(678, '-->>> 678 $1')",
-    "console.log(123, '-->>> 123 $2')"
-  ]
+  "body": ["console.log(678, '-->>> 678 $1')", "console.log(123, '-->>> 123 $2')"]
 }
 ```
 

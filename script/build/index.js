@@ -14,10 +14,7 @@ async function formatFile() {
   let ctx = { query: {}, body: {} }
   await fileDirectory.getList(ctx)
   let result = tools.resSuccess(ctx.body.data)
-  fs.writeFileSync(
-    path.resolve(__dirname, '../../public/mockData/home_fileList.json'),
-    JSON.stringify(result)
-  )
+  fs.writeFileSync(path.resolve(__dirname, '../../public/mockData/home_fileList.json'), JSON.stringify(result))
   console.log('\x1B[33m%s\x1b[0m:', '-->>> [ 首页数据获取完成 ]')
 }
 

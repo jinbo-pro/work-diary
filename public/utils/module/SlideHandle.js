@@ -61,15 +61,11 @@ export class SlideHandle {
   bindEvents() {
     // pc event
     this.app.addEventListener('mousedown', (e) => this.sliderDown(e, 'mouse'))
-    document.addEventListener('mousemove', (e) =>
-      this.handleMoveEvent(e, 'mouse')
-    )
+    document.addEventListener('mousemove', (e) => this.handleMoveEvent(e, 'mouse'))
     document.addEventListener('mouseup', (e) => this.handleMoveEndEvent(e))
     // mobile event
     this.app.addEventListener('touchstart', (e) => this.sliderDown(e, 'touch'))
-    this.app.addEventListener('touchmove', (e) =>
-      this.handleMoveEvent(e, 'touch')
-    )
+    this.app.addEventListener('touchmove', (e) => this.handleMoveEvent(e, 'touch'))
     this.app.addEventListener('touchend', (e) => this.handleMoveEndEvent(e))
   }
   sliderDown(e, type) {

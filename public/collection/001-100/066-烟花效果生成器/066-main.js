@@ -88,10 +88,7 @@ class Firework {
   draw() {
     ctx.beginPath()
     // 轨迹的起点
-    ctx.moveTo(
-      this.guiji[this.guiji.length - 1][0],
-      this.guiji[this.guiji.length - 1][1]
-    )
+    ctx.moveTo(this.guiji[this.guiji.length - 1][0], this.guiji[this.guiji.length - 1][1])
     // 绘制线条到目标点
     ctx.lineTo(this.x, this.y)
     // 画出不同颜色的烟花
@@ -142,10 +139,7 @@ class Particle {
   /**画烟花碎屑轨迹 */
   draw() {
     ctx.beginPath()
-    ctx.moveTo(
-      this.guiji[this.guiji.length - 1][0],
-      this.guiji[this.guiji.length - 1][1]
-    )
+    ctx.moveTo(this.guiji[this.guiji.length - 1][0], this.guiji[this.guiji.length - 1][1])
     ctx.lineTo(this.x, this.y)
     // 画出不同颜色的烟花利用HSL
     ctx.strokeStyle = `hsl(${this.hue},100%,${this.brightness}%)`
@@ -193,9 +187,7 @@ async function loop() {
   // 此时，我们还没有创建任何的烟花。我们希望设置一个定时时间timerTotal，周期性的
   // 产生一个烟花，我们也需要一个时间计数timerTick，在每次帧更新的时候加1，记下帧更新的次数。
   if (timerTick >= timerTotal) {
-    fireworks.push(
-      new Firework(clientw / 2, clienth, random(0, clientw), random(0, clienth))
-    )
+    fireworks.push(new Firework(clientw / 2, clienth, random(0, clientw), random(0, clienth)))
     timerTick = 0
   } else {
     timerTick++

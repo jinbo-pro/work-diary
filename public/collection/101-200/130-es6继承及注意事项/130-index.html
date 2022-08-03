@@ -11,20 +11,15 @@
   <body>
     <div class="box">
       <p>在写 @antv/x6 时发现他的自定义节点写得很有意思</p>
-      <a
-        href="https://antv-x6.gitee.io/zh/docs/tutorial/intermediate/custom-node"
-        target="_blank"
+      <a href="https://antv-x6.gitee.io/zh/docs/tutorial/intermediate/custom-node" target="_blank"
         >@antv/x6 自定义节点</a
       >
       <p>首先让我惊讶的是他继承之后直接就用到了父级的静态方法 config</p>
-      <p>
-        之前我一直以为 静态方法没法继承， 但是我理解错了，
-        其实是实例没法继承静态方法， 派生类可以继承
-      </p>
+      <p>之前我一直以为 静态方法没法继承， 但是我理解错了， 其实是实例没法继承静态方法， 派生类可以继承</p>
       <br />
       <p>
-        其次， 他的静态方法 define 可以快速继承 这个引起了我的好奇，
-        于是看了下他的源代码找到了实现快捷继承的核心代码 createClass
+        其次， 他的静态方法 define 可以快速继承 这个引起了我的好奇， 于是看了下他的源代码找到了实现快捷继承的核心代码
+        createClass
       </p>
       <p>位置： node_modules\@antv\x6\src\util\object\inherit.ts</p>
     </div>

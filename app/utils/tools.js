@@ -12,11 +12,7 @@ function getIPAddress() {
     var iface = interfaces[devName]
     for (var i = 0; i < iface.length; i++) {
       var alias = iface[i]
-      if (
-        alias.family === 'IPv4' &&
-        alias.address !== '127.0.0.1' &&
-        !alias.internal
-      ) {
+      if (alias.family === 'IPv4' && alias.address !== '127.0.0.1' && !alias.internal) {
         return alias.address
       }
     }
@@ -26,8 +22,7 @@ function getIPAddress() {
  * 生成全局唯一标识符 guid
  */
 function guid() {
-  const S = () =>
-    (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+  const S = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
   return `guid${S()}${S()}-${S()}-${S()}-${S()}-${S()}${S()}${S()}`
 }
 /**

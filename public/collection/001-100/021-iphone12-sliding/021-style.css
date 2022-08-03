@@ -53,7 +53,6 @@ body {
   margin: 10px auto;
   padding-bottom: 10px;
   border-bottom: 1px solid #222;
-  transform: scale(calc(1.8 - (0.8 * var(--progress))))
-    translateY(calc(-60px * (1 - var(--progress))));
+  transform: scale(calc(1.8 - (0.8 * var(--progress)))) translateY(calc(-60px * (1 - var(--progress))));
   opacity: var(--progress);
 }

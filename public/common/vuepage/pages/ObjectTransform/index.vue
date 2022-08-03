@@ -5,28 +5,15 @@
       <el-col v-for="(item, index) in cardList" :key="index" :span="8">
         <CardContent :title="item" v-model="obj[item]" @blur="handel(item)">
           <div slot="header">
-            <el-button
-              v-if="item == 'queryObjectStr'"
-              size="mini"
-              @click="openJsonDialog"
-            >
-              打开json编辑
-            </el-button>
+            <el-button v-if="item == 'queryObjectStr'" size="mini" @click="openJsonDialog"> 打开json编辑 </el-button>
           </div>
         </CardContent>
       </el-col>
     </el-row>
-    <el-dialog
-      top="5vh"
-      width="50%"
-      title="JsonEditor"
-      :visible.sync="dialogVisible"
-    >
+    <el-dialog top="5vh" width="50%" title="JsonEditor" :visible.sync="dialogVisible">
       <JsonEditor ref="JsonEditor" />
       <span slot="footer">
-        <el-button type="primary" @click="dialogVisible = false"
-          >关闭</el-button
-        >
+        <el-button type="primary" @click="dialogVisible = false">关闭</el-button>
       </span>
     </el-dialog>
   </div>

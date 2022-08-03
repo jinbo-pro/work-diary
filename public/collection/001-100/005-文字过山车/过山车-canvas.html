@@ -24,10 +24,7 @@
         constructor() {
           this.docCount = 1
           this.addValue = 1
-          this.docList =
-            '😀,😁,😂,🤣,😃,😄,😅,😆,😉,😊,😋,😎,😍,😘,🥰,😗,👩,👨,🧑,👱,😖'.split(
-              ','
-            )
+          this.docList = '😀,😁,😂,🤣,😃,😄,😅,😆,😉,😊,😋,😎,😍,😘,🥰,😗,👩,👨,🧑,👱,😖'.split(',')
           this.range = { min: 1, max: Math.floor(ch / 20) }
           this.chance = 0.7
         }
@@ -36,10 +33,7 @@
           let result = [],
             len = this.docList.length
           for (let i = 0; i < this.docCount; i++) {
-            let item =
-              i == this.docCount - 1
-                ? this.docList[~~(Math.random() * len)]
-                : '||'
+            let item = i == this.docCount - 1 ? this.docList[~~(Math.random() * len)] : '||'
             result.push(item)
           }
           return result

@@ -64,20 +64,14 @@ export class legacySandBox {
   active() {
     //激活
     if (!this.sandboxRunning) {
-      this.currentUpdatedPropsValueMap.forEach((v, p) =>
-        this.setWindowProp(p, v)
-      )
+      this.currentUpdatedPropsValueMap.forEach((v, p) => this.setWindowProp(p, v))
     }
     this.sandboxRunning = true
   }
   inactive() {
     //卸载
-    this.modifiedPropsOriginalValueMapInSandbox.forEach((v, p) =>
-      this.setWindowProp(p, v)
-    )
-    this.addedPropsMapInSandbox.forEach((v, p) =>
-      this.setWindowProp(p, undefined, true)
-    )
+    this.modifiedPropsOriginalValueMapInSandbox.forEach((v, p) => this.setWindowProp(p, v))
+    this.addedPropsMapInSandbox.forEach((v, p) => this.setWindowProp(p, undefined, true))
     this.sandboxRunning = false
   }
   setWindowProp(p, v) {

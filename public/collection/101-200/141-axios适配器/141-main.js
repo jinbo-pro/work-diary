@@ -9,11 +9,7 @@ axios.defaults.adapter = (conf) => {
   return new Promise((resolve, reject) => {
     wx.request({
       // 这里需要手动拼接 url
-      url: buildURL(
-        conf.baseURL || '' + conf.url || '',
-        conf.params,
-        conf.paramsSerializer
-      ).replace(/^\?/, ''),
+      url: buildURL(conf.baseURL || '' + conf.url || '', conf.params, conf.paramsSerializer).replace(/^\?/, ''),
       method: String(conf.method).toLowerCase(),
       responseType: conf.responseType,
       data: conf.data,

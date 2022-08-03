@@ -80,12 +80,7 @@ function treeFindPath(tree, func, config = {}, path = []) {
     path.push(data[config.id])
     if (func(data)) return path
     if (data[config.children]) {
-      const findChildren = treeFindPath(
-        data[config.children],
-        func,
-        config,
-        path
-      )
+      const findChildren = treeFindPath(data[config.children], func, config, path)
       if (findChildren.length) return findChildren
     }
     path.pop()
@@ -154,11 +149,4 @@ function findNodeAll(tree, func, config = {}) {
   return result
 }
 
-export {
-  toTree,
-  toList,
-  treeFindPath,
-  findNodeDfs,
-  findNodeBfs,
-  findNodeAll
-}
+export { toTree, toList, treeFindPath, findNodeDfs, findNodeBfs, findNodeAll }

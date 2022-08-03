@@ -15,12 +15,7 @@ new Vue({
   methods: {
     // 创建账户
     createAccount() {
-      const user = new Bank(
-        this.currentDate,
-        this.user.initMoney,
-        this.user.name,
-        this.user.rate
-      )
+      const user = new Bank(this.currentDate, this.user.initMoney, this.user.name, this.user.rate)
       this.accountList.push(user)
     },
     // 存

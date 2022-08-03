@@ -5,32 +5,15 @@
         <div class="label_title">{{ title }}</div>
         <slot name="header"></slot>
       </div>
-      <el-input
-        v-model="cardValue"
-        type="textarea"
-        :rows="5"
-        v-bind="$attrs"
-        @blur="blur"
-      ></el-input>
+      <el-input v-model="cardValue" type="textarea" :rows="5" v-bind="$attrs" @blur="blur"></el-input>
       <div class="foot_btn jac">
         <el-button size="mini" @click="dialogVisible = true"> 展开 </el-button>
         <el-button size="mini" @click="copyContent"> 复制 </el-button>
       </div>
     </el-card>
-    <el-dialog
-      top="5vh"
-      title="详细"
-      width="700px"
-      :close-on-click-modal="false"
-      :visible.sync="dialogVisible"
-    >
+    <el-dialog top="5vh" title="详细" width="700px" :close-on-click-modal="false" :visible.sync="dialogVisible">
       <div class="content">
-        <el-input
-          v-model="cardValue"
-          type="textarea"
-          autosize
-          v-bind="$attrs"
-        ></el-input>
+        <el-input v-model="cardValue" type="textarea" autosize v-bind="$attrs"></el-input>
       </div>
       <span slot="footer">
         <el-button @click="dialogVisible = false">关闭</el-button>

@@ -61,17 +61,7 @@ module.exports = {
       1,
       {
         // 组件options的键顺序
-        order: [
-          'name',
-          'props',
-          'components',
-          'data',
-          'computed',
-          'watch',
-          'created',
-          'mounted',
-          'methods'
-        ]
+        order: ['name', 'props', 'components', 'data', 'computed', 'watch', 'created', 'mounted', 'methods']
       }
     ],
     'vue/max-attributes-per-line': 0, // 组价的属性一行展示
@@ -387,10 +377,7 @@ module.exports = {
     indent: ['error', 2, { SwitchCase: 1 }], // 两个空格缩进
     'jsx-quotes': ['error', 'prefer-double'], // 强制在 JSX 属性中一致地使用双引号或单引号
     'key-spacing': ['error', { beforeColon: false, afterColon: true }], // 强制在对象字面量的属性中键和值之间使用一致的间距
-    'line-comment-position': [
-      'error',
-      { position: 'above', ignorePattern: 'ETC' }
-    ], // 强制行注释的位置
+    'line-comment-position': ['error', { position: 'above', ignorePattern: 'ETC' }], // 强制行注释的位置
     'linebreak-style': ['error', 'unix'], // 换行符风格
     'max-depth': ['error', 4], // 强制可嵌套的块的最大深度
     'max-nested-callbacks': ['error', 3], // 强制回调函数最大嵌套深度
@@ -404,10 +391,7 @@ module.exports = {
     'no-multiple-empty-lines': ['error'], // 禁止出现多行空行
     'no-new-object': ['error'], // 禁用 Object 的构造函数
     'no-tabs': ['error'], // 禁用 tab
-    'no-trailing-spaces': [
-      'error',
-      { skipBlankLines: false, ignoreComments: false }
-    ], // 禁用行尾空白
+    'no-trailing-spaces': ['error', { skipBlankLines: false, ignoreComments: false }], // 禁用行尾空白
     'no-whitespace-before-property': ['error'], // 禁止属性前有空白
     'nonblock-statement-body-position': ['error', 'beside'], // 强制单个语句的位置
     'object-curly-spacing': ['error', 'never'], // 强制在大括号中使用一致的空格

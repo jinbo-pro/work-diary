@@ -236,21 +236,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://lib.baomitu.com/layui/2.6.8/css/layui.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://lib.baomitu.com/layui/2.6.8/css/layui.min.css" rel="stylesheet" />
     <script src="https://lib.baomitu.com/layui/2.6.8/layui.min.js"></script>
     <title>layui-demo</title>
   </head>
   <body>
-    <i
-      class="layui-icon layui-icon-face-smile"
-      style="font-size: 30px; color: #1e9fff"
-    ></i>
-    <button type="button" class="layui-btn layui-btn-normal" onclick="handel()">
-      点击
-    </button>
+    <i class="layui-icon layui-icon-face-smile" style="font-size: 30px; color: #1e9fff"></i>
+    <button type="button" class="layui-btn layui-btn-normal" onclick="handel()">点击</button>
     <script>
       const { $, layer } = layui
       function handel() {

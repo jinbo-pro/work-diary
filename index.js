@@ -20,11 +20,7 @@ app.use(async (ctx, next) => {
 // 一些路由拦截处理
 app.use(async (ctx, next) => {
   /**collection 下的 md 文件自动跳转到 md 解析页面 */
-  if (
-    ctx.url.endsWith('.md') &&
-    !/parseMarked/.test(ctx.url) &&
-    !ctx.query.type
-  ) {
+  if (ctx.url.endsWith('.md') && !/parseMarked/.test(ctx.url) && !ctx.query.type) {
     const newUrl = `/common/parseMarked/parseMarked.html?filePath=${ctx.url}`
     ctx.redirect(newUrl)
   } else {
@@ -66,9 +62,7 @@ app.use(async (ctx, next) => {
   await next()
   if (parseInt(ctx.status) === 404) {
     ctx.status = 404
-    ctx.body = tools.file.readFileSync(
-      config.publicPath + '/assets/errorPage/404.html'
-    )
+    ctx.body = tools.file.readFileSync(config.publicPath + '/assets/errorPage/404.html')
   }
 })
 
@@ -96,8 +90,6 @@ function welcome() {
   })
   console.log('\x1B[33m%s\x1b[0m:', string)
   console.log(
-    `- Local:     http://localhost:${
-      config.port
-    }\n- Network:   http://${tools.getIPAddress()}:${config.port}`
+    `- Local:     http://localhost:${config.port}\n- Network:   http://${tools.getIPAddress()}:${config.port}`
   )
 }

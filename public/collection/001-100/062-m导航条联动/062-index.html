@@ -2,10 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
     <script src="https://lib.baomitu.com/Mock.js/1.0.0/mock-min.js"></script>
     <title>062-m导航条联动</title>
@@ -36,9 +33,7 @@
       <div v-for="(item, index) in navList" :key="index" class="box">
         <h2 :id="`title-${index}`">{{ item.title }}</h2>
         <div class="content_max">
-          <div v-for="(e, i) in item.content" :key="i" class="content">
-            {{ e }}
-          </div>
+          <div v-for="(e, i) in item.content" :key="i" class="content">{{ e }}</div>
         </div>
       </div>
     </div>

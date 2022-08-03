@@ -3,35 +3,19 @@
     <p>URI 编码格式</p>
     <el-row>
       <el-col :span="12">
-        <CardContent
-          title="decodeURI 解码"
-          v-model="code.de"
-          @blur="handelCode('de')"
-        />
+        <CardContent title="decodeURI 解码" v-model="code.de" @blur="handelCode('de')" />
       </el-col>
       <el-col :span="12">
-        <CardContent
-          title="encodeURI 编码"
-          v-model="code.en"
-          @blur="handelCode('en')"
-        />
+        <CardContent title="encodeURI 编码" v-model="code.en" @blur="handelCode('en')" />
       </el-col>
     </el-row>
     <p>URIComponent 编码格式</p>
     <el-row>
       <el-col :span="12">
-        <CardContent
-          title="decodeURIComponent 解码"
-          v-model="codeComponent.de"
-          @blur="handelCodeComponent('de')"
-        />
+        <CardContent title="decodeURIComponent 解码" v-model="codeComponent.de" @blur="handelCodeComponent('de')" />
       </el-col>
       <el-col :span="12">
-        <CardContent
-          title="decodeURIComponent 编码"
-          v-model="codeComponent.en"
-          @blur="handelCodeComponent('en')"
-        />
+        <CardContent title="decodeURIComponent 编码" v-model="codeComponent.en" @blur="handelCodeComponent('en')" />
       </el-col>
     </el-row>
   </div>

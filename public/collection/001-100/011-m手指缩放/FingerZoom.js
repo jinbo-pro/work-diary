@@ -85,9 +85,7 @@ class FingerZoom {
     }
   }
   getDistance(start, stop) {
-    return Math.sqrt(
-      Math.pow(stop.x - start.x, 2) + Math.pow(stop.y - start.y, 2)
-    )
+    return Math.sqrt(Math.pow(stop.x - start.x, 2) + Math.pow(stop.y - start.y, 2))
   }
   // 缩放操作
   setScaleAnimation(scale) {

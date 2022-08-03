@@ -3,21 +3,7 @@
  * @returns list
  */
 function createNewBrand() {
-  let numList = [
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    'J',
-    'Q',
-    'K',
-    'A'
-  ]
+  let numList = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A']
   let typeList = ['heart', 'spade', 'flower', 'block']
   let result = [
     { num: '0', type: 'heart', index: 100 },
@@ -99,9 +85,7 @@ function renderBrand(allList) {
 function licensing() {
   let list = createNewBrand()
   let list2 = cleanBrand(list)
-  let brandListAll = arrayChunk(list2, 17).map((sonList) =>
-    sortBrandList(sonList)
-  )
+  let brandListAll = arrayChunk(list2, 17).map((sonList) => sortBrandList(sonList))
   renderBrand(brandListAll)
 }
 

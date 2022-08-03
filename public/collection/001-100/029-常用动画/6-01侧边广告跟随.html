@@ -24,8 +24,7 @@
       var ad = document.getElementById('ad')
       var adTop = ad.offsetTop
       window.onscroll = function () {
-        var docScrollTop =
-          document.documentElement.scrollTop || document.body.scrollTop
+        var docScrollTop = document.documentElement.scrollTop || document.body.scrollTop
         startAnimation(ad, { top: docScrollTop + adTop })
       }
     </script>

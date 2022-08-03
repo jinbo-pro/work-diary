@@ -10,33 +10,17 @@
   </head>
   <body>
     <p>
-      <a
-        href="https://www.npmjs.com/package/vue-monoplasty-slide-verify"
-        target="_blank"
+      <a href="https://www.npmjs.com/package/vue-monoplasty-slide-verify" target="_blank"
         >vue-monoplasty-slide-verify</a
       >
     </p>
 
     <template id="slideVerify-template">
-      <div
-        id="slideVerify"
-        class="slide-verify"
-        :style="{ width: w + 'px' }"
-        onselectstart="return false;"
-      >
+      <div id="slideVerify" class="slide-verify" :style="{ width: w + 'px' }" onselectstart="return false;">
         <div :class="{ 'slider-verify-loading': loadBlock }"></div>
         <canvas :width="w" :height="h" ref="canvas"></canvas>
-        <div
-          v-if="show"
-          @click="refresh"
-          class="slide-verify-refresh-icon"
-        ></div>
-        <canvas
-          :width="w"
-          :height="h"
-          ref="block"
-          class="slide-verify-block"
-        ></canvas>
+        <div v-if="show" @click="refresh" class="slide-verify-refresh-icon"></div>
+        <canvas :width="w" :height="h" ref="block" class="slide-verify-block"></canvas>
 
         <div
           class="slide-verify-slider"
@@ -46,10 +30,7 @@
             'container-fail': containerFail
           }"
         >
-          <div
-            class="slide-verify-slider-mask"
-            :style="{ width: sliderMaskWidth }"
-          >
+          <div class="slide-verify-slider-mask" :style="{ width: sliderMaskWidth }">
             <div
               @mousedown="sliderDown"
               @touchstart="touchStartEvent"

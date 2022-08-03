@@ -14,9 +14,7 @@ class FileDirectory extends BaseController {
   async getList(ctx) {
     const { treeList } = await this.servers.FileDirData.getFileList()
     // 筛选所需文件树
-    let dirList = ctx.query.dirList
-      ? ctx.query.dirList.split(',')
-      : this.dirContain
+    let dirList = ctx.query.dirList ? ctx.query.dirList.split(',') : this.dirContain
     const result = treeList.filter((e) => dirList.includes(e.fileName))
     ctx.body = this.resSuccess(result)
   }

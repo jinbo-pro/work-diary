@@ -2,8 +2,8 @@ import { textHax } from '../easyHash.js'
 
 /**
  * 动态加载 script
- * @param {string} src 
- * @returns 
+ * @param {string} src
+ * @returns
  */
 export function loadScript(src) {
   return new Promise((resolve, reject) => {

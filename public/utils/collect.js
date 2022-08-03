@@ -3,11 +3,7 @@
  */
 function getType(data) {
   if (data === null) return 'null'
-  return Object.prototype.toString
-    .call(data)
-    .replace('[object ', '')
-    .replace(']', '')
-    .toLowerCase()
+  return Object.prototype.toString.call(data).replace('[object ', '').replace(']', '').toLowerCase()
 }
 
 /**
@@ -245,12 +241,9 @@ export {
   merge, // 对象深度合并 - 支持数组对象
   arrayChunk, // 数组等距拆分
   arrayRandom, // 数组随机排序
-
   deepCloneJson, // 对象深拷贝[简易版]
-
   humpName, // 连字符转驼峰名
   toLowerLine, // 驼峰名转连字符
-
   debounce, // 函数防抖
   throttle, // 函数节流
   prefixNum, // 数字补零

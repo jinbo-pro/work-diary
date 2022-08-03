@@ -14,9 +14,7 @@ class UpFile extends BaseController {
   }
   // 创建文件写入名
   createFileWriteName(fileName) {
-    let hashStr = this.tools.crypto
-      .createMd5(Date.now() + 'world!')
-      .substr(0, 16)
+    let hashStr = this.tools.crypto.createMd5(Date.now() + 'world!').substr(0, 16)
     let filePath = `${this.rootPath}/${hashStr}_${fileName}`
     let publicFilePath = `${this.serverPath}/upload/${hashStr}_${fileName}`
     return { filePath, publicFilePath }
@@ -69,9 +67,7 @@ class UpFile extends BaseController {
     let files = ctx.request.files
     await this.checkUploadPath()
     for (let key in files) {
-      const { filePath, publicFilePath } = this.createFileWriteName(
-        files[key].name
-      )
+      const { filePath, publicFilePath } = this.createFileWriteName(files[key].name)
       writeFile.push(this.fileWriteStream(files[key], filePath))
       result.push(publicFilePath)
     }
@@ -133,10 +129,7 @@ class UpFile extends BaseController {
       .forEach((item) => {
         !suffix ? (suffix = /\.([\w]+)$/.exec(item)[1]) : null
         // 合并文件
-        fs.appendFileSync(
-          `${this.rootPath}/${hash}.${suffix}`,
-          fs.readFileSync(`${path}/${item}`)
-        )
+        fs.appendFileSync(`${this.rootPath}/${hash}.${suffix}`, fs.readFileSync(`${path}/${item}`))
         fs.unlinkSync(`${path}/${item}`) // 清除切片文件
       })
     fs.rmdirSync(path) // 清除切片临时文件夹

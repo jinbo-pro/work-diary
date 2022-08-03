@@ -78,12 +78,7 @@ export class McAnimation {
         this.x += xStep
         for (let attr in startValueMap) {
           let item = startValueMap[attr]
-          let result = this.getValueStep(
-            item.startVal,
-            item.endVal,
-            this.x,
-            this.distance
-          )
+          let result = this.getValueStep(item.startVal, item.endVal, this.x, this.distance)
           this.setStyleVal(attr, result)
           if (this.xBoundary() || result != item.endVal) {
             endFlag = false

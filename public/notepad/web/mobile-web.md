@@ -81,12 +81,7 @@ Vue.use(VueScroller)
 - 使用
 
 ```html
-<scroller
-  :on-refresh="refresh"
-  :on-infinite="infinite"
-  ref="myscroller"
-  noDataText="亲，我也是有底线的~"
->
+<scroller :on-refresh="refresh" :on-infinite="infinite" ref="myscroller" noDataText="亲，我也是有底线的~">
   　　
   <div v-for="(item,index) in productList" :key="index">
     <p>{{ item }}</p>
@@ -194,18 +189,11 @@ call.onclick = function () {
 
   ```html
   <!-- 海报弹窗 -->
-  <div
-    class="canvas-prop fdc jac"
-    v-show="hasConvertImg"
-    @touchmove.stop.prevent="touchmovehandle"
-  >
+  <div class="canvas-prop fdc jac" v-show="hasConvertImg" @touchmove.stop.prevent="touchmovehandle">
     <div class="img-share" @click.stop>
       <div class="img-box">
         <img :src="convertImgDataUrl" class="img_share" />
-        <div
-          class="close-layer iconfont icon-shibai"
-          @click="hasConvertImg = false"
-        ></div>
+        <div class="close-layer iconfont icon-shibai" @click="hasConvertImg = false"></div>
       </div>
     </div>
     <div class="share-prop">长按识别图中的二维码查看详情</div>
@@ -349,17 +337,10 @@ call.onclick = function () {
 <!--所在省市-->
 <div @click="popupVisible6 = true" class="select">
   <mt-cell title="所在区域" is-link class="input-label">
-    <span class="input-label"
-      >{{ selectPicker.province || "请选择所在区域" }}</span
-    >
+    <span class="input-label">{{ selectPicker.province || "请选择所在区域" }}</span>
   </mt-cell>
 </div>
-<mt-popup
-  v-model="popupVisible6"
-  @touchmove.native.prevent
-  position="bottom"
-  class="mint-popup"
->
+<mt-popup v-model="popupVisible6" @touchmove.native.prevent position="bottom" class="mint-popup">
   <mt-picker
     :slots="provinceList"
     @change="onValuesChange($event, 'province')"

@@ -7,7 +7,7 @@
     <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
     <script src="./047-main.js"></script>
     <title>047-1</title>
-    <link rel="stylesheet" href="./047-style.css">
+    <link rel="stylesheet" href="./047-style.css" />
   </head>
 
   <body>
@@ -38,10 +38,7 @@
           // 注意这里将n赋值给i，原理就是页面没有滚动时候n不增加，图片不加载
           for (var i = n; i < oImgs.length; i++) {
             // 图片距离文档顶部长度 <=  滚动条滚过的距离+窗口的高度
-            if (
-              oImgs[i].offsetTop <=
-              document.documentElement.scrollTop + window.innerHeight
-            ) {
+            if (oImgs[i].offsetTop <= document.documentElement.scrollTop + window.innerHeight) {
               oImgs[i].src = oImgs[i].getAttribute('data-src') // 把data-src图片路径，复制给src
               n++ // 页面继续滚动n增加
             }

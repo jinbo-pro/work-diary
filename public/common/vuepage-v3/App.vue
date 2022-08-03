@@ -11,8 +11,8 @@ import { ref, reactive, onMounted } from 'vue'
 export default {
   name: 'vuename',
   setup() {
-    onMounted(()=>{
-      console.log(678, '-->>> 678');
+    onMounted(() => {
+      console.log(678, '-->>> 678')
     })
     const count = ref('你好')
     const userInfo = reactive({

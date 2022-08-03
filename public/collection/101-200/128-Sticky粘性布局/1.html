@@ -37,8 +37,7 @@
       // 监听滚动条
       window.addEventListener('scroll', function (e) {
         // 获取当前文档流的 scrollTop
-        var scrollTop =
-          document.documentElement.scrollTop || document.body.scrollTop
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
         // 导航条吸附条件
         if (scrollTop > navBoxOffsetTop) {
           $('.sticky').addClass('active_sticky')

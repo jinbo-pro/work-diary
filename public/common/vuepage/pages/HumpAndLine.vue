@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     humpHandel() {
-      console.log(678, '-->>> 678');
+      console.log(678, '-->>> 678')
       this.line = toLowerLine(this.hump)
     },
     lineHandel() {

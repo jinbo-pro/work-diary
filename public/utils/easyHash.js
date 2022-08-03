@@ -6,8 +6,7 @@
  */
 function guid(line = false, head = '') {
   const _ = line ? '-' : ''
-  const S = () =>
-    (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+  const S = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
   return `${head}${S()}${S()}${_}${S()}${_}${S()}${_}${S()}${_}${S()}${S()}${S()}`
 }
 /**
@@ -71,7 +70,7 @@ function randomString(len, types) {
   // 密码字符集
   const dataObj = {
     // 重复数字是为了使数字与字符的获取概率大致相当
-    1: [...'01234567899876543210258'], 
+    1: [...'01234567899876543210258'],
     2: [...'abcdefghijklmnopqrstuvwxyz'],
     3: [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
     4: [...'.@$%&()_-+?']

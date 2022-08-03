@@ -33,18 +33,10 @@
         </el-form>
         <el-row>
           <el-col :span="12">
-            <CardContent
-              title="aes 内容"
-              v-model="aes.content"
-              @blur="aesHandel('encrypt')"
-            />
+            <CardContent title="aes 内容" v-model="aes.content" @blur="aesHandel('encrypt')" />
           </el-col>
           <el-col :span="12">
-            <CardContent
-              title="aes 加密"
-              v-model="aes.encryptedVal"
-              @blur="aesHandel('decrypt')"
-            />
+            <CardContent title="aes 加密" v-model="aes.encryptedVal" @blur="aesHandel('decrypt')" />
           </el-col>
         </el-row>
       </el-tab-pane>

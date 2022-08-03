@@ -13,8 +13,8 @@
     <p>使用 'loading' in new Image() 检测浏览器是否支持 图片懒加载</p>
     <ul id="ulBox"></ul>
     <script>
-      var isSupportLoading = 'loading' in new Image();
-      console.log(isSupportLoading, '-->>> isSupportLoading');
+      var isSupportLoading = 'loading' in new Image()
+      console.log(isSupportLoading, '-->>> isSupportLoading')
       var ulBox = $('#ulBox')
       for (let i = 1; i < 100; i++) {
         ulBox.append(

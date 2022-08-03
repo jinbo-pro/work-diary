@@ -1,7 +1,5 @@
 for (let i = 0; i < 10; i++) {
-  $('.content').append(
-    '<div class="box"><img class="card" src="./response.png"></div>'
-  )
+  $('.content').append('<div class="box"><img class="card" src="./response.png"></div>')
 }
 let box = $('.box')
 let w = box.width()

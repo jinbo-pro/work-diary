@@ -4,18 +4,14 @@
  * @returns string
  */
 function guid(head) {
-  const S = () =>
-    (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
+  const S = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
   // 因为第一个字符为数值时,该 guid 不能用作 id 或者 class 所以前面加个 guid 前缀
-  return `${
-    head ? head : ''
-  }${S()}${S()}-${S()}-${S()}-${S()}-${S()}${S()}${S()}`
+  return `${head ? head : ''}${S()}${S()}-${S()}-${S()}-${S()}-${S()}${S()}${S()}`
 }
 
 // 生成二维码
 let tempGuid = guid()
-let appUrl =
-  location.href.replace('index.html', 'app.html') + '?tempGuid=' + tempGuid
+let appUrl = location.href.replace('index.html', 'app.html') + '?tempGuid=' + tempGuid
 console.log(appUrl, '-->>> appUrl')
 $('#appUrl').text(appUrl)
 new QRCode(document.getElementById('qrcode'), appUrl)

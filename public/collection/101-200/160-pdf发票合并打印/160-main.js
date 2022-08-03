@@ -10,13 +10,13 @@ async function main(files) {
     const viewport = page.getViewport({ scale: 3 }) // 页面缩放比例
     const canvas = document.createElement('canvas')
     canvas.className = 'canvas_box'
-    
+
     // 设置canvas真实宽高
     canvas.width = viewport.width
     canvas.height = viewport.height
-    
+
     const context = canvas.getContext('2d')
-    
+
     // 渲染生成
     page.render({
       canvasContext: context,

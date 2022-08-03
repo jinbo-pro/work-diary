@@ -1,12 +1,7 @@
 <template>
   <div class="article_list_max">
     <template v-for="(item, index) in list">
-      <Article
-        v-show="item.show"
-        :key="index"
-        :article="item"
-        @linkInfo="linkInfo"
-      />
+      <Article v-show="item.show" :key="index" :article="item" @linkInfo="linkInfo" />
     </template>
   </div>
 </template>
@@ -31,16 +26,12 @@ export default {
     linkInfo(item) {
       if (item.isFile == 1) {
         if (item.fileName.endsWith('.md')) {
-          window.open(
-            `/common/parseMarked/parseMarked.html?filePath=${item.filePath}`
-          )
+          window.open(`/common/parseMarked/parseMarked.html?filePath=${item.filePath}`)
         } else {
           window.open(item.filePath)
         }
       } else {
-        let indexHtml = item.children?.find(
-          (ce) => ce.isFile && ce.fileName.includes('index.html')
-        )
+        let indexHtml = item.children?.find((ce) => ce.isFile && ce.fileName.includes('index.html'))
         if (indexHtml) {
           let u = `/page/${indexHtml.id}`
           if (isTxCode()) {

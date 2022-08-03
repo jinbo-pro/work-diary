@@ -70,14 +70,7 @@ function anima() {
       y = ~~((s[1] * f) / z - h)
       if (!m[(q = y * f + x)] | (m[q] > z))
         (m[q] = z),
-          (a.fillStyle =
-            'rgb(' +
-            ~(s[3] * h) +
-            ',' +
-            ~(s[4] * h) +
-            ',' +
-            ~(s[3] * s[3] * -80) +
-            ')'),
+          (a.fillStyle = 'rgb(' + ~(s[3] * h) + ',' + ~(s[4] * h) + ',' + ~(s[3] * s[3] * -80) + ')'),
           a.fillRect(x, y, 1, 1)
     }
   }

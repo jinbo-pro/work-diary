@@ -25,12 +25,7 @@
       <input type="number" name="end" placeholder="结束" value="075" />
       <br />
       <span>动画时长</span>
-      <input
-        type="text"
-        name="duration"
-        placeholder="动画时长(毫秒)"
-        value="1200"
-      />
+      <input type="text" name="duration" placeholder="动画时长(毫秒)" value="1200" />
       <p>
         <button id="active">运行</button>
         <button id="clickAdd">点击增加 100</button>
@@ -55,12 +50,9 @@
       </ol>
       <p>记录：</p>
       <div>
+        <p>requestAnimationFrame 比起 setTimeout、setInterval的优势主要有两点：</p>
         <p>
-          requestAnimationFrame 比起 setTimeout、setInterval的优势主要有两点：
-        </p>
-        <p>
-          1、requestAnimationFrame
-          会把每一帧中的所有DOM操作集中起来，在一次重绘或回流中就完成，
+          1、requestAnimationFrame 会把每一帧中的所有DOM操作集中起来，在一次重绘或回流中就完成，
           并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
         </p>
         <p>

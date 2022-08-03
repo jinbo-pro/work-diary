@@ -38,9 +38,7 @@
       import { startAnimation } from '/utils/module/McAnimation.js'
       // 创建图片
       for (let i = 0; i < 4; i++) {
-        let imgDom = $(
-          `<div class="slider_item_box"><img src="/assets/img/img${i}.webp"></div>`
-        )
+        let imgDom = $(`<div class="slider_item_box"><img src="/assets/img/img${i}.webp"></div>`)
         if (i) {
           imgDom.css('left', '300px')
         }

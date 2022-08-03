@@ -43,8 +43,7 @@ var slideLoadMoreMixin = {
       let outerHeight = document.documentElement.clientHeight
       // 页面指定了DTD，即指定了DOCTYPE时，使用document.documentElement。
       // 页面没有DTD，即没指定DOCTYPE时，使用document.body。
-      let scrollTop =
-        document.documentElement.scrollTop || document.body.scrollTop
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
       if (scrollTop > innerHeight - outerHeight - 100) {
         if (this.loadEndMixin) {
           console.log('加载完毕')
@@ -61,17 +60,15 @@ var slideLoadMoreMixin = {
       }
       this.noRepeatMixin = true
 
-      this.api(this.pageListMixin.page, this.pageListMixin.pageSize).then(
-        (res) => {
-          this.dataListMixin = this.dataListMixin.concat(res.data)
-          if (!res.data.length) {
-            this.loadEndMixin = true
-            console.log('没有了')
-          }
-          this.noRepeatMixin = false // 重复请求状态解除
-          this.pageListMixin.page++
+      this.api(this.pageListMixin.page, this.pageListMixin.pageSize).then((res) => {
+        this.dataListMixin = this.dataListMixin.concat(res.data)
+        if (!res.data.length) {
+          this.loadEndMixin = true
+          console.log('没有了')
         }
-      )
+        this.noRepeatMixin = false // 重复请求状态解除
+        this.pageListMixin.page++
+      })
     },
     // 重置请求
     resetApiMixin() {

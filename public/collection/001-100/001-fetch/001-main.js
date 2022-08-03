@@ -15,7 +15,7 @@ async function request() {
    * 仅当网络故障时或请求被阻止时，才会标记为 reject。
    */
   if (response.ok) {
-    const res = await response.json() // 如果返回的是文本就用 response.text() 解析 
+    const res = await response.json() // 如果返回的是文本就用 response.text() 解析
     return res
   } else {
     resHandel('请求异常')

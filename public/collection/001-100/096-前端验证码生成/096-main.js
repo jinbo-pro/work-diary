@@ -80,8 +80,7 @@ class GVerify {
     for (var i = 1; i <= 4; i++) {
       var txt = txtArr[randomNum(0, txtArr.length)]
       this.code += txt
-      ctx.font =
-        randomNum(this.options.height / 2, this.options.height) + 'px SimHei' // 随机生成字体大小
+      ctx.font = randomNum(this.options.height / 2, this.options.height) + 'px SimHei' // 随机生成字体大小
       ctx.fillStyle = randomColor(50, 160) // 随机生成字体颜色
       ctx.shadowOffsetX = randomNum(-3, 3)
       ctx.shadowOffsetY = randomNum(-3, 3)
@@ -102,27 +101,15 @@ class GVerify {
     for (var i = 0; i < 6; i++) {
       ctx.strokeStyle = randomColor(40, 180)
       ctx.beginPath()
-      ctx.moveTo(
-        randomNum(0, this.options.width),
-        randomNum(0, this.options.height)
-      )
-      ctx.lineTo(
-        randomNum(0, this.options.width),
-        randomNum(0, this.options.height)
-      )
+      ctx.moveTo(randomNum(0, this.options.width), randomNum(0, this.options.height))
+      ctx.lineTo(randomNum(0, this.options.width), randomNum(0, this.options.height))
       ctx.stroke()
     }
     /** 绘制干扰点 */
     for (var i = 0; i < this.options.width / 4; i++) {
       ctx.fillStyle = randomColor(0, 255)
       ctx.beginPath()
-      ctx.arc(
-        randomNum(0, this.options.width),
-        randomNum(0, this.options.height),
-        1,
-        0,
-        2 * Math.PI
-      )
+      ctx.arc(randomNum(0, this.options.width), randomNum(0, this.options.height), 1, 0, 2 * Math.PI)
       ctx.fill()
     }
   }

@@ -15,5 +15,4 @@ for (let item of icons) {
     console.log(str)
   })
   box.append(icon)
-  
 }

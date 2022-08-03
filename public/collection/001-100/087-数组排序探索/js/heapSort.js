@@ -33,10 +33,7 @@ function heapSort(array) {
 @param  x   数组下标
 @param  len 堆大小*/
 function heapify(arr, x, len) {
-  if (
-    Object.prototype.toString.call(arr).slice(8, -1) === 'Array' &&
-    typeof x === 'number'
-  ) {
+  if (Object.prototype.toString.call(arr).slice(8, -1) === 'Array' && typeof x === 'number') {
     var l = 2 * x + 1,
       r = 2 * x + 2,
       largest = x

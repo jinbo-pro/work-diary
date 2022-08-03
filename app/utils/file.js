@@ -73,9 +73,7 @@ function readNodeDfs(src, func) {
   while (stark.length) {
     var temp = stark.shift()
     if (!checkIsFile(temp.filePath)) {
-      let children = fs
-        .readdirSync(temp.filePath)
-        .map((f) => createItem(f, temp.filePath + '/' + f))
+      let children = fs.readdirSync(temp.filePath).map((f) => createItem(f, temp.filePath + '/' + f))
       stark = children.concat(stark)
     }
     func(temp)

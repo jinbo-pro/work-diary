@@ -73,12 +73,7 @@
         </button>
       </div>
 
-      <div
-        v-for="(item, index) in list"
-        :key="index"
-        class="tabcontent"
-        v-show="activeIndex == index"
-      >
+      <div v-for="(item, index) in list" :key="index" class="tabcontent" v-show="activeIndex == index">
         <h3>{{ item.title }}</h3>
         <p>{{ item.content }}</p>
       </div>

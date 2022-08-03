@@ -104,9 +104,7 @@ function stopMoveMobile() {
 function canMoveMobile() {
   document.body.classList.remove('static')
   // 关闭弹窗后同步body滚动条位置
-  document.scrollingElement.scrollTop = Math.abs(
-    parseInt(document.body.style.top)
-  )
+  document.scrollingElement.scrollTop = Math.abs(parseInt(document.body.style.top))
   document.body.style.top = ''
 }
 

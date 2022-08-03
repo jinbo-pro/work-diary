@@ -13,9 +13,7 @@ $('.container').on('click', function (e) {
 for (let i = 0; i < 30; i++) {
   $('#list').append(`<li>A 第 ${i + 1} 条内容</li>`)
   $('#list2').append(`<li>B 第 ${i + 1} 条内容</li>`)
-  $('#docList').append(
-    `<p>撑起页面内容_${i + 1} 使其出现滚动条 _ ${Math.random()}</p>`
-  )
+  $('#docList').append(`<p>撑起页面内容_${i + 1} 使其出现滚动条 _ ${Math.random()}</p>`)
 }
 
 /*
@@ -35,8 +33,6 @@ function stopMove() {
 function canMove() {
   document.body.classList.remove('static')
   // 关闭弹窗后同步body滚动条位置
-  document.scrollingElement.scrollTop = Math.abs(
-    parseInt(document.body.style.top)
-  )
+  document.scrollingElement.scrollTop = Math.abs(parseInt(document.body.style.top))
   document.body.style.top = ''
 }
