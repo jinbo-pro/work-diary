@@ -2,7 +2,9 @@
   <div id="home-container">
     <TopSearch @input="searchHandel" @reset="resetList" />
     <ArticleGroup :list="dataList" />
-    <div v-show="isEmpty" class="empty_tips">啥也没找到╰(￣ω￣ｏ)</div>
+    <div v-show="isEmpty" class="empty_tips">
+      <EmptyData title="啥也没找到╰(￣ω￣ｏ)" />
+    </div>
     <FloatTools />
     <BackPageTop bottom="220px" />
     <Welcome />
@@ -17,6 +19,7 @@ import TopSearch from './components/TopSearch.vue'
 import ArticleGroup from './components/ArticleGroup.vue'
 import FloatTools from './components/FloatTools.vue'
 import Welcome from './components/Welcome.vue'
+import EmptyData from './components/EmptyData.vue'
 export default {
   name: 'App',
   components: {
@@ -24,7 +27,8 @@ export default {
     FloatTools,
     TopSearch,
     BackPageTop,
-    Welcome
+    Welcome,
+    EmptyData
   },
   data() {
     return {
@@ -119,11 +123,10 @@ export default {
 #home-container {
   min-height: 100vh;
   box-sizing: border-box;
-  background: url(/assets/img/bl.png) no-repeat fixed bottom left,
-    url(/assets/img/tr.png) no-repeat fixed top right, #f0f2f7;
+  background: url(/assets/img/bl.png) no-repeat fixed bottom left, url(/assets/img/tr.png) no-repeat fixed top right,
+    #f0f2f7;
 }
 .empty_tips {
-  font-size: 20px;
   text-align: center;
   margin: 32px auto;
 }
