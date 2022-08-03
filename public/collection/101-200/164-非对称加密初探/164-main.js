@@ -1,0 +1,46 @@
+console.log('164-非对称加密初探')
+
+/**
+ * 1. 找到互质的两个数， p 和 q， 计算 N = p*q
+ */
+var p = 11
+var q = 3
+var N = p * q
+
+console.log(p, q, N, 'p, q, N')
+/**
+ * 2. 确定一个数 e， 使得 e 与 (p-1)(q-1) 互质， 此时公钥为 (N, e)
+ * 取 e 与 (p-1)(q-1) = 20 互质的数设 e = 3
+ */
+var e = 3
+
+/**公钥 */
+const public_key = [N, e]
+
+/**
+ * 3. 确定私钥 d 使得 e*d-1能够被(p-1)(q-1)整除
+ * 即取一个 d 使得 3*d -1 能 20 被整除 假设取 d=7 或者 d=67
+ * 3*7-1=20 3*67-1=200 20和200都能被20整除
+ */
+var d = 7
+/**私钥 */
+const private_key = d
+
+// =========================
+
+/**
+ * 加密
+ */
+// 假设消息 M=8
+// 加密方法 encodeMsg = M ** e % N
+const M = 8
+const encodeMsg = M ** e % N // 17
+
+/**
+ * 解密
+ */
+// 解密方法 decodeMsg = encodeMsg ** private_key % N
+const decodeMsg = encodeMsg ** private_key % N // 8
+
+console.log(encodeMsg, 'encodeMsg')
+console.log(decodeMsg, 'decodeMsg')
