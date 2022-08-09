@@ -1,15 +1,33 @@
-const ws = require('nodejs-websocket')
-console.log('开始建立 websocket 连接...')
+const { WebSocketServer } = require('ws')
+const { guid } = require('../utils/tools')
 
-ws.createServer(function (conn) {
-  conn.on('text', function (str) {
-    console.log('收到的信息为:' + str)
-    conn.sendText('success')
+const wss = new WebSocketServer({
+  port: 7596
+})
+
+// 广播
+function broadcast(data, isBinary) {
+  wss.clients.forEach(function (client) {
+    client.send(data, { binary: isBinary })
   })
-  conn.on('close', function (code, reason) {
-    console.log('关闭连接')
+}
+
+const userMap = new Map()
+
+// 初始化
+wss.on('connection', function (ws, req) {
+  const ip = req.socket.remoteAddress
+  userMap.set(ws, guid())
+  ws.send(`你是第 ${wss.clients.size} 位 ip: ${ip}`)
+  // 发送消息
+  ws.on('message', function (data, isBinary) {
+    console.log(data.toString(), '-->>> message')
+    broadcast(data, isBinary)
   })
-  conn.on('error', function (code, reason) {
-    console.log('异常关闭')
+  // 退出连接
+  ws.on('close', function (code) {
+    console.log(userMap.get(ws), '退出连接')
+    userMap.delete(ws)
+    console.log(userMap.size, '-->>> size');
   })
-}).listen(7596)
+})
