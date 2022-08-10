@@ -8,7 +8,7 @@ function parseObj(str) {
   }
 }
 let user = `游客-${Date.now()}`
-const ws = new WebSocket('ws://localhost:7596')
+const ws = new WebSocket(`ws://${location.hostname}:7596`)
 function send(data, type) {
   ws.send(JSON.stringify({ type, data, user }))
 }
