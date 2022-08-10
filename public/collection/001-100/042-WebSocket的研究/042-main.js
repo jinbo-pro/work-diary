@@ -8,7 +8,7 @@ function parseObj(str) {
   }
 }
 let user = `游客-${Date.now()}`
-const ws = new WebSocket('ws://192.168.2.98:7596')
+const ws = new WebSocket('ws://localhost:7596')
 function send(data, type) {
   ws.send(JSON.stringify({ type, data, user }))
 }
@@ -21,6 +21,9 @@ const vm = new Vue({
       message: '',
       messageList: []
     }
+  },
+  mounted() {
+    document.getElementById('app').style.display = 'block'
   },
   methods: {
     sendMessage() {
@@ -41,7 +44,7 @@ ws.onclose = function (e) {
   console.log('服务器关闭')
 }
 ws.onerror = function () {
-  console.log('连接出错 请检查是否运行 app/websocket/socket.js')
+  console.log('连接出错 请检查 websockt 服务器是否运行')
 }
 
 ws.onmessage = function (e) {
@@ -49,4 +52,8 @@ ws.onmessage = function (e) {
   const data = parseObj(e.data)
   if (!data) return
   vm.messageList.push(data)
+  vm.$nextTick(() => {
+    const mainDom = document.querySelector('.main')
+    mainDom.scrollTop = mainDom.scrollHeight
+  })
 }

@@ -68,6 +68,8 @@ app.use(async (ctx, next) => {
 
 // 启动服务器
 app.listen(config.port, welcome)
+// websockt 服务器
+require('./app/websocket/socket')
 
 // 打印欢迎信息
 function welcome() {

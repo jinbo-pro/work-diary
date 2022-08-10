@@ -1,9 +1,10 @@
 const { WebSocketServer } = require('ws')
 const { guid } = require('../utils/tools')
 
-const wss = new WebSocketServer({
-  port: 7596
-})
+const port = '7596'
+
+const wss = new WebSocketServer({ port })
+console.log(`websockt 服务器启动 port: ${port}`)
 
 // 广播
 function broadcast(data, isBinary) {

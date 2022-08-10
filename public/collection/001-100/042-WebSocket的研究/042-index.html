@@ -8,65 +8,42 @@
     <script src="https://lib.baomitu.com/vant/2.12.48/vant.min.js"></script>
     <link rel="stylesheet" href="https://lib.baomitu.com/vant/2.12.48/index.min.css" />
     <link rel="stylesheet" href="/lib/css/css3-flex.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>042-WebSocket的研究</title>
-    <style>
-      #app {
-        width: 375px;
-        border: 1px solid #999;
-        margin: 0 auto;
-        min-height: 100vh;
-        box-sizing: border-box;
-        position: relative;
-      }
-      .foot_input {
-        width: 100%;
-        position: absolute;
-        bottom: 20px;
-        left: 0;
-        z-index: 10;
-      }
-      .item_box {
-        border: 1px solid #999;
-        border-radius: 4px;
-        padding: 8px;
-        margin: 8px;
-      }
-      .user_box {
-        font-size: 12px;
-        color: #999;
-      }
-      .is_me {
-        text-align: right;
-      }
-    </style>
   </head>
 
   <body>
     <div id="app">
-      <div v-for="(item, index) in messageList" :key="index" :class="['item_box', { is_me: item.user == user }]">
-        <div>{{ item.data }}</div>
-        <div class="user_box">{{ item.user }}</div>
+      <div class="main">
+        <div v-for="(item, index) in messageList" :key="index" :class="{ is_me: item.user == user }">
+          <div v-if="item.type == 'join'" class="join_box">{{ item.user }} 加入了聊天</div>
+          <div v-else>
+            <div class="user_box">{{ item.user }}</div>
+            <div class="item_box">
+              <div class="content">{{ item.data }}</div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="foot_input">
         <van-row class="ac">
           <van-col span="20">
             <van-field
+              class="textarea_box"
               v-model.trim="message"
               rows="3"
-              autosize
               type="textarea"
               maxlength="500"
               placeholder="请输入内容"
               show-word-limit
             ></van-field>
           </van-col>
-          <van-col span="4">
+          <van-col span="4" class="jac">
             <van-button type="primary" size="mini" @click="sendMessage">发送</van-button>
           </van-col>
         </van-row>
       </div>
     </div>
-
     <script defer type="module" src="./042-main.js"></script>
   </body>
 </html>
