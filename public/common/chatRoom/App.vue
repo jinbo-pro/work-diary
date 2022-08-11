@@ -13,6 +13,7 @@ import SubmitPrompt from './components/SubmitPrompt.vue'
 import { parseObj, tips } from './tools.js'
 import { guid } from '/utils/easyHash.js'
 import { local } from '/utils/storage.js'
+import { Dialog } from 'vant'
 
 export default {
   components: {
@@ -44,14 +45,19 @@ export default {
     initWebSocket() {
       const ws = new WebSocket(`ws://${location.hostname}:7596`)
       ws.onopen = (e) => {
-        console.log('连接服务器成功')
+        tips('连接服务器成功')
         this.send('init', 'join')
       }
       ws.onclose = (e) => {
-        console.log('服务器关闭')
+        Dialog.alert({ message: '服务器已断开连接' })
       }
       ws.onerror = () => {
-        console.log('连接出错 请检查 websockt 服务器是否运行')
+        Dialog.alert({
+          message: '连接出错 请检查 websockt 服务器是否运行',
+          confirmButtonText: '重试'
+        }).then(() => {
+          location.reload()
+        })
       }
       ws.onmessage = (e) => {
         const data = parseObj(e.data)
