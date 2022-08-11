@@ -57,7 +57,7 @@ export default {
   opacity: 0.9;
   padding: 10px 20px;
   position: fixed;
-  left: -350px;
+  left: -550px;
   bottom: 24px;
   z-index: 99999;
   border-top-left-radius: 15px;

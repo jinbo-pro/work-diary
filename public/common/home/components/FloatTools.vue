@@ -2,7 +2,7 @@
   <div class="float_tools_max">
     <div
       v-for="(item, index) in toolsList"
-      @click="handel(item.id)"
+      @click="handel(item.url)"
       class="item_tools_box"
       :data-name="item.name"
       :key="index"
@@ -18,28 +18,14 @@ export default {
     return {
       roleDialog: false,
       toolsList: [
-        { id: 1, name: 'gitee', icon: 'gitee' },
-        { id: 2, name: 'vue-element 页面', icon: 'vue' },
-        { id: 3, name: 'vue3-element-plus', icon: 'vue3' }
+        { name: 'gitee', icon: 'gitee', url: 'https://gitee.com/lijinbode/work-diary' },
+        { name: 'vuepage', icon: 'vue', url: '/common/vuepage/index.html' }
       ]
     }
   },
   methods: {
-    handel(id) {
-      switch (id) {
-        // gitee
-        case 1:
-          window.open('https://gitee.com/lijinbode/work-diary')
-          break
-        // vue
-        case 2:
-          window.open('/common/vuepage/index.html')
-          break
-        // vue3
-        case 3:
-          window.open('/common/vuepage-v3/index.html')
-          break
-      }
+    handel(url) {
+      window.open(url)
     }
   }
 }
