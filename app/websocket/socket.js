@@ -1,7 +1,11 @@
 const { WebSocketServer } = require('ws')
 const { guid } = require('../utils/tools')
 
-const port = '7596'
+/**
+ * [x] linux 服务器部署 WebSocket 无法连接问题待解决
+ */
+
+const port = 7596
 
 const wss = new WebSocketServer({ port })
 console.log(`websockt 服务器启动 port: ${port}`)
@@ -31,7 +35,6 @@ wss.on('connection', function (ws, req) {
   ws.send(`你是第 ${wss.clients.size} 位 ip: ${ip}`)
   // 发送消息
   ws.on('message', function (data, isBinary) {
-    console.log(data.toString(), '-->>> message')
     const obj = parseObj(data.toString())
     if (!obj) return
     broadcast(data, isBinary)

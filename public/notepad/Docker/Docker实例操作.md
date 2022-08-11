@@ -5,6 +5,9 @@
 ```shell
 # 根据 node 镜像创建容器 deer
 docker run -d -p 39003:8899 --name deer -v /home/lijinbo/deer:/home/deer node /bin/bash -c "cd home/deer;npm run start"
+
+# 根据 node 镜像创建容器 work
+docker run -d -p 39006:7586 --name work -v /home/lijinbo/work-diary:/home/work node /bin/bash -c "cd home/work;node app/index.js"
 ```
 
 参数说明

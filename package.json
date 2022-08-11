@@ -4,7 +4,8 @@
   "description": "my work diary",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon app/index.js -dev",
+    "socket": "node app/websocket/socket.js",
     "build": "node build/index.js && tar -czvf dist.tar.gz dist",
     "create": "node script/createFile/createFileBase.js"
   },

@@ -1,13 +1,15 @@
 const Koa = require('koa')
+const path = require('path')
 const koaBody = require('koa-body')
-const router = require('./app/router')
+const router = require('./router')
 const staticFiles = require('koa-static')
-const tools = require('./app/utils/tools')
-const config = require('./config/config.default')
+const tools = require('./utils/tools')
 const args = tools.getArguments()
 
 const app = new Koa()
-const env = args.includes('-start') ? 'prod' : 'dev'
+const env = args.includes('-dev') ? 'dev' : 'prod'
+const port = 7586
+const publicPath = path.join(__dirname, '../public')
 // 错误捕获
 app.use(async (ctx, next) => {
   try {
@@ -41,7 +43,7 @@ app.use(async (ctx, next) => {
 // 设置静态目录
 const maxage = env == 'dev' ? 0 : 2 * 60 * 60 * 1000
 app.use(
-  staticFiles(config.publicPath, {
+  staticFiles(publicPath, {
     // 静态资源浏览器缓存 2 小时
     maxage
   })
@@ -62,19 +64,15 @@ app.use(async (ctx, next) => {
   await next()
   if (parseInt(ctx.status) === 404) {
     ctx.status = 404
-    ctx.body = tools.file.readFileSync(config.publicPath + '/assets/errorPage/404.html')
+    ctx.body = tools.file.readFileSync(publicPath + '/assets/errorPage/404.html')
   }
 })
 
 // 启动服务器
-app.listen(config.port, welcome)
-// websockt 服务器
-require('./app/websocket/socket')
+app.listen(port, welcome)
 
 // 打印欢迎信息
 function welcome() {
   console.log('\x1B[33m%s\x1b[0m:', 'work-diary 启动成功')
-  console.log(
-    `- Local:     http://localhost:${config.port}\n- Network:   http://${tools.getIPAddress()}:${config.port}`
-  )
+  console.log(`- Local:     http://localhost:${port}\n- Network:   http://${tools.getIPAddress()}:${port}`)
 }

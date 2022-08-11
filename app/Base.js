@@ -1,7 +1,6 @@
 const fs = require('fs')
 const path = require('path')
 const tools = require('./utils/tools')
-const { port } = require('../config/config.default')
 
 /**
  * 基础类
@@ -12,7 +11,7 @@ class Base {
     this.path = path
     this.tools = tools
     // 服务器地址
-    this.serverPath = `http://${tools.getIPAddress()}:${port}`
+    this.serverPath = `http://${tools.getIPAddress()}:7586`
   }
   // 获取根路径
   getSrcPath(dir) {
