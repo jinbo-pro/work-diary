@@ -73,24 +73,7 @@ require('./app/websocket/socket')
 
 // 打印欢迎信息
 function welcome() {
-  function hereDoc(f) {
-    return f
-      .toString()
-      .replace(/^[^\/]+\/\*!?\s?/, '')
-      .replace(/\*\/[^\/]+$/, '')
-  }
-  var string = hereDoc(function () {
-    /*
-      _                  ____            _       _   
-     | | __ ___   ____ _/ ___|  ___ _ __(_)_ __ | |_ 
-  _  | |/ _` \ \ / / _` \___ \ / __| '__| | '_ \| __|
- | |_| | (_| |\ V / (_| |___) | (__| |  | | |_) | |_ 
-  \___/ \__,_| \_/ \__,_|____/ \___|_|  |_| .__/ \__|
-                                          |_|        
-
-       */
-  })
-  console.log('\x1B[33m%s\x1b[0m:', string)
+  console.log('\x1B[33m%s\x1b[0m:', 'work-diary 启动成功')
   console.log(
     `- Local:     http://localhost:${config.port}\n- Network:   http://${tools.getIPAddress()}:${config.port}`
   )
