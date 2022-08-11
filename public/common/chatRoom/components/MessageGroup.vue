@@ -39,8 +39,9 @@ export default {
 
 <style lang="less" scoped>
 .main {
-  height: calc(100vh - 110px);
+  height: calc(100vh - 100px);
   overflow-y: scroll;
+  background-color: #ededed;
 }
 
 .item_box {
