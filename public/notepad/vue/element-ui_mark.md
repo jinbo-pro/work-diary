@@ -20,9 +20,103 @@
 >
 > 无语的是可能你刷新一下又好了 o(_￣ ▽ ￣_)o
 
-## 有合并的表头
+## 表头/单元格合并
 
-## 单元格合并
+```vue
+<template>
+  <div class="content_table_max">
+    <el-table :data="tableData" :span-method="objectSpanMethod" border>
+      <el-table-column prop="type" label="分类" align="center"></el-table-column>
+      <el-table-column label="一级指标" align="center">
+        <el-table-column prop="name" label="名称" align="center"></el-table-column>
+        <el-table-column prop="unit" label="单位" align="center"></el-table-column>
+      </el-table-column>
+      <el-table-column label="数值" align="center">
+        <el-table-column prop="aaa" label="十三五期" align="center"></el-table-column>
+        <el-table-column prop="bbb" label="十四五期" align="center"></el-table-column>
+        <el-table-column prop="ccc" label="增减值" align="center"></el-table-column>
+        <el-table-column prop="ddd" label="增减率" align="center"></el-table-column>
+      </el-table-column>
+      <el-table-column prop="eee" label="数值类型" align="center"></el-table-column>
+      <el-table-column prop="fff" label="更新频率" align="center"></el-table-column>
+      <el-table-column prop="ggg" label="十四五截止期" align="center"></el-table-column>
+    </el-table>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      tableData: [
+        { type: '水利工程', name: '测试水利工程11', unit: '座' },
+        { type: '水利工程', name: '测试水利工程22', unit: '座' },
+        { type: '水利工程', name: '测试水利工程33', unit: '座' },
+        { type: '水利投资', name: '测试水利投资t-2', unit: '亿元' },
+        { type: '水利投资', name: '测试水利投资t-3', unit: '亿元' },
+        { type: '水文局资源', name: '测试资源zy-1', unit: '处' },
+        { type: '重大项目', name: '重大项目-1', unit: '引大济岷是四川省十四五期规划建设的重大水' }
+      ]
+    }
+  },
+  created() {
+    this.spanArr = this.dealWithData()
+  },
+  methods: {
+    dealWithData() {
+      const key = 'type'
+      const result = []
+      let pos = 0
+      const data = this.tableData
+      for (let i = 0; i < data.length; i++) {
+        if (i === 0) {
+          result.push(1)
+          pos = 0
+        } else {
+          if (data[i][key] === data[i - 1][key]) {
+            result[pos] += 1
+            result.push(0)
+          } else {
+            result.push(1)
+            pos = i
+          }
+        }
+      }
+      return result
+    },
+    objectSpanMethod({ row, column, rowIndex, columnIndex }) {
+      // 合并第一列
+      if (columnIndex === 0) {
+        const rowspan = this.spanArr[rowIndex]
+        const colspan = rowspan > 0 ? 1 : 0
+        return {
+          rowspan,
+          colspan
+        }
+      }
+      // 重大项目合并行
+      if (row.type == '重大项目') {
+        if (columnIndex == 2) {
+          return {
+            rowspan: 1,
+            colspan: 5
+          }
+        }
+      }
+    }
+  }
+}
+</script>
+
+<style lang="scss" scoped>
+.content_table_max {
+  // 合并表头背景色修改
+  ::v-deep .el-table thead.is-group th.el-table__cell {
+    background-color: #fff;
+  }
+}
+</style>
+```
 
 # 表单
 
@@ -347,18 +441,15 @@ ElementUI.Dialog.props.closeOnClickModal.default = false
 
 - 改用在组件上面添加属性 `:close-on-click-modal="false"` 实现，示例
 
-````html
+```html
 <el-dialog title="提示" :visible.sync="centerDialogVisible" center :close-on-click-modal="false">
   <span></span>
 </el-dialog>
-​``` ## vue-element-admin配置文件 - webpack配置获取配置文件 > process.env.VUE_APP_BASE_API
-````
+```
 
-## 图片拖动排序
+## 弹窗拖拽指令 v-dialogDrag
 
-- 安装依赖`npm install vuedraggable`
-
-## 富文本多图
+[drag.js](./data/drag.js)
 
 # 动态主题
 
