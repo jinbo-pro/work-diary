@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/compressorjs/1.1.1/compressor.min.js"></script>
+
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-preview@1.1.3/dist/vue-preview.min.js"></script>
+    <title>069-浏览器图片压缩</title>
+    <style>
+      img {
+        max-width: 300px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app" class="box">
+      <div>
+        文件：
+        <input type="file" @change="selectFile" />
+        压缩级别：
+        <input type="number" min="1" max="9" v-model="quality" placeholder="压缩级别" />
+      </div>
+
+      <p>压缩前大小: {{ size }}</p>
+      <p>压缩后大小: {{ sizeMin }}</p>
+      <hr />
+      <p>使用场景：图片预览</p>
+      <vue-preview :slides="slides"></vue-preview>
+    </div>
+    <script src="./069-main.js"></script>
+  </body>
+</html>
