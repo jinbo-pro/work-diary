@@ -16,7 +16,7 @@ function getNumberInNormalDistribution(mean, std_dev) {
 }
 
 let data = {}
-for (let i = 0; i < 1e5; i++) {
+for (let i = 0; i < 10000; i++) {
   /**
    * 获得均值为180，要68.26%左右的学生身高都在[170,190]之内，即1个标准差范围内，因此标准差为10
    * 可以通过 getNumberInNormalDistribution(180,10) 调用
@@ -34,13 +34,19 @@ var option = {
   title: {
     text: '学生身高'
   },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      type: 'shadow'
+    }
+  },
   xAxis: {
     data: Object.keys(data)
   },
   yAxis: {},
   series: [
     {
-      name: '身高',
+      name: '人数',
       type: 'bar',
       data: Object.values(data)
     }
