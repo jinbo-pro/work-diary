@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>166-ServerSentEvents通信</title>
+    <style>
+      #msgBox {
+        height: 50vh;
+        overflow-y: scroll;
+        border: 1px solid #f1f1f1;
+        border-radius: 4px;
+      }
+      #msgBox li {
+        font-size: 12px;
+        color: #999;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        参考文章
+        <a href="https://www.ruanyifeng.com/blog/2017/05/server-sent_events.html" target="_blank">
+          Server-Sent Events 教程 - 阮一峰
+        </a>
+      </p>
+      <p>一些简单的推送场景可以替代 WebSocket</p>
+    </div>
+    <hr />
+    <div>
+      <p id="state"></p>
+      <ol id="msgBox"></ol>
+    </div>
+    <script src="./166-main.js"></script>
+  </body>
+</html>
