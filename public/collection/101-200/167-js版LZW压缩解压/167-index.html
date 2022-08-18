@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <title>167-js版LZW压缩解压</title>
+    <style>
+      * {
+        font-size: 12px;
+      }
+      body {
+        overflow: auto;
+        border-style: none;
+      }
+      #source,
+      #result {
+        overflow: auto;
+        width: 100%;
+        height: 200px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      参考文档
+      <a href="https://developer.aliyun.com/article/342236" target="_blank">JS LZW算法压缩与解压</a>
+    </p>
+    <button id="Compress">压缩</button>
+    <button id="DeCompress">解压</button>
+    <span id="info"></span>
+    <hr />
+    <textarea id="source"></textarea>
+    <textarea id="result"></textarea>
+    <script defer type="module" src="./167-main.js"></script>
+  </body>
+</html>
