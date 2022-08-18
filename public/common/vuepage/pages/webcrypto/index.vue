@@ -25,12 +25,19 @@
       <el-tab-pane label="aes" name="aes">
         <el-form :inline="true">
           <el-form-item label="key">
-            <el-input v-model="aes.key" placeholder="请输入密匙 建议至少8位"></el-input>
+            <el-input v-model="aes.key" placeholder="请输入密匙"></el-input>
           </el-form-item>
           <el-form-item label="iv">
-            <el-input v-model="aes.iv" placeholder="请输入偏移 建议至少8位"></el-input>
+            <el-input v-model="aes.iv" placeholder="请输入偏移"></el-input>
+          </el-form-item>
+          <el-form-item label="通过md5值截取key,iv">
+            <el-input v-model="aesMd5" @input="aesSelectMd5" placeholder="请输入偏移"></el-input>
           </el-form-item>
         </el-form>
+        <p style="color: #999; font-size: 12px">
+          *若密匙和偏移不是16的倍数，那么会自动填充，由于各个平台的填充机制不一样就会导致加密结果不一致，
+          为了防止和其他平台加密的结果不一致，强烈建议密匙和偏移均使用16的倍数位如 16位，32位，48位等
+        </p>
         <el-row>
           <el-col :span="12">
             <CardContent title="aes 内容" v-model="aes.content" @blur="aesHandel('encrypt')" />
@@ -70,7 +77,8 @@ export default {
         iv: '',
         content: '',
         encryptedVal: ''
-      }
+      },
+      aesMd5: ''
     }
   },
   created() {},
@@ -89,8 +97,8 @@ export default {
     // aes
     aesHandel(type) {
       const { key, iv } = this.aes
-      if (!key) return this.$message.error('请输入密匙')
-      if (!iv) return this.$message.error('请输入偏移')
+      if (key.length < 16) return this.$message.error('请输入密匙且位数应是16的倍数')
+      if (iv.length < 16) return this.$message.error('请输入偏移且位数应是16的倍数')
       const a = new AES(key, iv)
       if (type == 'encrypt') {
         if (!this.aes.content) return
@@ -99,6 +107,12 @@ export default {
         if (!this.aes.encryptedVal) return
         this.aes.content = a.decrypt(this.aes.encryptedVal)
       }
+    },
+    aesSelectMd5(e) {
+      if (!e) return
+      const m = CryptoJS.MD5(e).toString()
+      this.aes.key = m.slice(0, 16)
+      this.aes.iv = m.slice(16)
     }
   }
 }

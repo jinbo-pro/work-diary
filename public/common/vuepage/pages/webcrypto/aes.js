@@ -1,3 +1,17 @@
+/*
+ * AES加密介绍
+ * AES加密模式：   CBC
+ * 填充：          Pkcs7
+ * 密钥长度：      128
+ * 密钥：          e10adc3949ba59ab
+ * 偏移：          be56e057f20f883e
+ * 输出类型：      base64
+ * 字符集：        utf8
+ * 原文：          AES加密测试内容：123456
+ * 密文：          m7efEcxogfv1iFdCdP86HYS6HNVD8aW3PePqcVFVubY=
+ * 测试地址：      http://tool.chacuo.net/cryptaes
+ */
+
 export class AES {
   /**
    * AES 加解密
