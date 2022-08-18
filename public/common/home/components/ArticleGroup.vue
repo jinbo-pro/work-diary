@@ -8,7 +8,6 @@
 
 <script>
 import Article from './Article.vue'
-import { isTxCode } from '../common/index.js'
 export default {
   name: 'ArticleGroup',
   props: {
@@ -33,10 +32,7 @@ export default {
       } else {
         let indexHtml = item.children?.find((ce) => ce.isFile && ce.fileName.includes('index.html'))
         if (indexHtml) {
-          let u = `/page/${indexHtml.id}`
-          if (isTxCode()) {
-            u = indexHtml.filePath
-          }
+          const u = `/page/${indexHtml.id}`
           console.info(location.origin + u)
           window.open(u)
         } else {

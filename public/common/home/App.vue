@@ -13,7 +13,6 @@
 
 <script>
 import { session } from '/utils/storage.js'
-import { isTxCode } from './common/index.js'
 import BackPageTop from '/components/BackPageTop.vue'
 import TopSearch from './components/TopSearch.vue'
 import ArticleGroup from './components/ArticleGroup.vue'
@@ -77,12 +76,7 @@ export default {
       // 初始请求
       let list = session.get('fileList')
       if (!list) {
-        let response = null
-        if (isTxCode()) {
-          response = await fetch('/mockData/home_fileList.json')
-        } else {
-          response = await fetch('/api/fileDirectory/getList')
-        }
+        const response = await fetch('/api/fileDirectory/getList')
         if (!response.ok) return null
         const res = await response.json()
         list = res.data
