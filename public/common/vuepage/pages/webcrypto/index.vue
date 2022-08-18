@@ -25,10 +25,10 @@
       <el-tab-pane label="aes" name="aes">
         <el-form :inline="true">
           <el-form-item label="key">
-            <el-input v-model="aes.key" placeholder="请输入密匙"></el-input>
+            <el-input v-model="aes.key" placeholder="请输入密匙 建议至少8位"></el-input>
           </el-form-item>
           <el-form-item label="iv">
-            <el-input v-model="aes.iv" placeholder="请输入偏移"></el-input>
+            <el-input v-model="aes.iv" placeholder="请输入偏移 建议至少8位"></el-input>
           </el-form-item>
         </el-form>
         <el-row>
@@ -78,10 +78,12 @@ export default {
   methods: {
     // md5
     handelMd5() {
+      if (!this.md5.de) return
       this.md5.en = CryptoJS.MD5(this.md5.de).toString()
     },
     // sha1
     handelsha1() {
+      if (!this.sha1.de) return
       this.sha1.en = CryptoJS.SHA1(this.sha1.de).toString()
     },
     // aes
@@ -90,8 +92,10 @@ export default {
       if (!key) return this.$message.error('请输入密匙')
       if (!iv) return this.$message.error('请输入偏移')
       if (type == 'encrypt') {
+        if (!this.aes.content) return
         this.aes.encryptedVal = encrypt(key, iv, this.aes.content)
       } else {
+        if (!this.aes.encryptedVal) return
         this.aes.content = decrypt(key, iv, this.aes.encryptedVal)
       }
     }
