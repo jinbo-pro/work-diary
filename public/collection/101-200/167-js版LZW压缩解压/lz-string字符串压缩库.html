@@ -5,35 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/lz-string/1.4.4/lz-string.min.js"></script>
     <title>167-js版LZW压缩解压</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
 
   <body>
-    <p>
-      参考文档
-      <a href="https://developer.aliyun.com/article/342236" target="_blank">JS LZW算法压缩与解压</a>
-    </p>
-    <p>
-      lz-string 第三方字符串压缩库
-      <a href="./lz-string字符串压缩库.html" target="_blank">lz-string字符串压缩库.html</a>
-    </p>
-    <p>
-      使用场景： 接口数据压缩加密
-      <a href="./接口数据压缩加密.html" target="_blank">接口数据压缩加密.html</a>
-    </p>
     <button id="Compress">压缩</button>
     <button id="DeCompress">解压</button>
     <span id="info"></span>
     <hr />
     <textarea id="source"></textarea>
     <textarea id="result"></textarea>
-    <script type="module">
-      import { lzw_compress, lzw_decompress } from './LZW.js'
-
+    <script>
       $('#Compress').on('click', function () {
         const src = $('#source').val()
-        const result = lzw_compress(src)
+        const result = LZString.compressToBase64(src)
         $('#result').val(result)
         const s = src.length
         const r = result.length
@@ -42,7 +29,7 @@
 
       $('#DeCompress').on('click', function () {
         const resultCode = $('#result').val()
-        const srcCode = lzw_decompress(resultCode)
+        const srcCode = LZString.decompressFromBase64(resultCode)
         $('#source').val(srcCode)
       })
     </script>

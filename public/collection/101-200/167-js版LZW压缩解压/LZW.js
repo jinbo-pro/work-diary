@@ -1,4 +1,5 @@
 /**
+ * 简易的 lzw 实现
  * see: https://developer.aliyun.com/article/342236
  */
 function Binary(initData, p, l, bl) {

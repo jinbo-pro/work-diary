@@ -19,7 +19,7 @@ export const routes = [
   {
     path: '/webcrypto',
     meta: { title: '加密工具' },
-    component: () => load('../pages/webcrypto/index.vue')
+    component: () => load('../pages/webcrypto.vue')
   },
   {
     path: '/decodeAndEncode',
