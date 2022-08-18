@@ -48,7 +48,7 @@
 import { loadScript } from '/utils/module/loadScript.js'
 loadScript('https://lib.baomitu.com/crypto-js/4.1.1/crypto-js.min.js')
 import CardContent from '../../components/CardContent.vue'
-import { encrypt, decrypt } from './aes.js'
+import { AES } from './aes.js'
 export default {
   name: 'webcrypto',
   components: {
@@ -91,12 +91,13 @@ export default {
       const { key, iv } = this.aes
       if (!key) return this.$message.error('请输入密匙')
       if (!iv) return this.$message.error('请输入偏移')
+      const a = new AES(key, iv)
       if (type == 'encrypt') {
         if (!this.aes.content) return
-        this.aes.encryptedVal = encrypt(key, iv, this.aes.content)
+        this.aes.encryptedVal = a.encrypt(this.aes.content)
       } else {
         if (!this.aes.encryptedVal) return
-        this.aes.content = decrypt(key, iv, this.aes.encryptedVal)
+        this.aes.content = a.decrypt(this.aes.encryptedVal)
       }
     }
   }
