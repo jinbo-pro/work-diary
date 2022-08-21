@@ -38,3 +38,19 @@ $('.btn3-1').on('click', function () {
   downFile(imgUrlOther)
 })
 
+
+
+$('#btnfs-1').on('click', () => {
+  const blob = new Blob(['Hello, world!'], { type: 'text/plain;charset=utf-8' })
+  saveAs(blob, 'hello world.txt')
+})
+$('#btnfs-2').on('click', () => {
+  saveAs('/lib/city_中国城市数据含拼音和经纬度.xlsx', 'city_中国城市数据含拼音和经纬度.xlsx')
+})
+$('#btnfs-3').on('click', async () => {
+  const response = await fetch('/api/fileDirectory/getList')
+  if (!response.ok) return
+  const txt = await response.text()
+  const file = new File([txt], 'getList.txt', { type: 'text/plain;charset=utf-8' })
+  saveAs(file)
+})

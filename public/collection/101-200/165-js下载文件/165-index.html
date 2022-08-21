@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://lib.baomitu.com/FileSaver.js/2.0.5/FileSaver.min.js"></script>
     <title>165-js下载文件</title>
     <style>
       li {
@@ -22,6 +23,19 @@
         <li class="btn2-1">文件下载 图片 - 当前域名</li>
         <li class="btn2-2">文件下载 图片 - 其他域名</li>
         <li class="btn3-1">文件下载 图片 - 其他域名 ajax 下载方案</li>
+      </ul>
+      <hr />
+      <p>使用成熟的第三方库 FileSaver.js 保存文件</p>
+      <ul>
+        <li>
+          <button id="btnfs-1">保存Blob内容为txt</button>
+        </li>
+        <li>
+          <button id="btnfs-2">保存图片url为png</button>
+        </li>
+        <li>
+          <button id="btnfs-3">使用场景-保存请求数据为txt</button>
+        </li>
       </ul>
     </div>
     <script src="./165-main.js"></script>
