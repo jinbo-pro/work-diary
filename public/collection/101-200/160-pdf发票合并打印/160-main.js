@@ -39,6 +39,6 @@ $('#print').on('click', function () {
     printable: 'container',
     type: 'html',
     targetStyles: ['*'],
-    style: '@page{size:auto;margin: 130px 30px 0px 30px;}' //去除页眉页脚
+    style: '@page{size:auto;margin: 0;}' //去除页眉页脚
   })
 })
