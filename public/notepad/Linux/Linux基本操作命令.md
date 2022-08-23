@@ -129,5 +129,7 @@ sudo userdel -r aaa
 删除用户 aaa
 
 - 查看用户
-
+权限
 sudo cat /etc/sudoers
+所有信息
+sudo cat /etc/passwd
