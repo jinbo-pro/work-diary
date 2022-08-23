@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <title>080-多功能input</title>
+    <style>
+      .mode_max li {
+        padding: 6px;
+      }
+      .mode_max li input {
+        margin-right: 12px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>由于是移动端收到机型、输入法系统等因素的影响，可能存在很多的差异</p>
+      <h2>
+        <a href="https://mp.weixin.qq.com/s/ADQIMW3uxp8ji1KWI0VFVQ">参考文章</a>
+      </h2>
+      <h3>inputmode 属性</h3>
+      <p>inputmode 全局属性是一个枚举属性，它提供了用户在编辑元素或其内容时可能输入的数据类型的提示。</p>
+      <ul class="mode_max">
+        <li>
+          <input type="tel" />
+          <div>普通的输入框</div>
+        </li>
+        <li>
+          <input type="tel" />
+          <div>tel - type属性</div>
+        </li>
+        <li>
+          <input type="number" pattern="\d*" />
+          <div>纯数字 - type属性</div>
+        </li>
+        <li v-for="(item, index) in inputModeList" :key="index">
+          <input type="text" :inputmode="item.value" />
+          <div>{{ item.label }}</div>
+        </li>
+      </ul>
+      <hr />
+      <h3>enterkeyhint 属性</h3>
+      <p>
+        当我们在手机键盘上按下回车键（enter）时，在不同的场景下可能执行的操作有所不同，比如换行、发送消息、执行搜索、确认等等。这些操作可以通过
+        enterkeyhint 属性来实现。
+      </p>
+      <ul>
+        <li v-for="(item, index) in enterkeyhintList" :key="index">
+          <input type="text" :inputmode="item.value" />
+          <div>{{ item.label }}</div>
+        </li>
+      </ul>
+      <hr />
+      <h3>文件选择</h3>
+
+      <!-- 选择照片或拍摄照片 -->
+      <span>选择照片或拍摄照片</span>
+      <p><input type="file" accept="image/*" /></p>
+
+      <!-- 选择视频或拍摄视频 -->
+      <span>选择视频或拍摄视频</span>
+      <p><input type="file" accept="video/*" /></p>
+
+      <!-- 多选文件 -->
+      <span>多选文件</span>
+      <p><input type="file" multiple /></p>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            inputModeList: [
+              { value: 'none', label: '不使用虚拟键盘，这个时候页面需要使用自定义的键盘代替' },
+              { value: 'text', label: '默认值，会显示标准输入键盘' },
+              { value: 'decimal', label: '小数表示键盘，除了数字之外可能会有小数点 . 或者千分符逗号 ,。' },
+              { value: 'numeric', label: '显示0-9的数字键盘。' },
+              { value: 'tel', label: '手机数字键盘，会有星号 * 或者井号 # 键。' },
+              { value: 'search', label: '提交按钮会显示 search 或者 搜索。' },
+              { value: 'email', label: '键盘上会有 @ 符号键。' },
+              { value: 'url', label: '键盘上会有斜杠 / 符号键。' }
+            ],
+            enterkeyhintList: [
+              { value: 'done', label: '完成并关闭输入法编辑器。' },
+              { value: 'enter', label: '换行。' },
+              { value: 'go', label: '输入完并继续下一个表单。' },
+              { value: 'search', label: '输入后搜索内容。' },
+              { value: 'send', label: '发送消息。' },
+              { value: 'next', label: '将把用户带到下一个接受文本的字段。' },
+              { value: 'previous', label: '将用户带到将接受文本的上一个字段。' }
+            ]
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

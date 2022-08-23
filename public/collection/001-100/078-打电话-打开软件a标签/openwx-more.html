@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://unpkg.com/callapp-lib"></script>
+    <title>打开微信-打开小程序等</title>
+    <style>
+      #openwx .item_box {
+        padding: 8px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div id="openwx"></div>
+      <div>
+        <p>方式二：插件方式打开</p>
+        <a href="https://www.npmjs.com/package/callapp-lib">唤起app插件 callapp-lib </a>
+        <p>
+          <button id="callapp">callapp-lib 打开</button>
+        </p>
+      </div>
+    </div>
+    <script>
+      // 打开微信必须传入 参数， 如打开小程序后面加 t=xxx
+      let list = [
+        { url: 'weixin://', name: '打开微信' },
+        { url: 'weixin://dl/business/?t=6BgFeZsKdjj', name: '小程序-鲸落文案' },
+        { url: 'weixin://dl/scan', name: '扫一扫' },
+        { url: 'weixin://dl/feedback', name: '反馈' },
+        { url: 'weixin://dl/moments', name: '朋友圈' },
+        { url: 'weixin://dl/settings', name: '设置' },
+        { url: 'weixin://dl/notifications', name: '消息通知设置' },
+        { url: 'weixin://dl/chat', name: '聊天设置' },
+        { url: 'weixin://dl/general', name: '通用设置' },
+        { url: 'weixin://dl/officialaccounts', name: '公众号' },
+        { url: 'weixin://dl/games', name: '游戏' },
+        { url: 'weixin://dl/help', name: '帮助' },
+        { url: 'weixin://dl/feedback', name: '反馈' },
+        { url: 'weixin://dl/profile', name: '个人信息' },
+        { url: 'weixin://dl/features', name: '功能插件' }
+      ]
+      for (let item of list) {
+        $('#openwx').append(`
+        <div class="item_box">
+            <a href="${item.url}">
+                <div>${item.name} [ ${item.url} ]</div>
+            </a>
+        </div>
+    `)
+      }
+
+      /**
+       * 第三方插件打开
+       * 唤起app插件 callapp-lib
+       */
+      const options = {
+        scheme: {
+          protocol: 'weixin' //必填项 URL Scheme 的 scheme 字段，要打开的 APP 的标识，比如这里是微信的标识
+        },
+        intent: {
+          //安卓原生谷歌浏览器必须传递 Intent 协议地址，才能唤起 APP
+          // 这两个是intent的必填项
+          package: 'com.tencent.mm', //腾讯微信包名
+          scheme: 'weixin'
+        },
+        appstore: 'https://weixin.qq.com/', //必填项 APP 的下载地址，比如这里是微信的下载地址
+
+        yingyongbao: 'https://sj.qq.com/myapp/detail.htm?apkName=com.tencent.mm', //必填项 APP 的应用宝地址，比如这里微信的应用宝下载地址
+
+        fallback: location.href //必填项 唤起app端失败后跳转的地址。
+      }
+
+      $('#callapp').on('click', function () {
+        //callapp-lib 中传递出来的是一个类，你需要将它实例化，然后才能去调用实例对象的方法
+        const callLib = new CallApp(options)
+
+        // 这里是唤端方法。
+        callLib.open({
+          // 如果只是唤起app，不需要打开app的某个页面，填空字符串就可以
+          path: ''
+          //打开app某个页面，需要接收的参数。如果没有就不用写
+          //param: {},
+        })
+      })
+    </script>
+  </body>
+</html>
