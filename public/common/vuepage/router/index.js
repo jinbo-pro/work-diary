@@ -1,7 +1,6 @@
-import { vuepage } from '/config.js'
 import { createLoadVue } from '/utils/module/loadVue.js'
 
-const load = createLoadVue(vuepage + '/router')
+const load = createLoadVue('/common/vuepage/router')
 
 Vue.use(VueRouter)
 

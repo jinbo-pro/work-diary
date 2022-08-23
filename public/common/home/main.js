@@ -1,7 +1,6 @@
 import { createLoadVue } from '/utils/module/loadVue.js'
-import { home } from '/config.js'
 
-const load = createLoadVue(home)
+const load = createLoadVue('/common/home')
 async function main() {
   const App = await load('./App.vue')
   new Vue({

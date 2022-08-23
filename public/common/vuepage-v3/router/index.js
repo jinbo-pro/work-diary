@@ -1,9 +1,8 @@
-import { vuepage_v3 } from '/config.js'
 import { createLoadVue } from '/utils/module/loadVue.js'
 
 const { defineAsyncComponent } = Vue
 const { createRouter, createWebHashHistory } = VueRouter
-const load = createLoadVue(vuepage_v3 + '/router')
+const load = createLoadVue('/common/vuepage-v3/router')
 const asyncCom = (path) => defineAsyncComponent(() => load(path))
 
 export const routes = [

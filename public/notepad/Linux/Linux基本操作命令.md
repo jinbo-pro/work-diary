@@ -113,3 +113,21 @@
 ## 应用管理
 
 - netstat -nultp 查看已使用的应用端口
+
+## 用户管理
+
+- 新建用户
+
+sudo useradd -m aaa
+新建用户名 aaa
+-m: 自动建立用户的登入目录
+
+sudo passwd aaa
+设置用户 aaa 的密码
+
+sudo userdel -r aaa
+删除用户 aaa
+
+- 查看用户
+
+sudo cat /etc/sudoers
