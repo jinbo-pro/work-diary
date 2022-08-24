@@ -19,6 +19,7 @@ import ArticleGroup from './components/ArticleGroup.vue'
 import FloatTools from './components/FloatTools.vue'
 import Welcome from './components/Welcome.vue'
 import EmptyData from './components/EmptyData.vue'
+import { vuePageList } from './vuePageList.js'
 export default {
   name: 'App',
   components: {
@@ -82,7 +83,11 @@ export default {
         list = res.data
         session.set('fileList', list)
       }
+      // 添加 vuepage 映射页面
+      list = list.concat(vuePageList)
       const isRender = (node) => {
+        // vuepage 页面
+        if (node.isVuePage) return true
         // md 文件直接渲染
         if (node.fileName.endsWith('.md')) return true
         /**

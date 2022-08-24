@@ -54,7 +54,7 @@
 <script>
 import { loadScript } from '/utils/module/loadScript.js'
 loadScript('https://lib.baomitu.com/crypto-js/4.1.1/crypto-js.min.js')
-import CardContent from '../../components/CardContent.vue'
+import CardContent from '../components/CardContent.vue'
 import { AES } from '/utils/module/AES.js'
 export default {
   name: 'webcrypto',
