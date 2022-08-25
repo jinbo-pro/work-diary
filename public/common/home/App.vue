@@ -12,6 +12,7 @@
 </template>
 
 <script>
+import { toList } from '/utils/tree.js'
 import { session } from '/utils/storage.js'
 import BackPageTop from '/components/BackPageTop.vue'
 import TopSearch from './components/TopSearch.vue'
@@ -85,35 +86,28 @@ export default {
       }
       // 添加 vuepage 映射页面
       list = list.concat(vuePageList)
-      const isRender = (node) => {
-        // vuepage 页面
-        if (node.isVuePage) return true
-        // md 文件直接渲染
-        if (node.fileName.endsWith('.md')) return true
-        /**
-         * collection,loading 文件夹 以及子集中除开 index.html 之外的 html
-         * notepad 文件夹递归渲染所有文件
-         */
-        if (/(collection|loading)/.test(node.filePath)) {
-          if (node.isFile == 0) return true
-          return node.fileName.endsWith('.html') && !/index/.test(node.fileName)
-        }
-      }
-      let stark = []
-      stark = stark.concat(list)
-      while (stark.length) {
-        let temp = stark.shift()
-        if (temp.children) {
-          stark = temp.children.concat(stark)
-        }
-        if (isRender(temp)) {
-          this.dataList.push({
-            ...temp,
+      this.dataList = toList(list)
+        .filter((node) => {
+          // vuepage 页面
+          if (node.isVuePage) return true
+          // md 文件直接渲染
+          if (node.fileName.endsWith('.md')) return true
+          /**
+           * collection,loading 文件夹 以及子集中除开 index.html 之外的 html
+           * notepad 文件夹递归渲染所有文件
+           */
+          if (/(collection|loading)/.test(node.filePath)) {
+            if (node.isFile == 0) return true
+            return node.fileName.endsWith('.html') && !/index/.test(node.fileName)
+          }
+        })
+        .map((item) => {
+          return {
+            ...item,
             show: true,
             searchHeight: ''
-          })
-        }
-      }
+          }
+        })
     }
   }
 }

@@ -19,16 +19,6 @@ app.use(async (ctx, next) => {
     ctx.body = { code: 500, msg: '操作异常' }
   }
 })
-// 一些路由拦截处理
-app.use(async (ctx, next) => {
-  /**collection 下的 md 文件自动跳转到 md 解析页面 */
-  if (ctx.url.endsWith('.md') && !/parseMarked/.test(ctx.url) && !ctx.query.type) {
-    const newUrl = `/common/parseMarked/parseMarked.html?filePath=${ctx.url}`
-    ctx.redirect(newUrl)
-  } else {
-    await next()
-  }
-})
 // 日志记录
 app.use(async (ctx, next) => {
   const start = new Date()

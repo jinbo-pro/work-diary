@@ -49,8 +49,7 @@ window.onload = async function () {
     document.body.innerHTML = '文件不存在'
     return
   }
-  // 请求类型 type 后台区分用
-  const response = await fetch(`${filePath.split('#')[0]}?type=parseMarked`)
+  const response = await fetch(filePath)
   if (!response.ok) return null
   const res = await response.text()
   if (!res) return null
