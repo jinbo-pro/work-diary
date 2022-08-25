@@ -48,8 +48,7 @@ new Vue({
       const src = URL.createObjectURL(file)
       this.size = file.size
       compressorImage(file, this.quality / 10).then((res) => {
-        console.log(res, '-->>> res 压缩后的图片'
-        )
+        console.log(res, '-->>> res 压缩后的图片')
         const msrc = URL.createObjectURL(res)
         this.sizeMin = res.size
         this.slides.push({ src, msrc, w: 600, h: 400 })

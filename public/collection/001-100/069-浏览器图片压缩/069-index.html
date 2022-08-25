@@ -18,9 +18,13 @@
 
   <body>
     <div id="app" class="box">
+      <p>
+        本案例使用 compressorjs 进行图片压缩 详细参考官方文档
+        <a href="https://fengyuanchen.github.io/compressorjs/" target="_blank">compressorjs</a>
+      </p>
       <div>
         文件：
-        <input type="file" @change="selectFile" />
+        <input type="file" @change="selectFile" accept=".jpg, .png, .webp" />
         压缩级别：
         <input type="number" min="1" max="9" v-model="quality" placeholder="压缩级别" />
       </div>
