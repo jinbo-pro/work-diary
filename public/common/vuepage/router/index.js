@@ -36,6 +36,11 @@ export const routes = [
     component: () => load('../pages/HumpAndLine.vue')
   },
   {
+    path: '/VirtualListRender',
+    meta: { title: '虚拟列表渲染' },
+    component: () => load('../pages/VirtualListRender.vue')
+  },
+  {
     path: '*',
     component: () => load('../pages/404.vue')
   }
