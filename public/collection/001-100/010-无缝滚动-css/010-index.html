@@ -15,7 +15,11 @@
         align-items: center;
         justify-content: center;
       }
+    </style>
+  </head>
 
+  <body>
+    <style>
       #main_up {
         width: 500px;
         height: 300px;
@@ -39,7 +43,20 @@
           transform: translateY(-100%);
         }
       }
+    </style>
+    <!-- 向上滚动 -->
+    <div id="main_up">
+      <ul class="box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </div>
 
+    <style>
       #main_left {
         display: flex;
         width: 500px;
@@ -64,20 +81,6 @@
         }
       }
     </style>
-  </head>
-
-  <body>
-    <!-- 向上滚动 -->
-    <div id="main_up">
-      <ul class="box">
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-      </ul>
-    </div>
     <!-- 向左滚动 -->
     <div id="main_left">
       <ul class="box">
@@ -90,10 +93,11 @@
       </ul>
     </div>
     <script>
-      // 两组内容实现无缝滚动效果
+      // 上
       var main_up = document.getElementById('main_up')
       main_up.innerHTML = main_up.innerHTML + main_up.innerHTML
 
+      // 左
       var main_left = document.getElementById('main_left')
       main_left.innerHTML = main_left.innerHTML + main_left.innerHTML
     </script>
