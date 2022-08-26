@@ -5,7 +5,7 @@
       <div v-else>
         <div class="user_box">{{ item.userInfo.name }}</div>
         <div class="item_box">
-          <div class="content">{{ item.data }}</div>
+          <div class="content" v-html="item.data"></div>
         </div>
       </div>
     </div>
@@ -54,6 +54,7 @@ export default {
 .content {
   padding: 10px;
   border-radius: 4px;
+  word-break: break-all;
   background-color: #fff;
 }
 .join_box,
