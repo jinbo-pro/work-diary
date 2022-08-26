@@ -38,8 +38,6 @@ $('.btn3-1').on('click', function () {
   downFile(imgUrlOther)
 })
 
-
-
 $('#btnfs-1').on('click', () => {
   const blob = new Blob(['Hello, world!'], { type: 'text/plain;charset=utf-8' })
   saveAs(blob, 'hello world.txt')
