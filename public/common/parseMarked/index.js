@@ -1,52 +1,18 @@
 import { getQueryObject } from '/utils/page.js'
-const renderer = new marked.Renderer()
 const options = {
-  renderer: renderer,
-  gfm: true,
-  pedantic: false,
-  sanitize: false,
-  tables: true,
-  breaks: false,
-  smartLists: true,
-  smartypants: false,
+  // marked 配置参考: https://marked.js.org/using_advanced
+  renderer: new marked.Renderer(),
   highlight: function (code) {
     const s = hljs.highlightAuto(code).value
     const n = hljs.lineNumbersValue(s)
     return n
   }
 }
-function parseMarked(data) {
-  return marked.parse(data, options)
-}
-/**解析导航栏 */
-function parseNavTab() {
-  const tags = []
-  const content = document.getElementById('content')
-  for (let e of content.children) {
-    if (/^H[1-3]/.test(e.nodeName)) {
-      tags.push({
-        id: e.id,
-        nodeName: e.nodeName
-      })
-    }
-  }
-  let html = ''
-  for (let item of tags) {
-    html += `
-    <div class="tag_${item.nodeName}">
-      <a href="#${item.id}">
-        <p>${item.id}</p>
-      </a>
-    </div>
-    `
-  }
-  document.getElementById('nav').innerHTML = html
-}
 
 window.onload = async function () {
-  let filePath = getQueryObject().filePath
+  const filePath = getQueryObject().filePath
   if (!filePath) {
-    document.body.innerHTML = '文件不存在'
+    document.body.innerHTML = '<p> filePath 不存在</p>'
     return
   }
   const response = await fetch(filePath)
@@ -54,6 +20,13 @@ window.onload = async function () {
   const res = await response.text()
   if (!res) return null
   const content = document.getElementById('content')
-  content.innerHTML = parseMarked(res)
-  parseNavTab()
+  content.innerHTML = marked.parse(res, options)
+  /**解析导航栏 */
+  const tags = Array.from(content.children).filter((e) => /^H[1-3]/.test(e.nodeName))
+  document.getElementById('nav').innerHTML = tags.reduce((p, c) => {
+    p += `<div class="tag_${c.nodeName}">
+            <a href="#${c.id}"><p>${c.id}</p></a>
+          </div>`
+    return p
+  }, '')
 }

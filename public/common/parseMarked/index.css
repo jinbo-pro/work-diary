@@ -7,6 +7,7 @@
 }
 #content {
   width: 75%;
+  padding: 0 50px;
   border-radius: 16px;
   margin: 30px 16px;
   position: relative;
@@ -91,10 +92,6 @@
 /**
  * 代码样式美化
  */
-#content {
-  width: 90%;
-  padding: 0 50px;
-}
 
 #content pre {
   margin-left: auto;
