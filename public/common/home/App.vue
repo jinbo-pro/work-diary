@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     isEmpty() {
-      return this.dataList.every((e) => !e.show)
+      return !this.dataList.some((e) => e.show)
     }
   },
   mounted() {
