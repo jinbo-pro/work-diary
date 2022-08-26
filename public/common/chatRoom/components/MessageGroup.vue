@@ -5,7 +5,7 @@
       <div v-else>
         <div class="user_box">{{ item.userInfo.name }}</div>
         <div class="item_box">
-          <div class="content" v-html="item.data"></div>
+          <div class="content" v-html="item.data" @click="lookInfo"></div>
         </div>
       </div>
     </div>
@@ -13,6 +13,8 @@
 </template>
 
 <script>
+import { ImagePreview } from 'vant'
+import { IsPC } from '../tools.js'
 export default {
   name: 'MessageGroup',
   props: {
@@ -33,13 +35,22 @@ export default {
         mainDom.scrollTop = mainDom.scrollHeight
       })
     }
+  },
+  methods: {
+    lookInfo(e) {
+      if (IsPC()) return
+      const img = e.srcElement
+      if (img.tagName == 'IMG') {
+        ImagePreview([img.src])
+      }
+    }
   }
 }
 </script>
 
 <style lang="less" scoped>
 .main {
-  height: calc(100vh - 100px);
+  height: calc(100vh - 95px);
   overflow-y: scroll;
   background-color: #ededed;
 }
@@ -56,6 +67,10 @@ export default {
   border-radius: 4px;
   word-break: break-all;
   background-color: #fff;
+  img {
+    margin-top: 12px;
+    max-width: 100%;
+  }
 }
 .join_box,
 .user_box {

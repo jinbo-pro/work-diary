@@ -19,12 +19,45 @@ export function tips(message) {
     duration: 2000
   })
 }
-/**
- * 富文本图片自适应
- * @param {string} content
- * @returns
- */
-export function richImgWidth(content) {
-  const regex = new RegExp('<img', 'gi')
-  return content.replace(regex, `<img style="max-width: 100%; height: auto"`)
+/**获取当前光标位置 */
+export function getCursortPosition(element) {
+  var caretOffset = 0
+  var sel = window.getSelection()
+  if (sel.rangeCount > 0) {
+    var range = window.getSelection().getRangeAt(0)
+    var preCaretRange = range.cloneRange()
+    preCaretRange.selectNodeContents(element)
+    preCaretRange.setEnd(range.endContainer, range.endOffset)
+    caretOffset = preCaretRange.toString().length
+  }
+  return caretOffset
+}
+/**设置光标位置 */
+export function setCaretPosition(element, pos) {
+  var range, selection
+  range = document.createRange()
+  range.selectNodeContents(element)
+  if (element.innerHTML.length > 0) {
+    range.setStart(element.childNodes[0], pos)
+  }
+  range.collapse(true)
+  selection = window.getSelection()
+  selection.removeAllRanges()
+  selection.addRange(range)
+}
+/**判断是否为pc端 */
+export function IsPC() {
+  var userAgentInfo = navigator.userAgent
+  var Agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPod']
+  var flag = true
+  for (var v = 0; v < Agents.length; v++) {
+    if (userAgentInfo.indexOf(Agents[v]) > 0) {
+      flag = false
+      break
+    }
+  }
+  if (window.screen.width >= 768) {
+    flag = true
+  }
+  return flag
 }

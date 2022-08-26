@@ -2,7 +2,13 @@
   <div class="foot_input">
     <van-row class="ac">
       <van-col span="20">
-        <div :id="inputId" @keyup.enter="send" contenteditable="true" class="textarea_box"></div>
+        <div
+          :id="inputId"
+          @keyup.enter="send"
+          contenteditable="true"
+          class="textarea_box"
+          @click="getInsertIndex"
+        ></div>
       </van-col>
       <van-col span="4" class="fdc ac more">
         <van-icon name="smile-o" size="35" @click="toggleEmojiDialog" />
@@ -16,7 +22,7 @@
 <script>
 import Emoji from './Emoji/index.vue'
 import { guid } from '/utils/easyHash.js'
-import { richImgWidth } from '../tools.js'
+import { getCursortPosition, setCaretPosition } from '../tools.js'
 
 export default {
   name: 'FootField',
@@ -25,6 +31,7 @@ export default {
   },
   data() {
     return {
+      insertIndex: 0,
       inputId: `d-${guid()}`,
       showEmoji: false
     }
@@ -33,22 +40,25 @@ export default {
     this.textInput = document.getElementById(this.inputId)
   },
   methods: {
+    // 获取光标插入位置
+    getInsertIndex() {
+      this.insertIndex = getCursortPosition(this.textInput)
+    },
     send() {
-      const text = richImgWidth(this.textInput.innerHTML)
+      const text = this.textInput.innerHTML
       this.$emit('send', text.trim().replace('<div><br></div>', ''))
       this.textInput.innerHTML = ''
     },
     selectEmoji(item) {
-      // const textInput = document.getElementById(this.inputId)
-      // const insert = textInput.selectionStart
-      // const m = this.message
-      // this.message = m.substr(0, insert) + item + m.substr(insert)
+      const i = this.insertIndex
+      const m = this.textInput.innerHTML
+      this.textInput.innerHTML = m.substr(0, i) + item + m.substr(i)
     },
     toggleEmojiDialog() {
       this.showEmoji = !this.showEmoji
       if (this.showEmoji) {
         this.$nextTick(() => {
-          document.getElementById(this.inputId).focus()
+          setCaretPosition(this.textInput, this.insertIndex)
         })
       }
     }
@@ -72,6 +82,13 @@ export default {
 }
 .textarea_box {
   height: 60px;
+  padding: 12px;
   overflow-y: scroll;
+  img {
+    max-width: 100%;
+  }
+  &:focus-visible {
+    outline: none;
+  }
 }
 </style>
