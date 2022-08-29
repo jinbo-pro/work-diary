@@ -3,7 +3,7 @@
   <div class="wrapper" @scroll.passive="scrollHandler" ref="wrapper">
     <!-- content填充要显示内容以及上下空白占位 -->
     <div class="content" :style="blankFillStyle">
-      <div v-for="(item, index) in showDataList" :key="index">
+      <div v-for="(item, index) in showDataList" :key="index + item.id">
         <!-- 每条数据的内容结构通过插槽的方式让父组件调用该组件时填充进来 -->
         <slot :row="item"></slot>
       </div>
