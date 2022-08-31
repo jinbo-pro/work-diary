@@ -13,7 +13,8 @@
 </template>
 
 <script>
-import { tips, request } from '../tools.js'
+import { tips } from '../tools.js'
+import { postFormData } from '/utils/module/RequestFetch.js'
 export default {
   name: 'SubmitPrompt',
   props: {
@@ -57,7 +58,7 @@ export default {
       console.log(file)
       const formData = new FormData()
       formData.append('file', file.file)
-      request.postFormData('/fileUpload', formData).then((res) => {
+      postFormData('/fileUpload', formData).then((res) => {
         this.userHeadImg = res.data.split('7586')[1]
       })
     }

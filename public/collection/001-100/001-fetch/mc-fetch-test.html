@@ -19,12 +19,10 @@
     <button id="mcGetText">get请求 - 文本</button>
     <button id="mcPost">post请求</button>
     <button id="mcPostJson">post请求 - json</button>
-    <input type="file" id="selectFile" />
     <button id="mcPostFormData">post请求 - ForData</button>
 
     <script type="module">
-      import { RequestFetch } from '/utils/module/RequestFetch.js'
-      const request = new RequestFetch()
+      import * as request from '/utils/module/RequestFetch.js'
 
       $('#mcGetData').on('click', async () => {
         const res = await request.get('/api/listData')
@@ -51,13 +49,8 @@
         console.log(res, '-->>> mcPostJson')
       })
 
-      let file = null
-      const selectFile = document.getElementById('selectFile')
-      selectFile.oninput = function (e) {
-        const files = e.target.files
-        file = files[0]
-      }
       $('#mcPostFormData').on('click', async () => {
+        const file = new File(['111', '222'], 'test.txt', { type: 'text/plain;charset=utf-8' })
         const data = new FormData()
         data.append('file', file)
         const res = await request.postFormData('/fileUpload', data)

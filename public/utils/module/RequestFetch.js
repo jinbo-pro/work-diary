@@ -49,45 +49,46 @@ async function processResult(response) {
 
 /**
  * fetch request
+ * @param {string} url 请求地址
+ * @param {any} options 请求参数
+ * @returns
  */
-export class RequestFetch {
-  constructor() {}
-  async mainFetch(url, options = {}) {
-    const res = await fetch(url, options)
-    return await processResult(res)
+export async function request(url, options = {}) {
+  const res = await fetch(url, options)
+  return await processResult(res)
+}
+
+/**get */
+export async function get(url, data) {
+  if (data) {
+    url += `?${getQueryString(data)}`
   }
-  /**get */
-  async get(url, data) {
-    if (data) {
-      url += `?${getQueryString(data)}`
+  return request(url)
+}
+/**post */
+export async function post(url, data) {
+  return request(url, {
+    method: 'post',
+    body: getQueryString(data),
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
-    return this.mainFetch(url)
-  }
-  /**post */
-  async post(url, data) {
-    return this.mainFetch(url, {
-      method: 'post',
-      body: getQueryString(data),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      }
-    })
-  }
-  /**postJson */
-  async postJson(url, data) {
-    return this.mainFetch(url, {
-      method: 'post',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-  }
-  /**postFormData */
-  async postFormData(url, data) {
-    return this.mainFetch(url, {
-      method: 'post',
-      body: data
-    })
-  }
+  })
+}
+/**postJson */
+export async function postJson(url, data) {
+  return request(url, {
+    method: 'post',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+/**postFormData */
+export async function postFormData(url, data) {
+  return request(url, {
+    method: 'post',
+    body: data
+  })
 }

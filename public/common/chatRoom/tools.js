@@ -1,7 +1,4 @@
-import { RequestFetch } from '/utils/module/RequestFetch.js'
 const { Toast } = vant
-
-export const request = new RequestFetch()
 
 /**安全的解析 JSON 字符串 */
 export function parseObj(str) {
