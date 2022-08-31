@@ -12,7 +12,7 @@ function getRandomList(list) {
 }
 // 创建音乐播放组件
 function createAudio(item) {
-  var audio = $(`<audio controls="controls" autoplay="autoplay" src="${item.wma}"></audio>`)
+  var audio = $(`<audio controls="controls" autoplay="autoplay" src="${item.src}"></audio>`)
   audio.on('play', function () {
     console.log(item.mname, '开始播放')
   })
@@ -20,7 +20,7 @@ function createAudio(item) {
     console.log(item.mname, '播放结束')
     nextMusic(item)
   })
-  audioTitle.attr('data-id', item.id).find('div').text(`[${item.index}] ${item.mname} - ${item.singer}`)
+  audioTitle.attr('data-id', item.id).find('div').text(`[${item.index}] ${item.name} - ${item.user}`)
   audioContent.find('.audio').empty().append(audio)
 }
 // 下一首音乐
@@ -71,10 +71,10 @@ function createMusicList(list) {
     let item = list[i]
     let music = $(`
         <div class="item_music_box" data-id="${item.id}" data-index="${item.index}">
-            <img class="lazyload" data-src="${item.zjpic}">
+            <img class="lazyload" data-src="${item.cover}">
             <div class="right_music_info">
-                <div class="title">[${item.index}] ${item.mname}</div>
-                <div class="user">${item.singer} - ${item.zjname}</div>
+                <div class="title">[${item.index}] ${item.name}</div>
+                <div class="user">${item.user}</div>
             </div>
         </div>`)
     music.on('click', function () {
@@ -111,7 +111,7 @@ function addActiveClass(dom) {
 // 搜索
 $('#serach').on('click', function () {
   let keyWord = $('.search').val()
-  let list = musicAllList.filter((item) => item.mname.includes(keyWord))
+  let list = musicAllList.filter((item) => item.name.includes(keyWord))
   createMusicList(list)
 })
 // 重置搜索

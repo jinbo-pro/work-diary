@@ -1,16 +1,8 @@
 [
 	{
-		"id": "1462",
-		"id2": "0",
-		"mname": "甘心情愿",
-		"gsid": "878",
-		"singer": "郭峰",
-		"wma": "https://mp3.9ku.com/new/2004/07-13/1462.mp3",
-		"m4a": "",
-		"zjid": "68057",
-		"zjname": "怀抱",
-		"zjpic": "//aliyunimg.9ku.com/pic/zjpic/7/68057.jpg?x-oss-process=image/resize,m_fill,w_300,h_300,limit_0/auto-orient,0",
-		"gspic": "//aliyunimg.9ku.com/pic/gstx/1/878.jpg?x-oss-process=image/resize,m_fill,w_300,h_300,limit_0/auto-orient,0",
-		"status": "1"
+		"user": "Copy/Bt07",
+		"name": "晚风",
+		"cover": "https://qiniu.qkongtao.cn/2022/07/20220706031347536.jpg",
+		"src": "https://qiniu.qkongtao.cn/2022/07/20220706014714102.mp3"
 	}
 ]
