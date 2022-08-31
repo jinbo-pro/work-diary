@@ -2,7 +2,7 @@
   <div>
     <MessageGroup :list="messageList" :userInfo="userInfo" />
     <FootField @send="send" />
-    <SubmitPrompt :show.sync="setNameDialog" @confirm="setName" placeholder="请输入昵称" />
+    <SubmitPrompt :show.sync="setNameDialog" @confirm="setName" />
   </div>
 </template>
 
@@ -27,7 +27,8 @@ export default {
       setNameDialog: false,
       userInfo: {
         id: '',
-        name: ''
+        userName: '',
+        userHeadImg: ''
       },
       messageList: []
     }
@@ -76,10 +77,10 @@ export default {
       }
       this.ws.send(JSON.stringify({ data, type, userInfo: this.userInfo }))
     },
-    setName(name) {
+    setName(e) {
       this.userInfo = {
-        id: guid(),
-        name
+        ...e,
+        id: guid()
       }
       local.set('chatRoomUserInfo', this.userInfo)
       this.initWebSocket()

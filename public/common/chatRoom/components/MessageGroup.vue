@@ -1,11 +1,17 @@
 <template>
   <div class="main">
     <div v-for="(item, index) in list" :key="index" :class="{ is_me: item.userInfo.id == userInfo.id }">
-      <div v-if="item.type == 'join'" class="join_box">{{ item.userInfo.name }} 加入了聊天</div>
+      <div v-if="item.type == 'join'" class="join_box">{{ item.userInfo.userName }} 加入了聊天</div>
       <div v-else>
-        <div class="user_box">{{ item.userInfo.name }}</div>
+        <div class="user_box">{{ item.userInfo.userName }}</div>
         <div class="item_box">
+          <div class="head_img" v-if="item.userInfo.id != userInfo.id">
+            <van-image width="38px" height="38px" fit="cover" :src="item.userInfo.userHeadImg" />
+          </div>
           <div class="content" v-html="item.data" @click="lookInfo"></div>
+          <div v-if="item.userInfo.id == userInfo.id" class="head_img">
+            <van-image width="38px" height="38px" fit="cover" :src="item.userInfo.userHeadImg" />
+          </div>
         </div>
       </div>
     </div>
@@ -67,6 +73,23 @@ export default {
   border-radius: 4px;
   word-break: break-all;
   background-color: #fff;
+  margin-left: 8px;
+  margin-right: 0;
+  position: relative;
+  // 小三角
+  &::after {
+    content: '';
+    border: 5px solid transparent;
+    border-right-color: #fff;
+    top: 14px;
+    left: -10px;
+    display: block;
+    position: absolute;
+    z-index: 1;
+    text-indent: 0;
+    transform: translate(0, -50%);
+    transition: 0.25s;
+  }
   img {
     margin-top: 12px;
     max-width: 100%;
@@ -93,6 +116,14 @@ export default {
   }
   .content {
     background-color: #95eb6c;
+    margin-right: 8px;
+    margin-left: 0;
+    &::after {
+      left: auto;
+      right: -10px;
+      border-left-color: #95eb6c;
+      border-right-color: transparent;
+    }
   }
 }
 </style>
