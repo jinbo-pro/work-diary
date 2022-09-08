@@ -1,7 +1,7 @@
 <template>
   <div>
-    <p>对象键排序</p>
-    <CardContent title="源数据" v-model="src" />
+    <p>JSON对象键排序</p>
+    <CardContent title="JSON源数据" v-model="src" />
     <CardContent title="排序后数据" :value="dist">
       <div slot="header">
         <el-button size="mini" @click="openJsonDialog"> 打开json编辑 </el-button>
@@ -53,8 +53,12 @@ export default {
   computed: {
     dist() {
       if (!this.src) return ''
-      const newObj = objSort(JSON.parse(this.src))
-      return JSON.stringify(newObj)
+      try {
+        const newObj = objSort(JSON.parse(this.src))
+        return JSON.stringify(newObj)
+      } catch (error) {
+        return ''
+      }
     }
   },
   methods: {
