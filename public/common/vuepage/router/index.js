@@ -21,6 +21,11 @@ export const routes = [
     component: () => load('../pages/webcrypto.vue')
   },
   {
+    path: '/objKeySort',
+    meta: { title: '对象键排序' },
+    component: () => load('../pages/objKeySort.vue')
+  },
+  {
     path: '/decodeAndEncode',
     meta: { title: 'ObjectTransform' },
     component: () => load('../pages/decodeAndEncode.vue')

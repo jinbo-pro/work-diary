@@ -8,7 +8,7 @@
 let editor
 await import('https://lib.baomitu.com/jsoneditor/9.8.0/jsoneditor.min.js')
 const defaultOptions = {
-  mode: 'tree',
+  mode: 'code',
   modes: ['code', 'text', 'tree', 'preview']
 }
 export default {
