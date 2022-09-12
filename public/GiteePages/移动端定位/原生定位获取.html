@@ -4,20 +4,26 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/vConsole/3.8.1/vconsole.min.js"></script>
     <title>原生定位获取</title>
   </head>
   <body>
-    <h1>原生定位获取</h1>
+    <p>
+      <button onclick="getLoction()">原生定位获取</button>
+    </p>
     <div id="result"></div>
     <script>
-      //判断是否支持 获取本地位置
-      if (navigator.geolocation) {
-        var n = navigator.geolocation.getCurrentPosition(function (res) {
-          console.log(res) // 需要的坐标地址就在res中
-          document.getElementById('result').innerHTML = JSON.stringify(res)
-        })
-      } else {
-        alert('该浏览器不支持定位')
+      new VConsole()
+      function getLoction() {
+        //判断是否支持 获取本地位置
+        if (navigator.geolocation) {
+          var n = navigator.geolocation.getCurrentPosition(function (res) {
+            console.log(res) // 需要的坐标地址就在res中
+            document.getElementById('result').innerHTML = JSON.stringify(res)
+          })
+        } else {
+          alert('该浏览器不支持定位')
+        }
       }
     </script>
   </body>

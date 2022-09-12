@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://api.map.baidu.com/api?v=2.0&ak=mv3ogUNDaEkhstGnvIl281GY8Qob9L9j"></script>
+    <script src="https://lib.baomitu.com/vConsole/3.8.1/vconsole.min.js"></script>
+  </head>
+  <body>
+    <button onclick="getBaiduLocation">点击定位</button>
+    <script>
+      new VConsole()
+      function getBaiduLocation() {
+        console.log(navigator.geolocation, '-->>> navigator.geolocation');
+        if (navigator.geolocation) {
+          var geolocation = new BMap.Geolocation()
+          geolocation.getCurrentPosition(
+            function (r) {
+              if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                alert('您的位置：' + r.point.lng + ',' + r.point.lat)
+              } else {
+                alert('failed' + this.getStatus())
+              }
+            },
+            { enableHighAccuracy: true }
+          )
+        } else {
+          alert('Geolocation is not supported by this browser.')
+        }
+      }
+    </script>
+  </body>
+</html>
