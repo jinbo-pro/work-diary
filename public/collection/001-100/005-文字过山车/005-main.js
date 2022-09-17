@@ -51,4 +51,7 @@ function renderDoc(doc) {
   var li = document.createElement('li')
   li.innerText = doc
   ulBox.appendChild(li)
+
+  // 设置滚动条
+  document.documentElement.scrollTop = document.body.clientHeight
 }
