@@ -1,5 +1,8 @@
 [toc]
 
+> 文章参考
+> [Vue3 入门指南与实战案例](https://vue3.chengpeiquan.com/)
+
 # vue 的响应式
 
 ## 简单类型的响应
@@ -80,7 +83,7 @@ watch(
   ref 无法主动开启 watch 的深度监听需要手动开启， reactive 可以
 - 取消监听
 
-```js
+```ts
 // 定义一个取消观察的变量，它是一个函数
 const unwatch = watch(message, () => {
   // ...
@@ -209,7 +212,7 @@ location / {
 
 ## 路由操作变更
 
-```js
+```ts
 import { useRouter } from 'vue-router'
 const router = useRouter()
 // 跳转首页
@@ -223,9 +226,9 @@ router.back()
 
 ## 404 路由配置
 
-新版的路由不再支持直接配置通配符 \* ，而是必须使用带有自定义正则表达式的参数进行定义。
+新版的路由不再支持直接配置通配符 `*` ，而是必须使用带有自定义正则表达式的参数进行定义。
 
-```js
+```ts
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/:pathMatch(.*)*',
@@ -274,7 +277,7 @@ export default defineComponent({
 })
 ```
 
-# 组件通信
+# 组件
 
 ## Prop 属性
 
@@ -358,7 +361,7 @@ export default defineComponent({
 
 子组件
 
-```js
+```ts
 // Child.vue
 export default defineComponent({
   props: {
@@ -371,6 +374,12 @@ export default defineComponent({
     setTimeout(() => {
       emit('update:userName', 'Tom')
     }, 2000)
+    return {
+      // 点击事件更新 uid
+      handle() {
+        emit('update:uid', Date.now())
+      }
+    }
   }
 })
 ```
@@ -379,13 +388,13 @@ export default defineComponent({
 
 爷爷组件
 
-```js
+```ts
 import { defineComponent, provide } from 'vue'
 export default defineComponent({
   // ...
   setup() {
     // provide一个ref
-    const msg = ref < string > 'Hello World!'
+    const msg = ref<string>('Hello World!')
     provide('msg', msg)
 
     // 2s 后更新数据
@@ -399,7 +408,7 @@ export default defineComponent({
 
 孙子组件
 
-```js
+```ts
 import { defineComponent, inject } from 'vue'
 export default defineComponent({
   setup() {
@@ -433,7 +442,7 @@ vue3 的全局状态管理显得不是那么重要，因为可以通过 provide/
 
 ## 全局编译器宏
 
-```js
+```ts
 // 项目根目录下的 .eslintrc.js
 module.exports = {
   // 原来的lint规则，补充下面的globals...
@@ -466,7 +475,7 @@ script-setup 的推出是为了让熟悉 3.0 的用户可以更高效率的开�
 
 这是就要用到 defineProps 了
 
-```js
+```ts
 defineProps({
   name: {
     type: String,
@@ -482,7 +491,7 @@ defineProps({
 
 ### emits 接收方式变化
 
-```js
+```ts
 // 获取 emit
 const emit = defineEmits(['chang-name'])
 // 调用 emit
@@ -491,7 +500,7 @@ emit('chang-name', 'Tom')
 
 ### attrs 的接收方式变化
 
-```js
+```ts
 // 导入 useAttrs 组件
 import { useAttrs } from 'vue'
 // 获取 attrs
@@ -505,6 +514,51 @@ console.log(attrs.msg)
 ```vue
 <script setup lang="ts">
 const post = await fetch(`/api/post/1`).then((r) => r.json())
+</script>
+```
+
+### setup 应用例子
+
+```vue
+<template>
+  <div>
+    <!-- 属性使用 -->
+    <p>页面直接使用{{ userName }}-{{ userAge }} {{ count }}</p>
+    <!-- 组件使用 -->
+    <HelloWorld msg="123" />
+    <button @click="handle">点击</button>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { ref, unref } from 'vue'
+import HelloWorld from './HelloWorld.vue'
+// 1.1 定义组件属性
+const props = defineProps({
+  userName: {
+    type: String,
+    required: false,
+    default: 'tom'
+  },
+  userAge: {
+    type: Number,
+    default: 1
+  }
+})
+// 1.2 定义组件属性方式 - ts专属[https://vue3.chengpeiquan.com/efficient.html#使用类型注解检查-prop]
+
+// 2.1 定义 emit
+const emit = defineEmits(['update:userName', 'update:userAge'])
+
+const count = ref(0)
+const handle = () => {
+  // 2.2 使用 emit
+  count.value++
+  console.log(unref(count), '-->>> handle')
+  console.log(props.userName, 'userName')
+  emit('update:userName', 'tom')
+  emit('update:userAge', Date.now())
+}
 </script>
 ```
 
