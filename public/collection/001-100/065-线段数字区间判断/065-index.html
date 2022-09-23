@@ -14,7 +14,7 @@
       当你设置了一个薪资区间就能看到Boss直聘上对应区间的招聘信息，出现的薪资区间总有一个在你设置的范围内
       想了解一下，BOSS上是怎么实现两个薪资区间匹配的
       <br />
-      一开始我想到的是把两个数字区间做成数组那么就可以通过循环求交集得到 于是我得到如下算法
+      一开始我想到的是把两个数字区间做成数组那么就可以通过循环求交集得到 于是我得到如下算法 1
       <script>
         const Area = { min: 10, max: 12 }
         function getList(min, max) {
@@ -61,7 +61,7 @@
         <li>C等于B且D大于B</li>
       </ul>
 
-      于是就有如下算法
+      于是就有如下算法 2
       <script>
         function main(C, D, A, B) {
           let m1 = C < A && D >= A
@@ -92,6 +92,7 @@
           main(...item, 10, 12)
         }
       </script>
+      <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
     </div>
   </body>
 </html>
