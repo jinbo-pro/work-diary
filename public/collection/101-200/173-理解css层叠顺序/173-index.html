@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>173-理解css层叠顺序</title>
+    <style id="css-id">
+      .container div {
+        width: 100px;
+        height: 100px;
+        font-size: 12px;
+        position: absolute;
+      }
+      .container {
+        width: 500px;
+        height: 500px;
+        padding: 30px;
+        position: relative;
+        background-color: #b475c1;
+      }
+      .t2 {
+        z-index: -1;
+        position: initial;
+        background-color: #8975c1;
+      }
+      .t3 {
+        background-color: #4f70c1;
+      }
+      .t4 {
+        float: left;
+        background-color: #51cd8e;
+      }
+      .t5 {
+        display: inline;
+        background-color: #9cd262;
+      }
+      .t6 {
+        background-color: #d8ad4e;
+      }
+      .t7 {
+        z-index: 1;
+        background-color: #d83c52;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      参考文章：
+      <a
+        href="https://www.zhangxinxu.com/wordpress/2016/01/understand-css-stacking-context-order-z-index/"
+        target="_blank"
+      >
+        深入理解CSS中的层叠上下文和层叠顺序 - 张鑫旭
+      </a>
+    </p>
+    <div class="container">
+      <div class="t2">2 负z-index</div>
+      <div style="top: 60px; left: 60px" class="t3">3 block水平盒子</div>
+      <div style="top: 90px; left: 90px" class="t4">4 float浮动盒子</div>
+      <div style="top: 120px; left: 120px" class="t5">5 inline水平盒子</div>
+      <div style="top: 150px; left: 150px" class="t6">6 z-index: 0盒子</div>
+      <div style="top: 180px; left: 180px" class="t7">7 正z-index</div>
+    </div>
+    <script type="module">
+      import { previewCode } from '/utils/module/previewCode.js'
+      const cssCode = document.getElementById('css-id')
+      previewCode('```css\n' + cssCode.innerText + '\n```')
+    </script>
+  </body>
+</html>
