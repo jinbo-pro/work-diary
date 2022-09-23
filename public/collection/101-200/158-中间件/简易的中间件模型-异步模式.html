@@ -67,10 +67,6 @@
        * 1 2 3 4 5 6        => 真实的执行顺序
        */
     </script>
-    <script>
-      const pre = document.createElement('pre')
-      pre.innerHTML = document.getElementById('src').innerText
-      document.body.append(pre)
-    </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>

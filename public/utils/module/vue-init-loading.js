@@ -1,4 +1,7 @@
-document.getElementById('app').innerHTML = `
+;(() => {
+  const app = document.getElementById('app')
+  if (!app) return
+  app.innerHTML = `
 <style>
 html[data-theme='dark'] .app-loading {
   background-color: #2c344a;
@@ -107,3 +110,4 @@ html[data-theme='dark'] .app-loading .app-loading-title {
 </div>
 </div>
 `
+})()

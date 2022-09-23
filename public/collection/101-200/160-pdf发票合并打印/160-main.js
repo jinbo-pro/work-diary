@@ -1,5 +1,6 @@
 console.log('160-pdf发票合并打印')
 
+const container = document.getElementById('container')
 async function main(files) {
   for (let file of files) {
     const url = URL.createObjectURL(file)
@@ -22,23 +23,19 @@ async function main(files) {
       canvasContext: context,
       viewport: viewport
     })
-    $('#container').append(canvas)
+    container.append(canvas)
   }
 }
-
-$('#pdfFile').on('change', function (e) {
+document.getElementById('pdfFile').onchange = function (e) {
   const files = e.target.files
   main(files)
-})
-$('#print').on('click', function () {
-  // $('.box').hide()
-  // print()
-  // $('.box').show()
-
+}
+document.getElementById('print').onclick = function () {
+  document.title = new Date().toLocaleDateString().replace(/\//g, '-') + '发票打印'
   printJS({
     printable: 'container',
     type: 'html',
     targetStyles: ['*'],
     style: '@page{size:auto;margin: 0;}' //去除页眉页脚
   })
-})
+}
