@@ -10,15 +10,17 @@ const parseName = (s) => {
 }
 const mdStrList = []
 let index = 1
-for (let item of Array.from(scriptTags)) {
-  const src = item.src
-  let code = item.innerHTML
-  if (srcIgnore.some((e) => src.includes(e))) continue
-  if (src) {
-    const response = await fetch(src)
-    const res = await response.text()
-    code = /<title>404<\/title>/.test(res) ? `// 文件获取失败: ${decodeURIComponent(src)}` : res
+;(async () => {
+  for (let item of Array.from(scriptTags)) {
+    const src = item.src
+    let code = item.innerHTML
+    if (srcIgnore.some((e) => src.includes(e))) continue
+    if (src) {
+      const response = await fetch(src)
+      const res = await response.text()
+      code = /<title>404<\/title>/.test(res) ? `// 文件获取失败: ${decodeURIComponent(src)}` : res
+    }
+    mdStrList.push(`# ${index++}. ${parseName(src)}\n` + '```js\n' + code + '\n```')
   }
-  mdStrList.push(`# ${index++}. ${parseName(src)}\n` + '```js\n' + code + '\n```')
-}
-previewCode(mdStrList.join('\n\n'))
+  previewCode(mdStrList.join('\n\n'))
+})()
