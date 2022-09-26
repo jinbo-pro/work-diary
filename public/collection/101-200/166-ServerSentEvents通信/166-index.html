@@ -38,19 +38,8 @@
     </div>
     <script src="./166-main.js"></script>
     <script type="module">
-      import { previewCode } from '/utils/module/previewCode.js'
-      async function main() {
-        const mdStrList = []
-        const list = ['./166-main.js', './server.js']
-        let index = 1
-        for (let item of list) {
-          const response = await fetch(item)
-          const code = await response.text()
-          mdStrList.push(`# ${index++} ${item}\n` + '```js\n' + code + '\n```')
-        }
-        previewCode(mdStrList.join('\n\n'))
-      }
-      main()
+      import { previewCodeFileList } from '/utils/module/previewCode.js'
+      previewCodeFileList(['./166-main.js', './server.js'])
     </script>
   </body>
 </html>
