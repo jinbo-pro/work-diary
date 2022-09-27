@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>176-使用Flex和Grid布局实现骰子布局</title>
+    <style id="css-id">
+      .box li {
+        width: 50px;
+        height: 50px;
+        padding: 4px;
+        background-color: tomato;
+        border-radius: 10%;
+        margin: 6px;
+        list-style: none;
+      }
+      .box .dot {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background-color: white;
+      }
+      /* ===== flex ===== */
+      .flex_max {
+        display: flex;
+      }
+      .flex_max li {
+        display: flex;
+      }
+
+      /* 1 */
+      .flex_dice1 {
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* 2 */
+      .flex_dice2 {
+        justify-content: space-between;
+      }
+      /* align-self: flex-end：将项目对齐到 Flex 容器的末尾。 */
+      .flex_dice2 .dot:nth-of-type(2) {
+        align-self: flex-end;
+      }
+
+      /* 3 */
+      .flex_dice3 {
+        justify-content: space-between;
+      }
+      /* align-self: flex-center：将项目对齐到 Flex 容器的中间。 */
+      .flex_dice3 .dot:nth-of-type(2) {
+        align-self: center;
+      }
+      /* align-self: flex-end：将项目对齐到 Flex 容器的末尾。 */
+      .flex_dice3 .dot:nth-of-type(3) {
+        align-self: flex-end;
+      }
+
+      /* 4 */
+      .flex_dice4 {
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .flex_dice4 .column {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* 5 */
+      .flex_dice5 {
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .flex_dice5 .column {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .flex_dice5 .column:nth-of-type(2) {
+        justify-content: center;
+      }
+
+      /* 6 */
+      .flex_dice6 {
+        flex-direction: column;
+        justify-content: space-between;
+      }
+      .flex_dice6 .column {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* ===== grid ===== */
+      .grid_max {
+        display: flex;
+      }
+      .grid_max li {
+        display: grid;
+      }
+
+      .grid_max .area {
+        place-items: center;
+        grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+        grid-template-areas:
+          'a . c'
+          'e g f'
+          'd . b';
+      }
+
+      /* 1 */
+      .grid_dice1 {
+        place-items: center;
+      }
+
+      /* 2 */
+      .grid_dice2 .dot:nth-of-type(1) {
+        grid-area: a;
+      }
+      .grid_dice2 .dot:nth-of-type(2) {
+        grid-area: b;
+      }
+
+      /* 3 */
+      .grid_dice3 .dot:nth-of-type(1) {
+        grid-area: a;
+      }
+      .grid_dice3 .dot:nth-of-type(2) {
+        grid-area: g;
+      }
+      .grid_dice3 .dot:nth-of-type(3) {
+        grid-area: b;
+      }
+
+      /* 4 */
+      .grid_dice4 {
+        place-items: center;
+        grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+      }
+
+      /* 5 */
+      .grid_dice5 .dot:nth-of-type(1) {
+        grid-area: a;
+      }
+      .grid_dice5 .dot:nth-of-type(2) {
+        grid-area: c;
+      }
+      .grid_dice5 .dot:nth-of-type(3) {
+        grid-area: g;
+      }
+      .grid_dice5 .dot:nth-of-type(4) {
+        grid-area: d;
+      }
+      .grid_dice5 .dot:nth-of-type(5) {
+        grid-area: b;
+      }
+     
+      /* 6 */
+      .grid_dice6 {
+        place-items: center;
+        grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      参考文章：
+      <a href="https://mp.weixin.qq.com/s/JKvZJS2yyNjFF4OPFdkQ8g" target="_blank">
+        使用 Flex 和 Grid 布局实现 3D 骰子！
+      </a>
+    </p>
+    <div class="box">
+      <p>flex_max</p>
+      <ol class="flex_max">
+        <li class="flex_dice1">
+          <div class="dot"></div>
+        </li>
+        <li class="flex_dice2">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="flex_dice3">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="flex_dice4">
+          <div class="column">
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="column">
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </li>
+        <li class="flex_dice5">
+          <div class="column">
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="column">
+            <div class="dot"></div>
+          </div>
+          <div class="column">
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </li>
+        <li class="flex_dice6">
+          <div class="column">
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="column">
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="column">
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+        </li>
+      </ol>
+      <hr />
+      <p>grid_max</p>
+      <ol class="grid_max">
+        <li class="grid_dice1">
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice2 area">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice3 area">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice4">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice5 area">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice6">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+      </ol>
+    </div>
+
+    <script type="module">
+      import { previewCode } from '/utils/module/previewCode.js'
+      const cssCode = document.getElementById('css-id')
+      previewCode('```css\n' + cssCode.innerText + '\n```')
+    </script>
+  </body>
+</html>
