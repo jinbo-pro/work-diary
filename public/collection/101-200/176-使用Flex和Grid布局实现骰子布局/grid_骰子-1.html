@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>grid_骰子-1</title>
+    <style>
+      .box li {
+        width: 50px;
+        height: 50px;
+        padding: 4px;
+        background-color: tomato;
+        border-radius: 10%;
+        margin: 6px;
+        list-style: none;
+      }
+      .box .dot {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        background-color: white;
+      }
+
+      /* ===== grid ===== */
+      .grid_max {
+        display: flex;
+      }
+      .grid_max li {
+        display: grid;
+      }
+
+      .grid_max .area {
+        place-items: center;
+        grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+        grid-template-areas:
+          'a . c'
+          'e g f'
+          'd . b';
+      }
+
+      /* 1 */
+      .grid_dice1 {
+        place-items: center;
+      }
+
+      /* 2 */
+      .grid_dice2 .dot:nth-of-type(1) {
+        grid-area: a;
+      }
+      .grid_dice2 .dot:nth-of-type(2) {
+        grid-area: b;
+      }
+
+      /* 3 */
+      .grid_dice3 .dot:nth-of-type(1) {
+        grid-area: a;
+      }
+      .grid_dice3 .dot:nth-of-type(2) {
+        grid-area: g;
+      }
+      .grid_dice3 .dot:nth-of-type(3) {
+        grid-area: b;
+      }
+
+      /* 4 */
+      .grid_dice4 {
+        place-items: center;
+        grid-template: repeat(2, 1fr) / repeat(2, 1fr);
+      }
+
+      /* 5 */
+      .grid_dice5 .dot:nth-of-type(1) {
+        grid-area: a;
+      }
+      .grid_dice5 .dot:nth-of-type(2) {
+        grid-area: c;
+      }
+      .grid_dice5 .dot:nth-of-type(3) {
+        grid-area: g;
+      }
+      .grid_dice5 .dot:nth-of-type(4) {
+        grid-area: d;
+      }
+      .grid_dice5 .dot:nth-of-type(5) {
+        grid-area: b;
+      }
+
+      /* 6 */
+      .grid_dice6 {
+        place-items: center;
+        grid-template: repeat(3, 1fr) / repeat(2, 1fr);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <ol class="grid_max">
+        <li class="grid_dice1">
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice2 area">
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice3 area">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice4">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice5 area">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+        <li class="grid_dice6">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </li>
+      </ol>
+    </div>
+  </body>
+</html>

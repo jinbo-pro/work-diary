@@ -23,12 +23,13 @@
       <li>
         <a href="https://gitee.com/rao_she/live2d_models_collect">live2d 模型地址</a>
       </li>
-      <li>本地资源服务器 http://localhost:9999</li>
+      <li id="server"></li>
     </ol>
     <hr />
     <script src="./175-main.js"></script>
     <script>
-      const serverPath = 'http://localhost:9999'
+      const serverPath = `http://${location.hostname}:9999`
+      document.getElementById('server').innerText = '本地资源服务器 ' + serverPath
       const modeList = [
         '95type_405',
         'aa12_2403',
