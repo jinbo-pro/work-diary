@@ -2,7 +2,7 @@
  * 预览代码
  * @param {string} fileContent
  */
-export async function previewCode(fileContent) {
+export function previewCode(fileContent) {
   const mdFile = new File([fileContent], 'code.md', { type: 'text/markdown;charset=utf-8' })
   const filePath = URL.createObjectURL(mdFile)
 
@@ -69,17 +69,30 @@ export async function previewCode(fileContent) {
   stx.append(codeContainer)
 }
 /**
+ * 通过请求获取标签内容
+ * @param {string[]|string} list 
+ * @returns 
+ */
+export async function requestTagText(list) {
+  let result = ''
+  if (typeof list === 'string') {
+    list = [list]
+  }
+  for (let src of list) {
+    const deCodeSrc = decodeURIComponent(src)
+    const response = await fetch(src)
+    const res = await response.text()
+    const code = /<title>404<\/title>/.test(res) ? `// 文件获取失败: ${deCodeSrc}` : res
+    const fileType = deCodeSrc.split('.').slice(-1)[0]
+    const fileName = deCodeSrc.split('/').slice(-1)[0]
+    result += `\n## ${fileName}\n` + '```' + `${fileType}\n${code}\n` + '```' + '\n'
+  }
+  return result
+}
+/**
  * 预览文件列表
  * @param {string[]} pathList
  */
 export async function previewCodeFileList(pathList) {
-  const mdStrList = []
-  let index = 1
-  for (let item of pathList) {
-    const response = await fetch(item)
-    const code = await response.text()
-    const fileType = item.split('.').slice(-1)[0]
-    mdStrList.push(`# ${index++} ${decodeURIComponent(item)}\n` + '```' + `${fileType}\n${code}\n` + '```')
-  }
-  previewCode(mdStrList.join('\n\n'))
+  previewCode(getTagText(pathList))
 }
