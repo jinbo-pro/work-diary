@@ -64,10 +64,6 @@
       <div style="top: 150px; left: 150px" class="t6">6 z-index: 0盒子</div>
       <div style="top: 180px; left: 180px" class="t7">7 正z-index</div>
     </div>
-    <script type="module">
-      import { previewCode } from '/utils/module/previewCode.js'
-      const cssCode = document.getElementById('css-id')
-      previewCode('```css\n' + cssCode.innerText + '\n```')
-    </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>

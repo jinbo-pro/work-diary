@@ -7,12 +7,21 @@ export async function previewCode(fileContent) {
   const filePath = URL.createObjectURL(mdFile)
 
   const codeContainer = document.createElement('div')
+  const codeMax = document.createElement('div')
+  codeMax.className = 'code_max'
   const shadow = codeContainer.attachShadow({ mode: 'open' })
 
   const style = document.createElement('style')
   style.innerHTML = `
+  .code_max {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999;
+  }
   .btn {
     color: #fff;
+    float: right;
     cursor: pointer;
     background-color: #409eff;
     border: 1px solid #dcdfe6;
@@ -29,7 +38,7 @@ export async function previewCode(fileContent) {
     transition: 0.3s;
   }
   `
-  shadow.append(style)
+  codeMax.append(style)
   const iframe = document.createElement('iframe')
   const button = document.createElement('button')
   button.className = 'btn'
@@ -44,17 +53,18 @@ export async function previewCode(fileContent) {
       return
     }
     if (isInit) {
-      iframe.style = 'width:90vw;height:90vh;border:none;'
+      iframe.style = 'width:95vw;height:90vh;border:none;'
       iframe.src = `/common/parseMarked/parseMarked.html?filePath=${filePath}`
-      shadow.append(iframe)
+      codeMax.append(iframe)
       isInit = false
     }
     isOpen = true
     button.innerText = '收起代码'
     iframe.style.display = 'block'
   }
-  shadow.append(button)
 
+  codeMax.append(button)
+  shadow.append(codeMax)
   const stx = document.getElementById('stx') || document.body
   stx.append(codeContainer)
 }
