@@ -38,7 +38,7 @@ function nanoid(size = 21) {
 function textHax(str) {
   str = String(str)
   for (var i = 0, num = 0, len = str.length; i < len; i++) {
-    num += str.charCodeAt(i) / (i + 1.3)
+    num += str.charCodeAt(i) / (i + Math.PI)
   }
   return (String(num).replace('.', '') - 0).toString(36)
 }
