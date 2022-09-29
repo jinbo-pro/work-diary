@@ -2,7 +2,6 @@ const fs = require('fs')
 const path = require('path')
 const readline = require('readline')
 const { checkDir } = require('../../app/utils/file')
-const outPath = path.resolve(__dirname, '../../public/collection')
 const template = fs.readFileSync(path.resolve(__dirname, './temp2.html'))
 
 const rl = readline.createInterface({
@@ -59,23 +58,32 @@ function getFileTemp(fileInfo) {
   return tempStr
 }
 /**根据最大索引创建对应文件夹 */
-function maxIndexDir(max) {
-  let n = ~~(max / 100)
-  if (!(max % 100)) {
+function maxIndexDir(outPath, max, dirCount) {
+  if (!dirCount) return outPath
+  let n = ~~(max / dirCount)
+  if (!(max % dirCount)) {
     n = n - 1
   }
-  const s = prefixNum(n * 100 + 1, 3)
-  const e = prefixNum((n + 1) * 100, 3)
+  const s = prefixNum(n * dirCount + 1, 3)
+  const e = prefixNum((n + 1) * dirCount, 3)
   return path.join(outPath, `${s}-${e}`)
 }
-/**创建文件 */
-async function create() {
+
+/**
+ * 创建文件
+ * @param {string} outPath 输出目录
+ * @param {number} dirCount 目录分割
+ */
+module.exports = async function create(outPath, dirCount = 0) {
   const title = await getConsoleData('请输入 标题')
   const tag = await getConsoleData('请输入 标签')
   rl.close()
   const count = getFileIndex(outPath)
-  const dir = maxIndexDir(count)
-  await checkDir(dir)
+  let dir = outPath
+  if (dirCount > 0) {
+    dir = maxIndexDir(outPath, count, dirCount)
+    await checkDir(dir)
+  }
   let fileName = count + '-' + (title || '新建文件')
   const getPath = (file) => path.join(dir, `${fileName}/${file}`)
   fs.mkdirSync(getPath(''))
@@ -86,8 +94,3 @@ async function create() {
 
   console.log(fileName, '创建成功')
 }
-create()
-/**
- * 使用示例：
- * node .\createFileBase.js
- */

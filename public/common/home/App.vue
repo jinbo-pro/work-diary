@@ -93,10 +93,10 @@ export default {
           // md 文件直接渲染
           if (node.fileName.endsWith('.md')) return true
           /**
-           * collection,loading 文件夹 以及子集中除开 index.html 之外的 html
+           * collection,loading,libusedemo 文件夹 以及子集中除开 index.html 之外的 html
            * notepad 文件夹递归渲染所有文件
            */
-          if (/(collection|loading)/.test(node.filePath)) {
+          if (/(collection|loading|libusedemo)/.test(node.filePath)) {
             if (node.isFile == 0) return true
             return node.fileName.endsWith('.html') && !/index/.test(node.fileName)
           }

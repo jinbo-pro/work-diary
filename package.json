@@ -7,7 +7,7 @@
     "dev": "nodemon app/index.js -dev",
     "socket": "node app/websocket/socket.js",
     "build": "node build/index.js && tar -czvf dist.tar.gz dist",
-    "create": "node script/createFile/createFileBase.js"
+    "create": "node script/createFile/create-collection.js"
   },
   "author": "lijinbo",
   "license": "ISC",

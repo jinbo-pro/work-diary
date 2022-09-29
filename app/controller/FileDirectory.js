@@ -7,6 +7,7 @@ class FileDirectory extends BaseController {
       // 包含的文件夹
       'loading',
       'notepad',
+      'libusedemo',
       'collection'
     ]
   }
