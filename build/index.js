@@ -1,12 +1,14 @@
 const path = require('path')
 const esbuild = require('esbuild')
-const { copyDir } = require('../app/utils/file')
+const { copyDir, clearDir } = require('../app/utils/file')
 
 function resolve(dir) {
   return path.resolve(__dirname, '../' + dir)
 }
 
 async function main() {
+  // 删除上传的文件
+  clearDir(resolve('public/upload'))
   // diary
   await esbuild.build({
     entryPoints: [resolve('app/index.js')],

@@ -47,3 +47,10 @@ rm -rf node_modules && npm install yarn upgrade
 npm version major yarn version --major  
 npm version minor yarn version --minor  
 npm version patch yarn version --patch
+
+```html
+<!-- npm cdn -->
+<script src="https://unpkg.com/包名@版本号"></script>
+<!-- 示例 -->
+<script src="https://unpkg.com/vue@2.6.10"></script>
+```

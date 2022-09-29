@@ -10,6 +10,9 @@
  * 原文：          AES加密测试内容：123456
  * 密文：          m7efEcxogfv1iFdCdP86HYS6HNVD8aW3PePqcVFVubY=
  * 测试地址：      http://tool.chacuo.net/cryptaes
+ * 
+ * 前端依赖：      crypto-js
+ * 依赖详情：      https://www.npmjs.com/package/crypto-js
  */
 
 export class AES {

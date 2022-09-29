@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>004-汉字转拼音-首字拼音</title>
+  </head>
+
+  <body>
+    <p>汉字转拼音工具参见：</p>
+    <p>
+      <a href="https://www.npmjs.com/package/pinyin-pro">pinyin-pro</a>
+    </p>
+    <br />
+    <div>
+      <div>中文输入：</div>
+      <textarea id="keyword" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+      <div>拼音：</div>
+      <textarea id="pin" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+      <div>拼音带声调：</div>
+      <textarea id="full" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+      <div>首字简拼：</div>
+      <textarea id="simply" cols="30" rows="10"></textarea>
+    </div>
+    <script type="module">
+      import { pinyin } from 'https://unpkg.com/pinyin-pro@3.11.0/dist/index.esm.js'
+      // 原理：unicode码的处理
+      const keyword = document.getElementById('keyword')
+      keyword.onblur = function () {
+        const value = this.value
+        document.getElementById('pin').value = pinyin(value, { toneType: 'none' }) // 获取全写拼音
+        document.getElementById('full').value = pinyin(value) // 获取全写拼音
+        document.getElementById('simply').value = pinyin(value, { pattern: 'first' }) // 获取简写拼音(提取首字母并大写)
+      }
+    </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>
