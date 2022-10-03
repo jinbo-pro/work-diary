@@ -18,10 +18,10 @@ export function previewCode(fileContent) {
     top: 0;
     right: 0;
     z-index: 999;
+    min-width: 110px;
   }
   .btn {
     color: #fff;
-    float: right;
     cursor: pointer;
     background-color: #409eff;
     border: 1px solid #dcdfe6;
@@ -30,6 +30,9 @@ export function previewCode(fileContent) {
     margin: 12px;
     font-size: 14px;
     border-radius: 4px;
+    position: absolute;
+    right: 0;
+    top: 0;
     transition: 0.3s;
   }
   .btn:hover {
@@ -53,7 +56,7 @@ export function previewCode(fileContent) {
       return
     }
     if (isInit) {
-      iframe.style = 'width:95vw;height:90vh;border:none;'
+      iframe.style = 'width:100vw;height:90vh;border:none;'
       iframe.src = `/common/parseMarked/parseMarked.html?filePath=${filePath}`
       codeMax.append(iframe)
       isInit = false

@@ -7,10 +7,12 @@ import { previewCode, requestTagText } from './previewCode.js'
   let jsStr = ''
   const srcIgnore = ['https:', 'scriptTagToText.js']
   const scriptTags = document.getElementsByTagName('script')
+  let codeIndex = 1
   for (let item of Array.from(scriptTags)) {
     const src = item.src
     if (!src) {
-      jsStr += '```css\n' + item.innerHTML + '\n```\n\n'
+      const fileName = item.title || `code${codeIndex++}`
+      jsStr += `\n## ${fileName}\n` + '```js\n' + item.innerHTML + '\n```\n\n'
     } else if (!srcIgnore.some((e) => src.includes(e))) {
       jsStr += await requestTagText(src)
     }
