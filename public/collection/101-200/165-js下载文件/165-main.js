@@ -25,7 +25,7 @@ $('.btn1-2').on('click', function () {
 })
 
 $('.btn2-1').on('click', function () {
-  const imgUrl = '/assets/img/img0.webp'
+  const imgUrl = '/assets/img/bg.jpg'
   downFileByUrl(imgUrl)
 })
 

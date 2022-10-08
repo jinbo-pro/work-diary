@@ -38,8 +38,13 @@
     <script type="module">
       import { startAnimation } from '/utils/module/McAnimation.js'
       // 创建图片
-      for (let i = 0; i < 4; i++) {
-        let imgDom = $(`<div class="slider_item_box"><img src="/assets/img/img${i}.webp"></div>`)
+      const imgList = [
+        'https://img2.ali213.net/picfile/News/2021/03/17/584_2021031754445704.jpg',
+        'https://img2.ali213.net/picfile/News/2021/03/17/584_2021031754444310.jpg',
+        'https://img2.ali213.net/picfile/News/2021/03/17/584_2021031754445973.jpg'
+      ]
+      for (let i = 0; i < imgList.length; i++) {
+        let imgDom = $(`<div class="slider_item_box"><img src="${imgList[i]}"></div>`)
         if (i) {
           imgDom.css('left', '300px')
         }

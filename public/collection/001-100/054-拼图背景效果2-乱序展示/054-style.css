@@ -39,7 +39,6 @@ section {
 
 @keyframes animate {
   0% {
-    transform: scale(1) translateZ(2000px);
     background: url(/assets/img/bg.jpg);
     background-position: center;
     background-attachment: fixed;
@@ -52,7 +51,6 @@ section {
   }
 
   100% {
-    transform: scale(1) translateZ(0px);
     background: url(/assets/img/bg.jpg);
     background-position: center;
     background-attachment: fixed;
@@ -73,7 +71,6 @@ section.active .banner .blocks {
 
 @keyframes animate2 {
   0% {
-    transform: scale(1) translateZ(0px);
     background: url(/assets/img/bg.jpg);
     background-position: center;
     background-attachment: fixed;
@@ -82,7 +79,6 @@ section.active .banner .blocks {
   }
 
   100% {
-    transform: scale(1) translateZ(2000px);
     background: url(/assets/img/bg.jpg);
     background-position: center;
     background-attachment: fixed;
