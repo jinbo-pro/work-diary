@@ -70,7 +70,7 @@
       <input type="number" v-model="count" :min="0" />
       <p>{{ countStr }}</p>
       <div class="content">
-        <strand v-for="(p, i) in countList" :key="i" :num="p" :unit="countList.length - 1 - i" class="item_max"></strand>
+        <strand v-for="(p, i) in countList" :key="i" :num="p" :unit="countList.length - 1 - i"></strand>
       </div>
     </div>
 
