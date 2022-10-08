@@ -97,5 +97,5 @@ export async function requestTagText(list) {
  * @param {string[]} pathList
  */
 export async function previewCodeFileList(pathList) {
-  previewCode(getTagText(pathList))
+  previewCode(await requestTagText(pathList))
 }

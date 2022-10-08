@@ -34,6 +34,12 @@
         fastclick有现成的NPM包，可直接安装到项目里。引入fastclick可使用click事件代替tap事件，接入方式极其简单。
       </p>
     </div>
-    <script src="./031-main.js"></script>
+    <script>
+      var conut = 1
+      document.getElementById('but').onclick = function () {
+        document.getElementById('count').innerText = ++conut
+      }
+    </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>
