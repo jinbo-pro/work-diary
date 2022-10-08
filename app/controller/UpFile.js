@@ -105,7 +105,7 @@ class UpFile extends BaseController {
     } catch (error) {
       // 不存在的则创建切片
       await this.fileWriteStream(chunk, chunkPath)
-      await this.tools.sleep(300) // 测试上传网络延迟
+      await this.tools.sleep(200) // 测试上传网络延迟
       ctx.body = this.resSuccess({ type: 2, filename })
     }
   }

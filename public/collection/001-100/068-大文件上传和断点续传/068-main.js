@@ -39,7 +39,8 @@ new Vue({
       uploadSize: 0,
       fileSizeTotal: 0,
       chunkSize: 2,
-      btn: false
+      btn: false,
+      previewFile: ''
     }
   },
   computed: {
@@ -66,19 +67,19 @@ new Vue({
     // 1.创建切片
     async changeFile(file) {
       if (!file) return
-      // 解析为BUFFER数据
-      // 把文件切片处理：把一个文件分割成为好几个部分（固定数量/固定大小）
-      // 每一个切片有自己的部分数据和自己的名字
-      // HASH_1.mp4
-      // HASH_2.mp4
-      // ...
-      let buffer = await fileParse(file, 'buffer'),
-        spark = new SparkMD5.ArrayBuffer(),
-        hash,
-        suffix
+      /**
+       * 解析为BUFFER数据
+       * 把文件切片处理：把一个文件分割成为好几个部分（固定数量/固定大小）
+       * 每一个切片有自己的部分数据和自己的名字
+       * HASH_1.mp4
+       * HASH_2.mp4
+       * ...
+       */
+      let buffer = await fileParse(file, 'buffer')
+      let spark = new SparkMD5.ArrayBuffer()
       spark.append(buffer)
-      hash = spark.end()
-      suffix = /\.([\w]+)$/i.exec(file.name)[1]
+      let hash = spark.end()
+      let suffix = /\.([\w]+)$/i.exec(file.name)[1]
 
       let i = 0,
         cur = 0,
@@ -148,6 +149,7 @@ new Vue({
       // 4.都传完了通知服务器合并文件
       let res = await api.post('/merge', { hash: this.hash })
       console.log(res, '-->>> 文件上传完成')
+      this.previewFile = res.data
     },
     // 手动暂停
     handleBtn() {
@@ -156,12 +158,12 @@ new Vue({
           alert('已经传完了')
           return
         }
-        //断点续传
+        // 断点续传
         this.abort = false
         this.btn = false
         this.sendRequest()
       } else {
-        //暂停上传
+        // 暂停上传
         this.btn = true
         this.abort = true
       }
