@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>blob</title>
+  </head>
+  <body>
+    <h3>Blob 全称为 binary large object ，即二进制大对象，它是 JavaScript 中的一个对象，表示原始的类似文件的数据。</h3>
+    <ol>
+      <li>
+        <p>iframe 展示 blob</p>
+        <iframe id="iframeBox"></iframe>
+      </li>
+      <li>
+        右侧查看代码
+        <script title="后端返回文件流，前端转成 blob 下载" type="text">
+          axios({
+            url: 'xxx/yyy',
+            method: 'post',
+            responseType: 'blob'
+          }).then((res) => {
+            let fileName = res.headers['content-disposition'].split(';')[1].split('filename=')[1]
+            if (fileName) {
+              fileName = decodeURIComponent(fileName)
+            }
+            const blob = new Blob([res.data])
+            const elink = document.createElement('a')
+            if (fileName) {
+              elink.download = fileName
+            } else {
+              elink.setAttribute()
+            }
+            elink.style.display = 'none'
+            var href = URL.createObjectURL(blob)
+            elink.href = href
+            document.body.appendChild(elink)
+            elink.click()
+            URL.revokeObjectURL(elink.href) // 释放URL 对象
+            document.body.removeChild(elink)
+          })
+        </script>
+      </li>
+    </ol>
+    <script>
+      /**创建一个blob */
+      const blob = new Blob(['Hello World'], { type: 'text/plain' })
+      console.log(blob, 'blob')
+
+      // 1. iframeBox 展示 blob
+      const iframeBox = document.getElementById('iframeBox')
+      const subBlob = blob.slice(0, 5)
+      iframeBox.src = URL.createObjectURL(subBlob)
+    </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>

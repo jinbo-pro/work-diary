@@ -7,15 +7,17 @@ class StaticPage extends BaseController {
   async page(ctx) {
     let id = ctx.params.id
     if (!id) {
-      return (ctx.body = '参数错误')
+      ctx.body = '参数错误'
+      return
     }
     id = id.split('-')[0]
     const { flatList } = await this.servers.FileDirData.getFileList()
     let curPage = flatList.find((e) => e.id == id)
     if (!curPage) {
-      return (ctx.body = '404 页面不存在')
+      ctx.body = '404 页面不存在'
+    } else {
+      ctx.redirect(curPage.filePath)
     }
-    ctx.redirect(curPage.filePath)
   }
 }
 

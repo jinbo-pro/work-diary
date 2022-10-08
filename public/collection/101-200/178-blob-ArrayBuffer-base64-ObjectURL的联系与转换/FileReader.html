@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FileReader</title>
+  </head>
+  <body>
+    <h3>
+      FileReader 是一个异步 API，用于读取文件并提取其内容以供进一步使用。FileReader 可以将 Blob 读取为不同的格式。
+    </h3>
+    <ol>
+      <li>
+        <p>FileReader 读取文件</p>
+        <input type="file" id="fileInput" />
+      </li>
+      <li>
+        <p>FileReader 读取图片并预览</p>
+        <input type="file" id="fileInput-img" accept=".png,.jpg" />
+        <img id="preview" src="" alt="preview" />
+      </li>
+    </ol>
+    <script>
+      // 1 FileReader 读取文件
+      document.getElementById('fileInput').onchange = (e) => {
+        const reader = new FileReader()
+        reader.readAsText(e.target.files[0])
+        reader.onload = (e) => {
+          console.log(e.target.result)
+        }
+      }
+      // 2 FileReader 读取图片并预览
+      document.getElementById('fileInput-img').onchange = (e) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(e.target.files[0])
+        reader.onload = (e) => {
+          document.getElementById('preview').src = e.target.result
+        }
+      }
+    </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>
