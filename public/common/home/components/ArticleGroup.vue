@@ -32,9 +32,8 @@ export default {
       } else {
         let indexHtml = item.children?.find((ce) => ce.isFile && ce.fileName.includes('index.html'))
         if (indexHtml) {
-          const u = `/page/${indexHtml.id}`
-          console.info(location.origin + u)
-          window.open(u)
+          console.info(`${location.origin}/page/${indexHtml.id}`)
+          window.open(indexHtml.filePath)
         } else {
           console.info('改文件夹下没有可打开的 html')
         }
