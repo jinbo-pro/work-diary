@@ -16,6 +16,7 @@
     "@types/jquery": "^3.5.13",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
+    "koa-range": "^0.3.0",
     "koa-router": "^9.0.1",
     "koa-static": "^5.0.0",
     "mockjs": "^1.1.0",
