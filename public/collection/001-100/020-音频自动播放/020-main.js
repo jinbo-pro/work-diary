@@ -1,4 +1,15 @@
-//音乐自动播放
+/**
+ * 【audio标签的属性】
+ *	loop		设置循环播放
+ *	controls 	浏览器自带控件样式
+ *	autoplay	设置音频在加载完后立即播放
+ *
+ *	直接设置自动播放属性【autoplay】 		pc端有效，微信浏览器有些有效有些无效  Ios无效，Android无效
+ *	控制自动播放背景音乐【再添加初始化事件】 pc端有效，微信浏览器有效  Ios无效，Android无效
+ *	控制自动播放背景音乐【再添加滑动事件】 pc端有效，微信浏览器有效  Ios有效，Android无效
+ */
+
+// 音乐自动播放
 $(document).ready(function () {
   // 显示浏览器信息
   var browser = $.browser

@@ -12,19 +12,9 @@
 
   <body>
     <h1>音乐自动播放测试</h1>
-    <!-- 
-		【audio标签的属性】
-		loop		设置循环播放
-		controls 	浏览器自带控件样式
-		autoplay	设置音频在加载完后立即播放 
-		
-		直接设置自动播放属性【autoplay】 		pc端有效，微信浏览器有些有效有些无效  Ios无效，Android无效
-		控制自动播放背景音乐【再添加初始化事件】 pc端有效，微信浏览器有效  Ios无效，Android无效
-		控制自动播放背景音乐【再添加滑动事件】 pc端有效，微信浏览器有效  Ios有效，Android无效
-		
-		-->
-    <!-- <audio id="music" class="hidden" controls autoplay loop src="./yueyawan.mp3"> </audio> -->
-    <audio id="music" class="hidden" controls loop src="./yueyawan.mp3"></audio>
+    <p>注意：新版的谷歌浏览器 Chrome/95 以上的版本都需要用户交互之后才能自动播放</p>
+    <!-- <audio id="music" class="hidden" controls autoplay loop src="https://qiniu.qkongtao.cn/2022/07/20220706014714102.mp3"> </audio> -->
+    <audio id="music" class="hidden" controls loop src="https://qiniu.qkongtao.cn/2022/07/20220706014714102.mp3"></audio>
 
     <h2>浏览器信息</h2>
     <p id="browser" style="word-wrap: break-word"></p>
