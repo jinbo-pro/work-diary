@@ -23,7 +23,7 @@ export function previewCode(fileContent) {
   .btn {
     color: #fff;
     cursor: pointer;
-    background-color: #409eff;
+    background-color: rgba(64, 158, 255, 0.5);
     border: 1px solid #dcdfe6;
     box-sizing: border-box;
     padding: 8px 12px;
@@ -34,11 +34,21 @@ export function previewCode(fileContent) {
     right: 0;
     top: 0;
     transition: 0.3s;
+    z-index: 888;
   }
   .btn:hover {
     background: #66b1ff;
     border-color: #66b1ff;
     transition: 0.3s;
+  }
+  iframe {
+    position: fixed;
+    left: 100vw;
+    transition: 0.2s;
+  }
+  iframe.show {
+    left: 0;
+    transition: 0.2s;
   }
   `
   codeMax.append(style)
@@ -48,10 +58,13 @@ export function previewCode(fileContent) {
   button.innerText = '查看代码'
   let isOpen = false
   let isInit = true
-  button.onclick = function () {
+  const sleep = (t = 0) => new Promise((a) => setTimeout(a, t))
+  button.onclick = async function () {
     if (isOpen) {
       isOpen = false
       button.innerText = '查看代码'
+      iframe.className = ''
+      await sleep(200)
       iframe.style.display = 'none'
       return
     }
@@ -64,6 +77,8 @@ export function previewCode(fileContent) {
     isOpen = true
     button.innerText = '收起代码'
     iframe.style.display = 'block'
+    await sleep(200)
+    iframe.className = 'show'
   }
 
   codeMax.append(button)
@@ -73,8 +88,8 @@ export function previewCode(fileContent) {
 }
 /**
  * 通过请求获取标签内容
- * @param {string[]|string} list 
- * @returns 
+ * @param {string[]|string} list
+ * @returns
  */
 export async function requestTagText(list) {
   let result = ''
