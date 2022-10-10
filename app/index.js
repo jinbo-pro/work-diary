@@ -3,6 +3,7 @@ const path = require('path')
 const router = require('./router')
 const range = require('koa-range')
 const koaBody = require('koa-body')
+const compress = require('koa-compress')
 const staticFiles = require('koa-static')
 const tools = require('./utils/tools')
 const args = tools.getArguments()
@@ -31,14 +32,12 @@ app.use(async (ctx, next) => {
     console.log(info, ms, 'ms')
   }
 })
-// 设置静态目录
-app.use(range) // 大文件Content-Range请求处理
-app.use(
-  staticFiles(publicPath, {
-    // 静态资源浏览器缓存 2 小时
-    maxage: env == 'dev' ? 0 : 2 * 60 * 60 * 1000
-  })
-)
+// 大文件Content-Range请求处理
+app.use(range)
+// 支持gzip压缩
+app.use(compress({ threshold: 1024 }))
+// 设置静态资源浏览器缓存 2 小时
+app.use(staticFiles(publicPath, { maxage: env == 'dev' ? 0 : 2 * 60 * 60 * 1000 }))
 // 上传设置
 app.use(
   koaBody({
