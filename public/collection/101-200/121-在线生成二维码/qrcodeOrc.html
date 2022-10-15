@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/jsqr@1.4.0/dist/jsQR.js"></script>
+    <title>二维码识别</title>
+    <style>
+      #result {
+        word-break: break-all;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <input type="file" accept="image/*" multiple id="pictureSelect" />
+    </div>
+    <ul>
+      <li>
+        <p>QR码内容：</p>
+        <p id="result"></p>
+      </li>
+      <li>
+        <p>二维码原始图片：</p>
+        <canvas id="qrCanvas"></canvas>
+      </li>
+    </ul>
+    <script>
+      document.getElementById('pictureSelect').onchange = function (e) {
+        const file = event.target.files[0]
+        const url = URL.createObjectURL(file)
+        const canvas = document.getElementById('qrCanvas')
+        const ctx = canvas.getContext('2d')
+        const image = new Image()
+        image.onload = function () {
+          const { width, height } = image
+          // 根据图片大小设置canvas大小
+          canvas.width = width
+          canvas.height = height
+          ctx.drawImage(image, 0, 0, width, height) // 绘图
+          const imageData = ctx.getImageData(0, 0, width, height)
+          // QR码解析
+          const code = jsQR(imageData.data, imageData.width, imageData.height)
+          console.log(code, '-->>> code')
+          if (code) {
+            document.getElementById('result').innerHTML = code.data
+          } else {
+            document.getElementById('result').innerHTML = ''
+            alert('识别错误')
+          }
+        }
+        image.src = url
+      }
+    </script>
+  </body>
+</html>
