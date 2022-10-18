@@ -28,22 +28,34 @@
       </p>
       <el-form :model="formData" :rules="formDataRules" ref="formData" label-width="120px">
         <el-form-item label="开始时间" prop="start">
-          <el-date-picker v-model="formData.start" type="datetime" placeholder="选择日期"> </el-date-picker>
-          <el-card>
-            <div slot="header">
-              <span>{{ startInfo.r }}</span>
-            </div>
-            <div>{{ startInfo.h }}</div>
-          </el-card>
+          <el-row>
+            <el-col :span="6">
+              <el-date-picker v-model="formData.start" type="datetime" placeholder="选择日期"> </el-date-picker>
+            </el-col>
+            <el-col :span="18">
+              <el-card>
+                <div slot="header">
+                  <span>{{ startInfo.r }}</span>
+                </div>
+                <div>{{ startInfo.h }}</div>
+              </el-card>
+            </el-col>
+          </el-row>
         </el-form-item>
         <el-form-item label="结束时间" prop="end">
-          <el-date-picker v-model="formData.end" type="datetime" placeholder="选择日期"> </el-date-picker>
-          <el-card>
-            <div slot="header">
-              <span>{{ endInfo.r }}</span>
-            </div>
-            <div>{{ endInfo.h }}</div>
-          </el-card>
+          <el-row>
+            <el-col :span="6">
+              <el-date-picker v-model="formData.end" type="datetime" placeholder="选择日期"> </el-date-picker>
+            </el-col>
+            <el-col :span="18">
+              <el-card>
+                <div slot="header">
+                  <span>{{ endInfo.r }}</span>
+                </div>
+                <div>{{ endInfo.h }}</div>
+              </el-card>
+            </el-col>
+          </el-row>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="onSubmit">计算时长</el-button>
@@ -59,10 +71,14 @@
     <script>
       function dateFormat(t) {
         if (!t) return { r: '', h: '' }
-        const y = t.getFullYear()
-        const m = t.getMonth() + 1
-        const d = t.getDate()
-        const solar = Solar.fromYmd(y, m, d)
+        const solar = Solar.fromYmdHms(
+          t.getFullYear(),
+          t.getMonth() + 1,
+          t.getDate(),
+          t.getHours(),
+          t.getMinutes(),
+          t.getSeconds()
+        )
         const pad = (x) => String(x).padStart(2, '0')
         return {
           r: solar.toFullString(),
