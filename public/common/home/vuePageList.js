@@ -7,6 +7,7 @@ export const vuePageList = [
   { fileName: '聊天室', filePath: '/common/chatRoom/index.html' },
   { fileName: 'ObjectTransform', filePath: r },
   { fileName: '加密工具', filePath: r + '#/webcrypto' },
+  { fileName: 'element表单生成', filePath: r + '#/elementFormCreate' },
   { fileName: '对象键排序', filePath: r + '#/objKeySort' },
   { fileName: 'decodeAndEncode', filePath: r + '#/decodeAndEncode' },
   { fileName: 'UnicodeToText', filePath: r + '#/UnicodeToText' },

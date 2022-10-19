@@ -16,6 +16,11 @@ export const routes = [
     component: () => load('../pages/home.vue')
   },
   {
+    path: '/elementFormCreate',
+    meta: { title: 'element表单生成' },
+    component: () => load('../pages/lowcode/elementFormCreate.vue')
+  },
+  {
     path: '/webcrypto',
     meta: { title: '加密工具' },
     component: () => load('../pages/webcrypto.vue')
