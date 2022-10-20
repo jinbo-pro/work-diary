@@ -23,7 +23,13 @@ window.onload = async function () {
   content.innerHTML = marked.parse(res, options)
   /**解析导航栏 */
   const tags = Array.from(content.children).filter((e) => /^H[1-3]/.test(e.nodeName))
-  document.getElementById('nav').innerHTML = tags.reduce((p, c) => {
+  const navDom = document.getElementById('nav')
+  if (!tags.length) {
+    navDom.style.display = 'none'
+    content.style.width = '100%'
+    return
+  }
+  navDom.innerHTML = tags.reduce((p, c) => {
     p += `<div class="tag_${c.nodeName}">
             <a href="#${c.id}"><p>${c.id}</p></a>
           </div>`

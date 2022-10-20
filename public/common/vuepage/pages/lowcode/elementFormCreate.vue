@@ -1,12 +1,23 @@
 <template>
   <div>
-    <p>字段</p>
-    <el-input v-model="field" type="textarea" placeholder="请输入字段" @blur="parseField"></el-input>
-    <p>解析结果</p>
-    <el-button type="primary" @click="codePrview">代码预览</el-button>
+    <el-button type="primary" @click="excelRowDialog = true">Excel列解析</el-button>
+    <el-dialog title="Excel列解析" :visible.sync="excelRowDialog" width="50%">
+      <el-input v-model="field" type="textarea" placeholder="请输入文本" @blur="parseField"></el-input>
+      <span slot="footer">
+        <el-button type="primary" @click="excelRowDialog = false">确 定</el-button>
+      </span>
+    </el-dialog>
+
+    <p>字段生成配置</p>
+    <el-button type="primary" @click="addRow">新建字段</el-button>
+    <el-button @click="codePrview">代码预览</el-button>
     <el-table :data="tableData">
-      <el-table-column prop="key" label="字段"> </el-table-column>
-      <el-table-column prop="title" label="中文名"> </el-table-column>
+      <el-table-column label="字段">
+        <div slot-scope="{ row }"><el-input v-model="row.key"></el-input></div>
+      </el-table-column>
+      <el-table-column label="中文名">
+        <div slot-scope="{ row }"><el-input v-model="row.title"></el-input></div>
+      </el-table-column>
       <el-table-column label="渲染类型">
         <div slot-scope="{ row }">
           <el-select v-model="row.type">
@@ -15,17 +26,18 @@
         </div>
       </el-table-column>
       <el-table-column label="表格展示">
-        <div slot-scope="{ row }">
-          <el-switch v-model="row.tableShow"></el-switch>
-        </div>
+        <div slot-scope="{ row }"><el-switch v-model="row.tableShow"></el-switch></div>
       </el-table-column>
       <el-table-column label="必填">
+        <div slot-scope="{ row }"><el-switch v-model="row.required"></el-switch></div>
+      </el-table-column>
+      <el-table-column label="操作">
         <div slot-scope="{ row }">
-          <el-switch v-model="row.required"></el-switch>
+          <el-button type="danger" icon="el-icon-delete" circle @click="deleteRow(row)"></el-button>
         </div>
       </el-table-column>
     </el-table>
-    <el-dialog top="5vh" title="代码预览" :visible.sync="dialogVisible" width="100%">
+    <el-dialog top="5vh" title="代码预览" :visible.sync="dialogVisible" width="99vw">
       <iframe v-if="previewUrl" :src="previewUrl" frameborder="0" class="pre_box"></iframe>
       <span slot="footer">
         <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
@@ -41,8 +53,10 @@ export default {
   data() {
     return {
       field: '',
+      index: 1,
       previewUrl: '',
       dialogVisible: false,
+      excelRowDialog: false,
       tableData: [],
       renderTypeList: [
         { label: '输入框', value: 'input' },
@@ -74,6 +88,19 @@ export default {
       const mdFile = new File(['```vue\n' + code + '\n```'], 'code.md', { type: 'text/markdown;charset=utf-8' })
       const filePath = URL.createObjectURL(mdFile)
       this.previewUrl = `/common/parseMarked/parseMarked.html?filePath=${filePath}`
+    },
+    addRow() {
+      this.tableData.push({
+        title: '新建字段' + this.index,
+        key: 'key' + this.index,
+        type: 'input',
+        required: false,
+        tableShow: false
+      })
+      this.index++
+    },
+    deleteRow(row) {
+      this.tableData = this.tableData.filter((x) => x.key != row.key)
     }
   }
 }
@@ -81,7 +108,7 @@ export default {
 
 <style lang="less" scoped>
 .pre_box {
-  width: 90vw;
-  height: 500px;
+  width: 95vw;
+  height: 80vh;
 }
 </style>
