@@ -61,7 +61,11 @@ export default {
       renderTypeList: [
         { label: '输入框', value: 'input' },
         { label: '下拉选择', value: 'select' },
-        { label: '单选', value: 'radio' }
+        { label: '日期', value: 'date' },
+        { label: '日期范围', value: 'daterange' },
+        { label: '开关', value: 'switch' },
+        { label: '单选', value: 'radio' },
+        { label: '计数器', value: 'inputNumber' }
       ]
     }
   },

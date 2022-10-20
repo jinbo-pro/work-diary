@@ -1,5 +1,20 @@
 function createFormItem(item) {
   switch (item.type) {
+    case 'inputNumber':
+      return `<el-input-number v-model="formData.${item.key}" :min="1" :max="10" label="${item.title}"></el-input-number>`
+    case 'switch':
+      return `<el-switch v-model="formData.${item.key}" :active-value="1" :inactive-value="0"></el-switch>`
+    case 'date':
+      return `<el-date-picker v-model="formData.${item.key}" type="date" placeholder="请选择${item.title}"></el-date-picker>`
+    case 'daterange':
+      return `
+      <el-date-picker
+        v-model="formData.${item.key}"
+        type="daterange"
+        start-placeholder="开始日期"
+        end-placeholder="结束日期"
+      >
+      </el-date-picker>`
     case 'select':
       return `
       <el-select v-model="formData.${item.key}" placeholder="请选择${item.title}">
