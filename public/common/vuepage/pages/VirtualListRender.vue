@@ -39,7 +39,7 @@ const mockRes = Mock.mock({
       'index|+1': 1,
       'count|1-99': 1,
       title: '@ctitle()', // 名称
-      cover: '@image("50x50", @hex())' // 封面
+      cover: '@image(50x50, @hex())' // 封面
     }
   ]
 })
