@@ -1,22 +1,28 @@
 <template>
   <div>
-    <el-button type="primary" @click="excelRowDialog = true">Excel列解析</el-button>
-    <el-dialog title="Excel列解析" :visible.sync="excelRowDialog" width="50%">
-      <el-input v-model="field" type="textarea" placeholder="请输入文本" @blur="parseField"></el-input>
-      <span slot="footer">
-        <el-button type="primary" @click="excelRowDialog = false">确 定</el-button>
-      </span>
-    </el-dialog>
+    <el-form :inline="true">
+      <el-form-item label="配置：">
+        <ConfigDialog ref="config" />
+      </el-form-item>
+      <el-form-item label="导入：">
+        <ImportDialog @change="importTableData" />
+      </el-form-item>
+    </el-form>
 
     <p>字段生成配置</p>
-    <el-button type="primary" @click="addRow">新建字段</el-button>
-    <el-button @click="codePrview">代码预览</el-button>
+    <div class="jsb ac">
+      <div>
+        <el-button type="primary" @click="addRow">新建字段</el-button>
+        <el-button type="success" @click="codePrview">代码预览</el-button>
+      </div>
+      <el-button type="danger" @click="tableData = []">清空</el-button>
+    </div>
     <el-table :data="tableData">
       <el-table-column label="字段">
-        <div slot-scope="{ row }"><el-input v-model="row.key"></el-input></div>
+        <div slot-scope="{ row }"><el-input v-model.trim="row.key"></el-input></div>
       </el-table-column>
       <el-table-column label="中文名">
-        <div slot-scope="{ row }"><el-input v-model="row.title"></el-input></div>
+        <div slot-scope="{ row }"><el-input v-model.trim="row.title"></el-input></div>
       </el-table-column>
       <el-table-column label="渲染类型">
         <div slot-scope="{ row }">
@@ -25,11 +31,14 @@
           </el-select>
         </div>
       </el-table-column>
+      <el-table-column label="默认值">
+        <div slot-scope="{ row }"><el-input v-model.trim="row.defaultValue"></el-input></div>
+      </el-table-column>
       <el-table-column label="表格展示">
         <div slot-scope="{ row }"><el-switch v-model="row.tableShow"></el-switch></div>
       </el-table-column>
       <el-table-column label="必填">
-        <div slot-scope="{ row }"><el-switch v-model="row.required"></el-switch></div>
+        <div slot-scope="{ row }"><el-switch v-model="row.isRule"></el-switch></div>
       </el-table-column>
       <el-table-column label="操作">
         <div slot-scope="{ row }">
@@ -48,15 +57,19 @@
 
 <script>
 import { createFormMain } from './createForm.js'
-import { humpName } from '/utils/collect.js'
+import { local } from '/utils/storage.js'
+import { createField } from './utils.js'
+import ConfigDialog from './ConfigDialog.vue'
+import ImportDialog from './ImportDialog.vue'
 export default {
+  components: {
+    ConfigDialog,
+    ImportDialog
+  },
   data() {
     return {
-      field: '',
-      index: 1,
       previewUrl: '',
       dialogVisible: false,
-      excelRowDialog: false,
       tableData: [],
       renderTypeList: [
         { label: '输入框', value: 'input' },
@@ -69,42 +82,34 @@ export default {
       ]
     }
   },
-  created() {},
+  created() {
+    this.tableData = local.get('elementFormCreate-tableData') || []
+  },
   methods: {
-    parseField() {
-      this.tableData = this.field
-        .split('\n')
-        .filter((e) => e)
-        .map((e) => {
-          const [key, title] = e.split('\t')
-          return {
-            title,
-            key: humpName(key, '_'),
-            type: 'input',
-            required: false,
-            tableShow: false
-          }
-        })
-    },
+    // 代码预览
     codePrview() {
-      const code = createFormMain(this.tableData)
+      const code = createFormMain(this.tableData, this.$refs.config.formData)
       this.dialogVisible = true
       const mdFile = new File(['```vue\n' + code + '\n```'], 'code.md', { type: 'text/markdown;charset=utf-8' })
       const filePath = URL.createObjectURL(mdFile)
       this.previewUrl = `/common/parseMarked/parseMarked.html?filePath=${filePath}`
+      this.saveTableData(this.tableData)
     },
     addRow() {
-      this.tableData.push({
-        title: '新建字段' + this.index,
-        key: 'key' + this.index,
-        type: 'input',
-        required: false,
-        tableShow: false
-      })
-      this.index++
+      this.tableData.push(createField())
     },
     deleteRow(row) {
       this.tableData = this.tableData.filter((x) => x.key != row.key)
+    },
+    // 导入配置
+    importTableData(tableData) {
+      console.log(tableData, 'tableData')
+      this.tableData = tableData
+    },
+    // 保存生成字段配置
+    saveTableData(tableData) {
+      console.log(tableData, 'tableData')
+      local.set('elementFormCreate-tableData', tableData)
     }
   }
 }

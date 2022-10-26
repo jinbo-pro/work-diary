@@ -38,6 +38,9 @@ export default {
     async setValue(v) {
       await this.$nextTick()
       editor.set(v)
+    },
+    getValue() {
+     return editor.get()
     }
   }
 }
