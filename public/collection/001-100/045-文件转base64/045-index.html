@@ -4,25 +4,33 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <link
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js"></script>
     <meta name="author" content="lijinbo" />
     <title>045-文件转base64</title>
-    <style>
-      #result {
-        margin: 14px;
-        padding: 14px;
-        word-break: break-all;
-        border: 1px solid #999;
-      }
-    </style>
   </head>
 
   <body>
-    <div class="box">
-      <input type="file" id="selectFile" />
+    <div id="app">
+      <p>文件转base64</p>
+      <div class="box">
+        <input type="file" @change="selectFile" />
+      </div>
+      <el-divider></el-divider>
+      <div>
+        <el-button type="primary" @click="copy">复制到剪切板</el-button>
+        <el-button type="success" @click="base64FileDown">base64文件下载</el-button>
+      </div>
+      <el-divider></el-divider>
+      <el-image style="width: 50px" v-if="isImage" :src="base64" :preview-src-list="[base64]"></el-image>
+      <el-input v-model="base64" type="textarea" :rows="5"></el-input>
     </div>
-    <button id="copy">复制到剪切板</button>
-    <div id="result"></div>
-    <script src="./045-main.js"></script>
+
+    <script type="module" src="./045-main.js"></script>
     <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>

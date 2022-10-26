@@ -1,5 +1,5 @@
 {
 	"sort": "045",
 	"name": "045-文件转base64",
-	"tag": "js,FileReader,buffer"
+	"tag": "js,FileReader,base64文件下载"
 }
