@@ -73,6 +73,7 @@ export default {
       tableData: [],
       renderTypeList: [
         { label: '输入框', value: 'input' },
+        { label: '文字域', value: 'textarea' },
         { label: '下拉选择', value: 'select' },
         { label: '日期', value: 'date' },
         { label: '日期范围', value: 'daterange' },

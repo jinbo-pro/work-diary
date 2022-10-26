@@ -3,6 +3,8 @@ function createFormItem(type, key, title, formDataName) {
   switch (type) {
     case 'inputNumber':
       return `<el-input-number v-model="${k}" :min="1" :max="10" label="${title}"></el-input-number>`
+    case 'textarea':
+      return `<el-input v-model="${k}" type="textarea" :rows="3" label="${title}"></el-input>`
     case 'switch':
       return `<el-switch v-model="${k}" :active-value="1" :inactive-value="0"></el-switch>`
     case 'date':
@@ -47,7 +49,7 @@ function getFormItem(config, formDataName) {
 function getRule(config) {
   if (!config.isRule) return ''
   const message = `请${selectType.includes(config.type) ? '选择' : '填写'}${config.title}`
-  return `${config.key}: [{ required: true, message: ${message}, trigger: 'blur' }],`
+  return `${config.key}: [{ required: true, message: '${message}', trigger: 'blur' }],`
 }
 /**表格展示 */
 function getTable(config) {
@@ -59,10 +61,10 @@ function getSelect(config, fillSelect) {
   if (!selectType.includes(config.type)) return ''
   if (!fillSelect) return `${config.key}: [],`
   return `
-    ${config.key}: [
-      { label: '选项1', value: '1' },
-      { label: '选项2', value: '2' },
-    ],`
+        ${config.key}: [
+          { label: '选项1', value: '1' },
+          { label: '选项2', value: '2' },
+        ],`
 }
 
 /**
@@ -111,7 +113,7 @@ ${formStr}
 </template>
 
 <script>
-// import { api_delete, api_getById, api_getPage, api_insert, api_update } from '@/apiList/xxx.js'
+// import { xxx_delete, xxx_getById, xxx_getPage, xxx_insert, xxx_update } from '@/apiList/xxx.js'
 export default {
   data() {
     return {
@@ -145,9 +147,9 @@ ${initForm}
     /**获取数据列表 */
     getList() {
       console.log(123, 'getList')
-      // api_getPage().then((res) => {
-      //   this.tableData = res
-      // })
+      xxx_getPage().then((res) => {
+        this.tableData = res
+      })
     },
     /**新增弹窗 */
     async openAddDialog() {
@@ -161,9 +163,9 @@ ${initForm}
       this.$refs.${formDataName}.validate(async (valid) => {
         if (!valid) return
         if (this.isEdit) {
-          // await api_update(this.${formDataName})
+          await xxx_update(this.${formDataName})
         } else {
-          // await api_insert(this.${formDataName})
+          await xxx_insert(this.${formDataName})
         }
         this.dialogVisible = false
         this.getList()
@@ -172,8 +174,7 @@ ${initForm}
     /**编辑 */
     async editRow(row) {
       this.isEdit = true
-      // const info = await api_getById({ id: row.id })
-      const info = row
+      const info = await xxx_getById({ id: row.id })
       this.dialogVisible = true
       await this.$nextTick()
       this.$refs.${formDataName}.resetFields()
@@ -182,7 +183,7 @@ ${initForm}
     /**删除 */
     async deleteRow(row) {
       await this.$confirm('确认删除吗?', '提示', { type: 'warning' })
-      // await api_delete({ id: row.id })
+      await xxx_delete({ id: row.id })
       this.$message.success('操作成功')
       this.getList()
     }
