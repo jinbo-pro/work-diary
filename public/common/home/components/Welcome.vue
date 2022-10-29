@@ -26,7 +26,7 @@ export default {
       if (this.closeWelcome) return
       await sleep(1200)
       this.show = true
-      await sleep(15000)
+      await sleep(8000)
       this.close()
     },
     close() {
