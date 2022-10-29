@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <div id="jsoneditor" :style="`width:${width};height:${height}`"></div>
-  </div>
+  <div id="jsoneditor" :style="`width:${width};height:${height}`"></div>
 </template>
 
 <script>
 let editor
-await import('https://lib.baomitu.com/jsoneditor/9.8.0/jsoneditor.min.js')
+import { loadScript } from '/utils/module/loadScript.js'
+await loadScript('https://lib.baomitu.com/jsoneditor/9.8.0/jsoneditor.min.js')
+await loadScript('https://lib.baomitu.com/jsoneditor/9.8.0/jsoneditor.min.css', 'link')
 const defaultOptions = {
   mode: 'code',
   modes: ['code', 'text', 'tree', 'preview']
@@ -40,12 +40,8 @@ export default {
       editor.set(v)
     },
     getValue() {
-     return editor.get()
+      return editor.get()
     }
   }
 }
 </script>
-
-<style>
-@import url('https://lib.baomitu.com/jsoneditor/9.8.0/jsoneditor.min.css');
-</style>

@@ -1,35 +1,56 @@
 <template>
-  <div>
-    <el-button v-for="(item, index) in toolsList" :key="index" size="mini" @click="openLink(item.url)">
-      {{ item.name }}
-    </el-button>
-    <hr />
-    <router-link v-for="(item, index) in pageList" :key="index" :to="item.path">
-      <el-button size="mini">{{ item.meta.title }}</el-button>
-    </router-link>
+  <div :class="['main_container', { hide: !opened }]">
+    <div class="sidebar_max">
+      <Hamburger class="hamburger_box jac" :isActive="opened" @toggleClick="toggleClick" />
+      <Sidebar :opened="opened" :treeList="treeList" />
+    </div>
     <router-view />
   </div>
 </template>
 
 <script>
-import { routes } from './router/index.js'
+import { routes } from './router/routes.js'
+import Sidebar from './components/Sidebar/index.vue'
+import Hamburger from './components/Hamburger.vue'
+
 export default {
+  components: {
+    Sidebar,
+    Hamburger
+  },
   data() {
     return {
-      pageList: [],
-      toolsList: [
-        { name: 'vue3-element-plus', url: '/common/vuepage-v3/index.html' },
-        { name: '聊天室', url: '/common/chatRoom/index.html' }
-      ]
+      opened: true,
+      treeList: []
     }
   },
   created() {
-    this.pageList = routes.filter((e) => e.meta)
+    this.treeList = routes.filter((e) => e.meta)
   },
   methods: {
-    openLink(url) {
-      window.open(url)
+    toggleClick() {
+      this.opened = !this.opened
     }
   }
 }
 </script>
+<style lang="less" scoped>
+.main_container {
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: #fff;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  &.hide {
+    grid-template-columns: 64px 1fr;
+    .hamburger_box {
+      width: 64px;
+    }
+  }
+  .sidebar_max {
+    overflow-x: scroll;
+    border-right: 1px solid #f1f1f1;
+    box-shadow: -4px -2px 20px rgb(36 37 38 / 13%);
+  }
+}
+</style>

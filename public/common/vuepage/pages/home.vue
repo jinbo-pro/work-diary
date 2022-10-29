@@ -1,31 +1,16 @@
 <template>
   <div>
-    <div class="home_box">home</div>
-    <a href="/">返回</a>
-    <PageLoading :show="showLoading" />
+    <div class="home_box">{{ message }}</div>
   </div>
 </template>
 
 <script>
-import PageLoading from '/components/PageLoading.vue'
 export default {
-  components: {
-    PageLoading
-  },
   data() {
     return {
-      showLoading: false
+      message: 'home'
     }
-  },
-  created() {
-    this.showLoading = true
-  },
-  mounted() {
-    setTimeout(() => {
-      this.showLoading = false
-    }, 300)
-  },
-  methods: {}
+  }
 }
 </script>
 

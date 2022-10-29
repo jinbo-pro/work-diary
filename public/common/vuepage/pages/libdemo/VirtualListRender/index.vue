@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import VirtualScroll from '../components/VirtualScroll.vue'
+import VirtualScroll from './VirtualScroll.vue'
 import { loadScript } from '/utils/module/loadScript.js'
 await loadScript('https://lib.baomitu.com/Mock.js/1.0.0/mock-min.js')
 const mockRes = Mock.mock({

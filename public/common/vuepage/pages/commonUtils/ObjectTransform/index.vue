@@ -23,7 +23,7 @@
 import { copyText } from '/utils/page.js'
 import { transformFn } from './transformFn.js'
 import JsonEditor from '/components/JsonEditor.vue'
-import CardContent from '../../components/CardContent.vue'
+import CardContent from '../../../components/CardContent.vue'
 export default {
   components: {
     JsonEditor,
