@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/Mock.js/1.0.0/mock-min.js"></script>
+    <meta name="author" content="lijinbo" />
+    <title>186-不间断播报</title>
+    <style>
+      .max {
+        display: flex;
+        align-items: center;
+      }
+      .container {
+        width: 220px;
+        height: 40px;
+        background: #0066ff;
+        border-radius: 2em;
+        overflow: hideden;
+      }
+
+      .container .ul {
+        animation: scroll 5s linear infinite;
+      }
+
+      @keyframes scroll {
+        0% {
+          transform: translate(0, 0);
+        }
+        100% {
+          transform: translate(0, -160px);
+        }
+      }
+
+      .container .li {
+        width: 100%;
+        line-height: 40px;
+        color: #fff;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="max">
+      <p>今日中奖用户：</p>
+      <div class="container">
+        <div class="ul" id="box" height="160px">
+          <div class="li"></div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const data = Mock.mock({
+        'list|3-20': [{ cname: '@cname()', 'mobile|13000000000-19999999999': 1 }]
+      })
+      const box = document.getElementById('box')
+      const hideMobile = (x) => String(x).replace(/(\d{3})(\d{4})(\d{4})/, '$1****$3')
+      for (let item of data.list) {
+        const div = document.createElement('div')
+        div.className = 'li'
+        div.innerHTML = `${item.cname}-${hideMobile(item.mobile)}`
+        box.append(div)
+      }
+    </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>
