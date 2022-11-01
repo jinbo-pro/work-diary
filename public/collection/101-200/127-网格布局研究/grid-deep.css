@@ -1,0 +1,82 @@
+.container1 {
+  /* 网格布局 */
+  display: grid;
+  /* 每行三列超出三列自动换行，每列宽度 50px */
+  grid-template-columns: 50px 50px 50px;
+  /* 前两行的高度，后面的行高度由自身内容决定 */
+  grid-template-rows: 50px 80px;
+}
+.container2 {
+  display: grid;
+  /* 每列间隔 10px */
+  column-gap: 10px;
+  /* 每行间隔 20px */
+  row-gap: 20px;
+  grid-template-columns: 50px 50px 50px;
+}
+.container4 {
+  display: grid;
+  /* 
+    justify-items 设置水平对齐方式
+      start       左侧对齐
+      end         右侧对齐
+      center      居中对齐
+      stretch     拉伸网格填充整个宽度（默认值）
+  */
+  justify-items: start;
+  /* 
+    justify-content 设置网格在网格容器内的对齐方式-类似 flex 布局语法
+      start       左侧对齐
+      end         右侧对齐
+      center      居中对齐
+      stretch     拉伸网格填充整个宽度（默认值）
+      space-around      两端对齐带空隙
+      space-between     两端对齐不带空隙
+  */
+  justify-content: space-around;
+  grid-template-columns: 50px 50px 50px;
+}
+.container5 {
+  display: grid;
+  /* 
+    align-items 设置垂直对齐方式
+      start       左侧对齐
+      end         右侧对齐
+      center      居中对齐
+      stretch     拉伸网格填充整个宽度（默认值）
+  */
+  align-items: start;
+  /* 
+    align-content 设置网格在网格容器内的对齐方式-类似 flex 布局语法
+      start       左侧对齐
+      end         右侧对齐
+      center      居中对齐
+      stretch     拉伸网格填充整个宽度（默认值）
+      space-around      两端对齐带空隙
+      space-between     两端对齐不带空隙
+  */
+  align-content: space-around;
+  grid-template-columns: 50px 50px 50px;
+}
+.container6 {
+  display: grid;
+  /* 1fr 分配剩余空间，min-content 最小空间 max-content 最大空间 */
+  grid-template-columns: 1fr min-content 1fr;
+}
+.container7 {
+  display: grid;
+  grid-gap: 1rem;
+  /*  repeat 表示轨道列表的重复片段
+        grid-template-columns: 50px 50px 50px; 可写成 grid-template-columns: repeat(3, 50px);
+      auto-fit 表示以网格项为准自动填充
+      minmax(300px, 1fr) 表示内容的最小和最大宽度
+        子元素最小为 300px 最大自动铺满 
+  */
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+.container8 {
+  display: grid;
+  /* place-items 同时设置 align-items 和 justify-items 两个属性 */
+  place-items: center;
+  grid-template-columns: repeat(3, 1fr);
+}

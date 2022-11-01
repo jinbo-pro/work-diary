@@ -17,11 +17,11 @@
 .max1 {
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
 .max1 .box {
   width: 86px;
   height: 86px;
-  margin-right: 20px;
   margin-bottom: 20px;
   box-sizing: border-box;
 }
@@ -36,20 +36,6 @@
   grid-row-gap: 16px;
   grid-column-gap: 16px;
   grid-template-columns: auto auto auto;
-}
-
-/* 侧边栏布局 */
-.grid1 {
-  display: grid;
-  grid-template-columns: minmax(150px, 25%) 1fr;
-}
-.grid1 .slider {
-  height: 100px;
-  background-color: rgb(67, 165, 96);
-}
-.grid1 .content {
-  height: 100px;
-  background-color: rgb(99, 126, 200);
 }
 
 /* 响应式 */
