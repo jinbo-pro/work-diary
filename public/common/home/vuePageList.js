@@ -10,10 +10,14 @@ function getVuePageRoute() {
     if (temp.children) {
       stark = stark.concat(temp.children)
     } else if (temp.meta) {
-      routeList.push({
+      let data = {
         fileName: temp.meta.title,
         filePath: `/common/vuepage/index.html#${temp.path}`
-      })
+      }
+      if (temp.meta.tag) {
+        data.meta = temp.meta
+      }
+      routeList.push(data)
     }
   }
   return routeList

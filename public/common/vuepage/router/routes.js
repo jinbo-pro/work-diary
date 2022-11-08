@@ -16,22 +16,22 @@ export const routes = [
     children: [
       {
         path: '/elementFormCreate',
-        meta: { title: 'element表单生成' },
+        meta: { title: 'element表单生成', tag: 'formData,低代码' },
         component: () => load('../pages/commonUtils/lowcode/elementFormCreate.vue')
       },
       {
         path: '/HumpAndLine',
-        meta: { title: '驼峰和连字符转换' },
+        meta: { title: '驼峰和连字符转换', tag: '工具' },
         component: () => load('../pages/commonUtils/HumpAndLine.vue')
       },
       {
         path: '/webcrypto',
-        meta: { title: '加密工具' },
+        meta: { title: '加密工具', tag: 'md5,sha1,aes' },
         component: () => load('../pages/commonUtils/webcrypto.vue')
       },
       {
         path: '/objKeySort',
-        meta: { title: '对象键排序' },
+        meta: { title: '对象键排序', tag: 'object,sort' },
         component: () => load('../pages/commonUtils/objKeySort.vue')
       },
       {
@@ -48,12 +48,12 @@ export const routes = [
     children: [
       {
         path: '/decodeAndEncode',
-        meta: { title: 'ObjectTransform' },
+        meta: { title: 'URI编码解码', tag: 'decodeURI,encodeURI' },
         component: () => load('../pages/codeTransform/decodeAndEncode.vue')
       },
       {
         path: '/UnicodeToText',
-        meta: { title: 'UnicodeToText' },
+        meta: { title: 'unicode与utf-8互转', tag: '编码转换' },
         component: () => load('../pages/codeTransform/UnicodeToText.vue')
       }
     ]
@@ -65,12 +65,12 @@ export const routes = [
     children: [
       {
         path: '/VirtualListRender',
-        meta: { title: '虚拟列表渲染' },
+        meta: { title: '虚拟列表渲染', tag: '大数据渲染' },
         component: () => load('../pages/libdemo/VirtualListRender/index.vue')
       },
       {
         path: '/echartsCommon',
-        meta: { title: 'echarts常用案例' },
+        meta: { title: 'echarts常用案例', tag: '图表,demo' },
         component: () => load('../pages/libdemo/echartsCommon/index.vue')
       }
     ]
