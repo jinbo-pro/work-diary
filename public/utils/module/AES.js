@@ -3,16 +3,18 @@
  * AES加密模式：   CBC
  * 填充：          Pkcs7
  * 密钥长度：      128
- * 密钥：          e10adc3949ba59ab
- * 偏移：          be56e057f20f883e
+ * 密钥：          d01619da751e9e3f
+ * 偏移：          a4e6da2825371f13
  * 输出类型：      base64
  * 字符集：        utf8
- * 原文：          你好-hello-123
- * 密文：          CWp6WhwrlYm0Z3Iye/KFhQdCwI+AlQ1Gna/L2OpubXQ=
+ * 原文：          123abc
+ * 密文：          2YGarL98FkhinMSvhBaX4Q==
  * 测试地址：      http://tool.chacuo.net/cryptaes
  * 
  * 前端依赖：      crypto-js
  * 依赖详情：      https://www.npmjs.com/package/crypto-js
+ * 服务端代码demo：
+ * https://developers.weixin.qq.com/miniprogram/dev/framework/open-ability/signature.html
  */
 
 export class AES {
