@@ -7,8 +7,8 @@
  * 偏移：          be56e057f20f883e
  * 输出类型：      base64
  * 字符集：        utf8
- * 原文：          AES加密测试内容：123456
- * 密文：          m7efEcxogfv1iFdCdP86HYS6HNVD8aW3PePqcVFVubY=
+ * 原文：          你好-hello-123
+ * 密文：          CWp6WhwrlYm0Z3Iye/KFhQdCwI+AlQ1Gna/L2OpubXQ=
  * 测试地址：      http://tool.chacuo.net/cryptaes
  * 
  * 前端依赖：      crypto-js
