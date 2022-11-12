@@ -5,18 +5,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <link
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js"></script>
     <title>164-非对称加密初探</title>
     <style></style>
   </head>
 
   <body>
-    <div class="box">
+    <div id="app">
       <p>
-        文档参考
-        <a href="https://wenxiaowu.blog.csdn.net/article/details/124396230"> RSA 非对称加密算法详细介绍 </a>
+        <el-link href="./rsa算法初探.html">RSA算法初探 </el-link>
+        <el-link href="http://tools.jb51.net/password/rsa_encode" target="_blank">RSA加解密测试地址</el-link>
+        <el-link href="https://www.shuzhiduo.com/A/Gkz1DwbndR/" target="_blank">java后端配合参考</el-link>
       </p>
+      <p>注意：该加密方式每次输出的密文是动态的，但是解密都能获得正确的原文</p>
+
+      <hr />
+      <el-tabs v-model="activeName" type="card" @tab-click="handleTabClick">
+        <el-tab-pane label="加密" name="encrypt">
+          <el-form label-width="80px">
+            <el-form-item label="公钥">
+              <el-input type="textarea" :rows="3" v-model="publicKey"></el-input>
+            </el-form-item>
+            <el-form-item label="原文">
+              <el-input type="textarea" :rows="4" v-model="content"></el-input>
+            </el-form-item>
+            <el-form-item label="密文">
+              <el-input readonly type="textarea" :rows="5" v-model="encrypted"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="encryptHandle">加密</el-button>
+              <el-button type="success" @click="copyResult(encrypted)">复制加密结果</el-button>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+        <el-tab-pane label="解密" name="decrypt">
+          <el-form label-width="80px">
+            <el-form-item label="私钥">
+              <el-input type="textarea" :rows="3" v-model="privateKey"></el-input>
+            </el-form-item>
+            <el-form-item label="密文">
+              <el-input type="textarea" :rows="4" v-model="encrypted"></el-input>
+            </el-form-item>
+            <el-form-item label="原文">
+              <el-input readonly type="textarea" :rows="5" v-model="content"></el-input>
+            </el-form-item>
+            <el-form-item>
+              <el-button type="primary" @click="decryptHandle">解密</el-button>
+              <el-button type="success" @click="copyResult(content)">复制解密结果</el-button>
+            </el-form-item>
+          </el-form>
+        </el-tab-pane>
+      </el-tabs>
     </div>
-    <script src="./164-main.js"></script>
+    <script type="module" src="./164-main.js"></script>
     <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>
