@@ -19,10 +19,11 @@
     <div id="app">
       <p>
         <el-link href="./rsa算法初探.html">RSA算法初探 </el-link>
-        <el-link href="http://tools.jb51.net/password/rsa_encode" target="_blank">RSA加解密测试地址</el-link>
+        <el-link href="http://www.metools.info/code/c80.html" target="_blank">RSA加解密测试地址</el-link>
         <el-link href="https://www.shuzhiduo.com/A/Gkz1DwbndR/" target="_blank">java后端配合参考</el-link>
       </p>
       <p>注意：该加密方式每次输出的密文是动态的，但是解密都能获得正确的原文</p>
+      <p>密匙长度：1024 ;密匙格式：PKCS#8 ;填充标志：OPENSSL PKCS1_ PADDING</p>
 
       <hr />
       <el-tabs v-model="activeName" type="card" @tab-click="handleTabClick">
