@@ -1,0 +1,5 @@
+{
+	"sort": "189",
+	"name": "189-获取首屏渲染时间",
+	"tag": "fcp,PerformanceObserver,性能"
+}
