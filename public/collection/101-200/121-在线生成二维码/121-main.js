@@ -1,45 +1,30 @@
-console.log('121-在线生成二维码')
-
-// 生成二维码
-const $save = $('#save')
-const $qrcode = $('#qrcode')
-const $content = $('#text-content')
-const $txtCount = $('.cur-words')
-const $createQrcode = $('#createQrcode')
-
-var code = null
-// 生成二维码
-$createQrcode.on('click', function () {
-  if (code) {
-    code.clear()
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      content: '',
+      codeUrl: '',
+      size: 375
+    }
+  },
+  methods: {
+    async createQrcode() {
+      if (!this.content) return this.$message.error('请输入内容')
+      this.codeUrl = await QRCode.toDataURL(this.content, {
+        width: this.size,
+        height: this.size,
+        margin: 1
+      })
+    },
+    save() {
+      if (!this.codeUrl) {
+        return this.$message.error('未生成二维码')
+      }
+      let a = document.createElement('a')
+      a.href = this.codeUrl
+      a.download = '二维码'
+      a.click()
+      this.$message.success('下载成功')
+    }
   }
-  $qrcode.text('')
-  var content = $content.val()
-  if (content) {
-    code = new QRCode(document.getElementById('qrcode'), content)
-  } else {
-    $qrcode.text('没有内容')
-  }
-})
-// 输入数量统计
-$content.on('input', function () {
-  var len = $(this).val().length
-  if (len) {
-    $txtCount.text(len).parent().show()
-  } else {
-    $qrcode.text('')
-    $txtCount.parent().hide()
-  }
-})
-// 保存二维码
-$save.on('click', function () {
-  let qrCanvas = $('#qrcode canvas')
-  if (!qrCanvas.length) {
-    return $qrcode.text('未生成二维码')
-  }
-  let a = document.createElement('a')
-  a.href = qrCanvas[0].toDataURL('image/png')
-  a.download = '二维码'
-  a.click()
-  console.log('下载成功')
 })

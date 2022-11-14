@@ -5,28 +5,35 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
-    <script src="https://lib.baomitu.com/qrcodejs/1.0.0/qrcode.min.js"></script>
-    <script src="https://lib.baomitu.com/jquery/1.11.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="./121-style.css" />
+    <script src="https://unpkg.com/qrcode@1.5.1/build/qrcode.js"></script>
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <link
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js"></script>
     <title>121-在线二维码生成</title>
   </head>
 
   <body>
-    <div class="box">
-      <div class="textarea-box" id="textarea-box">
-        <textarea id="text-content" class="main_text" name="text" placeholder="请输入文字内容"></textarea>
-        <div class="wordcount-box none" style="color: #999">
-          <span class="cur-words">0</span>
-        </div>
-      </div>
-      <div class="qrcode_content" style="width: 256px; height: 256px">
-        <div id="qrcode"></div>
-      </div>
-    </div>
-    <div class="food_but">
-      <button class="but" id="createQrcode">生成</button>
-      <button class="but" id="save">保存图片</button>
+    <div id="app">
+      <el-form label-width="80px">
+        <el-form-item>
+          <el-button type="primary" @click="createQrcode">生成二维码</el-button>
+          <el-button type="success" @click="save">保存图片</el-button>
+        </el-form-item>
+        <el-form-item label="原文">
+          <el-input type="textarea" :rows="3" v-model="content"></el-input>
+        </el-form-item>
+        <el-form-item label="大小">
+          <el-input-number v-model="size" :min="32" :max="2048"></el-input-number>
+        </el-form-item>
+        <el-form-item label="二维码">
+          <el-image v-if="codeUrl" :src="codeUrl"></el-image>
+        </el-form-item>
+      </el-form>
     </div>
     <script defer type="module" src="./121-main.js"></script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>
