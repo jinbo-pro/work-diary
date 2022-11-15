@@ -52,6 +52,8 @@ export default {
   }
   .app_main {
     width: calc(100vw - 200px);
+    overflow-y: scroll;
+    height: 100vh;
     padding: 24px;
     box-sizing: border-box;
   }

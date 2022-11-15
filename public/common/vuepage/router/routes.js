@@ -15,6 +15,11 @@ export const routes = [
     component: AboutLayout,
     children: [
       {
+        path: '/richText',
+        meta: { title: '富文本', tag: 'richText,tinymce,word' },
+        component: () => load('../pages/commonUtils/richText.vue')
+      },
+      {
         path: '/elementFormCreate',
         meta: { title: 'element表单生成', tag: 'formData,低代码' },
         component: () => load('../pages/commonUtils/lowcode/elementFormCreate.vue')
