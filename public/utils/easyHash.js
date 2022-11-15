@@ -69,11 +69,11 @@ function randomList(list) {
 function randomString(len, types) {
   // 密码字符集
   const dataObj = {
-    // 重复数字是为了使数字与字符的获取概率大致相当
+    // 重复数字和符号是为了使数字与字符的获取概率大致相当
     1: [...'01234567899876543210258'],
     2: [...'abcdefghijklmnopqrstuvwxyz'],
     3: [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ'],
-    4: [...'.@$%&()_-+?']
+    4: [...'.@$%&()_-+?.@$%&()_-+?']
   }
   let list = []
   for (let key in dataObj) {

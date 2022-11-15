@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/bignumber.js@9.1.0/bignumber.js"></script>
     <meta name="author" content="lijinbo" />
     <title>144-js浮点数精度的问题初探</title>
     <style></style>
@@ -18,9 +19,12 @@
       <a href="./浮点数精度问题说明.md">浮点数精度问题说明</a>
     </p>
     <script>
+      // 大小比较
       function equal(a, b) {
         return Math.abs(a - b) < Number.EPSILON
       }
     </script>
+    <script type="module" src="./144-main.js"></script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>
