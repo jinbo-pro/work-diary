@@ -1,5 +1,48 @@
 # 文件下载
 
+## axios 流文件下载
+
+```js
+/**
+ * blob 文件流下载
+ * @param {Blob} blob
+ * @param {string} fileName
+ */
+function downLoadClick(blob, fileName) {
+  const a = document.createElement('a')
+  if (fileName) {
+    a.download = fileName
+  } else {
+    a.setAttribute()
+  }
+  a.style.display = 'none'
+  const href = URL.createObjectURL(blob)
+  a.href = href
+  document.body.appendChild(a)
+  a.click()
+  URL.revokeObjectURL(href) // 释放URL 对象
+  document.body.removeChild(a)
+}
+
+axios({
+  url: 'xxx/xxx',
+  timeout: 8000,
+  method: 'post',
+  responseType: 'blob',
+  headers: { 'content-type': 'application/json;charset=UTF-8' }
+}).then((response) => {
+  if (!response.headers['content-disposition']) {
+    return console.log('content-disposition 未知文件名')
+  }
+  let fileName = response.headers['content-disposition'].split(';')[1].split('filename=')[1]
+  if (fileName) {
+    fileName = decodeURIComponent(fileName).replace(/"/g, '')
+  }
+  const blob = new new Blob([response.data])()
+  downLoadClick(blob, fileName)
+})
+```
+
 ## 同域名
 
 如果资源路径和浏览器处在同域的情况下，可直接使用 js 生成一个 a 标签进行下载代码如下
