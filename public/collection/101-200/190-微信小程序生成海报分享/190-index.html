@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>190-微信小程序生成海报分享</title>
+    <style></style>
+  </head>
+
+  <body>
+    <h2>查看代码</h2>
+    <div>
+      相关链接
+      <p>
+        <a href="https://www.npmjs.com/package/wxa-plugin-canvas" target="_blank">wxa-plugin-canvas</a>
+      </p>
+    </div>
+    <script type="module">
+      import { previewCodeFileList } from '/utils/module/previewCode.js'
+      previewCodeFileList([
+        './haibao/index.vue',
+        './haibao/options.js',
+        './WxaCanvas/index.vue',
+        './WxaCanvas/poster.vue'
+      ])
+    </script>
+  </body>
+</html>

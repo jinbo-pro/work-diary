@@ -102,7 +102,7 @@ export async function requestTagText(list) {
     const res = await response.text()
     const code = /<title>404<\/title>/.test(res) ? `// 文件获取失败: ${deCodeSrc}` : res
     const fileType = deCodeSrc.split('.').slice(-1)[0]
-    const fileName = deCodeSrc.split('/').slice(-1)[0]
+    const fileName = src.replace(/\//g, '-').replace(/\./g, '-')
     result += `\n## ${fileName}\n` + '```' + `${fileType}\n${code}\n` + '```' + '\n'
   }
   return result
