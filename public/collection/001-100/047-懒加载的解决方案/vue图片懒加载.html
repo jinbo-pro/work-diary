@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-lazyload@1.2.3/vue-lazyload.min.js"></script>
+    <link rel="stylesheet" href="./047-style.css" />
+    <title>vue图片懒加载</title>
+    <style>
+      .img_box {
+        height: 300px;
+      }
+      .img_box img {
+        max-height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <ul v-lazy-container="{ selector: 'img' }">
+        <li v-for="e in 100" :key="e" class="img_box">
+          <img class="lazyload" :data-src="`http://www.ruanyifeng.com/images_pub/pub_${e}.jpg`" />
+        </li>
+      </ul>
+    </div>
+    <script>
+      Vue.use(VueLazyload)
+      new Vue({ el: '#app' })
+    </script>
+  </body>
+</html>
