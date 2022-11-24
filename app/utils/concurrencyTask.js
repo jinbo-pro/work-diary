@@ -13,8 +13,7 @@ async function concurrencyTask(tasks, limit = 1) {
       const pms = fnList.map((fn) => fn())
       return await Promise.all(pms)
     } catch (error) {
-      console.log(`执行出错 x-x`)
-      this.errorTasks.push(fnList)
+      console.log(error, `执行出错 x-x`)
       return null
     }
   }
