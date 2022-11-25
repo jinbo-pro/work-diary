@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>196-element-ui弹窗拖拽及双击放大</title>
+    <!-- <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script> -->
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.js"></script>
+    <link
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js"></script>
+    <script src="./v-dialogDrag.js"></script>
+    <script src="./v-dialogDragZoom.js"></script>
+  </head>
+
+  <body>
+    <div id="app" class="box">
+      <el-button @click="dialogVisible = true" type="primary">dialogDrag 打开弹窗</el-button>
+      <el-dialog
+        v-dialog-drag
+        top="5vh"
+        title="dialogDrag 提示"
+        :visible.sync="dialogVisible"
+        width="50%"
+        :close-on-click-modal="false"
+      >
+        <span>可拖拽的弹窗</span>
+        <span slot="footer">
+          <el-button @click="dialogVisible = false">取 消</el-button>
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+      </el-dialog>
+      <hr />
+      <el-button @click="dialogZoom = true" type="primary">dialogDragZoom 打开弹窗</el-button>
+      <el-dialog
+        v-dialog-drag-zoom
+        title="dialogDragZoom 提示"
+        :visible.sync="dialogZoom"
+        width="50%"
+        :close-on-click-modal="false"
+      >
+        <span>可拖拽的弹窗 + 可缩放的弹窗</span>
+        <span slot="footer">
+          <el-button @click="dialogZoom = false">取 消</el-button>
+          <el-button type="primary" @click="dialogZoom = false">确 定</el-button>
+        </span>
+      </el-dialog>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            dialogVisible: false,
+            dialogZoom: false
+          }
+        }
+      })
+    </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>
