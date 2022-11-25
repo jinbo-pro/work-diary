@@ -39,3 +39,16 @@ const puppeteer = require('puppeteer')
 
 - figlet
   【[传送门](https://www.npmjs.com/package/figlet)】
+
+## node-sass 安装失败
+
+1. 修改淘宝镜像 `npm config set registry https://registry.npm.taobao.org`
+2. 修改 github 地址 `set SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/`
+3. 对应版本 【Node 13 node-sass 4.13+】，【Node 12 node-sass 4.12+】
+4. 清除已缓存的`binding.node` 输入：`npm rebuild node-sass`
+5. 安装 python2 配置 path，尝试本地编译`binding.node`[该步骤是尝试本地编译]
+6. 卸载 node-sass `npm uninstall node-sass`重新安装`npm install node-sass`
+
+【[参考链接](https://segmentfault.com/a/1190000020993365?utm_source=tag-newest)】
+
+> 严格按照这 6 步操作后基本都能成功了(●ˇ∀ˇ●)
