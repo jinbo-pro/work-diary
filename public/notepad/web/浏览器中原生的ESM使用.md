@@ -34,7 +34,7 @@
   {
     "imports": {
       "lodash": "https://cdn.skypack.dev/lodash",
-      "vue": "https://lib.baomitu.com/vue/3.2.31/vue.esm-browser.min.js"
+      "vue": "https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.esm-browser.prod.js"
     }
   }
 </script>

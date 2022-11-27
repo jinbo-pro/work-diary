@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import { init } from 'https://lib.baomitu.com/echarts/5.3.3/echarts.esm.min.js'
+import { init } from 'https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.esm.min.js'
 import resize from './resize.js'
 
 const guid = () => {

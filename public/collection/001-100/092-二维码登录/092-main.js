@@ -14,7 +14,13 @@ let tempGuid = guid()
 let appUrl = location.href.replace('index.html', 'app.html') + '?tempGuid=' + tempGuid
 console.log(appUrl, '-->>> appUrl')
 $('#appUrl').text(appUrl)
-new QRCode(document.getElementById('qrcode'), appUrl)
+QRCode.toCanvas(document.getElementById('qrcode'), appUrl, function (error) {
+  if (error) {
+    console.log(error)
+  } else {
+    console.log('ok')
+  }
+})
 
 // 开始轮询接口 查看是否登录成功
 var setTime = setInterval(() => {

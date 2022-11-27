@@ -31,7 +31,7 @@
 <script>
 import VirtualScroll from './VirtualScroll.vue'
 import { loadScript } from '/utils/module/loadScript.js'
-await loadScript('https://lib.baomitu.com/Mock.js/1.0.0/mock-min.js')
+await loadScript('https://cdn.jsdelivr.net/npm/mockjs@1.1.0/dist/mock-min.js')
 const mockRes = Mock.mock({
   'list|5000': [
     {

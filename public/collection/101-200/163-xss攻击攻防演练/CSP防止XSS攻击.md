@@ -48,9 +48,9 @@ style-src cdn.example.org third-party.org; child-src https:
 ```html
 <meta
   http-equiv="Content-Security-Policy"
-  content="script-src https://lib.baomitu.com; object-src 'none'; child-src https:"
+  content="script-src https://cdn.jsdelivr.net; object-src 'none'; child-src https:"
 />
 ```
 
-js 加载自己的和 `https://lib.baomitu.com` 的
+js 加载自己的和 `https://cdn.jsdelivr.net` 的
 css 加载自己的

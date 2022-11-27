@@ -13,9 +13,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://lib.baomitu.com/react/17.0.2/umd/react.production.min.js"></script>
-    <script src="https://lib.baomitu.com/react-dom/17.0.2/umd/react-dom.production.min.js"></script>
-    <script src="https://lib.baomitu.com/babel-standalone/6.26.0/babel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/babel-standalone@6.26.0/babel.min.js"></script>
     <title>react-hello</title>
   </head>
 
@@ -51,7 +51,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
     <title>vue-hello</title>
   </head>
 
@@ -91,7 +91,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://lib.baomitu.com/vue/3.2.31/vue.global.prod.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js"></script>
     <title>vue3-hello</title>
   </head>
   <body>
@@ -144,7 +144,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://lib.baomitu.com/Mock.js/1.0.0/mock-min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mockjs@1.1.0/dist/mock-min.js"></script>
     <title>mockjs-demo</title>
   </head>
 
@@ -236,8 +236,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://lib.baomitu.com/layui/2.6.8/css/layui.min.css" rel="stylesheet" />
-    <script src="https://lib.baomitu.com/layui/2.6.8/layui.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/layui@2.6.13/dist/css/layui.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/layui@2.6.13/dist/layui.min.js"></script>
     <title>layui-demo</title>
   </head>
   <body>
@@ -278,7 +278,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet/less" href="./demo.less" />
-    <script src="https://lib.baomitu.com/less.js/4.1.2/less.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.3/dist/less.min.js"></script>
     <title>less html</title>
     <style type="text/less"></style>
   </head>

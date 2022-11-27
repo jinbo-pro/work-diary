@@ -12,10 +12,13 @@ new Vue({
     // 生成二维码
     createdQrcode() {
       return new Promise((resolve, reject) => {
-        new QRCode(document.getElementById('qrcode'), location.href)
-        setTimeout(() => {
-          resolve()
-        }, 10)
+        QRCode.toCanvas(document.getElementById('qrcode'), location.href, function (error) {
+          if (error) {
+            reject(error)
+          } else {
+            resolve()
+          }
+        })
       })
     },
     // 生成海报

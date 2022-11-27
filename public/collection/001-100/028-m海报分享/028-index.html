@@ -3,9 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-    <script src="https://lib.baomitu.com/vue/2.6.10/vue.min.js"></script>
-    <script src="https://lib.baomitu.com/html2canvas/1.3.2/html2canvas.min.js"></script>
-    <script src="https://lib.baomitu.com/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.js"></script>
     <title>028-m海报分享</title>
   </head>
   <style>
@@ -57,7 +57,9 @@
       <div v-show="hasConvertImg" class="poster_box" @click="hasConvertImg = false">
         <img :src="convertImgDataUrl" class="poster_img" alt="" />
         <div class="qrcode_box">
-          <div id="qrcode"></div>
+          <div>
+            <canvas id="qrcode"></canvas>
+          </div>
         </div>
       </div>
     </div>
