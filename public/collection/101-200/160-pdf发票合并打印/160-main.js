@@ -4,7 +4,9 @@ const container = document.getElementById('container')
 async function main(files) {
   for (let file of files) {
     const url = URL.createObjectURL(file)
-    const pdfFile = await pdfjsLib.getDocument({ url, cMapUrl: './cmaps/' }).promise
+    /**字体解析文件地址 */
+    const cMapUrl = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/cmaps/'
+    const pdfFile = await pdfjsLib.getDocument({ url, cMapUrl }).promise
     // 发票只解析第一页即可
     const page = await pdfFile.getPage(1)
     // 解析PDF
