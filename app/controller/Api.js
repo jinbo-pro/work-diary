@@ -17,6 +17,17 @@ class Api extends BaseController {
     const result = this.resSuccess({ time: Date.now(), query })
     ctx.body = `jsonpCallBackMap.${query.callback}(${JSON.stringify(result)})`
   }
+  // sendBeacon 无阻塞发送统计数据
+  sendBeacon(ctx) {
+    const files = ctx.request.files
+    let result = null
+    if (files) {
+      result = `filesize: ${files.file.size}`
+    } else if (ctx.request.body) {
+      result = `body: ${ctx.request.body}`
+    }
+    ctx.body = this.resSuccess(result)
+  }
 }
 
 module.exports = new Api()

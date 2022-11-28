@@ -13,6 +13,7 @@ router.post('/merge', (ctx) => UpFile.merge(ctx))
 const Api = require('./controller/Api')
 router.get('/api/jsonp', (ctx) => Api.jsonp(ctx))
 router.get('/api/listData', (ctx) => Api.listData(ctx))
+router.post('/api/sendBeacon', (ctx) => Api.sendBeacon(ctx))
 router.post('/api/userListData', (ctx) => Api.userListData(ctx))
 
 // FileDirectory
