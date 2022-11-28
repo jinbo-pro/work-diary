@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.12/lib/index.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/element-ui@2.15.12/lib/theme-chalk/index.min.css" rel="stylesheet" />
+    <meta name="author" content="lijinbo" />
+    <title>199-常用正则整理</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div id="app">
+      <el-form ref="formData" :model="formData" :rules="formDataRules" label-width="80px">
+        <el-form-item v-for="(item, index) in keyList" :key="index" :label="item.title" :prop="item.key">
+          <el-input v-model.trim="formData[item.key]" :placeholder="`请填写${item.title}`"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="onSubmit">提交</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+    <script defer type="module" src="./199-main.js"></script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>
