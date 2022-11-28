@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
-    <link rel="stylesheet" href="./stars.css" />
     <title>122-css星空背景</title>
     <style>
       .starry_sky_max {
@@ -19,14 +18,43 @@
         box-sizing: border-box;
         background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
       }
+      @keyframes animStar {
+        from {
+          transform: translateY(0px);
+        }
+
+        to {
+          transform: translateY(-2000px);
+        }
+      }
     </style>
   </head>
 
   <body>
-    <div class="starry_sky_max">
-      <div id="stars"></div>
-      <div id="stars2"></div>
-      <div id="stars3"></div>
-    </div>
+    <div id="container" class="starry_sky_max"></div>
+    <script>
+      // 生成的背景要比
+      const r = (e) => ~~(Math.random() * e)
+      function createBoxShadow(count) {
+        const list = []
+        for (let i = 0; i < count; i++) {
+          list.push(`${r(2000)}px ${r(2000)}px #fff`)
+        }
+        return list.toString()
+      }
+      function createStarsDom(size, count) {
+        const div = document.createElement('div')
+        div.style.width = size + 'px'
+        div.style.height = size + 'px'
+        div.style.background = 'transparent'
+        div.style.boxShadow = createBoxShadow(count)
+        div.style.animation = `animStar ${size * 50}s linear infinite`
+        return div
+      }
+      const container = document.getElementById('container')
+      container.append(createStarsDom(1, 500))
+      container.append(createStarsDom(2, 300))
+      container.append(createStarsDom(3, 100))
+    </script>
   </body>
 </html>
