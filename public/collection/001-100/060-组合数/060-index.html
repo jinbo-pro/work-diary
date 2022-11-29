@@ -3,25 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <script src="https://cdn.jsdelivr.net/npm/jquery@1.11.3/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
     <title>060-组合数</title>
-    <style></style>
   </head>
 
   <body>
-    <div class="box">
+    <div id="app">
       <p>组合数计算公式</p>
+      <div>$$C_n^m = {n! \over m!(n-m)}，C_n^0=1$$</div>
       <div>
-        <embed src="code.svg" type="image/svg+xml" />
+        <div>总数：n</div>
+        <input v-model="n" type="number" placeholder="总数" />
       </div>
-      <span>n</span><input id="n" type="text" /> <span>m</span><input id="m" type="text" />
+      <div>
+        <div>取数：m</div>
+        <input v-model="m" type="number" placeholder="取数" />
+      </div>
       <p>
         <span>结果:</span>
-        <span id="result"></span>
+        <span>{{ result }}</span>
       </p>
-      <button id="handel">计算</button>
     </div>
     <script src="./060-main.js"></script>
     <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
