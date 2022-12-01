@@ -7,14 +7,49 @@
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vant@2.12.53/lib/vant.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vant@2.12.53/lib/index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/countup.js@2.3.2/dist/countUp.umd.min.js"></script>
     <link rel="stylesheet" href="/assets/css/css3-flex.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>掷骰子模拟</title>
   </head>
   <body>
     <div id="app">
-      <van-button type="primary" @click="getPoint">投掷</van-button>
-      <div v-for="(item, index) in pointList" :key="index">{{ item }}</div>
+      <div class="dice_max jsb ac">
+        <div v-for="(item, index) in pointList" :key="index" class="fdc jac">
+          <dice :num="item"></dice>
+          <span>{{ item }}</span>
+        </div>
+      </div>
+      <div class="jac">总点数：{{ sumPoint }}</div>
+      <van-divider></van-divider>
+      <van-tabs v-model="activeType">
+        <van-tab v-for="(item, key) in navList" :key="key" :title="item.title" :name="key">
+          <van-grid :column-num="key == 'point' ? 3 : 2">
+            <van-grid-item
+              v-for="e in item.list"
+              :key="e"
+              @click="item.select = e"
+              :text="e"
+              :class="{ select: item.select === e }"
+            >
+            </van-grid-item>
+          </van-grid>
+        </van-tab>
+      </van-tabs>
+      <van-cell-group>
+        <van-cell title="倍率：" :value="power"></van-cell>
+        <van-cell title="输赢：" :value="winOrLose"></van-cell>
+        <van-field v-model="betting" label="投注：" :disabled="money == 0" type="digit" class="betting"></van-field>
+        <van-cell title="资金：">
+          <div slot="right-icon">
+            <span id="money">{{ money }}</span>
+          </div>
+        </van-cell>
+      </van-cell-group>
+      <van-divider></van-divider>
+      <van-button v-if="money" type="info" block @click="getPoint">开始</van-button>
+      <van-button v-else type="primary" block @click="recharge">充值</van-button>
     </div>
-    <script type="module" src="./main.js"></script>
+    <script defer type="module" src="./main.js"></script>
   </body>
 </html>
