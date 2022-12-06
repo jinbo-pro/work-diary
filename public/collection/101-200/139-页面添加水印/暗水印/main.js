@@ -1,3 +1,13 @@
+function loadImg(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = function () {
+      resolve(img)
+    }
+    img.onerror = reject
+    img.src = src
+  })
+}
 function mergeData(ctx, newData, color, originalData) {
   let oData = originalData.data
   let bit, offset // offset的作用是找到alpha通道值，这里需要大家自己动动脑筋
@@ -55,40 +65,63 @@ function processData(ctx, originalData) {
   // 将结果绘制到画布
   ctx.putImageData(originalData, 0, 0)
 }
-/**加密水印 */
-function encodeImg(src) {
-  const ctx = document.getElementById('canvas').getContext('2d')
+
+function drawText(ctx, text, w, h) {
   ctx.font = '16px Microsoft Yahei'
-  ctx.fillText('我是暗水印', 10, 50)
-  const textData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height).data
-  const img = new Image()
-  img.onload = function () {
-    // 获取指定区域的canvas像素信息
-    ctx.drawImage(img, 0, 0)
-    const originalData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-    mergeData(ctx, textData, 'R', originalData)
+  const len = text.length * 16 + 32
+  const col = Math.ceil(w / len)
+  const row = Math.ceil(h / 16)
+  for (let x = 0; x < col; x++) {
+    for (let y = 0; y < row; y++) {
+      if (y % 3 == 0) {
+        ctx.fillText(text, x * len, y * 16)
+      }
+    }
   }
-  img.src = src
 }
 
-/**解密水印 */
-function decodeImg(src) {
-  const ctx = document.getElementById('canvas-parse').getContext('2d')
-  const img = new Image()
-  img.onload = function () {
-    // 获取指定区域的canvas像素信息
-    ctx.drawImage(img, 0, 0)
-    const originalData = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height)
-    console.log(originalData)
-    processData(ctx, originalData)
+new Vue({
+  el: '#app',
+  data() {
+    return {
+      text: '这是文案'
+    }
+  },
+  methods: {
+    selectFile(e) {
+      const [file] = e.target.files
+      const url = URL.createObjectURL(file)
+      loadImg(url).then((img) => {
+        this.encodeImg(img)
+      })
+    },
+    /**添加水印 */
+    encodeImg(img) {
+      const canvasDom = document.getElementById('canvas')
+      const { width, height } = img
+      canvasDom.width = width
+      canvasDom.height = height
+      const ctx = canvasDom.getContext('2d')
+      drawText(ctx, this.text, width, height)
+      const textData = ctx.getImageData(0, 0, width, height).data
+      ctx.drawImage(img, 0, 0)
+      const originalData = ctx.getImageData(0, 0, width, height)
+      mergeData(ctx, textData, 'R', originalData)
+    },
+    /**解析水印 */
+    parseImg() {
+      const ctxImg = document.getElementById('canvas')
+      const imgUrl = ctxImg.toDataURL('image/png')
+      const canvasDom = document.getElementById('canvas-parse')
+      const ctx = canvasDom.getContext('2d')
+      loadImg(imgUrl).then((img) => {
+        canvasDom.width = img.width
+        canvasDom.height = img.height
+        ctx.drawImage(img, 0, 0)
+        const originalData = ctx.getImageData(0, 0, img.width, img.height)
+        console.log(originalData)
+        processData(ctx, originalData)
+      })
+    }
   }
-  img.src = src
-}
-encodeImg('/assets/logo.png')
-
-// 解密水印
-document.getElementById('btn').onclick = function () {
-  const ctx = document.getElementById('canvas')
-  const imgUrl = ctx.toDataURL('image/png')
-  decodeImg(imgUrl)
-}
+})
