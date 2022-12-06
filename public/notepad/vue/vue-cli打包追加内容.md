@@ -31,13 +31,12 @@ configureWebpack: (config) => {
 webpack.BannerPlugin 插件是 webpack 内置的插件，可以很方便的追加版本信息
 
 ```js
-const os = require('os')
-const { BannerPlugin } = require('webpack')
-
 configureWebpack: (config) => {
   if (process.env.NODE_ENV === 'production') {
+    const os = require('os')
+    const { BannerPlugin } = require('webpack')
     const rule = /app\.[\w]+\.js$/
-    // 配置参考：https://doc.codingdict.com/webpack-cn-doc/plugins/banner-plugin/
+    // 追加打包人信息-配置参考：https://doc.codingdict.com/webpack-cn-doc/plugins/banner-plugin/
     config.plugins.push(
       new BannerPlugin({
         raw: true,
