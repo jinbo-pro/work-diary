@@ -40,6 +40,9 @@
       <el-table-column label="必填">
         <div slot-scope="{ row }"><el-switch v-model="row.isRule"></el-switch></div>
       </el-table-column>
+      <el-table-column label="查询字段">
+        <div slot-scope="{ row }"><el-switch v-model="row.fieldShow"></el-switch></div>
+      </el-table-column>
       <el-table-column label="操作">
         <div slot-scope="{ row }">
           <el-button type="danger" icon="el-icon-delete" circle @click="deleteRow(row)"></el-button>
@@ -68,6 +71,7 @@ export default {
   },
   data() {
     return {
+      formType: 2,
       previewUrl: '',
       dialogVisible: false,
       tableData: [],

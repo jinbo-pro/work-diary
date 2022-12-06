@@ -6,6 +6,12 @@
         <el-form-item label="表单对象名" prop="formDataName">
           <el-input v-model="formData.formDataName" placeholder="请填写表单对象名"></el-input>
         </el-form-item>
+        <el-form-item label="页面类型" prop="formType">
+          <el-radio-group v-model="formData.formType">
+          <el-radio :label="1">普通页面</el-radio>
+          <el-radio :label="2">组件集成</el-radio>
+        </el-radio-group>
+        </el-form-item>
         <el-form-item label="填充下拉" prop="fillSelect">
           <el-switch v-model="formData.fillSelect"></el-switch>
         </el-form-item>
@@ -53,6 +59,7 @@ export default {
     initFormData() {
       this.formData = {
         formDataName: 'formData', // 表单对象名
+        formType: 2, // 页面类型
         fillSelect: true, // 填充下拉
         styleLang: 'less' // 样式表类型
       }
