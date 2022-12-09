@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <title>WebSocket测试</title>
+    <style>
+      .url_box {
+        font-size: 18px;
+        line-height: 1.2em;
+        width: 90%;
+      }
+      .onerror,
+      .onclose {
+        color: red;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <p>WebSocket 地址：</p>
+      <textarea class="url_box" v-model="url" rows="5"></textarea>
+      <br />
+      <p>给服务器发送消息：</p>
+      <p>
+        <input type="text" v-model="message" />
+        <button @click="send">发送</button>
+      </p>
+      <br />
+      <button @click="initSocket">开始连接</button>
+      <button @click="list = []">清空消息</button>
+      <hr />
+      <p>消息列表：</p>
+      <ol class="message_list">
+        <li v-for="(item, index) in list" :key="index" :class="item.type">{{ item.data }}</li>
+      </ol>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            list: [],
+            tryCount: 5,
+            message: '',
+            url: ''
+          }
+        },
+        methods: {
+          initSocket() {
+            if (!this.url) return alert('地址不能为空')
+
+            this.websocket = new WebSocket(this.url)
+            // 连接失败
+            this.websocket.onerror = (res) => {
+              console.warn('socket连接失败')
+              this.list.push({ type: 'onerror', data: 'socket连接失败' })
+              setTimeout(() => {
+                if (this.tryCount > 5) {
+                  return
+                }
+                this.tryCount++
+                console.info('尝试重新链接')
+                this.initSocket()
+              }, 500)
+            }
+            // 连接成功建立的回调方法
+            this.websocket.onopen = (event) => {
+              console.info('socket连接已打开')
+              this.list.push({ type: 'onopen', data: 'socket连接已打开' })
+            }
+            // 接收到消息的回调方法
+            this.websocket.onmessage = this.messageHandel
+            // 连接关闭的回调方法
+            this.websocket.onclose = () => {
+              console.info('socket连接已关闭')
+              this.list.push({ type: 'onclose', data: 'socket连接已关闭' })
+            }
+          },
+          messageHandel({ data }) {
+            console.log(data)
+            this.list.push({ type: 'success', data })
+          },
+          send() {
+            if (this.message) {
+              this.websocket.send(this.message)
+              console.log('发送成功!', this.message)
+            } else {
+              alert('消息不能为空')
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
