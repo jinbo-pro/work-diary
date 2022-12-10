@@ -16,8 +16,6 @@
         position: relative;
       }
       .item_box {
-        width: 80px;
-        height: 80px;
         border: 1px solid #e1e1e1;
         border-radius: 50%;
         padding: 10px;
@@ -41,7 +39,7 @@
         </p>
       </div>
       <div id="container" class="max">
-        <div v-for="(item, index) in list" :key="index" class="item_box" :style="item.position">{{ item.name }}</div>
+        <div v-for="(item, index) in list" :key="index" class="item_box" :style="item.style">{{ item.name }}</div>
       </div>
     </div>
     <script src="./202-main.js"></script>
