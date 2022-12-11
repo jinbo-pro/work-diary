@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <meta name="author" content="lijinbo" />
+    <title>203-vue事件总线EventBus</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        文章参考：
+        <a href="https://www.cnblogs.com/yeminglong/p/16020509.html" target="_blank">vue -- 事件总线 EventBus</a>
+      </p>
+    </div>
+    <div id="app">
+      <div>
+        <span>父组件发布内容：</span>
+        <input type="text" v-model="text" placeholder="父组件发布内容" />
+        <button @click="handle">发送</button>
+      </div>
+      <hr />
+      <p>共享数据： {{ text }}</p>
+      <button @click="clearEvent">移除所有的订阅</button>
+      <div v-for="e in 5" :key="e">
+        <usercom :title="e"></usercom>
+      </div>
+    </div>
+    <script defer type="module" src="./203-main.js"></script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>
