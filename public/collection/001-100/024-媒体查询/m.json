@@ -1,5 +1,5 @@
 {
 	"sort": "024",
 	"name": "024-媒体查询",
-	"tag": "css,响应式,屏幕适配"
+	"tag": "css,响应式,屏幕适配,matchMedia"
 }
