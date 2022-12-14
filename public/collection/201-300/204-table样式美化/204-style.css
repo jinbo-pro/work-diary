@@ -1,0 +1,44 @@
+/* 1.单像素边框CSS表格 */
+.table_1 {
+  font-family: verdana, arial, sans-serif;
+  font-size: 11px;
+  color: #333333;
+  border-width: 1px;
+  border-color: #ddd;
+  /* border-collapse 将表格内单元格的两条边框合并成一条 */
+  border-collapse: collapse;
+}
+.table_1 th {
+  padding: 8px;
+  border: 1px solid #ddd;
+  background-color: #dedede;
+}
+.table_1 td {
+  padding: 8px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+}
+
+/* 2.带背景图的CSS样式表格 */
+.table_2 {
+  font-family: verdana, arial, sans-serif;
+  font-size: 11px;
+  color: #333333;
+  border-width: 1px;
+  border-color: #999999;
+  border-collapse: collapse;
+}
+.table_2 th {
+  background: #b5cfd2 url('/assets/loading.gif');
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #999999;
+}
+.table_2 td {
+  background: #dcddc0 url('/assets/img/tr.png');
+  border-width: 1px;
+  padding: 8px;
+  border-style: solid;
+  border-color: #999999;
+}
