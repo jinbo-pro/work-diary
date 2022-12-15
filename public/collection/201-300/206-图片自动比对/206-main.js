@@ -42,6 +42,7 @@ new Vue({
         console.log('请上传两张图片')
         return
       }
+      // todo 图像重叠区域判断[1]
       const [a, b] = imageDataList
       for (let i = 0; i < a.data.length; i++) {
         const orgItem = a.data[i]
