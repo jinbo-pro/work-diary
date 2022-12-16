@@ -1,4 +1,5 @@
 import { previewCode, requestTagText } from './previewCode.js'
+import { join } from './pathJoin.js'
 /**
  * 收集所有的标签内容添加到页面
  */
@@ -18,7 +19,8 @@ import { previewCode, requestTagText } from './previewCode.js'
     code.replace(importReg, (a, mode, path) => innerCodeList.push(path))
     let childrenCode = ''
     for (let item of innerCodeList) {
-      childrenCode += await loopParseCode(item)
+      const nextUrl = /7586/.test(src) ? item : join(src, '../' + item)
+      childrenCode += await loopParseCode(nextUrl)
     }
     return code + childrenCode
   }

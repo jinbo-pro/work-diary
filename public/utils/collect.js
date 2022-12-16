@@ -234,8 +234,24 @@ function compareVersion(currVersion, targetVerison) {
   }
   return false
 }
+/**
+ * 加载 img 为dom
+ * @param {string} src
+ * @returns
+ */
+function loadImg(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = function () {
+      resolve(img)
+    }
+    img.onerror = reject
+    img.src = src
+  })
+}
 
 export {
+  loadImg,
   getType, // 获取数据类型
   objectMerge, // 对象简单深度合并
   merge, // 对象深度合并 - 支持数组对象

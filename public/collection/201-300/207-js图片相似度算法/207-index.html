@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/element-ui@2.15.12/lib/index.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/element-ui@2.15.12/lib/theme-chalk/index.min.css" rel="stylesheet" />
+    <meta name="author" content="lijinbo" />
+    <title>207-js图片相似度算法</title>
+    <style>
+      .org_max .item_box {
+        max-width: 300px;
+        max-height: 300px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      参考文章：
+      <a href="https://segmentfault.com/a/1190000021236326?utm_source=tuicool" target="_blank">
+        利用 JS 实现多种图片相似度算法
+      </a>
+    </p>
+    <div id="app">
+      <el-form label-width="120px">
+        <el-form-item label="文件选择">
+          <input type="file" accept=".png,.jpg" multiple @change="selectFile" />
+        </el-form-item>
+        <el-form-item label="颜色区间数量">
+          <el-select v-model="zoneAmount" placeholder="请选择颜色区间数量">
+            <el-option v-for="item in [4,8,16,32,64]" :key="item" :label="item" :value="item"> </el-option>
+          </el-select>
+        </el-form-item>
+      </el-form>
+
+      <div class="org_max">
+        <el-image v-for="(item, index) in orgImgList" :key="index" :src="item" class="item_box"></el-image>
+      </div>
+
+      <div v-for="(item, index) in algorithmList" :key="index">
+        <h3>{{ item.title }}</h3>
+        <el-table :data="item.imgList">
+          <el-table-column label="缩略图" width="120">
+            <div slot-scope="{ row }">
+              <el-image :src="row.zipImg" style="width: 100px; height: 100px"></el-image>
+            </div>
+          </el-table-column>
+          <el-table-column prop="featuresValue" label="特征值"></el-table-column>
+          <el-table-column prop="featuresLength" label="特征长度" width="80"></el-table-column>
+        </el-table>
+        <p>
+          <span>余弦相似性：{{ item.result.cosineSimilarity }}</span>
+          <span>汉明相似性：{{ item.result.hammingSimilarity }}</span>
+        </p>
+      </div>
+    </div>
+    <script defer type="module" src="./207-main.js"></script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>

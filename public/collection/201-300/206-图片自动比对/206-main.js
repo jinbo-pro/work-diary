@@ -1,13 +1,4 @@
-function loadImg(src) {
-  return new Promise((resolve, reject) => {
-    const img = new Image()
-    img.onload = function () {
-      resolve(img)
-    }
-    img.onerror = reject
-    img.src = src
-  })
-}
+import { loadImg } from '/utils/collect.js'
 
 const imageDataList = []
 
