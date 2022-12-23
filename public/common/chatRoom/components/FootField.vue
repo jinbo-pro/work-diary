@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import Emoji from './Emoji/index.vue'
+import Emoji from '/components/Emoji/index.vue'
 import { guid } from '/utils/easyHash.js'
 import { getCursortPosition, setCaretPosition } from '../tools.js'
 
