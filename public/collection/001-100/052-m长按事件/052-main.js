@@ -35,3 +35,23 @@ function longPress(e) {
 
 var touchArea = document.getElementById('touchArea')
 addLongPress(touchArea, longPress)
+
+/**
+ * vue 长按指令
+ */
+import LongPress from './longpress.js'
+Vue.use(LongPress, { time: 500 })
+new Vue({
+  el: '#app',
+  data () {
+    return {
+      longpressCount: 0
+    }
+  },
+  methods: {
+    longpressHandle() {
+      this.longpressCount++
+      console.log('-->>> e')
+    }
+  }
+})
