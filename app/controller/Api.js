@@ -2,8 +2,11 @@ const { BaseController } = require('../Base')
 
 class Api extends BaseController {
   // mockjs测试列表 - get
-  listData(ctx) {
+  async listData(ctx) {
     const res = this.servers.MockData.listData(ctx.query.count)
+    if (ctx.query.sleep) {
+      await this.tools.sleep(Number(ctx.query.sleep))
+    }
     ctx.body = this.resSuccess(res)
   }
   // mockjs测试列表 - post
