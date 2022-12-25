@@ -102,7 +102,7 @@ function writeFileImgList() {
     }
   })
   let result = { jpgList, pngList, gifList }
-  fs.writeFileSync('./imgListjson.json', `const imgListjson = ${JSON.stringify(result, null, '\t')}`)
+  fs.writeFileSync('./imgListjson.js', `const imgListjson = ${JSON.stringify(result, null, '\t')}`)
 
   console.log('-->>> 写入完成')
 }
