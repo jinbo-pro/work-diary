@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lib.baomitu.com/vue/2.6.10/vue.js"></script>
+    <link
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js"></script>
+    <title>图片预览</title>
+    <style>
+      .img_item_box {
+        width: 300px;
+        height: 300px;
+        display: inline-block;
+      }
+      .img_box {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <el-tabs type="border-card" @tab-click="handleClick">
+        <el-tab-pane v-for="(imgList, key) in imgListjson" :key="key" :label="key">
+          <div v-for="(item, index) in imgList" :key="index" class="img_item_box">
+            <el-image class="img_box" :src="item" lazy :preview-src-list="imgList" @click="handleImg(item)"></el-image>
+          </div>
+        </el-tab-pane>
+      </el-tabs>
+    </div>
+    <script src="./imgListjson.js"></script>
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            imgListjson
+          }
+        },
+        mounted () {
+          this.handleClick()
+        },
+        methods: {
+          handleImg(url) {
+            console.log(url)
+          },
+          handleClick() {
+            document.documentElement.scrollTop = 0
+            this.$nextTick(() => {
+              document.documentElement.scrollTop = 1
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
