@@ -65,3 +65,7 @@ shutdown -s -t 5
 > -s 关机
 > -t xxx 指定时间后关机（秒）
 > shutdown /? 查看其他指令
+
+## 重启桌面程序
+
+ctrl+alt+. 打开控制面板运行新任务 explorer.exe 重启桌面程序即可
