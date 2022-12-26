@@ -22,6 +22,59 @@
       <div id="nav"></div>
     </div>
     <link rel="stylesheet" href="./index.css" />
-    <script defer type="module" src="./index.js"></script>
+    <script>
+      function getQueryObject(url) {
+        url = url == null ? window.location.href : url
+        const search = url.substring(url.lastIndexOf('?') + 1)
+        const obj = {}
+        const reg = /([^?&=]+)=([^?&=]*)/g
+        search.replace(reg, (rs, $1, $2) => {
+          const name = decodeURIComponent($1)
+          let val = decodeURIComponent($2)
+          val = String(val)
+          obj[name] = val
+          return rs
+        })
+        return obj
+      }
+
+      const options = {
+        // marked 配置参考: https://marked.js.org/using_advanced
+        renderer: new marked.Renderer(),
+        highlight: function (code) {
+          const s = hljs.highlightAuto(code).value
+          const n = hljs.lineNumbersValue(s)
+          return n
+        }
+      }
+
+      window.onload = async function () {
+        const filePath = getQueryObject().filePath
+        if (!filePath) {
+          document.body.innerHTML = '<p> filePath 不存在</p>'
+          return
+        }
+        const response = await fetch(filePath)
+        if (!response.ok) return null
+        const res = await response.text()
+        if (!res) return null
+        const content = document.getElementById('content')
+        content.innerHTML = marked.parse(res, options)
+        /**解析导航栏 */
+        const tags = Array.from(content.children).filter((e) => /^H[1-3]/.test(e.nodeName))
+        const navDom = document.getElementById('nav')
+        if (!tags.length) {
+          navDom.style.display = 'none'
+          content.style.width = '100%'
+          return
+        }
+        navDom.innerHTML = tags.reduce((p, c) => {
+          p += `<div class="tag_${c.nodeName}">
+            <a href="#${c.id}"><p>${c.id}</p></a>
+          </div>`
+          return p
+        }, '')
+      }
+    </script>
   </body>
 </html>
