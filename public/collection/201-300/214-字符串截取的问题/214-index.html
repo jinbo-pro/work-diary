@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/lodash@4.17.21/lodash.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/grapheme-splitter@1.0.4/index.min.js"></script>
+    <meta name="author" content="lijinbo" />
+    <title>214-字符串截取的问题</title>
+    <style>
+      a {
+        margin: 8px;
+      }
+      .text {
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      文章参考：
+      <a href="https://www.douyin.com/video/7171802077876735270" target="_blank">
+        你在截取字符串时遇到过这种bug吗？我们先分析清楚码元和码点吧
+      </a>
+      <a href="https://www.pipipi.net/questions/12218.html" target="_blank">JavaScript下含有emoji字符串的处理</a>
+    </p>
+    <div>
+      对于其他奇怪的文字如：
+      <p class="text">Z͑ͫ̓ͪ̂ͫ̽͏̴̙̤̞͉͚̯̞̠͍A̴̵̜̰͔ͫ͗͢L̠ͨͧͩ͘G̴̻͈͍͔̹̑͗̎̅͛́Ǫ̵̹̻̝̳͂̌̌͘!͖̬̰̙̗̿̋ͥͥ̂ͣ̐́́͜͞"</p>
+
+      可以可以参考 grapheme-splitte
+      <a href="https://github.com/orling/grapheme-splitter" target="_blank">grapheme-splitter</a>
+    </div>
+    <script src="./214-main.js"></script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>
