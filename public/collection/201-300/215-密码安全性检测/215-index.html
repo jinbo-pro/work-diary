@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>215-密码安全性检测</title>
+    <style>
+      .max {
+        padding: 16px;
+      }
+      .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-family: inherit;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        appearance: none;
+        border-radius: 0.375rem;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="max">
+      <div class="mb-3">
+        <p>在下面输入你想要检测的密码，瞬间即会得到答案:)</p>
+        <input type="text" class="form-control" id="password" maxlength="60" placeholder="请输入密码" />
+      </div>
+      <div class="mb-3">
+        <p>检测结果</p>
+        <textarea readonly class="form-control" id="result" rows="3"></textarea>
+      </div>
+    </div>
+    <script src="./215-main.js"></script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>
