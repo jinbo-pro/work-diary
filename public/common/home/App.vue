@@ -2,7 +2,7 @@
   <div id="home-container">
     <TopSearch @input="searchHandel" @reset="resetList" />
     <div class="type_title">常用</div>
-    <ArticleGroup v-if="commonRowList.length" :list="commonRowList" @linkInfo="linkInfo" />
+    <ArticleGroup :list="commonRowList" @linkInfo="linkInfo" />
     <div class="type_title">所有</div>
     <ArticleGroup :list="dataList" @linkInfo="linkInfo" />
     <div v-show="isEmpty" class="empty_tips">
