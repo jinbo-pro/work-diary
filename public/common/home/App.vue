@@ -91,17 +91,21 @@ export default {
         return
       }
       for (let item of this.dataList) {
-        const mKey = key.toLocaleLowerCase()
+        // 标签匹配
         let metaKey = false
         if (item.meta) {
+          const mKey = key.toLocaleLowerCase()
           metaKey = item.meta.tag.toLocaleLowerCase().includes(mKey)
         }
-        // 关键词高亮
-        const inName = item.fileName.toLocaleLowerCase().includes(mKey)
-        if (metaKey || inName) {
+        // 标题关键词高亮 PinyinMatch - https://www.npmjs.com/package/pinyin-match
+        const indexs = PinyinMatch.match(item.fileName, key)
+        if (indexs) {
           item.show = true
-          const reg = RegExp(key, 'gi')
-          item.searchHeight = item.fileName.replace(reg, (a) => `<em>${a}</em>`)
+          const [star, end] = indexs
+          const s = item.fileName.slice(star, end + 1)
+          item.searchHeight = item.fileName.replace(s, (a) => `<em>${a}</em>`)
+        } else if (metaKey) {
+          item.show = true
         } else {
           item.show = false
         }
