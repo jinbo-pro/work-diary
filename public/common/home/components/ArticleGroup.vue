@@ -23,21 +23,7 @@ export default {
   methods: {
     // 进入详情
     linkInfo(item) {
-      if (item.isFile == 1) {
-        if (item.fileName.endsWith('.md')) {
-          window.open(`/common/parseMarked/parseMarked.html?filePath=${item.filePath}`)
-        } else {
-          window.open(item.filePath)
-        }
-      } else {
-        let indexHtml = item.children?.find((ce) => ce.isFile && ce.fileName.includes('index.html'))
-        if (indexHtml) {
-          console.info(`${location.origin}/page/${indexHtml.id}`)
-          window.open(indexHtml.filePath)
-        } else {
-          console.info('改文件夹下没有可打开的 html')
-        }
-      }
+      this.$emit('linkInfo', item)
     }
   }
 }

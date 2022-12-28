@@ -1,7 +1,10 @@
 <template>
   <div id="home-container">
     <TopSearch @input="searchHandel" @reset="resetList" />
-    <ArticleGroup :list="dataList" />
+    <div class="type_title">常用</div>
+    <ArticleGroup v-if="commonRowList.length" :list="commonRowList" @linkInfo="linkInfo" />
+    <div class="type_title">所有</div>
+    <ArticleGroup :list="dataList" @linkInfo="linkInfo" />
     <div v-show="isEmpty" class="empty_tips">
       <EmptyData title="啥也没找到╰(￣ω￣ｏ)" />
     </div>
@@ -13,7 +16,7 @@
 
 <script>
 import { toList } from '/utils/tree.js'
-import { session } from '/utils/storage.js'
+import { session, local } from '/utils/storage.js'
 import BackPageTop from '/components/BackPageTop.vue'
 import TopSearch from './components/TopSearch.vue'
 import ArticleGroup from './components/ArticleGroup.vue'
@@ -33,18 +36,54 @@ export default {
   },
   data() {
     return {
-      dataList: []
+      dataList: [],
+      commonIdList: []
     }
   },
   computed: {
     isEmpty() {
       return !this.dataList.some((e) => e.show)
+    },
+    commonRowList() {
+      let list = this.commonIdList.filter((e) => e.count > 3).slice(0, 8)
+      list.sort((a, b) => b.count - a.count)
+      return list.map((e) => this.dataList.find((x) => x.id == e.id))
     }
+  },
+  created() {
+    this.commonIdList = local.get('commonIdList') || []
   },
   mounted() {
     this.initGetData()
   },
   methods: {
+    linkInfo(item) {
+      this.addCommon(item.id)
+      if (item.isFile == 1) {
+        if (item.fileName.endsWith('.md')) {
+          window.open(`/common/parseMarked/parseMarked.html?filePath=${item.filePath}`)
+        } else {
+          window.open(item.filePath)
+        }
+      } else {
+        let indexHtml = item.children?.find((ce) => ce.isFile && ce.fileName.includes('index.html'))
+        if (indexHtml) {
+          console.info(`${location.origin}/page/${indexHtml.id}`)
+          window.open(indexHtml.filePath)
+        } else {
+          console.info('改文件夹下没有可打开的 html')
+        }
+      }
+    },
+    addCommon(id) {
+      const cur = this.commonIdList.find((e) => e.id == id)
+      if (cur) {
+        cur.count++
+      } else {
+        this.commonIdList.push({ id, count: 1 })
+      }
+      local.set('commonIdList', this.commonIdList)
+    },
     searchHandel(e) {
       var key = e
       if (!key) {
@@ -118,6 +157,9 @@ export default {
   box-sizing: border-box;
   background: url(/assets/img/bl.png) no-repeat fixed bottom left, url(/assets/img/tr.png) no-repeat fixed top right,
     #f0f2f7;
+}
+.type_title {
+  padding-left: 16px;
 }
 .empty_tips {
   text-align: center;
