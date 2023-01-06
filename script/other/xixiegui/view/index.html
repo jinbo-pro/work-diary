@@ -27,7 +27,10 @@
         justify-content: space-between;
         margin: 4px;
       }
-      .en_key {
+      .attr_item_box .value {
+        width: 50px;
+      }
+      .about {
         font-size: 12px;
         color: #999;
       }
@@ -36,7 +39,11 @@
         top: 10px;
         right: 10px;
         z-index: 999;
-        opacity: 0.5;
+        opacity: 0.7;
+      }
+      .btn button {
+        cursor: pointer;
+        margin-left: 16px;
       }
     </style>
   </head>
@@ -44,14 +51,21 @@
   <body>
     <div id="app">
       <div class="btn">
-        <button @click="updateHandle">保存</button>
+        <div>
+          <button @click="importBtn">导入</button>
+          <button @click="exportBtn">导出</button>
+          <button @click="reset">重置</button>
+          <button @click="updateHandle">保存</button>
+        </div>
       </div>
       <div class="max">
         <div v-for="(item, index) in list" :key="index" class="card">
-          <p class="user_title">{{ item.name }}--{{ item.startIndex }}-{{ item.endIndex }}</p>
+          <p class="user_title">
+            [ {{ index + 1 }} ] {{ item.name }} <span class="about">{{ item.startIndex }}-{{ item.endIndex }}</span>
+          </p>
           <div v-for="e, in item.content" :key="e.key" class="attr_item_box">
-            <div>{{ e.title }}<span class="en_key">{{ e.key }}</span></div>
-            <input type="number" v-model="e.value" />
+            <div>{{ e.title }}<span class="about">{{ e.key }}</span></div>
+            <input class="value" type="number" v-model="e.value" />
           </div>
         </div>
       </div>
@@ -78,7 +92,39 @@
               body: JSON.stringify(this.list),
               headers: { 'Content-Type': 'application/json' }
             })
-            console.log(res, '-->>> res')
+            console.log(res, '-->>> 更新成功')
+          },
+          async reset() {
+            const res = await fetch('/reset')
+            console.log(res, '-->>> 重置成功')
+            this.getList()
+          },
+          importBtn() {
+            const input = document.createElement('input')
+            input.type = 'file'
+            input.click()
+            input.onchange = (f) => {
+              const reader = new FileReader()
+              reader.readAsText(f.target.files[0])
+              reader.onload = (e) => {
+                const text = e.target.result
+                try {
+                  this.list = JSON.parse(text)
+                } catch (error) {
+                  console.error(error)
+                  console.log('导入失败！存档损坏')
+                }
+              }
+            }
+          },
+          exportBtn() {
+            console.log(this.list, '-->>> list')
+            const fileName = `set-config_${Date.now()}.txt`
+            const file = new File([JSON.stringify(this.list)], fileName, { type: 'text/plain;charset=utf-8' })
+            const a = document.createElement('a')
+            a.href = URL.createObjectURL(file)
+            a.download = fileName
+            a.click()
           }
         }
       })

@@ -11,7 +11,8 @@ server.on('request', async (req, res) => {
     response(res, 'text/html', readFile('index.html'))
   } else if (url == '/getInitData') {
     // 获取初始数据
-    response(res, 'application/json', getInitData())
+    const list = await getInitData()
+    response(res, 'application/json', list)
   } else if (url == '/update') {
     // 更新
     const dataStr = await parseBody(req)

@@ -1,14 +1,16 @@
 const fs = require('fs')
 const path = require('path')
-const dir = 'G:/SteamLibrary/steamapps/common/Vampire Survivors/resources/app/.webpack/renderer'
+const { gameRootDir } = require('./config')
 
 const keyList = [
   { title: '名称', key: 'charName' },
+  { title: 'HP', key: 'maxHp' },
   { title: '力量', key: 'power' },
   { title: '恢复', key: 'regen' },
   { title: '防御', key: 'armor' },
   { title: '攻击范围', key: 'area' },
   { title: '飞射速度', key: 'speed' },
+  { title: '移动速度', key: 'moveSpeed' },
   { title: '冷却时间', key: 'cooldown' },
   { title: '持续时间', key: 'duration' },
   { title: '发射数量', key: 'amount' },
@@ -25,6 +27,7 @@ const keyList = [
  * @param {string} text
  */
 function getConfigCode(text) {
+  if (!text) return []
   const checkStr = (index, str) => {
     return text.slice(index, index + str.length) === str
   }
@@ -35,7 +38,7 @@ function getConfigCode(text) {
       index++
     }
   }
-  const characterLang = require(path.join(dir, './assets/lang/characterLang.json'))
+  const characterLang = require(path.join(gameRootDir, './assets/lang/characterLang.json'))
   const nameLang = characterLang['zh-CN']['translations']
 
   let len = text.length
@@ -114,6 +117,16 @@ function readFile(filePath, isBinary) {
   const url = path.resolve(__dirname, `./view/${filePath}`)
   return isBinary ? fs.readFileSync(url, 'binary') : fs.readFileSync(url).toString()
 }
+/**
+ * 检查文件可访问性
+ * @param {string} dst
+ * @returns
+ */
+function checkDir(dst) {
+  return new Promise((resolve, reject) => {
+    fs.access(dst, (err) => (err ? resolve(false) : resolve(true)))
+  })
+}
 
 module.exports = {
   keyList,
@@ -123,5 +136,6 @@ module.exports = {
 
   response,
   parseBody,
-  readFile
+  readFile,
+  checkDir
 }
