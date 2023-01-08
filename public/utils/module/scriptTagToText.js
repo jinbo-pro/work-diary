@@ -19,7 +19,7 @@ import { join } from './pathJoin.js'
     code.replace(importReg, (a, mode, path) => innerCodeList.push(path))
     let childrenCode = ''
     for (let item of innerCodeList) {
-      const nextUrl = /7586/.test(src) ? item : join(src, '../' + item)
+      const nextUrl = /7586/.test(src) || /^\//.test(item) ? item : join(src, '../' + item)
       childrenCode += await loopParseCode(nextUrl)
     }
     return code + childrenCode
