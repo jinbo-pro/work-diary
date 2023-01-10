@@ -1,23 +1,22 @@
 const fs = require('fs')
 const path = require('path')
 const { getConfigCode, checkDir } = require('./common')
-const { gameRootDir } = require('./config')
+const { srcFilePath, diyFilePath } = require('./config')
 
 /**获取初始数据 */
 async function getInitData() {
-  const diyFilePath = path.join(gameRootDir, './main.bundle-diy.js')
   const diyIsFile = await checkDir(diyFilePath)
   let text = ''
   if (diyIsFile) {
     text = fs.readFileSync(diyFilePath).toString()
   } else {
-    text = fs.readFileSync(path.join(gameRootDir, './main.bundle.js')).toString()
+    text = fs.readFileSync(srcFilePath).toString()
   }
   return getConfigCode(text)
 }
 /**更新 */
 function update(data) {
-  const text = fs.readFileSync(path.join(gameRootDir, './main.bundle.js')).toString()
+  const text = fs.readFileSync(srcFilePath).toString()
   let replaceStrList = data.map((item) => {
     const { startIndex, endIndex } = item
     const str = text.slice(startIndex, endIndex)
@@ -35,7 +34,7 @@ function update(data) {
     index = item.endIndex
   }
   result += text.slice(replaceStrList[replaceStrList.length - 1].endIndex)
-  fs.writeFileSync(path.join(gameRootDir, './main.bundle-diy.js'), result)
+  fs.writeFileSync(diyFilePath, result)
   // 修改 html 的引入文件
   const htmlPath = path.join(gameRootDir, './index.html')
   const indexHtml = fs.readFileSync(htmlPath).toString()
@@ -45,8 +44,8 @@ function update(data) {
 }
 /**重置修改 */
 function reset() {
-  const text = fs.readFileSync(path.join(gameRootDir, './main.bundle.js')).toString()
-  fs.writeFileSync(path.join(gameRootDir, './main.bundle-diy.js'), text)
+  const text = fs.readFileSync(srcFilePath).toString()
+  fs.writeFileSync(diyFilePath, text)
 }
 
 module.exports = {

@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const { gameRootDir } = require('./config')
+const { characterLangPath } = require('./config')
 
 const keyList = [
   { title: '名称', key: 'charName' },
@@ -38,7 +38,7 @@ function getConfigCode(text) {
       index++
     }
   }
-  const characterLang = require(path.join(gameRootDir, './assets/lang/characterLang.json'))
+  const characterLang = require(characterLangPath)
   const nameLang = characterLang['zh-CN']['translations']
 
   let len = text.length
