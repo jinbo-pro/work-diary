@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const { getConfigCode, checkDir } = require('./common')
-const { srcFilePath, diyFilePath } = require('./config')
+const { srcFilePath, diyFilePath, gameRootDir } = require('./config')
 
 /**获取初始数据 */
 async function getInitData() {
