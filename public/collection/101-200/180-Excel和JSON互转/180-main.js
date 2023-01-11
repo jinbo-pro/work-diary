@@ -6,14 +6,28 @@ new Vue({
   data() {
     return {
       index: 1,
+      jsonStr: '',
       tableData: [],
-      rowKey: [
-        { key: 'name', name: '姓名' },
-        { key: 'age', name: '年龄' }
-      ]
+      rowKey: []
     }
   },
   methods: {
+    importJson() {
+      if (!this.jsonStr) return this.$message.error('请输入json数据')
+      try {
+        var list = JSON.parse(this.jsonStr)
+        if (!Array.isArray(list)) {
+          list = [list]
+        }
+        for (let key in list[0]) {
+          this.rowKey.push({ key, name: key })
+        }
+        this.tableData = list
+      } catch (error) {
+        this.$message.error('数据解析失败')
+        console.error(error)
+      }
+    },
     addRow() {
       let newItem = this.rowKey.reduce((p, c) => {
         p[c.key] = Mock.Random.ctitle()
