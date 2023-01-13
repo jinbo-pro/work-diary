@@ -10,6 +10,7 @@ const diyFilePath = path.join(gameRootDir, './main.bundle-diy.js')
 const characterLangPath = path.join(gameRootDir, './assets/lang/characterLang.json')
 
 module.exports = {
+  gameRootDir,
   srcFilePath,
   diyFilePath,
   characterLangPath
