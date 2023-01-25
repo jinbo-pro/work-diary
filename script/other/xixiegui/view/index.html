@@ -61,7 +61,7 @@
       <div class="max">
         <div v-for="(item, index) in list" :key="index" class="card">
           <p class="user_title">
-            [ {{ index + 1 }} ] {{ item.name }} <span class="about">{{ item.startIndex }}-{{ item.endIndex }}</span>
+            [ {{ index + 1 }} ] {{ item.name }} <span class="about">{{ item.nameEn }}</span>
           </p>
           <div v-for="e, in item.content" :key="e.key" class="attr_item_box">
             <div>{{ e.title }}<span class="about">{{ e.key }}</span></div>
@@ -71,7 +71,7 @@
       </div>
     </div>
     <script>
-      new Vue({
+      const vm = new Vue({
         el: '#app',
         data() {
           return {
@@ -85,6 +85,7 @@
           async getList() {
             const res = await fetch('/getInitData')
             this.list = await res.json()
+            console.log(this.list, '-->>> 678');
           },
           async updateHandle() {
             const res = await fetch('/update', {

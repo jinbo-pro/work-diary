@@ -60,7 +60,7 @@ function getConfigCode(text) {
       const nameEn = content[0].value
       const d = nameLang[nameEn.toLocaleUpperCase()]
       const name = d ? d.charName : nameEn
-      list.push({ startIndex: i, endIndex, name, content: content.slice(1).filter((x) => x) })
+      list.push({ startIndex: i, endIndex, nameEn, name, content: content.slice(1).filter((x) => x) })
     }
   }
   return list
