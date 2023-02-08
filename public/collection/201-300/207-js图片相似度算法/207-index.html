@@ -14,6 +14,9 @@
         max-width: 300px;
         max-height: 300px;
       }
+      a {
+        margin: 8px;
+      }
     </style>
   </head>
 
@@ -23,10 +26,13 @@
       <a href="https://segmentfault.com/a/1190000021236326?utm_source=tuicool" target="_blank">
         利用 JS 实现多种图片相似度算法
       </a>
+      <a href="http://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html" target="_blank">
+        相似图片搜索的原理 - 阮一峰
+      </a>
     </p>
     <div id="app">
       <el-form label-width="120px">
-        <el-form-item label="文件选择">
+        <el-form-item label="请选择2张图片">
           <input type="file" accept=".png,.jpg" multiple @change="selectFile" />
         </el-form-item>
         <el-form-item label="颜色区间数量">

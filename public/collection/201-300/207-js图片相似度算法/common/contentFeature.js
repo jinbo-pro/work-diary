@@ -14,8 +14,10 @@ function toGray(imgData) {
   }
   return grayData
 }
-// OTSU algorithm
-// rewrite from http://www.labbookpages.co.uk/software/imgProc/otsuThreshold.html
+/**
+ * OTSU algorithm
+ * rewrite from http://www.labbookpages.co.uk/software/imgProc/otsuThreshold.html
+ */ 
 export function OTSUAlgorithm(imgData) {
   const grayData = toGray(imgData)
   let ptr = 0
