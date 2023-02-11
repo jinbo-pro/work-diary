@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/mockjs@1.1.0/dist/mock-min.js"></script>
+    <meta name="author" content="lijinbo" />
+    <title>220-文字不规则环绕图片</title>
+    <style>
+      .logo {
+        width: 200px;
+        height: 200px;
+        margin-right: 16px;
+        border-radius: 50%;
+        float: left;
+        /* 设置原型环绕 */
+        shape-outside: circle(50%);
+        background-image: url(http://www.ruanyifeng.com/images_pub/pub_31.jpg);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <div class="logo">
+       
+      </div>
+      <p>文字不规则环绕，可以通过 shape-outside 属性设置形状环绕</p>
+      <p id="text"></p>
+    </div>
+    <script>
+      document.getElementById('text').innerHTML = Mock.Random.cparagraph(10, 20)
+    </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>
