@@ -5,8 +5,8 @@
 <script>
 let editor
 import { loadScript } from '/utils/module/loadScript.js'
-await loadScript('https://cdn.jsdelivr.net/npm/jsoneditor@9.9.2/dist/jsoneditor.min.js')
-await loadScript('https://cdn.jsdelivr.net/npm/jsoneditor@9.9.2/dist/jsoneditor.min.css', 'link')
+await loadScript('https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/jsoneditor/9.7.2/jsoneditor.min.js')
+await loadScript('https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jsoneditor/9.7.2/jsoneditor.min.css', 'link')
 const defaultOptions = {
   mode: 'code',
   modes: ['code', 'text', 'tree', 'preview']

@@ -11,7 +11,7 @@ import { language } from './common/zh_CN.js'
 import { uploadFileApi } from './common/uploadFile.js'
 import { dynamicLoadScript } from './dynamicLoadScript.js'
 
-const tinymceCDN = 'https://cdn.jsdelivr.net/npm/tinymce@5.10.6/tinymce.min.js'
+const tinymceCDN = 'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/tinymce/5.10.3/tinymce.min.js'
 
 export default {
   name: 'Tinymce',

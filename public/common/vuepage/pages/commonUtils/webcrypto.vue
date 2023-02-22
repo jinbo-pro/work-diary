@@ -53,7 +53,7 @@
 
 <script>
 import { loadScript } from '/utils/module/loadScript.js'
-loadScript('https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.js')
+loadScript('https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/crypto-js/4.1.1/crypto-js.min.js')
 import CardContent from '../../components/CardContent.vue'
 import { AES } from '/utils/module/AES.js'
 export default {

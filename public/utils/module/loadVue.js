@@ -1,6 +1,6 @@
 import { join } from './pathJoin.js'
 /**less cdn */
-const lessCDN = 'https://cdn.jsdelivr.net/npm/less@4.1.3/dist/less.min.js'
+const lessCDN = 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/less.js/4.1.2/less.min.js'
 
 /**获取匹配的代码块 */
 function getStrMatch(str, block) {
