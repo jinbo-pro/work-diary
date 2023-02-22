@@ -1,6 +1,7 @@
 <template>
   <div>
     <div style="text-align: right">
+      <el-button icon="el-icon-refresh" circle @click="getList"></el-button>
       <el-button type="danger" icon="el-icon-delete" circle @click="clearSim"></el-button>
     </div>
     <el-table :data="tableData" style="width: 100%">
