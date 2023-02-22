@@ -11,6 +11,7 @@ router.post('/merge', (ctx) => UpFile.merge(ctx))
 
 // Api
 const Api = require('./controller/Api')
+router.get('/sim', (ctx) => Api.sim(ctx))
 router.get('/api/jsonp', (ctx) => Api.jsonp(ctx))
 router.get('/api/listData', (ctx) => Api.listData(ctx))
 router.post('/api/sendBeacon', (ctx) => Api.sendBeacon(ctx))
