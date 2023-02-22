@@ -1,5 +1,3 @@
-const fs = require('fs')
-const path = require('path')
 const { BaseController } = require('../Base')
 
 class Api extends BaseController {
@@ -32,23 +30,6 @@ class Api extends BaseController {
       result = `body: ${ctx.request.body}`
     }
     ctx.body = this.resSuccess(result)
-  }
-  async sim(ctx) {
-    const dataPath = path.resolve(__dirname, '../../public/upload')
-    await this.tools.file.checkDir(dataPath)
-    const filePath = path.join(dataPath, 'simData.json')
-    let list = []
-    const ip = ctx.request.ip
-    const time = this.tools.jcore.parseTime(new Date())
-
-    try {
-      list = require(filePath)
-    } catch (error) {
-      console.log('没有文件直接新建')
-    }
-    list.push({ ip, time })
-    fs.writeFileSync(filePath, JSON.stringify(list, null, '\t'))
-    ctx.body = ctx.query.name || 'hello ' + time
   }
 }
 

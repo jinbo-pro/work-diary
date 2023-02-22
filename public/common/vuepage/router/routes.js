@@ -81,6 +81,18 @@ export const routes = [
     ]
   },
   {
+    path: '/testDemo',
+    meta: { title: '测试demo', icon: 'el-icon-monitor' },
+    component: AboutLayout,
+    children: [
+      {
+        path: '/simManage',
+        meta: { title: 'simManage', tag: 'sim' },
+        component: () => load('../pages/testDemo/simManage.vue')
+      }
+    ]
+  },
+  {
     path: '*',
     component: () => load('../pages/sys/404.vue')
   }

@@ -11,11 +11,16 @@ router.post('/merge', (ctx) => UpFile.merge(ctx))
 
 // Api
 const Api = require('./controller/Api')
-router.get('/sim', (ctx) => Api.sim(ctx))
 router.get('/api/jsonp', (ctx) => Api.jsonp(ctx))
 router.get('/api/listData', (ctx) => Api.listData(ctx))
 router.post('/api/sendBeacon', (ctx) => Api.sendBeacon(ctx))
 router.post('/api/userListData', (ctx) => Api.userListData(ctx))
+
+// Sim
+const Sim = require('./controller/Sim')
+router.get('/sim', (ctx) => Sim.setData(ctx))
+router.get('/sim/getData', (ctx) => Sim.getData(ctx))
+router.get('/sim/clearData', (ctx) => Sim.clearData(ctx))
 
 // FileDirectory
 const FileDirectory = require('./controller/FileDirectory')
