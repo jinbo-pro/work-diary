@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- uni 的 SDK -->
+    <script type="text/javascript" src="//js.cdn.aliyun.dcloud.net.cn/dev/uni-app/uni.webview.1.5.1.js"></script>
+    <title>h5-page</title>
+  </head>
+  <body>
+    <h1>h5-page</h1>
+    <button onclick="linkUniPage()">跳转到app about 页面</button>
+    <hr />
+    <button onclick="sendMessage()">发送信息</button>
+    <script>
+      document.addEventListener('UniAppJSBridgeReady', function () {
+        uni.getEnv(function (res) {
+          console.log('当前环境：' + JSON.stringify(res))
+        })
+      })
+
+      function linkUniPage() {
+        uni.navigateTo({
+          url: '/pages/about'
+        })
+      }
+      function sendMessage() {
+        uni.postMessage({
+          data: {
+            action: 'postMessage: ' + Math.random()
+          }
+        })
+      }
+    </script>
+  </body>
+</html>
