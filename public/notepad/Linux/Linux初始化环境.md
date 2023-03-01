@@ -55,7 +55,7 @@ su root
 
 ## 安装软件
 
-### nodejs
+### nodejs 安装方式 1
 
 首先安装个 nodejs 前端综合开发必备哈哈
 
@@ -91,6 +91,32 @@ $  sudo n 8.9.4 （安装node指定版本8.9.4）
 当然了 npm 都安装了，那设置镜像地址也是必不可少的了
 
 设置 npm 国内镜像地址，执行命令`npm config set registry https://registry.npm.taobao.org`
+
+### nodejs 安装方式 2(推荐)
+
+1. 下载
+   打开 nodejs 官网下载 Linux Binaries (x64) [nodejs](https://nodejs.org/en/download/)
+2. 上传到服务器
+   将下载好的 node-v18.14.2-linux-x64.tar.xz 上传到服务器
+3. 加压文件
+   执行 `tar -xvf node-v18.14.2-linux-x64.tar.xz` 加压文件
+4. 将解压的 node 文件进行重命名，方便后续的操作
+   `mv node-v18.14.2-linux-x64 nodejs-18`
+5. 设置软链接全局引用
+   引入 npm
+   `ln -sf /home/lijinbo/nodejs/nodejs-18/bin/npm /usr/local/bin`
+   引入 node
+   `ln -sf /home/lijinbo/nodejs/nodejs-18/bin/node /usr/local/bin`
+6. 使用 pm2 管理项目
+   - 执行 `npm install -g pm2` 全局安装
+   - 执行 `ln -sf /home/lijinbo/nodejs/nodejs-18/bin/pm2 /usr/local/bin` 设置全局引用
+   - 进入到项目根目录执行 `pm2 start index.js --watch` 启动项目
+   - 执行 `pm2 save` 保存当前配置
+   - 后续使用只需要一下几个命令即可
+     `pm2 start appName` 启动项目
+     `pm2 stop appName` 停止项目
+     `pm2 restart appName` 重启项目
+     > [更多 pm2 使用参考](https://www.cnblogs.com/kunmomo/p/14990703.html)
 
 ### docker
 

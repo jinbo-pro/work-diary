@@ -10,7 +10,7 @@ const args = tools.getArguments()
 
 const app = new Koa()
 const env = args.includes('-dev') ? 'dev' : 'prod'
-const port = 7586
+const port = 39006
 const publicPath = path.join(__dirname, '../public')
 // 错误捕获
 app.use(async (ctx, next) => {
