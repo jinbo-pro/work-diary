@@ -21,7 +21,8 @@ class Sim extends BaseController {
         <title>测试页面</title>
       </head>
       <body>
-        <h3>我什么都没写 哈哈^_^</h3>
+        <h3>今日壁纸</h3>
+        <img style="max-width: 100%" src="https://api.isoyu.com/bing_images.php" alt="图片加载失败" />
       </body>
     </html>
     `

@@ -50,7 +50,7 @@ ${formStr}
 export default {
   data() {
     return {
-      isEdit: false,
+      editType: false,
       dialogVisible: false,
       selectConfig: {
 ${selectConfig}
@@ -64,7 +64,7 @@ ${rulesStr}
   },
   computed: {
     dialogTitle() {
-      return this.isEdit ? '编辑表单' : '新增表单'
+      return this.editType ? '编辑表单' : '新增表单'
     }
   },
   created() {
@@ -86,7 +86,8 @@ ${initForm}
     },
     /**新增弹窗 */
     async openAddDialog() {
-      this.isEdit = false
+      this.initFormData()
+      this.editType = false
       this.dialogVisible = true
       await this.$nextTick()
       this.$refs.${formDataName}.resetFields()
@@ -95,7 +96,7 @@ ${initForm}
     onSubmit() {
       this.$refs.${formDataName}.validate(async (valid) => {
         if (!valid) return
-        if (this.isEdit) {
+        if (this.editType) {
           await xxx_update(this.${formDataName})
         } else {
           await xxx_insert(this.${formDataName})
@@ -106,7 +107,7 @@ ${initForm}
     },
     /**编辑 */
     async editRow(row) {
-      this.isEdit = true
+      this.editType = true
       const info = await xxx_getById({ id: row.id })
       this.dialogVisible = true
       await this.$nextTick()
@@ -165,22 +166,22 @@ function createQuikeForm(fieldList, options) {
       :rowKey="rowKey"
       :tableData="tableData"
     >
-      <div slot="table_frist">
+      <template slot="table_last">
         <el-table-column label="操作" width="60px">
           <div slot-scope="{ row }">
           <el-button type="primary" @click="lookRowInfo(row)">查看详情</el-button>
           </div>
         </el-table-column>
-      </div>
+      </template>
     </PagerTabel>
 
-    <el-dialog :title="dialogTitle" :visible.sync="dialogVisible" :close-on-click-modal="false" width="50%">
+    <el-dialog top="5vh" :title="dialogTitle" :visible.sync="dialogVisible" :close-on-click-modal="false" width="50%">
       <el-form ref="${formDataName}" :model="${formDataName}" ${
     rulesStr ? ':rules="formDataRules"' : ''
-  } label-width="80px">
+  } label-width="80px" :disabled="editType == 3">
 ${formStr}
       </el-form>
-      <div slot="footer">
+      <div v-if="editType < 3" slot="footer">
         <el-button @click="dialogVisible = false">取 消</el-button>
         <el-button type="primary" @click="onSubmit">提交</el-button>
       </div>
@@ -209,7 +210,7 @@ ${fieldsStr}
       rowKey: [
 ${rowKeysStr}
       ],
-      isEdit: false,
+      editType: 1,
       dialogVisible: false,
       selectConfig: {
 ${selectConfig}
@@ -222,7 +223,8 @@ ${rulesStr}
   },
   computed: {
     dialogTitle() {
-      return this.isEdit ? '编辑表单' : '新增表单'
+      const t = this.editType
+      return t == 1 ? '新增' : t == 2 ? '编辑' : '查看'
     }
   },
   created() {
@@ -245,17 +247,21 @@ ${initForm}
     },
     /**获取数据列表 */
     async getList() {
+      let searchData = this.$refs.SearchForm.getSearchParams()
       let page = {
         pageSize: this.pageSize,
         currentPage: this.currentPage
       }
-      let res = await xxx_getPage(page)
+      let res = await xxx_getPage({
+        ...page,
+        ...searchData
+      })
       this.total = res ? res.total : 0
       this.tableData = res && res.list ? res.list : []
     },
     /**新增弹窗 */
     async addOpenDialog() {
-      this.isEdit = false
+      this.editType = 1
       this.dialogVisible = true
       await this.$nextTick()
       this.$refs.${formDataName}.resetFields()
@@ -264,7 +270,7 @@ ${initForm}
     onSubmit() {
       this.$refs.${formDataName}.validate(async (valid) => {
         if (!valid) return
-        if (this.isEdit) {
+        if (this.editType == 2) {
           await xxx_update(this.${formDataName})
         } else {
           await xxx_insert(this.${formDataName})
@@ -275,7 +281,7 @@ ${initForm}
     },
     /**编辑 */
     async editRow(row) {
-      this.isEdit = true
+      this.editType = 2
       const info = await xxx_getById({ id: row.id })
       this.dialogVisible = true
       await this.$nextTick()
@@ -290,8 +296,12 @@ ${initForm}
       this.getList()
     },
     /**查看详情 */
-    lookRowInfo(row){
-      console.log(row)
+    async lookRowInfo(row) {
+      this.editType = 3
+      const info = await api.getById({ id: row.id })
+      this.dialogVisible = true
+      await this.$nextTick()
+      Object.assign(this.formData, info)
     }
   }
 }
