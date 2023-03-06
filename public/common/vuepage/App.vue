@@ -63,6 +63,9 @@ export default {
       width: 64px;
       transition: 0.3s;
     }
+    .app_main {
+      width: calc(100vw - 64px);
+    }
   }
 }
 </style>

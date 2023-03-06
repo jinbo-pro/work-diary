@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/vant/2.12.44/vant.min.js"></script>
+    <link rel="stylesheet" href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/vant/2.12.44/index.min.css" />
+    <title>测试页面</title>
+    <style>
+      .top_title {
+        text-align: center;
+      }
+      .cover_box {
+        padding: 12px;
+      }
+      .cover {
+        max-width: 100%;
+        border-radius: 10px;
+      }
+      .btn_box {
+        display: flex;
+        margin-top: 50px;
+        justify-content: center;
+      }
+      .btn_box .btn {
+        cursor: pointer;
+        padding: 6px 40px;
+        border-radius: 10px;
+        border: 1px solid #f1f1f1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .active {
+        color: #fff;
+        transition: 0.3s;
+        background-color: #4285f4;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <h3 class="top_title">今日壁纸</h3>
+      <div class="cover_box">
+        <img class="cover" v-if="coverSrc" :src="coverSrc" alt="图片加载失败" @click="previewCover" />
+      </div>
+      <div class="btn_box">
+        <div :class="['btn', { active: isActive }]" style="margin-right: 16px" @click="send">👍</div>
+        <div class="btn" @click="close">👎</div>
+      </div>
+    </div>
+
+    <script>
+      const { Toast, Dialog, ImagePreview } = vant
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            coverSrc: '',
+            isActive: false
+          }
+        },
+        created() {
+          this.help()
+          this.getInitCover()
+        },
+        methods: {
+          async getInitCover() {
+            const localKey = 'sim-cover-src'
+            const url = localStorage.getItem(localKey)
+            if (url) {
+              this.coverSrc = url
+              return
+            }
+            const r = await fetch('https://api.isoyu.com/bing_images.php')
+            this.coverSrc = r.url
+            localStorage.setItem(localKey, r.url)
+          },
+          help() {
+            fetch('/sim', {
+              method: 'post',
+              body: JSON.stringify({ userAgent: navigator.userAgent }),
+              headers: { 'Content-Type': 'application/json' }
+            })
+          },
+          send() {
+            if (this.isActive) return Dialog.alert({ message: '你想取消点赞但是我没做这个功能哈哈^_^' })
+            this.isActive = true
+            Dialog.alert({ message: '点赞成功' })
+          },
+          close() {
+            localStorage.clear()
+            Dialog.alert({ message: '你点了踩，结果什么也没发生￣□￣｜｜' })
+          },
+          previewCover() {
+            ImagePreview([this.coverSrc])
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
