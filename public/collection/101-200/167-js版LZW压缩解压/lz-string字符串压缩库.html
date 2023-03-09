@@ -5,34 +5,138 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
-    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
     <title>167-js版LZW压缩解压</title>
-    <link rel="stylesheet" href="./style.css" />
+    <style>
+      body {
+        overflow: auto;
+        border-style: none;
+      }
+      textarea {
+        overflow: auto;
+        width: 100%;
+        height: 200px;
+      }
+      a {
+        margin: 6px;
+      }
+      .zip_messagee {
+        font-size: 12px;
+        color: #999;
+      }
+    </style>
   </head>
 
   <body>
-    <button id="Compress">压缩</button>
-    <button id="DeCompress">解压</button>
-    <span id="info"></span>
-    <hr />
-    <textarea id="source"></textarea>
-    <textarea id="result"></textarea>
+    <div id="app">
+      <p>
+        服务端对应的算法参考：
+        <a href="https://www.npmjs.com/package/lz-string" target="_blank">lz-string</a>
+        <a href="https://pieroxy.net/blog/pages/lz-string/index.html" target="_blank">lz-string 官网介绍</a>
+      </p>
+      <button @click="Compress">压缩</button>
+      <button @click="DeCompress">解压</button>
+      <br />
+      <br />
+      <button @click="downFile">下载压缩结果</button>
+      <button @click="clear">清空</button>
+      <span>compress 和 compressToUTF16 的压缩结果不能直接复制请下载压缩结果</span>
+      <br />
+      <span>压缩类型选择：</span>
+      <select v-model="type">
+        <option v-for="(item, index) in typeList" :key="index" :value="item.c">{{ item.c }}</option>
+      </select>
+      <span>{{ zipRatio }}</span>
+      <div class="zip_messagee">
+        <span>{{ zipType.message }}</span>
+      </div>
+      <hr />
+      <textarea v-model="source" placeholder="原始字符"></textarea>
+      <textarea v-model="result" placeholder="压缩后的字符"></textarea>
+    </div>
     <script>
-      $('#Compress').on('click', function () {
-        const src = $('#source').val()
-        const result = LZString.compressToBase64(src)
-        $('#result').val(result)
-        const s = src.length
-        const r = result.length
-        $('#info').text(`源：${s}，值：${r}，压缩比${(r / s).toFixed(3)}`)
-      })
-
-      $('#DeCompress').on('click', function () {
-        const resultCode = $('#result').val()
-        const srcCode = LZString.decompressFromBase64(resultCode)
-        $('#source').val(srcCode)
+      var vm = new Vue({
+        el: '#app',
+        data() {
+          return {
+            source: '',
+            result: '',
+            info: '',
+            type: 'compressToBase64',
+            typeList: [
+              {
+                c: 'compress',
+                d: 'decompress',
+                message: `产生无效的 UTF-16 字符串。
+                  这些只能存储在webkit 浏览器上的localStorage中（已在 Android、Chrome、Safari 上测试）。
+                  可以用decompress解压`
+              },
+              {
+                c: 'compressToUTF16',
+                d: 'decompressFromUTF16',
+                message: `生成“有效”的 UTF-16 字符串，因为所有浏览器都可以安全地存储它们。
+                  因此它们可以存储在所有经过测试的浏览器（IE9-10、Firefox、Android、Chrome、Safari）上的localStorage中。
+                  可以用decompressFromUTF16解压。
+                  这是通过每个字符仅使用 15 位存储来实现的。
+                  因此产生的弦比压缩产生的弦大 6.66%`
+              },
+              {
+                c: 'compressToBase64',
+                d: 'decompressFromBase64',
+                message: `生成 ASCII UTF-16 字符串，表示以 Base64 编码的原始字符串。
+                  可以用decompressFromBase64解压。
+                  这是通过每个字符仅使用 6 位存储来实现的。
+                  因此，生成的字符串比compress生成的字符串大 166% 。
+                  它仍然可以显着减少一些 JSON 压缩对象。`
+              },
+              {
+                c: 'compressToEncodedURIComponent',
+                d: 'decompressFromEncodedURIComponent',
+                message: `生成 ASCII 字符串，表示以 Base64 编码的原始字符串，并进行一些调整以确保这些 URI 安全。
+                  因此，您可以将它们发送到服务器，而无需考虑对它们进行 URL 编码。这节省了带宽和 CPU。
+                  可以使用decompressFromEncodedURIComponent解压缩这些字符串。
+                  有关大小的注意事项，请参见上面的要点。`
+              }
+            ]
+          }
+        },
+        computed: {
+          zipType() {
+            const cur = this.typeList.find((e) => e.c == this.type)
+            return cur || {}
+          },
+          zipRatio() {
+            const s = this.source.length
+            const r = this.result.length
+            if (!s || !r) return ''
+            return `源：${s}，值：${r}，压缩比：${(r / s).toFixed(3)}`
+          }
+        },
+        methods: {
+          Compress() {
+            this.result = LZString[this.zipType.c](this.source)
+            console.log(this.result, '-->>> this.result')
+          },
+          DeCompress() {
+            this.source = LZString[this.zipType.d](this.result)
+          },
+          clear() {
+            this.info = ''
+            this.source = ''
+            this.result = ''
+          },
+          downFile() {
+            const fileName = `${this.type}_${this.source.length}_${this.result.length}.txt`
+            const file = new File([this.result], fileName, { type: 'text/plain;charset=utf-8' })
+            const a = document.createElement('a')
+            a.href = URL.createObjectURL(file)
+            a.download = fileName
+            a.click()
+          }
+        }
       })
     </script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>
