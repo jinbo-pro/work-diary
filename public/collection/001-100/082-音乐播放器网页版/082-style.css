@@ -128,11 +128,6 @@ body {
   box-sizing: border-box;
 }
 
-.play_type img {
-  width: 32px;
-  height: 32px;
-}
-
 /* 搜索框 */
 .search_max {
   width: 100%;
