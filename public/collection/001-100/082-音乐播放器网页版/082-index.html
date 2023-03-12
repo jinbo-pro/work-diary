@@ -6,68 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
     <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <link rel="stylesheet" href="./082-style.css" />
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/aplayer/1.10.1/APlayer.min.js"></script>
+    <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/aplayer/1.10.1/APlayer.min.css" />
     <title>082-音乐播放器网页版</title>
     <style>
-      .icon {
-        font-size: 32px;
+      .aplayer .aplayer-list ol li {
+        height: 50px;
+        line-height: 50px;
       }
     </style>
   </head>
 
   <body>
     <div id="app">
-      <div class="search_max search_max_fixed">
-        <input v-model="keyWord" class="search" type="text" placeholder="搜索关键字" />
-        <button @click="loadMusic">载入文件列表</button>
-      </div>
-      <div class="music_box">
-        <div
-          v-for="(item, index) in showList"
-          :key="item.id + index"
-          :class="['item_music_box', { active: activeIndex == index }]"
-          @click="activeMusic(item, index)"
-        >
-          <div>{{ item.index }}-</div>
-          <div class="right_music_info">
-            <div class="title">{{ item.name }}</div>
-            <div class="user">{{ item.user }}</div>
-          </div>
-        </div>
-      </div>
-      <div v-if="curMusic.src" class="audio_play">
-        <div class="top_box">
-          <div class="audio_title">
-            <div>[{{ curMusic.index }}] {{ curMusic.name }}</div>
-            <div>[{{ curMusic.index }}] {{ curMusic.name }}</div>
-          </div>
-          <div class="play_type">
-            <span v-if="isRandom" @click="isRandom = false">
-              <ion-icon class="icon" name="shuffle-outline"></ion-icon>
-            </span>
-            <span v-else @click="isRandom = true">
-              <ion-icon class="icon" name="repeat-outline"></ion-icon>
-            </span>
-          </div>
-        </div>
-        <div class="audio_content">
-          <div class="audio">
-            <audio
-              controls="controls"
-              autoplay="autoplay"
-              :src="curMusic.src"
-              @play="playMusic"
-              @ended="endedMusic"
-            ></audio>
-          </div>
-          <span @click="nextMusic">
-            <ion-icon class="icon" name="play-skip-forward-outline"></ion-icon>
-          </span>
-        </div>
-      </div>
+      <button @click="loadMusic">载入文件列表</button>
+      <div id="player"></div>
     </div>
     <script src="./082-main.js"></script>
-    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>
