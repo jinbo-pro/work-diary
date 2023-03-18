@@ -1,9 +1,4 @@
 const { WebSocketServer } = require('ws')
-const { guid } = require('../utils/tools')
-
-/**
- * [x] linux 服务器部署 WebSocket 无法连接问题待解决
- */
 
 const port = 7596
 
@@ -30,7 +25,7 @@ const userMap = new Map()
 // 初始化
 wss.on('connection', function (ws, req) {
   const ip = req.socket.remoteAddress
-  userMap.set(ws, guid())
+  userMap.set(ws, Date.now() + Math.random())
   console.log(userMap.size, '-->>> size')
   ws.send(`你是第 ${wss.clients.size} 位 ip: ${ip}`)
   // 发送消息

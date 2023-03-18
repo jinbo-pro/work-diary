@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <!-- 核心依赖 -->
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/codemirror.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/codemirror.min.css"
+    />
+    <!-- Java 代码高亮 -->
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/mode/clike/clike.js"></script>
+    <!-- 主题 -->
+    <link
+      rel="stylesheet"
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/theme/darcula.css"
+    />
+    <!-- 括号匹配 -->
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/edit/matchbrackets.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/edit/closebrackets.js"></script>
+    <!--全屏模式-->
+
+    <!-- <link
+      rel="stylesheet"
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/display/fullscreen.css"
+    />
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/display/fullscreen.js"></script> -->
+
+    <!-- 自动补全 -->
+    <link
+      rel="stylesheet"
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/hint/show-hint.css"
+    />
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/hint/javascript-hint.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/hint/show-hint.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/hint/anyword-hint.js"></script>
+    <!-- 代码错误校验 -->
+
+    <!-- <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/lint/lint.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/lint/javascript-lint.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/lint/lint.css"
+    /> -->
+
+    <!--支持代码折叠-->
+    <link
+      rel="stylesheet"
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/fold/foldgutter.css"
+    />
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/fold/foldcode.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/fold/foldgutter.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/fold/brace-fold.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/codemirror/5.65.2/addon/fold/comment-fold.js"></script>
+
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <title>224-在线代码编辑器IDE</title>
+    <style>
+      .top_head {
+        padding: 16px;
+      }
+      a {
+        margin: 6px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>
+        相关文章参考：
+        <a href="https://zhuanlan.zhihu.com/p/22163474/" target="_blank">基本配置</a>
+        <a href="https://codemirror.net/5/mode/clike/index.html" target="_blank">官方配置</a>
+        <a href="https://blog.gavinzh.com/2020/12/13/codemirror-getting-started/" target="_blank">智能提示-1</a>
+        <a href="https://blog.csdn.net/qq_37334150/article/details/109067869" target="_blank">智能提示-2</a>
+        <br />
+        <a href="https://pintia.cn/problem-sets/1526027869896364032/exam/problems/1526054752159584256" target="_blank">
+          其他实现的网站
+        </a>
+      </p>
+      <div class="top_head">
+        <button @click="getCode">获取代码</button>
+        <button @click="clearCode">清空输入</button>
+      </div>
+      <textarea id="code"></textarea>
+    </div>
+    <script src="./224-main.js"></script>
+    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
+  </body>
+</html>

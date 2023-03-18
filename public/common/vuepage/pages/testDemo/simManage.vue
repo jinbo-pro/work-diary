@@ -4,10 +4,11 @@
       <el-button icon="el-icon-refresh" circle @click="getList"></el-button>
       <el-button type="danger" icon="el-icon-delete" circle @click="clearSim"></el-button>
     </div>
-    <el-table :data="tableData" style="width: 100%">
+    <el-table :data="tableData" stripe>
       <el-table-column type="index" label="序号"></el-table-column>
       <el-table-column prop="ip" label="ip"></el-table-column>
       <el-table-column prop="time" label="time"></el-table-column>
+      <el-table-column prop="userAgent" label="userAgent" show-overflow-tooltip></el-table-column>
       <el-table-column label="操作">
         <div slot-scope="{ row }">
           <el-button type="primary" icon="el-icon-search" circle @click="lookIp(row.ip)"></el-button>

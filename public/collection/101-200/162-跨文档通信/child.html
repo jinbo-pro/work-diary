@@ -16,7 +16,7 @@
       })
 
       document.getElementById('btn').addEventListener('click', () => {
-        parent.postMessage('子->父', 'http://localhost:7586/collection/101-200/162-跨文档通信/index.html')
+        parent.postMessage({ data: 'emit' })
       })
     </script>
   </body>

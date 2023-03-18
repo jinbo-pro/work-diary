@@ -44,7 +44,7 @@ ws.onclose = function (e) {
   console.log('服务器关闭')
 }
 ws.onerror = function () {
-  console.log('连接出错 请检查 websockt 服务器是否运行')
+  console.log('连接出错 请检查 websockt 服务器是否运行，请启动 ./websocket/socket.js')
 }
 
 ws.onmessage = function (e) {

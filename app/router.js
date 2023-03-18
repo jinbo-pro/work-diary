@@ -18,7 +18,7 @@ router.post('/api/userListData', (ctx) => Api.userListData(ctx))
 
 // Sim
 const Sim = require('./controller/Sim')
-router.get('/sim', (ctx) => Sim.setData(ctx))
+router.post('/sim', (ctx) => Sim.setData(ctx))
 router.get('/sim/getData', (ctx) => Sim.getData(ctx))
 router.get('/sim/clearData', (ctx) => Sim.clearData(ctx))
 

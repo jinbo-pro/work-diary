@@ -5,35 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
-    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
-    <link rel="stylesheet" href="./082-style.css" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <script src="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/aplayer/1.10.1/APlayer.min.js"></script>
+    <link rel="stylesheet" href="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/aplayer/1.10.1/APlayer.min.css" />
     <title>082-音乐播放器网页版</title>
+    <style>
+      .aplayer .aplayer-list ol li {
+        height: 50px;
+        line-height: 50px;
+      }
+    </style>
   </head>
 
   <body>
-    <div class="search_max search_max_fixed">
-      <input class="search" type="text" placeholder="搜索关键字" />
-      <button id="serach">搜索</button>
-      <button id="reset">重置</button>
-    </div>
-    <div class="music_box"></div>
-    <div class="audio_play" style="display: none">
-      <div class="top_box">
-        <div class="audio_title">
-          <div></div>
-          <div></div>
-        </div>
-        <div class="play_type">
-          <img class="shunxu" src="./icon/shunxu.png" />
-          <img class="suiji" style="display: none" src="./icon/suiji.png" />
-        </div>
-      </div>
-      <div class="audio_content">
-        <div class="audio"></div>
-        <img class="next" src="./icon/next.png" />
-      </div>
+    <div id="app">
+      <button @click="loadMusic">载入文件列表</button>
+      <div id="player"></div>
     </div>
     <script src="./082-main.js"></script>
-    <script defer type="module" src="/utils/module/scriptTagToText.js"></script>
   </body>
 </html>
