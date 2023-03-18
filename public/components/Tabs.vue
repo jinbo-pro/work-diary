@@ -37,11 +37,14 @@ export default {
   methods: {
     setActive(index) {
       this.active = index
-      const dom = this.$refs.nav[index]
-      this.getActiveBarStyle = {
-        width: dom.clientWidth + 'px',
-        transform: `translateX(${dom.offsetLeft}px)`
-      }
+      // 防止初始导航条渲染错误
+      setTimeout(() => {
+        const dom = this.$refs.nav[index]
+        this.getActiveBarStyle = {
+          width: dom.clientWidth + 'px',
+          transform: `translateX(${dom.offsetLeft}px)`
+        }
+      }, 16)
       this.$emit('change', index)
     }
   }
