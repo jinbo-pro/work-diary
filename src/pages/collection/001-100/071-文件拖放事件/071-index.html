@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>071-文件拖放事件</title>
+    <style>
+      #drop {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>文件拖拽</p>
+    <div class="box">
+      <div id="drop">拖拽文件到此</div>
+    </div>
+    <hr />
+    <ol id="fileList"></ol>
+    <script>
+      const dropZone = document.getElementById('drop')
+      const fileList = document.getElementById('fileList')
+
+      dropZone.ondragover = (e) => {
+        e.preventDefault()
+      }
+
+      dropZone.ondrop = (e) => {
+        e.preventDefault()
+        const files = e.dataTransfer.files
+        console.log(files)
+        for (let item of Array.from(files)) {
+          const li = document.createElement('li')
+          li.innerText = `name: ${item.name} type: ${item.type}`
+          fileList.append(li)
+        }
+      }
+    </script>
+  </body>
+</html>

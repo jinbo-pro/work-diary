@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>010-无缝滚动-css</title>
+    <style>
+      ul li {
+        width: 50px;
+        height: 50px;
+        border: 1px solid #474747;
+        margin: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <style>
+      #main_up {
+        width: 500px;
+        height: 300px;
+        overflow: hidden;
+        border-top: 2px solid lightblue;
+        border-bottom: 2px solid red;
+      }
+
+      #main_up .box {
+        margin: 0;
+        animation: moveup 10s linear infinite;
+      }
+
+      /*向上滚动*/
+      @keyframes moveup {
+        0% {
+          transform: translateY(0);
+        }
+
+        100% {
+          transform: translateY(-100%);
+        }
+      }
+    </style>
+    <!-- 向上滚动 -->
+    <div id="main_up">
+      <ul class="box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </div>
+
+    <style>
+      #main_left {
+        display: flex;
+        width: 500px;
+        overflow: hidden;
+      }
+
+      #main_left ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+        animation: moveleft 10s linear infinite;
+      }
+
+      /*向左滚动*/
+      @keyframes moveleft {
+        0% {
+          transform: translateX(0);
+        }
+
+        100% {
+          transform: translateX(-100%);
+        }
+      }
+    </style>
+    <!-- 向左滚动 -->
+    <div id="main_left">
+      <ul class="box">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+      </ul>
+    </div>
+    <script>
+      // 上
+      var main_up = document.getElementById('main_up')
+      main_up.innerHTML = main_up.innerHTML + main_up.innerHTML
+
+      // 左
+      var main_left = document.getElementById('main_left')
+      main_left.innerHTML = main_left.innerHTML + main_left.innerHTML
+    </script>
+  </body>
+</html>

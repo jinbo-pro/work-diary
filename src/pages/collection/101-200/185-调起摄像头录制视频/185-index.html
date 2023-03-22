@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+    <title>185-调起摄像头录制视频</title>
+    <style>
+      body {
+        background-color: #efedef;
+      }
+    </style>
+  </head>
+
+  <body>
+    <article style="border: 1px solid white; width: 400px; height: 400px; margin: 0 auto; background-color: white">
+      <section class="experiment" style="width: 320px; height: 240px; border: 1px solid green; margin: 50px auto">
+        <div id="videos-container" style="width: 320px; height: 240px"></div>
+      </section>
+      <section class="experiment" style="text-align: center; border: none; margin-top: 20px">
+        <button id="openCamera">打开摄像头</button>
+        <button id="start-recording" disabled>开始录制</button>
+        <button id="stop-recording" disabled>停止录制</button>
+        <button id="save-recording" disabled>保存</button>
+        <!--<a href="javascript:void(0)" οnclick="send()">发送</a>-->
+      </section>
+    </article>
+    <hr />
+    <p>调起摄像头存在的问题</p>
+    <ol>
+      <li>有些电脑打开摄像头之后黑屏无法录制</li>
+      <li>有些电脑打开无法调起正确的摄像头，前后摄像头调起不是理想的转态</li>
+      <li>有些电脑或浏览器无法使用此 api</li>
+      <li>手机端需要强制使用 https 开头的域名才能获取成功</li>
+      <li>无法获取视频流直接传到后端，只能保存为视频才能传到后端</li>
+      <li>调起摄像头时如果用户选择了拒绝权限那么下次调起需要清除 cookie 缓存才能再次询问授权</li>
+    </ol>
+    <script type="module" src="./185-main.js"></script>
+  </body>
+</html>

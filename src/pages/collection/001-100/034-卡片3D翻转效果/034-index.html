@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <title>034-卡片3D翻转效果</title>
+    <style>
+      body {
+        background-color: #e7d4a9;
+      }
+      .content {
+        margin: 20px;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .box {
+        width: 256px;
+        height: 344px;
+        cursor: pointer;
+        overflow: hidden;
+        transition: all 1000ms cubic-bezier(0.03, 0.98, 0.52, 0.09) 0s;
+      }
+
+      .box .card {
+        max-width: 100%;
+        overflow: hidden;
+        padding: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="content"></div>
+    <script type="module" src="./034-main.js"></script>
+  </body>
+</html>

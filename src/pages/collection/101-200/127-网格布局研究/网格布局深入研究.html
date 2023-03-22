@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <link rel="stylesheet" href="./grid-deep.css" />
+    <meta name="author" content="lijinbo" />
+    <title>Document</title>
+    <style>
+      .item {
+        background-color: #f1f1f1;
+        text-align: center;
+        border: 1px solid #e1e1e1;
+        box-sizing: border-box;
+      }
+      .tips {
+        color: #999;
+        font-size: 14px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>
+        文章参考：
+        <a href="https://mp.weixin.qq.com/s/dQvrijZxOMJjzwuUZGbQGw" target="_blank">图解 CSS Grid 布局</a>
+      </p>
+      <ol>
+        <li>
+          <p>基本网格、网格行列设置</p>
+          <div class="container1">
+            <div v-for="e in 12" :key="e" class="item">{{ e }}</div>
+          </div>
+          <p class="tips">注意：当元素设置了网格布局，column、float、clear、vertical-align 属性都会失效。</p>
+        </li>
+        <li>
+          <p>行和列之间添加间隙 column-gap,row-gap</p>
+          <div class="container2">
+            <div v-for="e in 9" :key="e" class="item">{{ e }}</div>
+          </div>
+        </li>
+        <li>
+          <p>网格区域 grid-template-areas</p>
+          使用参考：
+          <a href="/collection/101-200/176-使用Flex和Grid布局实现骰子布局/grid_骰子-1.html">grid_骰子-1.html</a>
+        </li>
+        <li>
+          <p>水平对齐 justify-item,justify-content</p>
+          <div class="container4">
+            <div v-for="e in 4" :key="e" class="item">{{ e }}</div>
+          </div>
+        </li>
+        <li>
+          <p>垂直对齐 align-item,align-content</p>
+          <div class="container5">
+            <div v-for="e in 4" :key="e" class="item">{{ e }}</div>
+          </div>
+        </li>
+        <li>
+          <p>新单位 fr,min-content,max-content</p>
+          <div class="container6">
+            <div v-for="e in 9" :key="e" class="item">{{ e }}</div>
+          </div>
+        </li>
+        <li>
+          <p>函数方法 repeat,minmax</p>
+          <div class="container7">
+            <div v-for="e in 9" :key="e" class="item">{{ e }}</div>
+          </div>
+        </li>
+        <li>
+          <p>速记属性 place-items</p>
+          <div class="container8">
+            <div v-for="e in 9" :key="e" class="item">{{ e }}</div>
+          </div>
+        </li>
+      </ol>
+    </div>
+    <script>
+      new Vue({ el: '#app' })
+    </script>
+  </body>
+</html>

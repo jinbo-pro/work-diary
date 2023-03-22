@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>195-element-ui切换主题色</title>
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <link
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js"></script>
+    <style></style>
+  </head>
+
+  <body>
+    <div id="app" class="box">
+      <div>
+        <el-color-picker v-model="theme" class="theme-picker" size="small" popper-class="theme-picker-dropdown" />
+      </div>
+      <hr />
+      <el-button>默认按钮</el-button>
+      <el-button type="primary">主要按钮</el-button>
+      <el-button type="success">成功按钮</el-button>
+      <el-button type="info">信息按钮</el-button>
+      <el-button type="warning">警告按钮</el-button>
+      <el-button type="danger">危险按钮</el-button>
+      <hr />
+      <el-slider :value="50"></el-slider>
+    </div>
+    <script defer type="module" src="./195-main.js"></script>
+  </body>
+</html>

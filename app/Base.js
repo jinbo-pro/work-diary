@@ -1,6 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const tools = require('./utils/tools')
+const { publicPath } = require('./config')
 
 /**
  * 基础类
@@ -15,7 +16,7 @@ class Base {
   }
   // 获取根路径
   getSrcPath(dir) {
-    return path.resolve(__dirname, '../' + dir)
+    return path.join(publicPath, dir)
   }
 }
 

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>066-烟花效果生成器</title>
+    <style>
+      .jac {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .mask {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        z-index: 999;
+        background-color: rgba(0, 0, 0, 0.5);
+      }
+
+      .but {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: #fff;
+        cursor: pointer;
+        box-shadow: 0px 6px 20px rgb(36 37 38 / 13%);
+      }
+      @keyframes animStar {
+        from {
+          transform: translateY(0px);
+        }
+
+        to {
+          transform: translateY(-2000px);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 开始遮罩 -->
+    <div id="mask" class="mask jac">
+      <div class="but jac" onclick="main()">点击开始</div>
+    </div>
+    <!-- 背景音乐 -->
+    <div style="display: none">
+      <!-- <audio id="audio" src="./music.mp3" loop></audio> -->
+    </div>
+    <!-- 星空 -->
+    <div id="container"></div>
+    <!-- 烟花js -->
+    <script type="module" src="./066-main.js"></script>
+    <script>
+      // 生成星空背景
+      const r = (e) => ~~(Math.random() * e)
+      function createBoxShadow(count) {
+        const list = []
+        for (let i = 0; i < count; i++) {
+          list.push(`${r(2000)}px ${r(2000)}px #fff`)
+        }
+        return list.toString()
+      }
+      function createStarsDom(size, count) {
+        const div = document.createElement('div')
+        div.style.width = size + 'px'
+        div.style.height = size + 'px'
+        div.style.background = 'transparent'
+        div.style.boxShadow = createBoxShadow(count)
+        div.style.animation = `animStar ${size * 50}s linear infinite`
+        return div
+      }
+      const container = document.getElementById('container')
+      container.append(createStarsDom(1, 500))
+      container.append(createStarsDom(2, 300))
+      container.append(createStarsDom(3, 100))
+    </script>
+  </body>
+</html>

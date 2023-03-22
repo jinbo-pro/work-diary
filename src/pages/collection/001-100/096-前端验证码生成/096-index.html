@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>096-前端验证码生成</title>
+    <style>
+      #code {
+        width: 300px;
+        height: 50px;
+        color: rgb(0, green, blue);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        <input id="inputCode" type="text" placeholder="请输入验证码" />
+        <button onclick="validCode()">验证</button>
+        <button onclick="code.create()">看不清换一张</button>
+      </p>
+      <div id="code"></div>
+      <p id="result"></p>
+    </div>
+    <script type="module" src="./096-main.js"></script>
+  </body>
+</html>

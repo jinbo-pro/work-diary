@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <meta name="description" content="节流和防抖函数测试" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <title>013-节流和防抖</title>
+    <style type="text/css">
+      * {
+        margin: 0;
+        padding: 0;
+      }
+
+      .box {
+        width: 100%;
+        height: 80px;
+        font-size: 30px;
+        color: blueviolet;
+        font-weight: bold;
+        text-align: center;
+        line-height: 80px;
+        background-color: #999;
+      }
+
+      .max div:nth-of-type(even) {
+        color: #ffffff;
+        background-color: aqua;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      <a href="./css实现点击防抖.html">css实现点击防抖</a>
+    </p>
+    <p>vue中使用</p>
+    <div id="app">
+      <p>{{ debounceCount }}</p>
+      <button @click="testClick(1,2,3)">点击防抖测试</button>
+    </div>
+    <p>普通场景</p>
+    <div class="max">
+      <p>未做防抖节流任何处理</p>
+      <div class="box" id="div0"></div>
+
+      <h2>防抖</h2>
+      <p>非立即执行的防抖</p>
+      <div class="box" id="div1"></div>
+      <p>可立即执行的防抖</p>
+      <div class="box" id="div2"></div>
+
+      <h2>节流</h2>
+      <p>时间戳版节流</p>
+      <div class="box" id="div3"></div>
+      <p>定时器版节流</p>
+      <div class="box" id="div4"></div>
+    </div>
+    <script type="module" src="./013-main.js"></script>
+  </body>
+</html>

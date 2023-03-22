@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>211-闭包的数据攻击和保护</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      参考文章：
+      <a href="https://www.douyin.com/video/7160518826050833695" target="_blank">闭包漏洞</a>
+    </div>
+    <p>攻击方式：原型链攻击</p>
+    <p>保护方式：置空原型链、判断原型链属性</p>
+    <script>
+      var o = (function () {
+        var obj = {
+          a: '1',
+          b: '2'
+        }
+        // 保护方式1. 设置自己的原型链为 null
+        // Object.setPrototypeOf(obj, null)
+        return {
+          get: function (k) {
+            // 保护方式2. 判断是否为自有属性
+            // if (obj.hasOwnProperty(k)) {
+            //   return obj[k]
+            // }
+            // return undefined
+
+            return obj[k]
+          }
+        }
+      })()
+
+      // 攻击方式
+      Object.defineProperty(Object.prototype, 'abc', {
+        get() {
+          // 获取该属性时返回对象本身
+          return this
+        }
+      })
+      // 获取到原始对象
+      var c = o.get('abc')
+      c.a = 123
+      console.log(o.get('a')) // 123
+    </script>
+  </body>
+</html>

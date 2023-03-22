@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <script src="https://unpkg.com/vue-i18n@8.28.2/dist/vue-i18n.js"></script>
+    <meta name="author" content="lijinbo" />
+    <title>187-前端国际化语言方案i18n</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>
+        文档参考：
+        <a href="https://kazupon.github.io/vue-i18n/zh/started.html" target="_blank">vue-i18n</a>
+      </p>
+      语言切换
+      <select v-model="selectLang" @change="checkLang">
+        <option v-for="(item, index) in langList" :key="index" :value="item.value">{{ item.label }}</option>
+      </select>
+      <h2>{{ $t('title') }}</h2>
+      <p>{{ $t('message.hello') }}</p>
+    </div>
+    <script type="module" src="./187-main.js"></script>
+  </body>
+</html>

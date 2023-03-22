@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>060-组合数</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>组合数计算公式</p>
+      <div>$$C_n^m = {n! \over m!(n-m)}，C_n^0=1$$</div>
+      <div>
+        <div>总数：n</div>
+        <input v-model="n" type="number" placeholder="总数" />
+      </div>
+      <div>
+        <div>取数：m</div>
+        <input v-model="m" type="number" placeholder="取数" />
+      </div>
+      <p>
+        <span>结果:</span>
+        <span>{{ result }}</span>
+      </p>
+    </div>
+    <script type="module" src="./060-main.js"></script>
+  </body>
+</html>

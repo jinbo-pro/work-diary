@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-cropper@0.5.5/dist/index.min.js"></script>
+    <meta name="author" content="lijinbo" />
+    <title>找不同游戏图片对比示例</title>
+    <style>
+      .original_max {
+        width: 500px;
+        height: 500px;
+      }
+      .crop_max {
+        position: absolute;
+      }
+      .crop_max .ratio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 100;
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="box">
+        <p>
+          <span>选择图片</span>
+          <input type="file" accept="image/*" @change="selectFile" />
+          <br />
+          <button @click="finish">裁剪</button>
+          <button @click="showRatio = !showRatio">显示/隐藏</button>
+        </p>
+        <div class="original_max">
+          <vue-cropper
+            ref="cropper"
+            output-type="png"
+            :info="true"
+            :img="original"
+            :can-move="false"
+            :auto-crop="true"
+            :auto-crop-width="150"
+            :auto-crop-height="150"
+            :center-box="true"
+          ></vue-cropper>
+        </div>
+        <div class="crop_max">
+          <img :src="cropImgList[0]" />
+          <img v-show="showRatio" :src="cropImgList[1]" class="ratio" />
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./m-main.js"></script>
+  </body>
+</html>

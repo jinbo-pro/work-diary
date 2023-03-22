@@ -2,7 +2,7 @@ const fs = require('fs')
 const crypto = require('crypto')
 
 /**
- * 读取文件目录树
+ * 读取文件目录树 - 扁平数据
  * @param {string} src 目录地址
  * @param {boolean} absolutely 是否获取绝对地址
  */

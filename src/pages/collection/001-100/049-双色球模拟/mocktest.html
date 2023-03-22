@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <script type="module" src="./049-main.js"></script>
+    <title>模拟测试</title>
+    <style>
+      .ac {
+        display: flex;
+      }
+
+      .ac > div {
+        width: 40%;
+        height: 180px;
+      }
+
+      .tips {
+        font-size: 14px;
+        color: rgb(212, 18, 18);
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      <span>开奖号码：</span>
+      <input id="hit" type="text" placeholder="英文逗号隔开，蓝球放最后示例" value="4,7,10,14,16,26,9" />
+    </p>
+    <p>
+      <span>购买数量：</span>
+      <input id="count" type="number" value="10000" />
+    </p>
+    <p>
+      <button id="start">开始</button>
+      <span class="tips"></span>
+    </p>
+    <div class="ac">
+      <div>
+        <p>
+          <span>支出：</span>
+          <span class="pay"></span>
+        </p>
+        <p>
+          <span>收入：</span>
+          <span class="income"></span>
+        </p>
+        <p>
+          <span>净利润：</span>
+          <span class="profit"></span>
+        </p>
+      </div>
+      <div>
+        <p>中奖情况：</p>
+        <ul id="prize"></ul>
+      </div>
+    </div>
+    <hr />
+    <p>每注金额 2</p>
+    <p>奖金等级：</p>
+    <ol>
+      <li>7832457</li>
+      <li>222677</li>
+      <li>3000</li>
+      <li>200</li>
+      <li>10</li>
+      <li>5</li>
+    </ol>
+    <script>
+      var tipsDom = $('.tips')
+      // 提示
+      function tips(content) {
+        tipsDom.html(content)
+        setTimeout(() => {
+          tipsDom.html('')
+        }, 1200)
+      }
+      // 中奖等级
+      const money = {
+        1: 7832457,
+        2: 222677,
+        3: 3000,
+        4: 200,
+        5: 10,
+        6: 5,
+        0: 0
+      }
+      let repeat = false
+      function run() {
+        if (repeat) return
+        repeat = true
+        let hit = $('#hit').val()
+        let count = Number($('#count').val())
+        if (!hit) {
+          return tips('请输入中奖号码')
+        }
+        let hitList = hit.split(',').map((e) => Number(e))
+        if (hitList.length != 7) {
+          return tips('中奖号码输入有误')
+        }
+        if (!count) {
+          return tips('请输入购买数量')
+        }
+
+        let result = []
+        for (let i = 0; i < count; i++) {
+          let lv = getLv(mainBig(), hitList)
+          result.push(lv)
+        }
+        let sum = 0
+        for (let item of result) {
+          sum += money[item]
+        }
+        let prize = result.reduce((p, c) => (p[c] ? p[c]++ : (p[c] = 1), p), {})
+        let prizeDom = $('#prize')
+        prizeDom.empty()
+        for (let key in prize) {
+          prizeDom.append(`<li>${key}-${prize[key]}</li>`)
+        }
+        let pay = count * 2
+        $('.pay').text(pay)
+        $('.income').text(sum)
+        $('.profit').text(sum - pay)
+        repeat = false
+      }
+      $('#start').on('click', run)
+      $(document).keypress(function (e) {
+        if (e.keyCode == 32) {
+          run()
+        }
+      })
+    </script>
+  </body>
+</html>

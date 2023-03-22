@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <title>109-js控制单选选中</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p><input type="radio" name="aaa" value="1" />是</p>
+      <p><input type="radio" name="aaa" value="0" />否</p>
+      <hr />
+      <p><input type="radio" name="bbb" value="1" disabled />是</p>
+      <p><input type="radio" name="bbb" value="0" disabled />否</p>
+
+      <button class="but" data-id="1">jq点击选中-是</button>
+      <button class="but" data-id="0">jq点击选中-否</button>
+      <p>
+        <br />
+      </p>
+      <button id="but-1" data-id="1">原生点击选中-是</button>
+      <button id="but-2" data-id="0">原生点击选中-否</button>
+    </div>
+    <script type="module" src="./109-main.js"></script>
+  </body>
+</html>

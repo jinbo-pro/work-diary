@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <link
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js"></script>
+    <title>201-element-ui时间选择可选范围控制</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div id="app">
+      <el-form>
+        <p>el-date-picker 的 picker-options 属性可以配置选择的时间范围</p>
+        <el-form-item label="禁用今天之后的时间：">
+          <el-date-picker v-model="value1" type="date" placeholder="选择日期" :picker-options="pickerOptions1">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item label="禁用今天之前的时间：">
+          <el-date-picker v-model="value2" type="date" placeholder="选择日期" :picker-options="pickerOptions2">
+          </el-date-picker>
+        </el-form-item>
+      </el-form>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            value1: '',
+            pickerOptions1: {
+              disabledDate(time) {
+                let t = new Date()
+                t.setDate(t.getDate())
+                // 禁用今天之后的时间
+                return time.getTime() > t.getTime()
+              }
+            },
+            value2: '',
+            pickerOptions2: {
+              disabledDate(time) {
+                let t = new Date()
+                t.setDate(t.getDate())
+                // 禁用今天之前的时间
+                return time.getTime() < t.getTime()
+              }
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

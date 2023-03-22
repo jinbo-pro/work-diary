@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.jsdelivr.net/npm/javascript-obfuscator/dist/index.browser.js"></script>
+    <meta name="author" content="lijinbo" />
+    <title>218-js代码混淆</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        参考文章：
+        <a href="https://blog.csdn.net/Crazy__Hope/article/details/103717469" target="_bank">js混淆与反混淆</a>
+      </p>
+    </div>
+    原始代码：
+    <p id="initCode"></p>
+    混淆后的代码：
+    <p id="result"></p>
+    <script title="src" id="srcCode">
+      /**
+       * 时间格式化
+       * @param {(Object|string|number)} time
+       * @param {string} cFormat
+       * @returns {string}
+       */
+      function parseTime(time, cFormat = '{y}-{m}-{d} {h}:{i}:{s}') {
+        if (arguments.length === 0) {
+          return ''
+        }
+        const format = cFormat
+        let date
+        if (typeof time === 'object') {
+          date = time
+        } else {
+          if (typeof time === 'string') {
+            time = time.replace(/-/g, '/')
+          }
+          if (typeof time === 'string' && /^[0-9]+$/.test(time)) {
+            time = parseInt(time)
+          }
+          if (typeof time === 'number' && time.toString().length === 10) {
+            time = time * 1000
+          }
+          date = new Date(time)
+        }
+        const formatObj = {
+          y: date.getFullYear(),
+          m: date.getMonth() + 1,
+          d: date.getDate(),
+          h: date.getHours(),
+          i: date.getMinutes(),
+          s: date.getSeconds(),
+          a: date.getDay()
+        }
+        const time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
+          let value = formatObj[key]
+          if (key === 'a') {
+            return ['日', '一', '二', '三', '四', '五', '六'][value]
+          }
+          if (result.length > 0 && value < 10) {
+            value = '0' + value
+          }
+          return value || '0'
+        })
+        return time_str
+      }
+    </script>
+    <script>
+      const src = document.getElementById('srcCode')
+      document.getElementById('initCode').innerHTML = src.innerHTML
+      const obfuscationResult = JavaScriptObfuscator.obfuscate(src.innerHTML)
+      document.getElementById('result').innerHTML = obfuscationResult.getObfuscatedCode()
+    </script>
+  </body>
+</html>

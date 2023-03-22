@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>MyPromise promise最简单的模型</title>
+  </head>
+
+  <body>
+    <script>
+      /**
+       * 简易模板与真实情况差距
+       * 省略了promise状态管理
+       * resolveFn 和 rejectFn 应该是数组 这里直接简化为单个函数
+       * then 里面是promise 链式解析， 这里直接返回 this
+       */
+      class MyPromise {
+        constructor(func) {
+          const resolve = (res) => {
+            // ... 修改请求状态 执行成功数组里的回调函数
+            this.resolveFn(res)
+          }
+          const reject = (error) => {
+            // ... 修改请求状态 执行失败数组里的回调函数
+            this.rejectFn(error)
+          }
+          func(resolve, reject)
+        }
+        then(resFn) {
+          this.resolveFn = resFn
+          // ... 循环解析 promise 链 直到解析到 值为止
+          return this
+        }
+        catch(errFn) {
+          this.rejectFn = errFn
+        }
+      }
+
+      function request() {
+        return new MyPromise((resolve, reject) => {
+          setTimeout(() => {
+            resolve('resolve value 111')
+            // reject('reject value 222')
+          }, 800)
+        })
+      }
+
+      request()
+        .then((res) => {
+          console.log(res, '-->>> res 1111')
+        })
+        .catch((err) => {
+          console.log(err, '-->>> err 222')
+        })
+    </script>
+  </body>
+</html>

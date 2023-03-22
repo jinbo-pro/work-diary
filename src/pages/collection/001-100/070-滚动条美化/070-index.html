@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <title>070-滚动条美化</title>
+    <style>
+      .box {
+        width: 300px;
+        overflow-x: scroll;
+        white-space: nowrap;
+      }
+
+      .box p {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+        display: inline-block;
+        border: 1px solid #999;
+      }
+
+      /* 滚动条整体部分 */
+      .scrollbar1::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+        background-color: transparent;
+      }
+
+      /* 滚动条轨道部分 */
+      .scrollbar1::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      /* 滚动条滑块部分 */
+      .scrollbar1::-webkit-scrollbar-thumb {
+        border-radius: 3px;
+        background-image: linear-gradient(135deg, #09f, #3c9);
+      }
+
+      .scrollbar2::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background-color: transparent;
+      }
+
+      .scrollbar2::-webkit-scrollbar-track {
+        background-color: #f8f8f8;
+      }
+
+      .scrollbar2::-webkit-scrollbar-thumb {
+        border-radius: 4px;
+        background-image: linear-gradient(135deg, rgb(82, 199, 88), #3c9);
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box scrollbar1"></div>
+    <div class="box scrollbar2"></div>
+    <script>
+      var box = $('.box')
+      for (var i = 0; i < 20; i++) {
+        box.append(`<p>${i}</p>`)
+      }
+    </script>
+  </body>
+</html>

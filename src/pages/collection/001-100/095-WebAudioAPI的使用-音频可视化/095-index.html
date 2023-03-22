@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>095-WebAudioAPI的使用-音频可视化</title>
+    <style></style>
+  </head>
+
+  <body>
+    <p>
+      参考链接：
+      <a href="https://mp.weixin.qq.com/s/hqQs7rzZZXC_sjtD79cWkA" target="_blank">
+        Web Audio API 太强了，让我们一起领略音频之美
+      </a>
+    </p>
+    <p>
+      选择音频文件使用 AudioContext 播放
+      <br />
+      <input id="audioFile" type="file" accept="audio/*" />
+    </p>
+    <p>
+      音频可视化
+      <a href="./音频可视化.html">音频可视化.html</a>
+    </p>
+    <script>
+      const inputFile = document.querySelector('#audioFile')
+      inputFile.onchange = function (event) {
+        const file = event.target.files[0]
+        const reader = new FileReader()
+        reader.readAsArrayBuffer(file)
+        reader.onload = (evt) => {
+          const encodedBuffer = evt.currentTarget.result
+          const context = new AudioContext()
+          context.decodeAudioData(encodedBuffer, (decodedBuffer) => {
+            const dataSource = context.createBufferSource()
+            dataSource.buffer = decodedBuffer
+            dataSource.connect(context.destination)
+            dataSource.start()
+          })
+        }
+      }
+    </script>
+  </body>
+</html>

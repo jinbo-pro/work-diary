@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>177-文件夹上传</title>
+    <style>
+      #drop {
+        width: 200px;
+        height: 200px;
+        border: 1px solid #999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      #fileList li {
+        font-size: 14px;
+        color: #999;
+        padding: 6px 0;
+        border-bottom: 1px solid #f1f1f1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        参考文章：
+        <a href="https://juejin.cn/post/7038500076842385445" target="_blank">
+          前端实现拖拽上传文件和文件夹（webkit内核）
+        </a>
+      </p>
+      <hr />
+      <ol>
+        <li>
+          使用input标签上传文件夹
+          <input
+            id="folderUploader"
+            multiple="false"
+            type="file"
+            webkitdirectory
+            class="file-input"
+            title="文件与文件夹无法同时上传，单次仅支持上传一个文件夹"
+          />
+        </li>
+        <li style="margin-top: 24px">
+          <div id="drop">拖拽文件夹到此</div>
+        </li>
+      </ol>
+      <p>文件列表</p>
+      <ol id="fileList"></ol>
+    </div>
+    <script type="module" src="./177-main.js"></script>
+  </body>
+</html>

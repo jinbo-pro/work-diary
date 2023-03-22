@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>054-拼图背景效果2-乱序展示</title>
+    <link rel="stylesheet" href="./054-style.css" />
+  </head>
+
+  <body>
+    <section>
+      <div class="banner">
+        <div class="blocks"></div>
+      </div>
+    </section>
+    <script>
+      const banner = document.getElementsByClassName('banner')[0]
+      const blocks = document.getElementsByClassName('blocks')
+      for (var i = 1; i < 400; i++) {
+        banner.innerHTML += "<div class='blocks'></div>"
+        const duration = Math.random() * 5
+        blocks[i].style.animationDuration = 2 + duration + 's'
+        blocks[i].style.animationDelay = duration + 's'
+      }
+      const section = document.querySelector('section')
+      setTimeout(function () {
+        section.classList.add('active')
+      }, 14000)
+    </script>
+  </body>
+</html>

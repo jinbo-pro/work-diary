@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <link
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js"></script>
+    <script src="https://unpkg.com/lunar-javascript@1.2.33/lunar.js"></script>
+    <title>014-时间日历黄历-时长计算</title>
+    <style>
+      .result_box {
+        font-size: 18px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>
+        日历插件：
+        <a href="https://6tail.cn/calendar/api.html" target="_blank">lunar.js</a>
+      </p>
+      <p>开始时间</p>
+      <el-date-picker v-model="formData.start" type="datetime" placeholder="选择日期"> </el-date-picker>
+      <el-card>
+        <div slot="header">
+          <span>{{ startInfo.r }}</span>
+        </div>
+        <div>{{ startInfo.h }}</div>
+      </el-card>
+      <p>结束时间</p>
+      <el-date-picker v-model="formData.end" type="datetime" placeholder="选择日期"> </el-date-picker>
+      <el-card>
+        <div slot="header">
+          <span>{{ endInfo.r }}</span>
+        </div>
+        <div>{{ endInfo.h }}</div>
+      </el-card>
+      <p>时长</p>
+      <el-card>
+        <div class="result_box">
+          <p>{{ show.year }}</p>
+          <p>{{ show.day }}</p>
+        </div>
+      </el-card>
+    </div>
+    <script>
+      function dateFormat(t) {
+        if (!t) return { r: '', h: '' }
+        const solar = Solar.fromYmdHms(
+          t.getFullYear(),
+          t.getMonth() + 1,
+          t.getDate(),
+          t.getHours(),
+          t.getMinutes(),
+          t.getSeconds()
+        )
+        const pad = (x) => String(x).padStart(2, '0')
+        return {
+          r: solar.toFullString(),
+          h: solar.getLunar().toFullString()
+        }
+      }
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            formData: {
+              start: '',
+              end: new Date()
+            }
+          }
+        },
+        computed: {
+          startInfo() {
+            return dateFormat(this.formData.start)
+          },
+          endInfo() {
+            return dateFormat(this.formData.end)
+          },
+          show() {
+            const { start, end } = this.formData
+            if (!start || !end) return { year: '', day: '' }
+            const t = this.formData.end - this.formData.start
+            const oneDayTime = 24 * 3600 * 1000
+            return {
+              year: t / (365 * oneDayTime) + ' 年',
+              day: t / oneDayTime + ' 天'
+            }
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

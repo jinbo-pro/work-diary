@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>087-数组排序探索</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>文章参考</p>
+      <a href="https://www.cnblogs.com/herozhi/p/5880939.html" target="_blank">10种排序算法</a>
+    </div>
+    <p>
+      <a href="./多维度排序orderBy.html">多维度排序orderBy</a>
+    </p>
+    <script type="module" src="./087-main.js"></script>
+    <script>
+      console.time('创建数组')
+      const arr = () => createArray(1000)
+      arr()
+      console.timeEnd('创建数组')
+
+      // =================== //
+      console.time('冒泡排序---1')
+      bubbleSort(arr())
+      console.timeEnd('冒泡排序---1')
+
+      // =================== //
+      console.time('冒泡排序---2')
+      bubbleSort2(arr())
+      console.timeEnd('冒泡排序---2')
+
+      // =================== //
+      console.time('冒泡排序---3')
+      bubbleSort3(arr())
+      console.timeEnd('冒泡排序---3')
+
+      // =================== //
+      console.time('选择排序---1')
+      selectionSort(arr())
+      console.timeEnd('选择排序---1')
+
+      // =================== //
+      console.time('插入排序---1')
+      insertionSort(arr())
+      console.timeEnd('插入排序---1')
+
+      // =================== //
+      console.time('插入排序---2')
+      binaryInsertionSort(arr())
+      console.timeEnd('插入排序---2')
+
+      // =================== //
+      console.time('希尔排序---1')
+      shellSort(arr())
+      console.timeEnd('希尔排序---1')
+
+      // =================== //
+      console.time('归并排序---1')
+      mergeSort(arr())
+      console.timeEnd('归并排序---1')
+
+      // =================== //
+      console.time('快速排序---1')
+      quickSort(arr())
+      console.timeEnd('快速排序---1')
+
+      // =================== //
+      console.time('快速排序---2')
+      quickSort2(arr())
+      console.timeEnd('快速排序---2')
+
+      // =================== //
+      console.time('堆排序---1')
+      heapSort(arr())
+      console.timeEnd('堆排序---1')
+    </script>
+  </body>
+</html>

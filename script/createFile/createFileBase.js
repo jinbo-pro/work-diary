@@ -2,7 +2,7 @@ const fs = require('fs')
 const path = require('path')
 const readline = require('readline')
 const { checkDir } = require('../../app/utils/file')
-const template = fs.readFileSync(path.resolve(__dirname, './temp2.html'))
+const template = fs.readFileSync(path.resolve(__dirname, './temp.html'))
 
 const rl = readline.createInterface({
   input: process.stdin,

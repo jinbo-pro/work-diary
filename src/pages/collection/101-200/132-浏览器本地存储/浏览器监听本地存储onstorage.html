@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1" />
+    <meta name="renderer" content="webkit" />
+    <title>onstorage测试</title>
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      div {
+        box-sizing: border-box;
+      }
+      button,
+      a {
+        cursor: pointer;
+        width: 100px;
+        height: 40px;
+        line-height: 40px;
+        border: none;
+        background: #20b1aa;
+        display: inline-block;
+        vertical-align: middle;
+        text-decoration: none;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>请打开两个当前页面 相互操作 观察值的监听情况</h2>
+    <div class="box">
+      <button class="save">存储</button>
+      <button class="get">获取</button>
+      <button class="change">修改</button>
+      <button class="remove">删除</button>
+      <a href="http://10.1.54.213:7777/" target="_blank">标签实现跳转</a>
+    </div>
+    <div class="tips" style="color: red"></div>
+    <script type="text/javascript">
+      function tips(text) {
+        $('.tips').show().text(text)
+        setTimeout(() => {
+          $('.tips').hide()
+        }, 1200)
+      }
+      // 该方式仅支持 localStorage
+      const storage = localStorage
+      $('.save').on('click', function () {
+        const val = Date.now()
+        storage.setItem('s1', val)
+        tips('保存成功 s1:' + val)
+      })
+      $('.get').on('click', function () {
+        var s1 = storage.getItem('s1')
+        tips('获取s1：', s1)
+      })
+      $('.change').on('click', function () {
+        const val = Math.random()
+        storage.setItem('s1', val)
+        tips('修改成功： ' + val)
+      })
+      $('.remove').on('click', function () {
+        storage.removeItem('s1')
+        tips('删除成功')
+      })
+      window.onstorage = function (e) {
+        console.log(e)
+        console.log(e.key + ' 由 ' + e.oldValue + ' 被修改为 ' + e.newValue + '.')
+      }
+    </script>
+  </body>
+</html>

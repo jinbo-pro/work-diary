@@ -1,18 +1,27 @@
 {
   "name": "work-diary",
-  "version": "3.0.0",
+  "version": "2.0.0",
   "description": "my work diary",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon app/index.js -dev",
-    "socket": "node app/websocket/socket.js",
-    "build": "node build/index.js && tar -czvf dist.tar.gz dist",
+    "dev": "node build/dev.js",
+    "build": "node build/build.js",
+    "server": "nodemon app/index.js -dev",
     "create": "node script/createFile/create-collection.js"
   },
+  "keywords": [],
   "author": "lijinbo",
   "license": "ISC",
+  "devDependencies": {
+    "esbuild": "^0.17.11",
+    "less": "3.9.0",
+    "less-loader": "5.0.0",
+    "nodemon": "^2.0.4",
+    "prettier": "^2.8.4",
+    "vite": "^4.2.0",
+    "vite-plugin-vue2": "^2.0.3"
+  },
   "dependencies": {
-    "@types/jquery": "^3.5.13",
     "koa": "^2.13.0",
     "koa-body": "^4.2.0",
     "koa-compress": "^5.1.0",
@@ -20,14 +29,12 @@
     "koa-router": "^9.0.1",
     "koa-static": "^5.0.0",
     "mockjs": "^1.1.0",
-    "nodemon": "^2.0.4"
-  },
-  "devDependencies": {
-    "esbuild": "^0.15.1"
+    "vue": "2.6.12",
+    "vue-template-compiler": "2.6.12"
   },
   "nodemonConfig": {
     "ignore": [
-      "public/*",
+      "src/*",
       "script/*",
       "views/*",
       "dist/*"

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>018-浮动与清除浮动</title>
+    <style>
+      .box {
+        border: 1px solid red;
+        margin-bottom: 30px;
+      }
+
+      .fl {
+        float: left;
+      }
+
+      .clearfix {
+        /* IE */
+        zoom: 1;
+      }
+
+      .clearfix::after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>未浮动1</p>
+      <p>未浮动2</p>
+      <p>未浮动3</p>
+    </div>
+    <p>下面的div高度坍塌了↓</p>
+    <div class="box">
+      <div class="fl">浮动1</div>
+      <div class="fl">浮动2</div>
+      <div class="fl">浮动3</div>
+    </div>
+    <p>【下面的div清除了浮动 高度恢复了↓】</p>
+    <div class="box clearfix">
+      <div class="fl">浮动1</div>
+      <div class="fl">浮动2</div>
+      <div class="fl">浮动3</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>094-输入框粘贴图片</title>
+    <style>
+      .input_box {
+        width: 85%;
+        min-height: 300px;
+        border: 1px solid #333;
+        border-radius: 4px;
+        padding: 12px;
+        margin: 12px;
+      }
+
+      .content {
+        display: flex;
+      }
+
+      .content > div {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      默认情况下 div 开启 contenteditable 属性后即可粘贴图片 但是粘贴的是base64格式的图片
+      <br />
+      现在我们自定义粘贴，将图片上传到后端使用返回的链接展示
+    </p>
+    <div class="content">
+      <div>
+        <p>默认情况</p>
+        <div class="input_box" contenteditable="true">111</div>
+      </div>
+      <div>
+        <p>自定义粘贴</p>
+        <div class="input_box" id="app" contenteditable="true">222</div>
+      </div>
+    </div>
+
+    <script type="module" src="./094-main.js"></script>
+  </body>
+</html>

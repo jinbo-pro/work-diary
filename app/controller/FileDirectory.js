@@ -1,33 +1,27 @@
+const getFileFlatList = require('../utils/getFileFlatList')
 const { BaseController } = require('../Base')
 
 class FileDirectory extends BaseController {
-  constructor() {
-    super()
-    this.dirContain = [
-      // 包含的文件夹
-      'loading',
-      'notepad',
-      'libusedemo',
-      'collection'
-    ]
-  }
-  // 获取列表
+  // 获取文件列表
   async getList(ctx) {
-    const { treeList } = await this.servers.FileDirData.getFileList()
-    // 筛选所需文件树
-    let dirList = ctx.query.dirList ? ctx.query.dirList.split(',') : this.dirContain
-    const result = treeList.filter((e) => dirList.includes(e.fileName))
-    ctx.body = this.resSuccess(result)
-  }
-  // 根据id获取子集列表
-  async getById(ctx) {
-    let id = ctx.query.id
-    if (!id) {
-      return (ctx.body = this.resError('请传入id'))
+    const dir = ctx.query.dir
+    if (!dir) {
+      ctx.body = this.resError('请传入文件夹路径')
+      return
     }
-    const { flatList } = await this.servers.FileDirData.getFileList()
-    let cur = flatList.find((e) => e.id == id) || null
-    ctx.body = this.resSuccess(cur)
+    const result = getFileFlatList(this.getSrcPath(dir))
+
+    if (dir == 'pages/collection') {
+      const metaConfig = require(this.getSrcPath('metaConfig.json'))
+      for (let item of result) {
+        const tag = metaConfig[item.fileName]
+        if (tag) {
+          item.meta = { name: item.fileName, tag }
+        }
+      }
+    }
+
+    ctx.body = this.resSuccess(result)
   }
 }
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <title>047-3</title>
+    <link rel="stylesheet" href="./047-style.css" />
+  </head>
+
+  <body>
+    <p>使用 'loading' in new Image() 检测浏览器是否支持 图片懒加载</p>
+    <ul id="ulBox"></ul>
+    <script>
+      var isSupportLoading = 'loading' in new Image()
+      console.log(isSupportLoading, '-->>> isSupportLoading')
+      var ulBox = $('#ulBox')
+      for (let i = 1; i < 100; i++) {
+        ulBox.append(
+          `<li class="img_box">
+            <img loading="lazy" class="lazyload" src="http://www.ruanyifeng.com/images_pub/pub_${i}.jpg">
+          </li>`
+        )
+      }
+    </script>
+  </body>
+</html>

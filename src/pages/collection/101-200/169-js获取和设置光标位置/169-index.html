@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>169-js获取和设置光标位置</title>
+    <style>
+      p {
+        display: flex;
+        flex-direction: row;
+      }
+
+      .btn {
+        height: 24px;
+        margin: 0 10px;
+      }
+
+      .edit-div {
+        display: inline-block;
+        width: 225px;
+        border: 1px solid #decdcd;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      参考文档：
+      <a href="https://blog.csdn.net/weixin_40629244/article/details/104644304" target="_blank">
+        JavaScript 中获取光标位置
+      </a>
+    </p>
+    <hr />
+    <p>
+      <label>输入框测试:</label>
+      <input type="text" style="width: 220px" onclick="getCursortPosition(event);" />
+      <span>光标位置:</span>
+      <span></span>
+    </p>
+    <p>
+      <label>文本框测试:</label>
+      <textarea rows="5" style="width: 220px" onclick="getCursortPosition(event);"></textarea>
+      <span>光标位置:</span>
+      <span></span>
+    </p>
+    <div>
+      <label>可编辑div:</label>
+      <div contenteditable="true" class="edit-div" onclick="getCursortPosition(event);"></div>
+      <span>光标位置:</span>
+      <span></span>
+    </div>
+    <script type="module" src="./169-main.js"></script>
+  </body>
+</html>

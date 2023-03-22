@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <title>079-鼠标右键菜单</title>
+    <style>
+      #testRight {
+        width: 100px;
+        background-color: yellow;
+        position: absolute;
+        z-index: 100;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      <a href="./perfect.html">更完善的鼠标右键参考</a>
+    </p>
+    <div class="box">
+      <p>右键查看详情</p>
+      <ul class="content">
+        <li data-id="1">111</li>
+        <li data-id="2">222</li>
+        <li data-id="3">333</li>
+        <li data-id="4">444</li>
+      </ul>
+      <ul id="testRight">
+        <li>开始</li>
+        <li>暂停</li>
+        <li>拜拜</li>
+      </ul>
+    </div>
+    <script>
+      var $forRight = $('#testRight')
+      $forRight.hide()
+      document.onclick = function () {
+        $forRight.hide()
+      }
+
+      $('.content li').on('contextmenu', function (event) {
+        console.log($(this).attr('data-id'), '-->>> id')
+        var event = event || window.event
+        $forRight.show()
+        $forRight.css({
+          left: event.clientX + 'px',
+          top: event.clientY + 'px'
+        })
+        return false // 返回false 屏蔽默认右键菜单
+      })
+
+      $forRight.find('li').on('click', function (e) {
+        e.stopPropagation()
+        e.preventDefault()
+        console.log(678, '-->>> 678')
+      })
+    </script>
+  </body>
+</html>

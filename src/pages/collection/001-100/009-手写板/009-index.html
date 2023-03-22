@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <link rel="stylesheet" href="./009-style.css" />
+    <title>009-手写板</title>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        好用的第三方电子签名板
+        <a href="https://github.com/langyuxiansheng/vue-sign-canvas" target="_blank">vue-sign-canvas</a>
+        <br />
+        <a href="https://langyuxiansheng.github.io/vue-sign-canvas/" target="_blank">在线演示</a>
+      </p>
+      <canvas id="canvas" width="500" height="500"></canvas>
+      <div class="toolbox">
+        <div>
+          <button id="decrease">-</button>
+          <span id="size">5</span>
+          <button id="increase">+</button>
+          <input type="color" id="color" />
+        </div>
+        <div>
+          <button onclick="saveFile()">保存</button>
+          <button id="clear">X</button>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="./009-main.js"></script>
+  </body>
+</html>

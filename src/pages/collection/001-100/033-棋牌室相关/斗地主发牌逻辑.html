@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <title>斗地主发牌逻辑</title>
+    <style>
+      .brand_list {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .brand_item {
+        width: 50px;
+        height: 80px;
+        cursor: pointer;
+        border: 1px solid #666;
+        border-radius: 2px;
+        transition: 0.3s;
+      }
+
+      .brand_item:hover {
+        transform: translateY(-20%);
+        transition: 0.3s;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <button @click="licensing">洗牌</button>
+      <div>
+        <div v-for="(item, index) in brandList" :key="index">
+          <p>{{ index + 1 }}</p>
+          <div class="brand_list">
+            <div
+              v-for="(sonItem, sonIndex) in item"
+              :key="sonIndex"
+              class="brand_item"
+              :style="`color:${typeMap[sonItem.type].color}`"
+            >
+              <div>{{ sonItem.num == 0 ? 'joker' : sonItem.num }}</div>
+              <div>{{ typeMap[sonItem.type].icon }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import { cleanBrand, createNewBrand, sortBrandList } from './utils.js'
+      import { arrayChunk } from '/utils/collect.js'
+
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            brandList: [],
+            typeMap: {
+              heart: { icon: '♥', color: 'red' },
+              spade: { icon: '♠', color: 'black' },
+              flower: { icon: '♣', color: 'black' },
+              block: { icon: '♦', color: 'red' }
+            }
+          }
+        },
+        created() {
+          this.licensing()
+        },
+        methods: {
+          licensing() {
+            let list = createNewBrand()
+            let list2 = cleanBrand(list)
+            this.brandList = arrayChunk(list2, 17).map((sonList) => sortBrandList(sonList))
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

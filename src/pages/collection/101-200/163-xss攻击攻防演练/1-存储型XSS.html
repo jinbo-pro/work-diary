@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <title>1-存储型XSS</title>
+  </head>
+  <body>
+    <h3>XSS业务场景</h3>
+    <ul>
+      <li>重灾区：评论区、留言区、个人信息、订单信息等</li>
+      <li>针对型：站内信、网页即时通讯、私信、意见反馈</li>
+      <li>存在风险：搜索框、当前目录、图片属性等</li>
+    </ul>
+    <h3>示例攻击代码</h3>
+    <ul id="xsscode"></ul>
+
+    <p>我的评论:</p>
+    <button id="addSubmit">提交评论</button>
+    <br />
+
+    <textarea id="content" cols="80" rows="10"></textarea>
+    <hr />
+    <p>评论列表:</p>
+    <ol id="list"></ol>
+
+    <script defer type="module" src="./1-main.js"></script>
+  </body>
+</html>

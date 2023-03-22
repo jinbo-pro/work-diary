@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <title>197-a标签的样式细节整理</title>
+    <style>
+      /* 去除a标签的下划线 */
+      .a1 {
+        text-decoration: none;
+      }
+      /* 未访问时的状态 */
+      .a2:link {
+        color: #ff0000;
+      }
+      /* 鼠标移动到链接上时的状态 */
+      .a3:hover {
+        color: red;
+      }
+      /* 已访问过的状态 */
+      .a4:visited {
+        color: green;
+      }
+      /* 鼠标按下去时的状态 */
+      .a5:active {
+        color: #ff0000;
+      }
+      /* 一次设置这四个样式 */
+      .a6 {
+        color: #ff0000;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <p v-for="(item, index) in list" :key="index">
+        <a :id="`a_${index}`" :href="`#a_${index}`" :class="`a${index+1}`">{{ index + 1 }} - {{ item }}</a>
+      </p>
+    </div>
+    <script>
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            list: [
+              '去除a标签的下划线',
+              '未访问时的状态',
+              '鼠标移动到链接上时的状态',
+              '已访问过的状态',
+              '鼠标按下去时的状态',
+              '一次设置这四个样式'
+            ]
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

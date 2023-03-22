@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <p>看代码</p>
+    <script>
+      var $ = {}
+      $.ajax = function (options) {
+        setTimeout(() => {
+          options.success(1)
+          this.callBackList.forEach((fn) => fn(2))
+        }, 500)
+        return this
+      }
+      $.callBackList = []
+      $.done = function (fn) {
+        this.callBackList.push(fn)
+        return this
+      }
+      var s = $.ajax({
+        success: function (res) {
+          console.log(res, '-->>> res 111')
+        }
+      }).done((res) => {
+        console.log(res, '-->>> res 22')
+      })
+      console.log(s, '-->>> 678')
+      /**
+       * done 就是添加回调函数， 然后等待异步执行
+       * */
+    </script>
+  </body>
+</html>

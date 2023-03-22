@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <meta name="author" content="lijinbo" />
+    <title>221-世界时钟</title>
+    <style>
+      .time_max {
+        display: grid;
+        grid-row-gap: 16px;
+        grid-column-gap: 16px;
+        grid-template-columns: repeat(3, auto);
+      }
+      .city_box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .time {
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .city {
+        font-size: 14px;
+      }
+      .active .time {
+        color: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>
+        更多时差信息参考：
+        <a href="http://114.xixik.com/shicha/" target="_blank">时差</a>
+      </p>
+      <div class="time_max">
+        <div v-for="(item, index) in timeList" :key="index" :class="['city_box', { active: timeZone == item.diff }]">
+          <div class="time">{{ item.time }}</div>
+          <div class="city">{{ item.country }} - {{ item.city }}</div>
+        </div>
+      </div>
+    </div>
+    <script>
+      // 时差
+      const timeZone = new Date().getTimezoneOffset() / -60
+      const timeConfig = [
+        { city: '洛杉矶', country: '美国', diff: -8 },
+        { city: '墨西哥城', country: '墨西哥', diff: -6 },
+        { city: '华盛顿', country: '美国', diff: -5 },
+        { city: '加拉加斯', country: '委内瑞拉', diff: -4 },
+        { city: '巴西利亚', country: '巴西', diff: -3 },
+
+        { city: '伦敦', country: '英国', diff: 0 },
+        { city: '柏林', country: '德国', diff: 1 },
+        { city: '基辅', country: '乌克兰', diff: 2 },
+        { city: '莫斯科', country: '俄罗斯', diff: 3 },
+
+        { city: '阿布扎比', country: '阿联酋', diff: 4 },
+        { city: '伊斯兰堡', country: '巴基斯坦', diff: 5 },
+        { city: '达卡', country: '孟加拉国', diff: 6 },
+        { city: '曼谷', country: '泰国', diff: 7 },
+        { city: '北京', country: '中国', diff: 8 },
+        { city: '东京', country: '日本', diff: 9 },
+
+        { city: '堪培拉', country: '澳大利亚', diff: 10 },
+        { city: '霍尼亚拉', country: '所罗门群岛', diff: 11 },
+        { city: '惠灵顿', country: '新西兰', diff: 12 }
+      ]
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            now: 0,
+            timeZone
+          }
+        },
+        computed: {
+          timeList() {
+            return timeConfig.map((e) => {
+              const time = this.now + (e.diff - timeZone) * 60 * 60 * 1000
+              return {
+                ...e,
+                time: new Date(time).toLocaleString()
+              }
+            })
+          }
+        },
+        mounted() {
+          this.now = Date.now()
+          setInterval(() => {
+            this.now = Date.now()
+          }, 1000)
+        }
+      })
+    </script>
+  </body>
+</html>

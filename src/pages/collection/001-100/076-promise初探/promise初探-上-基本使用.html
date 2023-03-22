@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>076-promise初探-上</title>
+  </head>
+
+  <body>
+    <div class="box">看控制台</div>
+    <p>
+      参考：
+      <a href="https://zhuanlan.zhihu.com/p/144058361">从零开始手写Promise</a>
+    </p>
+    <script>
+      /**
+       * promise 是一个拥有 then 方法的对象或函数，其行为符合本规范；
+       * 一个 Promise 的当前状态必须为以下三种状态中的一种：
+       * 等待态（Pending）、执行态（Fulfilled）和拒绝态（Rejected）。
+       */
+      const PENDING = 'pending'
+      const FULFILLED = 'fulfilled'
+      const REJECTED = 'rejected'
+      class Pro {
+        constructor(executor) {
+          this.state = PENDING // 状态
+          this.value = undefined // 成功结果
+          this.reason = undefined // 失败原因
+          // 使用数组存储回调函数是因为多次调用then时能够正常运行，而变量会被覆盖
+          this.onResolvedCallbacks = [] // 存储成功的回调
+          this.onRejectedCallbacks = [] // 存储失败的回调
+          // 由于状态由pending变为其他状态后不可改变，所以此处需判断状态的可变性
+          const resolve = (value) => {
+            if (this.state === PENDING) {
+              this.state = FULFILLED
+              this.value = value
+              this.onResolvedCallbacks.forEach((fn) => fn(value))
+            }
+          }
+          const reject = (reason) => {
+            if (this.state === PENDING) {
+              this.state = REJECTED
+              this.reason = reason
+              this.onRejectedCallbacks.forEach((fn) => fn(reason))
+            }
+          }
+          try {
+            executor(resolve, reject) // 当实例化Promise时，构造函数会马上调用传入的执行函数executor
+          } catch (e) {
+            reject(e)
+          }
+        }
+        // then 方法必须返回一个 promise 对象，以便后面进行链式调用
+        then(onFulfilled, onRejected) {
+          if (this.state === FULFILLED) {
+            onFulfilled(this.value)
+          }
+          if (this.state === REJECTED) {
+            onRejected(this.reason)
+          }
+          if (this.state === PENDING) {
+            this.onResolvedCallbacks.push(onFulfilled)
+            this.onRejectedCallbacks.push(onRejected)
+          }
+        }
+      }
+
+      function api() {
+        return new Pro(function (resolve, reject) {
+          let ranNum = Math.random() * 100
+          setTimeout(function () {
+            if (ranNum < 30) {
+              reject(ranNum)
+            } else {
+              resolve(ranNum)
+            }
+          }, 500)
+        })
+      }
+
+      api().then(
+        function (res) {
+          console.log(res, '-->>> res111')
+        },
+        function (err) {
+          console.log(err, '-->>> err111')
+        }
+      )
+    </script>
+  </body>
+</html>

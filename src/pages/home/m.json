@@ -1,0 +1,6 @@
+{
+	"sort": "000",
+	"name": "000-home",
+	"tag": "home",
+	"cdn": "vue,normalize,pinyin-match"
+}

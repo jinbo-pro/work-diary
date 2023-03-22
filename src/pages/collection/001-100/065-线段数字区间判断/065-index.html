@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>065-线段数字区间判断</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">
+      当你设置了一个薪资区间就能看到Boss直聘上对应区间的招聘信息，出现的薪资区间总有一个在你设置的范围内
+      想了解一下，BOSS上是怎么实现两个薪资区间匹配的
+      <br />
+      一开始我想到的是把两个数字区间做成数组那么就可以通过循环求交集得到 于是我得到如下算法 1
+      <script>
+        const Area = { min: 10, max: 12 }
+        function getList(min, max) {
+          var list = []
+          for (var i = Area.min; i <= Area.max; i++) {
+            list.push(i)
+          }
+          return list
+        }
+        var areaList = getList(Area.min, Area.max)
+        var testList = getList(8, 13)
+        function main() {
+          for (let item of testList) {
+            if (areaList.includes(item)) {
+              return true
+            }
+          }
+          return false
+        }
+      </script>
+
+      <hr />
+      虽然问题解决了，这个算法存在很多问题 数字步进只能是1， 如果来个 7.5, 8.3 之类的就不好判断，
+      只能增加生成数组的复杂度，这肯定是不可行的，有没有更优的算法呢，当然有
+      <br />
+      首先分析一下，找找思路
+      <div>
+        <img src="./1.svg" />
+      </div>
+      这个可以看到，如果以AB为基准那么，C和D的位置各自有5种可能，由于要满足C小于D
+      <br />
+      那么可以整理得到cd有如下十种方式
+      <ul>
+        <li>C1-D2,C1-D3,C1-D4,C1-D5</li>
+        <li>C2-D3,C2-D4,C2-D5</li>
+        <li>C3-D4,C3-D5</li>
+        <li>C4-D5</li>
+      </ul>
+      <p>而这十种可以归为四类，满足这四类规则的都在区间里面，分别如下</p>
+      <ul>
+        <li>C小于A且D大于等于A</li>
+        <li>C等于A且D大于A</li>
+        <li>C大于A且C小于B且D大于等于B</li>
+        <li>C等于B且D大于B</li>
+      </ul>
+
+      于是就有如下算法 2
+      <script>
+        function main(C, D, A, B) {
+          let m1 = C < A && D >= A
+          let m2 = C == A && D > A
+          let m3 = C > A && C < B && D >= B
+          let m4 = C == B && D > B
+          let val = m1 || m2 || m3 || m4
+          console.log(m1, m2, m3, m4, `${C}-${D} ${val}`)
+          return val
+        }
+        var testList = [
+          [5, 10],
+          [6, 11],
+          [7, 12],
+          [8, 18],
+          [10, 11],
+          [10, 12],
+          [10, 15],
+          [11, 12],
+          [11, 15],
+          [12, 15],
+          // other
+          [6, 9],
+          [18, 27]
+        ]
+
+        for (let item of testList) {
+          main(...item, 10, 12)
+        }
+      </script>
+    </div>
+  </body>
+</html>

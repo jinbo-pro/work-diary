@@ -1,5 +1,4 @@
 const fs = require('fs')
-const { createMd5 } = require('./crypto')
 
 /**
  * 检查目录的可访问性
@@ -78,41 +77,6 @@ function readNodeDfs(src, func) {
     }
     func(temp)
   }
-}
-
-/**
- * 读取文件夹[扁平的树]
- * @param {string} src 文件夹路径
- * @param {boolean} showRoot 是否添加根目录
- * @returns
- */
-function getFileFlatList(src, showRoot = false) {
-  const createId = (s) => createMd5(s).slice(0, 8)
-  const createItem = (id, pid, isFile, fileName, filePath) => {
-    return { id, pid, isFile, fileName, filePath: pathSlash(filePath) }
-  }
-  var result = []
-  if (showRoot) {
-    let [rootName] = src.split('\\').slice(-1)
-    result.push(createItem(createId(src), '0', 0, rootName, '/'))
-  }
-  let files = fs.readdirSync(src).map((f) => {
-    return createItem(createId(f), createId(src), 0, f, src + '/' + f)
-  })
-  for (let read of files) {
-    let { fileName, filePath } = read
-    let isFile = checkIsFile(filePath)
-    let id = createId(filePath + fileName)
-    let item = createItem(id, read.pid, isFile, fileName, filePath)
-    result.push(item)
-    if (!isFile) {
-      let children = fs.readdirSync(filePath).map((f) => {
-        return createItem(createId(f), id, 0, f, filePath + '/' + f)
-      })
-      files.push(...children)
-    }
-  }
-  return result
 }
 
 /**
@@ -231,7 +195,6 @@ module.exports = {
   pathSlash, // 路径斜线转换
   readFileSync, // 读取文件
   readNodeDfs, // 深度优先遍历文件树
-  getFileFlatList, // 读取文件夹[扁平的树]
   clearDir, // 删除文件夹
   rename, // 修改文件名
   copyFile, // 拷贝文件

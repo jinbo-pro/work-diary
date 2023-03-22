@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>css实现点击防抖</title>
+    <style>
+      * {
+        user-select: none;
+      }
+      button {
+        animation: throttle 2s step-end forwards;
+      }
+      button:active {
+        animation: none;
+      }
+      @keyframes throttle {
+        from {
+          color: red;
+          pointer-events: none;
+        }
+        to {
+          color: green;
+          pointer-events: all;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      文章参考：
+      <a href="https://mp.weixin.qq.com/s/HvBNFyyxHEhP3Xua_t9S-A" target="_blank">
+        还在用 JS 做节流吗？CSS 也可以防止按钮重复点击
+      </a>
+    </p>
+    <p>基本原理：通过css动画周期性控制元素对指针事件做出反应，从而达到节流的目的</p>
+    <button onclick="save()">保存</button>
+    <script>
+      function save() {
+        console.log('save')
+      }
+    </script>
+  </body>
+</html>

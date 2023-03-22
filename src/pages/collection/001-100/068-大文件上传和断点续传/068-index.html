@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.2.0/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/spark-md5@3.0.2/spark-md5.min.js"></script>
+    <title>068-大文件上传和断点续传</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <button @click="location.reload()">重置</button>
+      <p>
+        <span>每个分片大小：</span>
+        <input v-model="chunkSize" min="1" type="number" placeholder="请输入" />
+        <span>(单位Mb)</span>
+      </p>
+      <input type="file" @change="selectFile" />
+      <div class="progress">
+        <span>已上传: {{ uploadSize | fileSize }}</span>
+        <span>总文件大小: {{ fileSizeTotal | fileSize }}</span><br />
+        <span>上传进度：{{ uploadProgress }}</span>
+        <p>
+          <a v-if="previewFile" :href="previewFile" target="_blank">文件预览</a>
+        </p>
+      </div>
+      <div>
+        <button @click="handleBtn">{{ btn ? '继续' : '暂停' }}</button>
+      </div>
+    </div>
+
+    <script type="module" src="./068-main.js"></script>
+  </body>
+</html>

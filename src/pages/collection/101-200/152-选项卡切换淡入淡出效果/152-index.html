@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/Mock.js/1.0.0/mock-min.js"></script>
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <title>152-选项卡切换淡入淡出效果</title>
+    <style>
+      body {
+        font-family: 'Lato', sans-serif;
+      }
+
+      /* Style the tab */
+      div.tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+      }
+
+      /* Style the buttons inside the tab */
+      div.tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-size: 17px;
+      }
+
+      /* Change background color of buttons on hover */
+      div.tab button:hover {
+        background-color: #ddd;
+      }
+
+      /* Create an active/current tablink class */
+      div.tab button.active {
+        background-color: #ccc;
+      }
+
+      /* Style the tab content */
+      .tabcontent {
+        padding: 6px 12px;
+        /** 切换动画 */
+        animation: fadeEffect 1s;
+      }
+
+      @keyframes fadeEffect {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <h3>选项卡 - 淡入效果</h3>
+      <div class="tab">
+        <button
+          v-for="(item, index) in list"
+          :key="index"
+          :class="['tablinks', { active: activeIndex == index }]"
+          @click="selectTab(index)"
+        >
+          {{ item.title }}
+        </button>
+      </div>
+
+      <div v-for="(item, index) in list" :key="index" class="tabcontent" v-show="activeIndex == index">
+        <h3>{{ item.title }}</h3>
+        <p>{{ item.content }}</p>
+      </div>
+    </div>
+
+    <script>
+      // 创建 dom
+      const list = Mock.mock({
+        'data|5': [{ title: '@name()', content: '@cparagraph(2,20)' }]
+      }).data
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            list,
+            activeIndex: 0
+          }
+        },
+        methods: {
+          selectTab(index) {
+            this.activeIndex = index
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

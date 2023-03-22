@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <title>049-双色球模拟</title>
+    <style>
+      .ball {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .ball div {
+        width: 70px;
+        height: 70px;
+        margin: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #666;
+        border-radius: 50%;
+        font-size: 22px;
+        font-weight: bold;
+      }
+
+      .red {
+        color: red;
+      }
+
+      .blue {
+        color: blue;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <button onclick="main()">随机一个</button>
+      <p>
+        <a href="./mocktest.html">模拟测试</a>
+      </p>
+      <div class="ball red"></div>
+      <hr />
+      <div class="ball blue"></div>
+    </div>
+    <script type="module" src="./049-main.js"></script>
+    <script>
+      function main() {
+        $('.red').empty()
+        $('.blue').empty()
+        const red = createList(33, 6)
+        const blue = createList(16, 1)
+        for (let item of red) {
+          $('.red').append(`<div>${item}</div>`)
+        }
+        $('.blue').append(`<div>${blue[0]}</div>`)
+      }
+      window.onload = main
+    </script>
+  </body>
+</html>

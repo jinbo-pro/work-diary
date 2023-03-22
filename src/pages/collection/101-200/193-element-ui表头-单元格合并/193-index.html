@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>193-element-ui表头-单元格合并</title>
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <link
+      href="https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js"></script>
+  </head>
+
+  <body>
+    <div id="app" class="box">
+      <div class="content_table_max">
+        <el-table :data="tableData" :span-method="objectSpanMethod" border>
+          <el-table-column prop="type" label="分类" align="center"></el-table-column>
+          <el-table-column label="一级指标" align="center">
+            <el-table-column prop="name" label="名称" align="center"></el-table-column>
+            <el-table-column prop="unit" label="单位" align="center"></el-table-column>
+          </el-table-column>
+          <el-table-column label="数值" align="center">
+            <el-table-column prop="aaa" label="十三五期" align="center"></el-table-column>
+            <el-table-column prop="bbb" label="十四五期" align="center"></el-table-column>
+            <el-table-column prop="ccc" label="增减值" align="center"></el-table-column>
+            <el-table-column prop="ddd" label="增减率" align="center"></el-table-column>
+          </el-table-column>
+          <el-table-column prop="eee" label="数值类型" align="center"></el-table-column>
+          <el-table-column prop="fff" label="更新频率" align="center"></el-table-column>
+          <el-table-column prop="ggg" label="十四五截止期" align="center"></el-table-column>
+        </el-table>
+      </div>
+    </div>
+    <script type="module" src="./193-main.js"></script>
+  </body>
+</html>

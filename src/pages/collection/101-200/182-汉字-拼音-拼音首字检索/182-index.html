@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/pinyin-match@1.2.2/dist/main.js"></script>
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js"></script>
+    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/Mock.js/1.0.0/mock-min.js"></script>
+    <meta name="author" content="lijinbo" />
+    <title>182-汉字-拼音-拼音首字检索</title>
+    <style>
+      .search_box {
+        position: sticky;
+        top: 0;
+      }
+      .item_box {
+        padding: 4px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>
+      <a href="https://www.npmjs.com/package/pinyin-match">汉字-拼音-拼音首字检索 pinyin-match</a>
+    </p>
+    <div id="app">
+      <div class="search_box">
+        <input type="text" v-model="searchKey" @input="searchHandle" placeholder="请输入关键字,拼音,简拼" />
+      </div>
+      <hr />
+      <ul class="file_list_max">
+        <li v-for="item of list" :key="item.id" v-show="!hideList.includes(item.id)" class="item_box">
+          <div v-if="item.heightLine" v-html="item.heightLine"></div>
+          <div v-else>{{ item.content }}</div>
+        </li>
+      </ul>
+    </div>
+    <script type="module">
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            searchKey: '',
+            list: [],
+            hideList: []
+          }
+        },
+        created() {
+          for (let i = 0; i < 100; i++) {
+            this.list.push({
+              id: i,
+              heightLine: '',
+              content: Mock.Random.county(true)
+            })
+          }
+        },
+        methods: {
+          searchHandle() {
+            if (!this.searchKey) {
+              this.hideList = []
+              for (let item of this.list) {
+                item.heightLine = ''
+              }
+              return
+            }
+            let hideList = []
+            for (let item of this.list) {
+              const indexs = PinyinMatch.match(item.content, this.searchKey)
+              if (indexs) {
+                item.heightLine = this.formatHeightLine(item.content, indexs)
+              } else {
+                hideList.push(item.id)
+              }
+            }
+            this.hideList = hideList
+          },
+          // 搜索高亮匹配
+          formatHeightLine(str, indexs) {
+            if (!indexs) return ''
+            const [star, end] = indexs
+            var s = str.slice(star, end + 1)
+            return str.replace(s, (x) => {
+              return `<span style="color: #0188fe;">${x}</span>`
+            })
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

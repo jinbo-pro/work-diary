@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>fn_call的理解</title>
+  </head>
+
+  <body>
+    <div>看控制台</div>
+    <script>
+      // es3 call 方法代码大致如下
+      Function.prototype.es3Call = function (context) {
+        var content = context || window
+        content.fn = this // 此处this指向的是调用call函数的函数对象，如fn1.call() 则此处this指向fn1
+        var args = []
+        // arguments是类数组对象，遍历之前需要保存长度，过滤出第一个传参
+        for (var i = 1, len = arguments.length; i < len; i++) {
+          // 避免object之类传入
+          args.push('arguments[' + i + ']')
+        }
+        var result = eval('content.fn(' + args + ')')
+        delete content.fn
+        return result
+      }
+
+      function fn1(a, b) {
+        console.log(this, '-->>> fn1 this')
+        console.log('1_' + a + JSON.stringify(b))
+      }
+      function fn2() {
+        console.log(2)
+      }
+
+      // fn1.call(fn2);       // 输出 1
+      // fn1.call.call(fn2);  // 输出 2
+
+      // fn1.es3Call(fn2);            // 输出 1
+      // fn1.es3Call.es3Call(fn2);    // 输出 2
+
+      // Function.prototype.call.call(fn2);  // 输出 2
+
+      /**
+       * 简单理解 fn1.call(fn2) 就是在fn1先继承fn2，然后执行fn1
+       */
+
+      // call 函数 主要功能如下
+      // fn2.fn1 = fn1  // 将fn1添加在 constructor 上，此时fn1的this指向fn2
+      // fn2.fn1()      // 执行fn1
+      // delete fn2.fn1  // 清除fn2.fn1 保持fn2的constructor的干净
+      // console.log(fn2.prototype, '-->>> 678')
+      // 手写简易call函数 v1.0如下
+      Function.prototype.myCall1 = function (ctx) {
+        ctx.fn = this
+        ctx.fn()
+        delete ctx.fn
+      }
+      fn1.myCall1(fn2)
+      // 2.0 增加参数
+      Function.prototype.myCall2 = function (ctx) {
+        ctx.fn = this
+        var args = []
+        for (var i = 1, len = arguments.length; i < len; i++) {
+          args.push(arguments[i])
+        }
+        ctx.fn(...args)
+        delete ctx.fn
+      }
+      fn1.myCall2(fn2, 100, { name: 'tom', age: 23 })
+    </script>
+  </body>
+</html>

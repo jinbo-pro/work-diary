@@ -1,17 +1,14 @@
 const Koa = require('koa')
-const path = require('path')
 const router = require('./router')
 const range = require('koa-range')
 const koaBody = require('koa-body')
 const compress = require('koa-compress')
 const staticFiles = require('koa-static')
 const tools = require('./utils/tools')
-const args = tools.getArguments()
+const { env, publicPath } = require('./config')
 
 const app = new Koa()
-const env = args.includes('-dev') ? 'dev' : 'prod'
 const port = 39006
-const publicPath = path.join(__dirname, '../public')
 // 错误捕获
 app.use(async (ctx, next) => {
   try {
@@ -54,7 +51,7 @@ app.use(async (ctx, next) => {
   await next()
   if (parseInt(ctx.status) === 404) {
     ctx.status = 404
-    ctx.body = tools.file.readFileSync(publicPath + '/assets/errorPage/404.html')
+    ctx.body = tools.file.readFileSync(publicPath + '/pages/common/error-page/404.html')
   }
 })
 

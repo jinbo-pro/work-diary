@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <script src="https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jquery/1.11.3/jquery.min.js"></script>
+    <title>128-1</title>
+
+    <style>
+      .sticky {
+        width: 100%;
+        height: 100px;
+        background-color: #999;
+      }
+      .active_sticky {
+        top: 0;
+        left: 0;
+        position: fixed;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="sticky" class="sticky">1111</div>
+    <!-- 撑起导航条防抖动 -->
+    <div id="showFixedTop"></div>
+    <script type="module" src="./128-main.js"></script>
+    <script>
+      // 获取支撑高度
+      const navDom = document.getElementById('sticky')
+      const navBoxOffsetTop = navDom.offsetTop
+      $('#showFixedTop').css({
+        width: '100%',
+        height: navDom.clientHeight + 'px'
+      })
+      // 监听滚动条
+      window.addEventListener('scroll', function (e) {
+        // 获取当前文档流的 scrollTop
+        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop
+        // 导航条吸附条件
+        if (scrollTop > navBoxOffsetTop) {
+          $('.sticky').addClass('active_sticky')
+          $('#showFixedTop').show()
+        } else {
+          $('.sticky').removeClass('active_sticky')
+          $('#showFixedTop').hide()
+        }
+      })
+    </script>
+  </body>
+</html>

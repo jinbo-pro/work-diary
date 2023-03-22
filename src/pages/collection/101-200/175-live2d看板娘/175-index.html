@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>175-live2d看板娘</title>
+    <script src="https://eqcn.ajz.miesnfu.com/wp-content/plugins/wp-3d-pony/live2dw/lib/L2Dwidget.min.js"></script>
+
+    <style>
+      #modeBox li {
+        width: 300px;
+        cursor: pointer;
+        padding: 6px;
+        border-bottom: 1px solid #f1f1f1;
+      }
+      #modeBox li:hover {
+        color: #039be5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>更多动画模型：</p>
+      <ol>
+        <li>
+          <a href="https://github.com/xiazeyu/live2d-widget-models" target="_blank">xiazeyu models</a>
+        </li>
+        <li>
+          <a href="https://gitee.com/rao_she/live2d_models_collect" target="_blank">娆蛇 / live2d_models_collect</a>
+        </li>
+      </ol>
+      <hr />
+      <ul>
+        <li>
+          live2d_models_collect 动画模型展示
+          <a href="./live2d_models_collect.html">live2d_models_collect demo</a>
+        </li>
+        <li>
+          Live2D公司提供的示例素材
+          <a href="https://www.live2d.com/zh-CHS/download/sample-data/" target="_blank">素材下载</a>
+        </li>
+        <li>
+          高级的 live2d 使用，自建 api
+          <a href="https://www.fghrsh.net/post/123.html" target="_blank">网页添加 Live2D 看板娘</a>
+        </li>
+      </ul>
+    </div>
+    <script type="module" src="./175-main.js"></script>
+    <script>
+      const modeList = [
+        { name: '萌娘', url: 'https://unpkg.com/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json' },
+        { name: '初音', url: 'https://unpkg.com/live2d-widget-model-miku@1.0.5/assets/miku.model.json' },
+        { name: '黑猫', url: 'https://unpkg.com/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json' },
+        { name: '白猫', url: 'https://unpkg.com/live2d-widget-model-tororo@1.0.5/assets/tororo.model.json' },
+        { name: '狗狗', url: 'https://unpkg.com/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json' },
+        { name: '小帅哥', url: 'https://unpkg.com/live2d-widget-model-chitose@1.0.5/assets/chitose.model.json' },
+        { name: '小可爱（护）', url: 'https://unpkg.com/live2d-widget-model-z16@1.0.5/assets/z16.model.json' },
+        { name: '小可爱（女）', url: 'https://unpkg.com/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json' },
+        { name: '小可爱（男）', url: 'https://unpkg.com/live2d-widget-model-haruto@1.0.5/assets/haruto.model.json' }
+      ]
+      createModeCheckDom(modeList)
+
+      window.onload = function () {
+        createLive2d()
+      }
+    </script>
+  </body>
+</html>

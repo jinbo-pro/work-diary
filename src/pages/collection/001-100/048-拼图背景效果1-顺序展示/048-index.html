@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>048-拼图背景效果1-顺序展示</title>
+    <link rel="stylesheet" href="./048-style.css" />
+  </head>
+
+  <body>
+    <div class="banner">
+      <div class="blocks"></div>
+    </div>
+    <script type="text/javascript">
+      /**
+       * Chrome/95.0.4638.69 及以下版本显示正常，
+       * 往上的版本 background-attachment: fixed; 渲染机制有所调整每个方块都会显示背景图
+       */
+      var banner = document.getElementsByClassName('banner')[0]
+      var blocks = document.getElementsByClassName('blocks')
+      for (var i = 1; i < 400; i++) {
+        banner.innerHTML += "<div class='blocks'></div>"
+        blocks[i].style.animationDelay = `${i * 0.05}s`
+      }
+    </script>
+  </body>
+</html>
