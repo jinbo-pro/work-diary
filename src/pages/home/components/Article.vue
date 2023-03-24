@@ -64,11 +64,6 @@ export default {
   text-overflow: ellipsis;
   transition: color 0.25s;
 }
-// 关键词高亮
-.article_box em {
-  color: #f73131;
-  font-style: normal;
-}
 // 标签样式
 .tags {
   padding: 8px 15px;
@@ -111,5 +106,12 @@ export default {
 .tags::-webkit-scrollbar-thumb {
   border-radius: 3px;
   background-image: linear-gradient(135deg, #09f, #3c9);
+}
+</style>
+<style lang="less">
+// 关键词高亮
+.article_box em {
+  color: #f73131;
+  font-style: normal;
 }
 </style>
