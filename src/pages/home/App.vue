@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import { request } from '@/utils/module/request.js'
 import { session, local } from '@/utils/storage.js'
 import BackPageTop from '@/components/BackPageTop.vue'
 import TopSearch from './components/TopSearch.vue'
@@ -131,33 +130,34 @@ export default {
       }
     },
     // 初始请求
-    initGetData() {
-      const addDataItem = async (sort, dir, filterFn) => {
-        const k = 'page_cache_' + dir
-        let allList = session.get(k)
-        if (!allList) {
-          allList = await request.get('/api/fileDirectory/getList', { dir })
-          session.set(k, allList)
-        }
+    async initGetData() {
+      let pageDataList = session.get('home_page_data_list')
+      if (!pageDataList) {
+        const res = await fetch('/pageDataList.json')
+        pageDataList = await res.json()
+        session.set('home_page_data_list', pageDataList)
+      }
+      const addDataItem = (dir, filterFn) => {
+        const allList = pageDataList[dir]
         const list = allList.filter(filterFn).map((node) => {
+          const prefix = dir.startsWith('public') ? dir.replace('public\/', '') : dir
           return {
             ...node,
             show: true,
             searchHeight: '',
-            filePath: `/${dir}${node.filePath}`
+            filePath: `/${prefix}${node.filePath}`
           }
         })
-        this.dataList.push({ sort, title: dir, allList, list })
-        this.dataList.sort((a, b) => a.sort - b.sort)
+        this.dataList.push({ title: dir, allList, list })
         this.allDataList.push(...list)
         for (let node of allList) {
           node.filePath = `/${dir}${node.filePath}`
           this.allResCompleteList.push(node)
         }
       }
-      addDataItem(1, 'pages/collection', (e) => e.isFile == 0 || !e.fileName.endsWith('index.html'))
-      addDataItem(2, 'notepad', (e) => e.isFile)
-      addDataItem(3, 'loading', (e) => !e.isFile)
+      addDataItem('pages/collection', (e) => e.isFile == 0 || !e.fileName.endsWith('index.html'))
+      addDataItem('public/notepad', (e) => e.isFile)
+      addDataItem('public/loading', (e) => !e.isFile)
     }
   }
 }

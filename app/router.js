@@ -22,10 +22,6 @@ router.post('/sim', (ctx) => Sim.setData(ctx))
 router.get('/sim/getData', (ctx) => Sim.getData(ctx))
 router.get('/sim/clearData', (ctx) => Sim.clearData(ctx))
 
-// FileDirectory
-const FileDirectory = require('./controller/FileDirectory')
-router.get('/api/fileDirectory/getList', (ctx) => FileDirectory.getList(ctx))
-
 // QrcodeLogin
 const QrcodeLogin = require('./controller/QrcodeLogin')
 router.get('/qrcode/checkLogin', (ctx) => QrcodeLogin.checkLogin(ctx))

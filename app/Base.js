@@ -12,7 +12,7 @@ class Base {
     this.path = path
     this.tools = tools
     // 服务器地址
-    this.serverPath = `http://${tools.getIPAddress()}:7586`
+    this.serverPath = `http://${tools.getIPAddress()}:39006`
   }
   // 获取根路径
   getSrcPath(dir) {

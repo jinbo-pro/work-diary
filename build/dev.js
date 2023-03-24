@@ -1,6 +1,7 @@
-const { getIPAddress } = require('../app/utils/tools')
 const { createServer } = require('vite')
 const createConfig = require('./createConfig')
+const { getIPAddress } = require('../app/utils/tools')
+const getpageDataListGz = require('./getpageDataListGz')
 
 ;(async () => {
   const config = createConfig('development')
@@ -18,6 +19,8 @@ const createConfig = require('./createConfig')
     }
   })
   await server.listen()
+  // 写入目录数据
+  getpageDataListGz()
   console.log('dev success')
   console.log(`- Local:     http://localhost:${port}\n- Network:   http://${getIPAddress()}:${port}`)
 })()
