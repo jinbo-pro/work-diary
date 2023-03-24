@@ -18,8 +18,8 @@ export default {
     return {
       roleDialog: false,
       toolsList: [
-        { name: 'gitee', icon: 'gitee', url: 'https://gitee.com/lijinbode/work-diary' },
-        { name: 'vuepage', icon: 'vue', url: '/common/vuepage/index.html' }
+        { name: 'vuepage', icon: 'vue', url: '/pages/common/vuepage/vuepage.html' },
+        { name: 'gitee', icon: 'gitee', url: 'https://gitee.com/lijinbode/work-diary' }
       ]
     }
   },
