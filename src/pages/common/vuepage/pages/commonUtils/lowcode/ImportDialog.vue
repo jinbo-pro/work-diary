@@ -19,13 +19,13 @@
 </template>
 
 <script>
-import JsonEditor from '/components/JsonEditor.vue'
+import AsyncJsonEditor from '@/components/JsonEditor/AsyncJsonEditor.js'
 import { humpName } from '/utils/collect.js'
 import { createField } from './utils.js'
 export default {
   name: 'ImportDialog',
   components: {
-    JsonEditor
+    JsonEditor: AsyncJsonEditor
   },
   data() {
     return {

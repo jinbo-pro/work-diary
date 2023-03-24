@@ -3,8 +3,6 @@
 </template>
 
 <script>
-let editor
-import { loadScript } from '/utils/module/loadScript.js'
 const defaultOptions = {
   mode: 'code',
   modes: ['code', 'text', 'tree', 'preview']
@@ -25,24 +23,21 @@ export default {
       default: defaultOptions
     }
   },
-  created() {
-    loadScript('https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/jsoneditor/9.7.2/jsoneditor.min.js')
-    loadScript('https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-y/jsoneditor/9.7.2/jsoneditor.min.css', 'link')
-  },
+  created() {},
   mounted() {
     this.initEdit()
   },
   methods: {
     initEdit() {
       const container = document.getElementById('jsoneditor')
-      editor = new JSONEditor(container, this.options)
+      this.editor = new JSONEditor(container, this.options)
     },
     async setValue(v) {
       await this.$nextTick()
-      editor.set(v)
+      this.editor.set(v)
     },
     getValue() {
-      return editor.get()
+      return this.editor.get()
     }
   }
 }

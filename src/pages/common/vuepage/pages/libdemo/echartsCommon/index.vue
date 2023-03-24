@@ -7,13 +7,13 @@
 </template>
 
 <script>
-import Charts from '/components/Charts/index.vue'
+import AsyncCharts from '@/components/Charts/AsyncCharts.js'
 import { baseBar } from './options/baseBar.js'
 import { baseLine } from './options/baseLine.js'
 import { basePie } from './options/basePie.js'
 export default {
   components: {
-    Charts
+    Charts: AsyncCharts
   },
   data() {
     return {

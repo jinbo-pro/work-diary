@@ -3,13 +3,8 @@
 </template>
 
 <script>
-import { init } from 'https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.esm.min.js'
 import resize from './resize.js'
-
-const guid = () => {
-  const S = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
-  return `${S()}${S()}-${S()}-${S()}-${S()}-${S()}${S()}${S()}`
-}
+import { guid } from '@/utils/easyHash.js'
 
 export default {
   mixins: [resize],
@@ -64,7 +59,7 @@ export default {
       if (!this.option) {
         return console.log('没有数据')
       }
-      this.chart = init(document.getElementById(this.chartId))
+      this.chart = echarts.init(document.getElementById(this.chartId))
       this.chart.setOption(this.option)
     }
   }

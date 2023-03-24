@@ -8,7 +8,7 @@
 
 <script>
 import Tinymce from '/components/Tinymce/index.vue'
-import CardContent from '../../components/CardContent.vue'
+import CardContent from '@/components/CardContent.vue'
 export default {
   name: 'RichText',
   components: {

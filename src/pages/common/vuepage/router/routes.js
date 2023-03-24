@@ -1,3 +1,4 @@
+import { loadScript } from '@/utils/module/loadScript'
 import AboutLayout from '../components/AboutLayout.vue'
 
 export const routes = [
@@ -29,7 +30,10 @@ export const routes = [
       {
         path: '/webcrypto',
         meta: { title: '加密工具', tag: 'md5,sha1,aes' },
-        component: () => import('../pages/commonUtils/webcrypto.vue')
+        component: async () => {
+          await loadScript('https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/crypto-js/4.1.1/crypto-js.min.js')
+          return import('../pages/commonUtils/webcrypto.vue')
+        }
       },
       {
         path: '/objKeySort',

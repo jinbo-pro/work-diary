@@ -19,7 +19,7 @@ function reconvert(str) {
       return String.fromCharCode(parseInt(escape($0).replace(/(%26%23)(\d{1,6})(%3B)/g, '$2')))
     })
 }
-import CardContent from '../../components/CardContent.vue'
+import CardContent from '@/components/CardContent.vue'
 export default {
   components: {
     CardContent

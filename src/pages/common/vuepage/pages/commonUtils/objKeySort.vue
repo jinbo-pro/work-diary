@@ -37,11 +37,11 @@ function objSort(obj) {
   })
   return result
 }
-import JsonEditor from '/components/JsonEditor.vue'
-import CardContent from '../../components/CardContent.vue'
+import AsyncJsonEditor from '@/components/JsonEditor/AsyncJsonEditor.js'
+import CardContent from '@/components/CardContent.vue'
 export default {
   components: {
-    JsonEditor,
+    JsonEditor: AsyncJsonEditor,
     CardContent
   },
   data() {

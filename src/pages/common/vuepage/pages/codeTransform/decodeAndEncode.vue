@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import CardContent from '../../components/CardContent.vue'
+import CardContent from '@/components/CardContent.vue'
 export default {
   components: {
     CardContent

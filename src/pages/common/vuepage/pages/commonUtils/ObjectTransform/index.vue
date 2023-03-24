@@ -22,11 +22,11 @@
 <script>
 import { copyText } from '/utils/page.js'
 import { transformFn } from './transformFn.js'
-import JsonEditor from '/components/JsonEditor.vue'
-import CardContent from '../../../components/CardContent.vue'
+import CardContent from '@/components/CardContent.vue'
+import AsyncJsonEditor from '@/components/JsonEditor/AsyncJsonEditor.js'
 export default {
   components: {
-    JsonEditor,
+    JsonEditor: AsyncJsonEditor,
     CardContent
   },
   data() {
