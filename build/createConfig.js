@@ -1,4 +1,5 @@
 const { resolve } = require('./utils')
+const parseCdn = require('./vitePluginParseCdn/parse')
 const { createVuePlugin } = require('vite-plugin-vue2')
 const getFileFlatList = require('../app/utils/getFileFlatList')
 
@@ -47,7 +48,8 @@ function createConfig(mode) {
     plugins: [
       createVuePlugin({
         vueTemplateOptions: {}
-      })
+      }),
+      parseCdn()
     ]
   }
 }
