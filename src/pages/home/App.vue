@@ -24,6 +24,8 @@ import ArticleGroup from './components/ArticleGroup.vue'
 import FloatTools from './components/FloatTools.vue'
 import Welcome from './components/Welcome.vue'
 import EmptyData from './components/EmptyData.vue'
+/**不同环境下请求路径配置 */
+const p = import.meta.env.DEV ? '' : '.'
 
 export default {
   name: 'App',
@@ -72,14 +74,14 @@ export default {
       this.addCommon(item.id)
       if (item.isFile == 1) {
         if (item.fileName.endsWith('.md')) {
-          window.open(`/pages/common/parseMarked/parseMarked.html?filePath=${item.filePath}`)
+          window.open(`${p}/pages/common/parseMarked/parseMarked.html?filePath=${item.filePath}`)
         } else {
           window.open(item.filePath)
         }
       } else {
         const cur = this.allResCompleteList.find((p) => p.pid == item.id && p.fileName.endsWith('index.html'))
         if (cur) {
-          window.open(cur.filePath)
+          window.open(p + cur.filePath)
         } else {
           console.info('文件夹下没有可打开的 html')
         }
@@ -133,7 +135,7 @@ export default {
     async initGetData() {
       let pageDataList = session.get('home_page_data_list')
       if (!pageDataList) {
-        const res = await fetch('/pageDataList.json')
+        const res = await fetch(`${p}/pageDataList.json`)
         pageDataList = await res.json()
         session.set('home_page_data_list', pageDataList)
       }
