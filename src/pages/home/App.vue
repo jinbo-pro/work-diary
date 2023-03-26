@@ -133,7 +133,8 @@ export default {
     },
     // 初始请求
     async initGetData() {
-      let pageDataList = session.get('home_page_data_list')
+      // 开发环境不做缓存
+      let pageDataList = import.meta.env.DEV ? null : session.get('home_page_data_list')
       if (!pageDataList) {
         const res = await fetch(`${p}/pageDataList.json`)
         pageDataList = await res.json()

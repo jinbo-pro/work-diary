@@ -1,3 +1,5 @@
+const fs = require('fs')
+const os = require('os')
 const { build } = require('vite')
 const esbuild = require('esbuild')
 const { resolve } = require('./utils')
@@ -15,5 +17,10 @@ const createConfig = require('./createConfig')
     bundle: true,
     minify: true
   })
+  // 添加打包信息
+  const indexPath = resolve('dist/public/index.html')
+  const home = fs.readFileSync(indexPath).toString()
+  const code = `<script>console.log('build: ${os.hostname()} ${new Date().toLocaleString()}');</script>`
+  fs.writeFileSync(indexPath, `${home}\n${code}`)
   console.log('build success')
 })()
