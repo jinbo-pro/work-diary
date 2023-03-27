@@ -8,9 +8,9 @@
         </el-form-item>
         <el-form-item label="页面类型" prop="formType">
           <el-radio-group v-model="formData.formType">
-          <el-radio :label="1">普通页面</el-radio>
-          <el-radio :label="2">组件集成</el-radio>
-        </el-radio-group>
+            <el-radio :label="1">普通页面</el-radio>
+            <el-radio :label="2">组件集成</el-radio>
+          </el-radio-group>
         </el-form-item>
         <el-form-item label="填充下拉" prop="fillSelect">
           <el-switch v-model="formData.fillSelect"></el-switch>

@@ -9,7 +9,7 @@ function parseCdn() {
     name: 'vite-plugin-parseCdn',
     enforce: 'pre',
     transformIndexHtml(html) {
-      const reg = RegExp('<meta name="cdnload" content="([\\w|,]+)" />', 'g')
+      const reg = RegExp('<meta name="cdnload" content="([\\w|,|-]+)" />', 'g')
       return html.replace(reg, (all, cdnName) => {
         if (!cdnName) return ''
         const list = cdnName.split(',')

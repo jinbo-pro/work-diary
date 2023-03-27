@@ -1,7 +1,7 @@
 /**
  * 基础折线图
  */
- export const baseLine = {
+export const baseLine = {
   // 标题
   title: {
     text: '基础折线图'
