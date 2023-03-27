@@ -42,7 +42,7 @@ export default {
     }
   },
   created() {
-    this.chartId = this.id || guid('chart-')
+    this.chartId = this.id || 'c' + guid()
   },
   mounted() {
     this.initChart()

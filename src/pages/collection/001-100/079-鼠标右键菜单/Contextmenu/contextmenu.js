@@ -1,4 +1,4 @@
-import { guid } from '/utils/easyHash.js'
+import { guid } from '@/utils/easyHash'
 import ContextmenuComponent from './index.vue'
 
 const CTX_CONTEXTMENU_HANDLER = 'CTX_CONTEXTMENU_HANDLER'

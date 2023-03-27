@@ -1,13 +1,10 @@
 /**
  * 生成全局唯一标识符 guid
- * @param {boolean} line 是否带横线
- * @param {string} head 自定义标识
  * @returns
  */
-function guid(line = false, head = '') {
-  const _ = line ? '-' : ''
+function guid() {
   const S = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
-  return `${head}${S()}${S()}${_}${S()}${_}${S()}${_}${S()}${_}${S()}${S()}${S()}`
+  return Array(8).fill(1).map(S).join('')
 }
 /**
  * 生成全局唯一标识符 nanoid

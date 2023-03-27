@@ -4,77 +4,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
-    <meta name="author" content="李金波" />
+    <meta name="cdnload" content="vue,vant-js,vant-css" />
     <link rel="icon" href="./set_password.ico" />
-    <link rel="stylesheet" href="./120-styles.css" />
     <title>120-随机密码</title>
   </head>
 
   <body>
-    <div class="container-max">
-      <!-- 选择密码位数 -->
-      <div class="redio-max mb30">
-        <form name="selectfrom">
-          <label>
-            <div class="radio-item">
-              <input name="radioitem" type="radio" value="12" checked />
-              <div>12位</div>
-            </div>
-          </label>
-          <label>
-            <div class="radio-item">
-              <input name="radioitem" type="radio" value="16" />
-              <div>16位</div>
-            </div>
-          </label>
-          <label>
-            <div class="radio-item">
-              <input name="radioitem" type="radio" value="20" />
-              <div>20位</div>
-            </div>
-          </label>
-          <label>
-            <div class="radio-item">
-              <input name="radioitem" type="radio" value="0" />
-              <div>自定义位数</div>
-              <input name="text" type="number" min="1" value="32" />
-            </div>
-          </label>
-        </form>
-      </div>
-      <!-- 选择密码字符集 -->
-      <div class="gradeform-max mb30">
-        <form name="gradeform">
-          <label>
-            <input type="checkbox" name="grade" value="1" checked />
-            <span>数字</span>
-          </label>
-          <label>
-            <input type="checkbox" name="grade" value="2" checked />
-            <span>小写</span>
-          </label>
-          <label>
-            <input type="checkbox" name="grade" value="3" checked />
-            <span>大写</span>
-          </label>
-          <label>
-            <input type="checkbox" name="grade" value="4" />
-            <span>符号</span>
-          </label>
-        </form>
-      </div>
-      <!-- 复制按钮 -->
-      <div class="copy-but-max mb30 ac">
-        <button id="create" class="but create" type="button">生成</button>
-        <button id="copy" class="but copy" type="button">复制</button>
-        <span id="dialog" class="tips_box" style="display: none"></span>
-      </div>
-      <!-- 结果展示 -->
-      <div id="result-text"></div>
-
-      <!-- 生成历史 -->
-      <ol id="createdHistory"></ol>
-    </div>
-    <script defer type="module" src="./120-main.js"></script>
+    <div id="app"></div>
+    <script src="/utils/module/vue-init-loading.js"></script>
+    <script type="module" src="./120-main.js"></script>
   </body>
 </html>
