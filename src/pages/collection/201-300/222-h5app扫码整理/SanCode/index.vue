@@ -1,6 +1,6 @@
 <template>
   <div>
-    <van-button @click="createBarcode">打开扫码</van-button>
+    <button @click="createBarcode">打开扫码</button>
     <div v-show="showCanCode" id="camera">
       <div id="scan"></div>
       <div class="action">
@@ -25,7 +25,7 @@
  * plus.barcode 文档参考：
  * https://www.html5plus.org/doc/zh_cn/barcode.html
  */
-import { canMove, stopMove } from '@/utils/jcore'
+import { canMove, stopMove } from '@/utils/page'
 var barcode = null
 export default {
   data() {

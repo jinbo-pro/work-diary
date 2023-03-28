@@ -1,3 +1,14 @@
+[toc]
+
+文章参考：
+
+[Node.js 静态文件服务器实战](https://www.infoq.cn/news/2011/11/tyq-nodejs-static-file-server)
+
+## 核心代码
+
+- server.js
+
+```js
 const fs = require('fs')
 const url = require('url')
 const zlib = require('zlib')
@@ -92,3 +103,107 @@ const server = http.createServer((request, response) => {
 
 server.listen(PORT)
 console.log('Server runing at port: ' + PORT + '.')
+```
+
+- config.js
+
+```js
+/**协商缓存配置 */
+exports.Expires = {
+  /**缓存的文件类型 */
+  fileMatch: /^(gif|png|jpg|js|css)$/gi,
+  /**缓存时间 */
+  maxAge: 60 * 60 * 24 * 30
+}
+/**GZIP压缩配置 */
+exports.Compress = {
+  /**可压缩的文件类型 */
+  match: /css|js|html/gi
+}
+/**文件类型映射 */
+exports.mimeTypes = {
+  css: 'text/css',
+  gif: 'image/gif',
+  html: 'text/html',
+  ico: 'image/x-icon',
+  jpeg: 'image/jpeg',
+  jpg: 'image/jpeg',
+  js: 'text/javascript',
+  json: 'application/json',
+  pdf: 'application/pdf',
+  png: 'image/png',
+  svg: 'image/svg+xml',
+  swf: 'application/x-shockwave-flash',
+  tiff: 'image/tiff',
+  txt: 'text/plain',
+  wav: 'audio/x-wav',
+  wma: 'audio/x-ms-wma',
+  wmv: 'video/x-ms-wmv',
+  xml: 'text/xml'
+}
+```
+
+- utils.js
+
+```js
+/**
+ * 解析 range 请求 - 参见： koa-range
+ * @param {string} str
+ * @param {number} size
+ * @returns
+ */
+function rangeParse(str, size) {
+  var token = str.split('=')
+  if (!token || token.length != 2 || token[0] != 'bytes') {
+    return null
+  }
+  return token[1]
+    .split(',')
+    .map(function (range) {
+      return range.split('-').map(function (value) {
+        if (value === '') {
+          return size
+        }
+        return Number(value)
+      })
+    })
+    .filter(function (range) {
+      return !isNaN(range[0]) && !isNaN(range[1]) && range[0] <= range[1]
+    })
+}
+
+module.exports = {
+  rangeParse
+}
+```
+
+## 静态资源文件
+
+- assets/index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <link rel="stylesheet" href="./main.css" />
+    <title>index page</title>
+    <style></style>
+  </head>
+
+  <body>
+    <div class="box">index page</div>
+  </body>
+</html>
+```
+
+- assets/main.css
+
+```css
+body {
+  background-color: #f1f1f1;
+}
+```

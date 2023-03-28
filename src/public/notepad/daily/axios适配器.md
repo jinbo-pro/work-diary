@@ -1,3 +1,6 @@
+[参考文档](https://www.jianshu.com/p/a7e90ebaa68f)
+
+```js
 console.log('141-axios适配器')
 
 import axios from 'axios'
@@ -32,3 +35,4 @@ axios.defaults.adapter = (conf) => {
 }
 
 export const Request = axios
+```
