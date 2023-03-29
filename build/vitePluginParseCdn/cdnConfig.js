@@ -1,20 +1,20 @@
 /**cdn 链接配置 */
 module.exports = {
-  anime: 'https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js',
+  anime: 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/animejs/3.2.1/anime.min.js',
   'aplayer-css': 'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/aplayer/1.10.1/APlayer.min.css',
   'aplayer-js': 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-y/aplayer/1.10.1/APlayer.min.js',
-  axios: 'https://cdn.jsdelivr.net/npm/axios@1.2.0/dist/axios.min.js',
+  axios: 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/axios/0.26.0/axios.min.js',
 
   bignumber: 'https://cdn.jsdelivr.net/npm/bignumber.js@9.1.0/bignumber.min.js',
 
-  compressor: 'https://cdn.jsdelivr.net/npm/compressorjs@1.1.1/dist/compressor.min.js',
+  compressor: 'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/compressorjs/1.1.1/compressor.min.js',
   'countup.js': 'https://cdn.jsdelivr.net/npm/countup.js@2.3.2/dist/countUp.umd.min.js',
-  'crypto-js': 'https://cdn.jsdelivr.net/npm/crypto-js@4.1.1/crypto-js.js',
+  'crypto-js': 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/crypto-js/4.1.1/crypto-js.min.js',
 
   d3: 'https://cdn.staticfile.org/d3/4.13.0/d3.min.js',
   'devtools-detector': 'https://unpkg.com/devtools-detector@2.0.12/lib/devtools-detector.js',
 
-  echarts: 'https://cdn.jsdelivr.net/npm/echarts@5.3.3/dist/echarts.min.js',
+  echarts: 'https://lib.baomitu.com/echarts/5.3.3/echarts.min.js',
   'el-cascader-multi': 'https://cdn.jsdelivr.net/npm/el-cascader-multi@1.1.8/dist/index.js',
   'element-ui-css': 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css',
   'element-ui-js': 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js',
@@ -45,7 +45,7 @@ module.exports = {
   mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js',
   mockjs: 'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/Mock.js/1.0.0/mock-min.js',
 
-  normalize: 'https://www.npmjs.com/package/normalize.css',
+  normalize: 'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/normalize/8.0.1/normalize.min.css',
   nzh: 'https://unpkg.com/nzh@1.0.8/dist/nzh.min.js',
 
   'pdfjs-dist-pdf': 'https://cdn.jsdelivr.net/npm/pdfjs-dist@2.16.105/build/pdf.min.js',
@@ -60,8 +60,8 @@ module.exports = {
 
   'typewriter-js': 'https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/1.0.0/typewriter.min.js',
 
-  'vant-css': 'https://cdn.jsdelivr.net/npm/vant@2.12.53/lib/index.css',
-  'vant-js': 'https://cdn.jsdelivr.net/npm/vant@2.12.53/lib/vant.min.js',
+  'vant-css': 'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vant/2.12.44/index.min.css',
+  'vant-js': 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vant/2.12.44/vant.min.js',
   vconsole: 'https://cdn.jsdelivr.net/npm/vconsole@3.15.0/dist/vconsole.min.js',
   vue: 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js',
   'vue-cropper': 'https://cdn.jsdelivr.net/npm/vue-cropper@0.5.5/dist/index.min.js',
@@ -69,7 +69,7 @@ module.exports = {
   'vue-lazyload': 'https://cdn.jsdelivr.net/npm/vue-lazyload@1.2.3/vue-lazyload.min.js',
   'vue-monoplasty-slide-verify': 'https://cdn.jsdelivr.net/npm/vue-monoplasty-slide-verify@1.3.1/dist/slide-verify.js',
   'vue-preview': 'https://unpkg.com/vue-preview@1.1.3/dist/vue-preview.min.js',
-  vue3: 'https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js',
+  vue3: 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.prod.js',
 
   'watermark-dom': 'https://unpkg.com/watermark-dom@2.3.0/index.js',
 
