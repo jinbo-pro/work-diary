@@ -1,4 +1,9 @@
-const cdnConfig = require('./cdnConfig')
+/**
+ * unpkg cdn 链接规则
+ * https://unpkg.com/:package@:version/:file
+ * 例如：https://unpkg.com/vue@2.6.14
+ */
+const cdnConfig = require('./cdnConfig.json')
 
 /**
  * 解析 html 里面的 cdn
