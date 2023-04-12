@@ -97,7 +97,7 @@ export default {
       this.dialogVisible = true
       const mdFile = new File(['```vue\n' + code + '\n```'], 'code.md', { type: 'text/markdown;charset=utf-8' })
       const filePath = URL.createObjectURL(mdFile)
-      this.previewUrl = `/common/parseMarked/parseMarked.html?filePath=${filePath}`
+      this.previewUrl = `/pages/common/parseMarked/parseMarked.html?filePath=${filePath}`
       this.saveTableData(this.tableData)
     },
     addRow() {
