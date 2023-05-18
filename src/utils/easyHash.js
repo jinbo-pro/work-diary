@@ -85,11 +85,25 @@ function randomString(len, types) {
   return result
 }
 
+function randomStringPro(len = 16) {
+  // 可打印的ASCII字符 https://www.runoob.com/tags/html-ascii.html
+  const charCodeList = []
+  for (let i = 32; i <= 126; i++) {
+    charCodeList.push(i)
+  }
+  let result = ''
+  for (let i = 0; i < len; i++) {
+    result += String.fromCharCode(randomList(charCodeList))
+  }
+  return result
+}
+
 export {
   guid, // 全局唯一标识符 guid
   nanoid, // 生成全局唯一标识符 nanoid nanoid 更加便捷快速
   textHax, // 非常简易的hash运算
   randomNum, // 随机数字
   randomList, // 随机从数组取一个
-  randomString // 随机字符串
+  randomString, // 随机字符串
+  randomStringPro // 随机字符串加强版
 }

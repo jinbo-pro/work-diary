@@ -15,6 +15,7 @@
       </van-checkbox-group>
     </div>
     <div class="form_item_box handle_box">
+      <van-button size="small" style="margin-right: 12px" @click="randomPro">随机PRO</van-button>
       <van-button size="small" type="info" style="margin-right: 12px" @click="copyResult">复制</van-button>
       <van-button size="small" type="primary" @click="createPassword">生成</van-button>
     </div>
@@ -33,7 +34,7 @@
 
 <script>
 const { Toast } = vant
-import { randomString } from '@/utils/easyHash.js'
+import { randomString, randomStringPro } from '@/utils/easyHash.js'
 import { parseTime } from '@/utils/time.js'
 import { copyText } from '@/utils/page.js'
 import { local } from '@/utils/storage'
@@ -79,6 +80,9 @@ export default {
     copyHistory(text) {
       copyText(text)
       Toast({ message: '复制成功' })
+    },
+    randomPro() {
+      this.result = randomStringPro(this.num)
     }
   }
 }
