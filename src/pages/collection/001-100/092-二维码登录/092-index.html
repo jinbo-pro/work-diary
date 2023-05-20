@@ -11,6 +11,20 @@
   </head>
 
   <body>
+    <p>
+      <a
+        href="https://mp.weixin.qq.com/s?__biz=MzI4NjE4NTUwNQ==&mid=2247494135&idx=6&sn=ebd5a617cc970366608b34e29f12de30&chksm=ebe268b9dc95e1afca743a1a610359925d6960919a13f579e42d8d567dd1052cec2f0f8e4449&scene=27"
+        target="_blank"
+      >
+        二维码扫码登录的背后的逻辑
+      </a>
+    </p>
+    <p>扫码登录简要逻辑：</p>
+    <ol>
+      <li>pc端生成带guid的二维码 - 并轮询服务器当前guid是否登录</li>
+      <li>手机端扫码，点击登录将guid和账号发送给服务器</li>
+      <li>服务器登录账号，并告知pc端已登录，pc端做登录跳转</li>
+    </ol>
     <div class="login">
       <div>
         <canvas id="qrcode"></canvas>
