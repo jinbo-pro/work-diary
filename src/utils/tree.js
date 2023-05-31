@@ -18,7 +18,7 @@ const getConfig = (config) => Object.assign({}, DEFAULT_CONFIG, config)
  * @param {object} config 键名配置
  * @returns
  */
-function toTree(list, config = {}) {
+export function toTree(list, config = {}) {
   config = getConfig(config)
   const nodeMap = new Map(),
     result = [],
@@ -50,7 +50,7 @@ function toTree(list, config = {}) {
  * @param {boolean} delChildren 是否删除 children
  * @returns
  */
-function toList(tree, config = {}, delChildren) {
+export function toList(tree, config = {}, delChildren) {
   config = getConfig(config)
   // 先放入第一层
   const { children } = config,
@@ -73,7 +73,7 @@ function toList(tree, config = {}, delChildren) {
  * @param {object} config
  * @returns
  */
-function treeFindPath(tree, func, config = {}, path = []) {
+export function treeFindPath(tree, func, config = {}, path = []) {
   config = getConfig(config)
   if (!tree) return []
   for (const data of tree) {
@@ -94,7 +94,7 @@ function treeFindPath(tree, func, config = {}, path = []) {
  * @param {function} func
  * @returns
  */
-function findNodeDfs(tree, func, config = {}) {
+export function findNodeDfs(tree, func, config = {}) {
   config = getConfig(config)
   const { children } = config
   var stark = []
@@ -115,7 +115,7 @@ function findNodeDfs(tree, func, config = {}) {
  * @param {function} func
  * @returns
  */
-function findNodeBfs(tree, func, config = {}) {
+export function findNodeBfs(tree, func, config = {}) {
   config = getConfig(config)
   const { children } = config
   var stark = []
@@ -137,7 +137,7 @@ function findNodeBfs(tree, func, config = {}) {
  * @param {any} config 配置参数
  * @returns
  */
-function findNodeAll(tree, func, config = {}) {
+export function findNodeAll(tree, func, config = {}) {
   config = getConfig(config)
   const { children } = config,
     list = [...tree],
@@ -148,5 +148,3 @@ function findNodeAll(tree, func, config = {}) {
   }
   return result
 }
-
-export { toTree, toList, treeFindPath, findNodeDfs, findNodeBfs, findNodeAll }

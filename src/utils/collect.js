@@ -1,7 +1,7 @@
 /**
  * 获取数据类型
  */
-function getType(data) {
+export function getType(data) {
   if (data === null) return 'null'
   return Object.prototype.toString.call(data).replace('[object ', '').replace(']', '').toLowerCase()
 }
@@ -12,7 +12,7 @@ function getType(data) {
  * @param {(Object|Array)} source
  * @returns {Object}
  */
-function objectMerge(target, source) {
+export function objectMerge(target, source) {
   if (typeof target !== 'object') {
     target = {}
   }
@@ -36,7 +36,7 @@ function objectMerge(target, source) {
  * @param  {...any} arg
  * @returns
  */
-function merge(target, ...arg) {
+export function merge(target, ...arg) {
   return arg.reduce((acc, cur) => {
     return Object.keys(cur).reduce((subAcc, key) => {
       const srcVal = cur[key]
@@ -65,7 +65,7 @@ function merge(target, ...arg) {
  * @param {string} type
  * @return {string}
  */
-function humpName(params, type = '-') {
+export function humpName(params, type = '-') {
   var arr = params.split('')
   if (arr.indexOf(type) == 0) {
     arr.splice(0, 1)
@@ -85,7 +85,7 @@ function humpName(params, type = '-') {
  * @param {string} type
  * @return {string}
  */
-function toLowerLine(str, type = '-') {
+export function toLowerLine(str, type = '-') {
   var temp = str.replace(/[A-Z]/g, function (match) {
     return type + match.toLowerCase()
   })
@@ -99,7 +99,7 @@ function toLowerLine(str, type = '-') {
  * 数组随机排序
  * @param {any} array
  */
-function arrayRandom(array) {
+export function arrayRandom(array) {
   var res = []
   for (var i = 0, len = array.length; i < len; i++) {
     var randomIndex = Math.floor(Math.random() * array.length)
@@ -115,7 +115,7 @@ function arrayRandom(array) {
  * @param {number} size
  * @return {array}
  */
-function arrayChunk(orgArr, size) {
+export function arrayChunk(orgArr, size) {
   size = parseInt(size)
   if (isNaN(size) || size < 1 || size >= orgArr.length) {
     return [orgArr]
@@ -132,7 +132,7 @@ function arrayChunk(orgArr, size) {
  * @param {Object} source
  * @returns {Object}
  */
-function deepCloneJson(source) {
+export function deepCloneJson(source) {
   return JSON.parse(JSON.stringify(source))
 }
 
@@ -142,7 +142,7 @@ function deepCloneJson(source) {
  * @param {number} wait 延时
  * @param {boolean} immediate 是否立即执行
  */
-function debounce(func, wait, immediate) {
+export function debounce(func, wait, immediate) {
   let timeout, args, context, timestamp, result
   const later = function () {
     // 据上一次触发时间间隔
@@ -179,7 +179,7 @@ function debounce(func, wait, immediate) {
  * @param wait 延迟执行毫秒数
  * @param timeStamp true 时间戳版，false 定时器版
  */
-function throttle(func, wait, timeStamp) {
+export function throttle(func, wait, timeStamp) {
   var previous = 0
   var timeout
   return function () {
@@ -208,7 +208,7 @@ function throttle(func, wait, timeStamp) {
  * @param {number} length
  * @returns
  */
-function prefixNum(num, length = 1) {
+export function prefixNum(num, length = 1) {
   return num ? String(num).padStart(length, '0') : ''
 }
 
@@ -218,7 +218,7 @@ function prefixNum(num, length = 1) {
  * @param {string} targetVerison
  * @returns
  */
-function compareVersion(currVersion, targetVerison) {
+export function compareVersion(currVersion, targetVerison) {
   if (!currVersion || !targetVerison) return false
   const curr = currVersion.split('.')
   const target = targetVerison.split('.')
@@ -237,7 +237,7 @@ function compareVersion(currVersion, targetVerison) {
  * @param {string} src
  * @returns
  */
-function loadImg(src) {
+export function loadImg(src) {
   return new Promise((resolve, reject) => {
     const img = new Image()
     img.onload = function () {
@@ -263,20 +263,4 @@ export function countFileSize(size, unit = 0) {
     return countFileSize(size, unit)
   }
   return size + unitArr[unit]
-}
-
-export {
-  loadImg,
-  getType, // 获取数据类型
-  objectMerge, // 对象简单深度合并
-  merge, // 对象深度合并 - 支持数组对象
-  arrayChunk, // 数组等距拆分
-  arrayRandom, // 数组随机排序
-  deepCloneJson, // 对象深拷贝[简易版]
-  humpName, // 连字符转驼峰名
-  toLowerLine, // 驼峰名转连字符
-  debounce, // 函数防抖
-  throttle, // 函数节流
-  prefixNum, // 数字补零
-  compareVersion // 软件版本比较
 }

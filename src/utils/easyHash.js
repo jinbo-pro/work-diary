@@ -2,7 +2,7 @@
  * 生成全局唯一标识符 guid
  * @returns
  */
-function guid() {
+export function guid() {
   const S = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
   return Array(8).fill(1).map(S).join('')
 }
@@ -11,7 +11,7 @@ function guid() {
  * @param {number} size 生成位数
  * @returns
  */
-function nanoid(size = 21) {
+export function nanoid(size = 21) {
   let id = ''
   let bytes = crypto.getRandomValues(new Uint8Array(size))
   while (size--) {
@@ -32,7 +32,7 @@ function nanoid(size = 21) {
  * 文字简单hash
  * @param {string} str 文本
  */
-function textHax(str) {
+export function textHax(str) {
   str = String(str)
   for (var i = 0, num = 0, len = str.length; i < len; i++) {
     num += str.charCodeAt(i) / (i + Math.PI)
@@ -45,7 +45,7 @@ function textHax(str) {
  * @param {number} min 最小值
  * @returns
  */
-function randomNum(max, min = 0) {
+export function randomNum(max, min = 0) {
   return ~~(Math.random() * max) + min
 }
 /**
@@ -53,7 +53,7 @@ function randomNum(max, min = 0) {
  * @param {any[]} list
  * @returns
  */
-function randomList(list) {
+export function randomList(list) {
   return list[randomNum(list.length)]
 }
 //
@@ -63,7 +63,7 @@ function randomList(list) {
  * @param {number[]} types 字符类型 1数字 2小写字母 3大写字母 4符号
  * @returns
  */
-function randomString(len, types) {
+export function randomString(len, types) {
   // 密码字符集
   const dataObj = {
     // 重复数字和符号是为了使数字与字符的获取概率大致相当
@@ -85,7 +85,7 @@ function randomString(len, types) {
   return result
 }
 
-function randomStringPro(len = 16) {
+export function randomStringPro(len = 16) {
   // 可打印的ASCII字符 https://www.runoob.com/tags/html-ascii.html
   const charCodeList = []
   for (let i = 32; i <= 126; i++) {
@@ -96,14 +96,4 @@ function randomStringPro(len = 16) {
     result += String.fromCharCode(randomList(charCodeList))
   }
   return result
-}
-
-export {
-  guid, // 全局唯一标识符 guid
-  nanoid, // 生成全局唯一标识符 nanoid nanoid 更加便捷快速
-  textHax, // 非常简易的hash运算
-  randomNum, // 随机数字
-  randomList, // 随机从数组取一个
-  randomString, // 随机字符串
-  randomStringPro // 随机字符串加强版
 }
