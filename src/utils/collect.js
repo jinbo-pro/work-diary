@@ -209,9 +209,7 @@ function throttle(func, wait, timeStamp) {
  * @returns
  */
 function prefixNum(num, length = 1) {
-  if (!num) return ''
-  if (String(num).length > length) return '' + num
-  return (Array(10).join('0') + num).slice(-length)
+  return num ? String(num).padStart(length, '0') : ''
 }
 
 /**
@@ -248,6 +246,23 @@ function loadImg(src) {
     img.onerror = reject
     img.src = src
   })
+}
+
+/**
+ * 计算附件大小
+ * @param {String} size
+ * @param {String} unit
+ */
+export function countFileSize(size, unit = 0) {
+  size = Number(size)
+  const unitArr = ['KB', 'M', 'G']
+  if (isNaN(size)) return ''
+  size = (size / 1024).toFixed(2)
+  if (size > 1024) {
+    unit++
+    return countFileSize(size, unit)
+  }
+  return size + unitArr[unit]
 }
 
 export {

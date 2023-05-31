@@ -1,19 +1,4 @@
-import { copyText } from '@/utils/page.js'
-
-/**base64/buffer 解析 */
-function fileParse(file, type = 'base64') {
-  return new Promise((resolve) => {
-    let fileRead = new FileReader()
-    if (type === 'base64') {
-      fileRead.readAsDataURL(file)
-    } else if (type === 'buffer') {
-      fileRead.readAsArrayBuffer(file)
-    }
-    fileRead.onload = (ev) => {
-      resolve(ev.target.result)
-    }
-  })
-}
+import { copyText, fileParse } from '@/utils/page.js'
 
 function downFileByUrl(imgUrl, fileName) {
   const a = document.createElement('a')

@@ -33,6 +33,7 @@
   "javascript-obfuscator": "https://cdn.jsdelivr.net/npm/javascript-obfuscator/dist/index.browser.js",
   "jquery": "https://cdn.staticfile.org/jquery/1.11.3/jquery.min.js",
   "js-audio-recorder": "https://unpkg.com/js-audio-recorder@1.0.7/dist/recorder.js",
+  "js-sha256": "https://cdn.staticfile.org/js-sha256/0.9.0/sha256.min.js",
   "jsqr": "https://unpkg.com/jsqr@1.4.0/dist/jsQR.js",
   "jszip": "https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jszip/2.4.0/jszip.min.js",
 
