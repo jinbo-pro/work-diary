@@ -2,6 +2,15 @@ const { BaseServer } = require('../Base')
 
 const Mock = require('mockjs')
 
+const imgList = [
+  'https://img2.ali213.net/picfile/News/2021/03/17/584_2021031754445704.jpg',
+  'https://img2.ali213.net/picfile/News/2021/03/17/584_2021031754444310.jpg',
+  'https://img2.ali213.net/picfile/News/2021/03/17/584_2021031754445973.jpg',
+  'https://img2.ali213.net/picfile/News/2022/06/02/584_2022060225009757.webp',
+  'https://img2.ali213.net/picfile/News/2023/03/25/584_2023032593812151.jpg',
+  'https://img2.ali213.net/picfile/News/2022/11/01/584_2022110150401309.jpg'
+]
+
 // mock 数据
 class MockData extends BaseServer {
   // 评论列表
@@ -49,6 +58,7 @@ class MockData extends BaseServer {
           guid: '@guid()', // 全局唯一guid
           name: '@name()', // 英文姓名
           cname: '@cname()', // 中文姓名
+          'cover|1': imgList, // 封面
           cfirst: '@cfirst()', // 中文姓
           province: '@province()', // 省
           city: '@city()', // 市
