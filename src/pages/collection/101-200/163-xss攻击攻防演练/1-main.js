@@ -1,4 +1,4 @@
-import { local } from '/utils/storage.js'
+import { local } from '@/utils/storage.js'
 
 const xssList = [
   `<script>console.log("xss 代码...")</script>`,

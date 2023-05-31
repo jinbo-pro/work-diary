@@ -1,5 +1,5 @@
 import { emojiList } from '/components/Emoji/emojiList.js'
-import { copyText } from '/utils/page.js'
+import { copyText } from '@/utils/page.js'
 
 new Vue({
   el: '#app',

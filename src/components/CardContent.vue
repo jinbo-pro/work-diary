@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { copyText } from '/utils/page.js'
+import { copyText } from '@/utils/page.js'
 export default {
   name: 'CardContent',
   props: {

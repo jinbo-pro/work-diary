@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import { copyText } from '/utils/page.js'
+import { copyText } from '@/utils/page.js'
 import { transformFn } from './transformFn.js'
 import CardContent from '@/components/CardContent.vue'
 import AsyncJsonEditor from '@/components/JsonEditor/AsyncJsonEditor.js'

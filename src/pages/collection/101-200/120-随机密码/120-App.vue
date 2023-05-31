@@ -36,7 +36,7 @@
 const { Toast } = vant
 import { randomString, randomStringPro } from '@/utils/easyHash.js'
 import { parseTime } from '@/utils/time.js'
-import { copyText } from '@/utils/page.js'
+import { copyText } from '@@/utils/page.js'
 import { local } from '@/utils/storage'
 export default {
   data() {

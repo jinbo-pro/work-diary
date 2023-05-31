@@ -1,4 +1,4 @@
-import { McTimer } from '/utils/module/McTimer.js'
+import { McTimer } from '@/utils/module/McTimer.js'
 console.log('117-更好的定时器管理')
 
 // 基本功能展示

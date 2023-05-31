@@ -21,7 +21,7 @@
 
 <script>
 import Emoji from '/components/Emoji/index.vue'
-import { guid } from '/utils/easyHash.js'
+import { guid } from '@/utils/easyHash.js'
 import { getCursortPosition, setCaretPosition } from '../tools.js'
 
 export default {

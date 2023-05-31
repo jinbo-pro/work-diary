@@ -1,4 +1,4 @@
-import { copyText } from '/utils/page.js'
+import { copyText } from '@/utils/page.js'
 
 /**base64/buffer 解析 */
 function fileParse(file, type = 'base64') {

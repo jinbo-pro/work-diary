@@ -6,7 +6,7 @@
  * @param {string} url
  * @returns {Object}
  */
-function getQueryObject(url) {
+export function getQueryObject(url) {
   url = url == null ? window.location.href : url
   const search = url.substring(url.lastIndexOf('?') + 1)
   const obj = {}
@@ -26,7 +26,7 @@ function getQueryObject(url) {
  * @param {Object} json
  * @returns {Array}
  */
-function getQueryString(json) {
+export function getQueryString(json) {
   if (!json) return ''
   return Object.keys(json)
     .map((key) => {
@@ -42,7 +42,7 @@ function getQueryString(json) {
  * @param {string} cls
  * @returns {boolean}
  */
-function hasClass(ele, cls) {
+export function hasClass(ele, cls) {
   return !!ele.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'))
 }
 
@@ -51,7 +51,7 @@ function hasClass(ele, cls) {
  * @param {HTMLElement} elm
  * @param {string} cls
  */
-function addClass(ele, cls) {
+export function addClass(ele, cls) {
   if (!hasClass(ele, cls)) ele.className += ' ' + cls
 }
 
@@ -60,7 +60,7 @@ function addClass(ele, cls) {
  * @param {HTMLElement} elm
  * @param {string} cls
  */
-function removeClass(ele, cls) {
+export function removeClass(ele, cls) {
   if (hasClass(ele, cls)) {
     const reg = new RegExp('(\\s|^)' + cls + '(\\s|$)')
     ele.className = ele.className.replace(reg, ' ')
@@ -70,7 +70,7 @@ function removeClass(ele, cls) {
 /**
  * 停止页面滚动[pc端]
  */
-function stopMove() {
+export function stopMove() {
   let m = function (e) {
     e.preventDefault()
   }
@@ -81,7 +81,7 @@ function stopMove() {
 /**
  * 开启页面滚动[pc端]
  */
-function canMove() {
+export function canMove() {
   let m = function (e) {
     e.preventDefault()
   }
@@ -90,7 +90,7 @@ function canMove() {
 }
 
 // 阻止滚动穿透[移动端]
-function stopMoveMobile() {
+export function stopMoveMobile() {
   /**
      *  阻止滚动穿透 css
         body.static { position:fixed;left:0;width:100%; }
@@ -101,7 +101,7 @@ function stopMoveMobile() {
 }
 
 // 开启滚动穿透[移动端]
-function canMoveMobile() {
+export function canMoveMobile() {
   document.body.classList.remove('static')
   // 关闭弹窗后同步body滚动条位置
   document.scrollingElement.scrollTop = Math.abs(parseInt(document.body.style.top))
@@ -115,7 +115,7 @@ function canMoveMobile() {
  * @param {number} time 执行间隔
  * @returns
  */
-function addLongPress(dom, fn, time = 300) {
+export function addLongPress(dom, fn, time = 300) {
   if (!dom) return console.log('没有元素')
   if (!fn) return console.log('没有回调方法')
   var timeOutEvent = null
@@ -143,7 +143,7 @@ function addLongPress(dom, fn, time = 300) {
  * @param {Blob} blob
  * @param {string} fileName
  */
-function blobFileDown(blob, fileName) {
+export function blobFileDown(blob, fileName) {
   const elink = document.createElement('a')
   if (fileName) {
     elink.download = fileName
@@ -160,11 +160,35 @@ function blobFileDown(blob, fileName) {
 }
 
 /**
+ * 点击按钮上传文件
+ * @param {string} accept
+ * @param {boolean} multiple
+ * @returns {Promise<File[]>}
+ */
+export function clickUploadFile(accept, multiple) {
+  const input = document.createElement('input')
+  input.type = 'file'
+  if (accept) {
+    input.accept = accept
+  }
+  if (multiple) {
+    input.multiple = 'multiple'
+  }
+  input.click()
+  return new Promise((resolve, reject) => {
+    input.onchange = (f) => {
+      resolve(f.target.files)
+    }
+    input.onerror = reject
+  })
+}
+
+/**
  * 复制文字到剪切板
  * @param {string} text
  * @returns
  */
-function copyText(text) {
+export function copyText(text) {
   if (!text) {
     console.info('没有要复制的内容')
     return
@@ -177,19 +201,4 @@ function copyText(text) {
   document.getElementById('inputCopy').select()
   document.execCommand('Copy')
   document.body.removeChild(inputZ)
-}
-
-export {
-  hasClass, // 判断dom是否有 Class
-  addClass, // 添加dom Class
-  removeClass, // 删除元素 Class
-  getQueryObject, // queryString转queryObject
-  getQueryString, // queryObject转queryString
-  stopMove, // 停止页面滚动[pc端]
-  canMove, // 开启页面滚动[pc端]
-  stopMoveMobile, // 停止页面滚动[移动端]
-  canMoveMobile, // 开启页面滚动[移动端]
-  addLongPress, // 移动端长按事件
-  blobFileDown, // blob 流文件下载
-  copyText // 复制内容到剪贴板
 }

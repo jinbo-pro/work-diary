@@ -60,7 +60,7 @@
 
 <script>
 import { createFormMain } from './createForm.js'
-import { local } from '/utils/storage.js'
+import { local } from '@/utils/storage.js'
 import { createField } from './utils.js'
 import ConfigDialog from './ConfigDialog.vue'
 import ImportDialog from './ImportDialog.vue'

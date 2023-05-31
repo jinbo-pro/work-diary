@@ -1,5 +1,5 @@
 import { diceCom, getRanDice } from '../utils.js'
-import { local } from '/utils/storage.js'
+import { local } from '@/utils/storage.js'
 const { Toast, Dialog } = vant
 const initMoney = 1000
 

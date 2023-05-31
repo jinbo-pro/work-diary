@@ -14,7 +14,7 @@
 
 <script>
 import { tips } from '../tools.js'
-import { postFormData } from '/utils/module/RequestFetch.js'
+import { postFormData } from '@/utils/module/RequestFetch.js'
 export default {
   name: 'SubmitPrompt',
   props: {

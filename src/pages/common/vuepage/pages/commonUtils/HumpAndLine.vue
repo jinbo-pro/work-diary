@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { humpName, toLowerLine } from '/utils/collect.js'
+import { humpName, toLowerLine } from '@/utils/collect.js'
 import CardContent from '@/components/CardContent.vue'
 export default {
   components: {

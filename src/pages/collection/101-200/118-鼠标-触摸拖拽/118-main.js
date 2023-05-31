@@ -1,4 +1,4 @@
-import { SlideHandle } from '/utils/module/SlideHandle.js'
+import { SlideHandle } from '@/utils/module/SlideHandle.js'
 console.log('118-鼠标-触摸滑动事件整理')
 
 /**

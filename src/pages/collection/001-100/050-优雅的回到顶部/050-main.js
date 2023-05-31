@@ -1,4 +1,4 @@
-import { scrollTo } from '/utils/module/scrollTo.js'
+import { scrollTo } from '@/utils/module/scrollTo.js'
 
 for (let i = 0; i < 100; i++) {
   $('#ulBox').append(`<li>撑起页面${i}</li>`)

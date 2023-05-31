@@ -53,7 +53,7 @@
 
 <script>
 import CardContent from '@/components/CardContent.vue'
-import { AES } from '/utils/module/AES.js'
+import { AES } from '@/utils/module/AES.js'
 export default {
   name: 'webcrypto',
   components: {

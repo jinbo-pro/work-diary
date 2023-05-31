@@ -30,7 +30,7 @@
 
 <script>
 import VirtualScroll from './VirtualScroll.vue'
-import { loadScript } from '/utils/module/loadScript.js'
+import { loadScript } from '@/utils/module/loadScript.js'
 export default {
   components: {
     VirtualScroll

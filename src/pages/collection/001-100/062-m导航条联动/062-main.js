@@ -1,4 +1,4 @@
-import { scrollTo } from '/utils/module/scrollTo.js'
+import { scrollTo } from '@/utils/module/scrollTo.js'
 // 模拟数据
 const res = Mock.mock({
   'list|5': [

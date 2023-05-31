@@ -1,4 +1,4 @@
-import { arrayChunk } from '/utils/collect.js'
+import { arrayChunk } from '@/utils/collect.js'
 
 new Vue({
   el: '#app',

@@ -1,7 +1,7 @@
 console.log('129-JSONP解决跨域的原理')
 
-import { guid } from '/utils/easyHash.js'
-import { getQueryString } from '/utils/page.js'
+import { guid } from '@/utils/easyHash.js'
+import { getQueryString } from '@/utils/page.js'
 
 /**
  * 在 window 上定义一个函数容器 用于存放 jsonp 回调函数方便管理

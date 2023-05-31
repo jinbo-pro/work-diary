@@ -11,8 +11,8 @@ import MessageGroup from './components/MessageGroup.vue'
 import FootField from './components/FootField.vue'
 import SubmitPrompt from './components/SubmitPrompt.vue'
 import { parseObj, tips } from './tools.js'
-import { guid } from '/utils/easyHash.js'
-import { local } from '/utils/storage.js'
+import { guid } from '@/utils/easyHash.js'
+import { local } from '@/utils/storage.js'
 const { Dialog } = vant
 
 export default {

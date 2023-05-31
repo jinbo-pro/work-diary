@@ -1,5 +1,5 @@
 import Presbyopic from './common/presbyopic.js'
-import { loadImg } from '/utils/collect.js'
+import { loadImg } from '@/utils/collect.js'
 
 new Vue({
   el: '#app',

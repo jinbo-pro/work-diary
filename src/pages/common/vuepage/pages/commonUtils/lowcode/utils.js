@@ -1,4 +1,4 @@
-import { local } from '/utils/storage.js'
+import { local } from '@/utils/storage.js'
 
 let index = local.get('elementFormCreate-index') || 1
 /**字段创建 */

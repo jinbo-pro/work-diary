@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { local } from '/utils/storage.js'
+import { local } from '@/utils/storage.js'
 export default {
   name: 'ConfigDialog',
   data() {

@@ -1,6 +1,6 @@
 import JSEncrypt from 'https://unpkg.com/jsencrypt@3.3.1/lib/index.js'
 import { publicKey, privateKey } from './rsaKey.js'
-import { copyText } from '/utils/page.js'
+import { copyText } from '@/utils/page.js'
 
 new Vue({
   el: '#app',

@@ -1,4 +1,4 @@
-import { getQueryObject, getQueryString } from '/utils/page.js'
+import { getQueryObject, getQueryString } from '@/utils/page.js'
 /**转换函数 */
 export const transformFn = {
   queryString: {

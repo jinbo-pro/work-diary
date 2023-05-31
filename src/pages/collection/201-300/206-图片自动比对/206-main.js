@@ -1,4 +1,4 @@
-import { loadImg } from '/utils/collect.js'
+import { loadImg } from '@/utils/collect.js'
 
 const imageDataList = []
 
