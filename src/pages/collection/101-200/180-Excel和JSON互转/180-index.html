@@ -13,37 +13,40 @@
     <meta name="cdnload" content="jszip,xlsx-style,vue,element-ui-js,element-ui-css,mockjs" />
     <meta name="author" content="lijinbo" />
     <title>180-Excel和JSON互转</title>
-    <style></style>
   </head>
 
   <body>
     <div id="app">
-      <el-form :inline="true">
-        <el-form-item label="操作">
-          <el-button @click="addRow">新增行</el-button>
-          <el-button @click="addCol">新增列</el-button>
-        </el-form-item>
-        <el-form-item label="导入/导出">
-          <el-upload
-            style="display: inline-block"
-            :show-file-list="false"
-            :auto-upload="false"
-            :on-change="importXlsxFile"
-          >
-            <el-button type="info">导入表格文件</el-button>
-          </el-upload>
-          <el-button type="success" @click="exportDataExcel">导出数据为表格</el-button>
-        </el-form-item>
-        <el-form-item label="json导入">
-          <div style="display: flex">
-            <el-input type="text" placeholder="请输入内容" v-model="jsonStr"> </el-input>
-            <el-button style="margin-left: 16px" type="primary" @click="importJson">从json导入数据</el-button>
-          </div>
-        </el-form-item>
-      </el-form>
+      <el-button @click="dialogVisible = true">导入</el-button>
+      <el-button type="success" @click="exportDataExcel" :disabled="!this.tableData.length">导出数据为表格</el-button>
+      <el-dialog title="提示" :visible.sync="dialogVisible" width="50%" :close-on-click-modal="false">
+        <el-form label-width="100px">
+          <el-form-item label="操作">
+            <el-button @click="addRow">新增行</el-button>
+            <el-button @click="addCol">新增列</el-button>
+          </el-form-item>
+          <el-form-item label="导入">
+            <el-button type="info" @click="importXlsxFile">导入表格文件</el-button>
+          </el-form-item>
+          <el-form-item>
+            <el-button type="primary" @click="importJsonFile">导入JSON文件</el-button>
+          </el-form-item>
+          <el-form-item>
+            <el-input type="textarea" placeholder="请输入json文本内容，点击下方按钮导入" v-model="jsonStr"> </el-input>
+            <el-button style="margin-top: 16px" type="primary" :disabled="!jsonStr" @click="importJson">
+              json文本导入数据
+            </el-button>
+          </el-form-item>
+        </el-form>
+        <span slot="footer">
+          <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+        </span>
+      </el-dialog>
+
       <el-table stripe :data="tableData">
         <el-table-column v-for="(item, index) in rowKey" :key="item.key" :prop="item.key" :label="item.name" />
       </el-table>
+      <el-backtop></el-backtop>
     </div>
 
     <script type="module" src="./180-main.js"></script>
