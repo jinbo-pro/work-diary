@@ -5,13 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
-    <link rel="stylesheet" href="/assets/css/css3-flex.css" />
     <title>126-css三角形实现</title>
     <style>
-      .triangle {
+      div {
         margin: 16px;
-        border-width: 50px;
-        border-bottom: 50px solid red;
+      }
+      .triangle {
+        width: 0;
+        height: 0;
+        border-right: 10px solid transparent;
+        border-left: 10px solid transparent;
+        border-bottom: 10px solid #000;
+        transition: 0.3s;
+      }
+      .triangle_top {
+        transform: rotate(0);
+      }
+
+      .triangle_down {
+        transform: rotate(180deg);
+      }
+
+      .triangle_left {
+        transform: rotate(-90deg);
+      }
+
+      .triangle_right {
+        transform: rotate(90deg);
       }
     </style>
   </head>
