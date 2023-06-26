@@ -7,7 +7,7 @@
     <meta name="author" content="lijinbo" />
     <link rel="icon" href="/favicon.ico" />
     <!-- PDF.js -->
-    <meta name="cdnload" content="pdfjs-dist-pdf,pdfjs-dist-worker,vue" />
+    <meta name="cdnload" content="pdfjs-dist-pdf,pdfjs-dist-worker,vue,element-ui-js,element-ui-css" />
     <title>160-pdf发票合并打印</title>
     <style>
       * {
@@ -24,6 +24,11 @@
       .box {
         padding: 32px;
       }
+      .tips {
+        color: #999;
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
     </style>
     <style id="printStyle" type="text/css" media="print">
       @page {
@@ -36,19 +41,32 @@
   <body>
     <div id="app">
       <div v-show="!isPrint" class="box">
-        <span>纸张方向：</span>
-        <select v-model="direction">
-          <option value="1">纵向</option>
-          <option value="2">横向</option>
-        </select>
-        <span>排版方式：</span>
-        <select v-model="viewCount">
-          <option value="1">每页1张</option>
-          <option value="2">每页2张</option>
-          <option value="4">每页4张</option>
-        </select>
-        <input type="file" accept=".pdf" multiple @change="selectFile" />
-        <button @click="printHandle">打印</button>
+        <el-dialog title="配置" :visible.sync="dialogVisible" width="375px">
+          <el-form>
+            <el-form-item label="纸张方向：">
+              <el-select v-model="direction" placeholder="请选择">
+                <el-option label="纵向" value="1"></el-option>
+                <el-option label="横向" value="2"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="排版方式：">
+              <el-select v-model="viewCount" placeholder="请选择">
+                <el-option label="每页1张" value="1"></el-option>
+                <el-option label="每页2张" value="2"></el-option>
+                <el-option label="每页4张" value="4"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+          <span slot="footer">
+            <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+          </span>
+        </el-dialog>
+        <p class="tips">温馨提示：请使用最新的谷歌浏览器或edge浏览器其他浏览器不支持！！！</p>
+        <el-button @click="dialogVisible = true">高级设置</el-button>
+        <el-button type="primary" @click="document.getElementById('uploadFile').click()">上传发票</el-button>
+        <el-button type="success" @click="printHandle">打印</el-button>
+
+        <input hidden id="uploadFile" type="file" accept=".pdf" multiple @change="selectFile" />
       </div>
       <div id="container"></div>
     </div>

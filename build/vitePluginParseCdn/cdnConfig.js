@@ -14,7 +14,7 @@ module.exports = {
   d3: 'https://cdn.staticfile.org/d3/4.13.0/d3.min.js',
   'devtools-detector': 'https://unpkg.com/devtools-detector@2.0.12/lib/devtools-detector.js',
   // E
-  echarts: 'https://lib.baomitu.com/echarts/5.3.3/echarts.min.js',
+  echarts: 'https://cdn.staticfile.org/echarts/5.4.2/echarts.min.js',
   'el-cascader-multi': 'https://unpkg.com/el-cascader-multi@1.1.8/dist/index.js',
   'element-ui-css': 'https://lf9-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/theme-chalk/index.min.css',
   'element-ui-js': 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/element-ui/2.15.7/index.min.js',
@@ -31,7 +31,7 @@ module.exports = {
   immutable: 'https://cdn.staticfile.org/immutable/4.3.0/immutable.min.js',
   ionicons: 'https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js',
   // J
-  'javascript-obfuscator': 'https://cdn.jsdelivr.net/npm/javascript-obfuscator/dist/index.browser.js',
+  'javascript-obfuscator': 'https://unpkg.com/javascript-obfuscator@4.0.2/dist/index.browser.js',
   jquery: 'https://cdn.staticfile.org/jquery/1.11.3/jquery.min.js',
   'js-audio-recorder': 'https://unpkg.com/js-audio-recorder@1.0.7/dist/recorder.js',
   'js-sha256': 'https://cdn.staticfile.org/js-sha256/0.9.0/sha256.min.js',
@@ -52,28 +52,28 @@ module.exports = {
   nzh: 'https://unpkg.com/nzh@1.0.8/dist/nzh.min.js',
   // O
   // P
-  'pdfjs-dist-pdf': 'https://unpkg.com/pdfjs-dist@2.16.105/build/pdf.min.js',
-  'pdfjs-dist-worker': 'https://unpkg.com/pdfjs-dist@2.16.105/build/pdf.worker.min.js',
+  'pdfjs-dist-pdf': 'https://cdn.staticfile.org/pdf.js/3.7.107/pdf.min.js',
+  'pdfjs-dist-worker': 'https://cdn.staticfile.org/pdf.js/3.7.107/pdf.worker.min.js',
   'pinyin-match': 'https://unpkg.com/pinyin-match@1.2.2/dist/main.js',
   // Q
   qrcode: 'https://unpkg.com/qrcode@1.5.1/build/qrcode.js',
   // R
   // S
-  'spark-md5': 'https://cdn.jsdelivr.net/npm/spark-md5@3.0.2/spark-md5.min.js',
-  'swiper-css': 'https://cdn.jsdelivr.net/npm/swiper@8.4.5/swiper-bundle.min.css',
-  'swiper-js': 'https://cdn.jsdelivr.net/npm/swiper@8.4.5/swiper-bundle.min.js',
+  'spark-md5': 'https://cdn.staticfile.org/spark-md5/3.0.2/spark-md5.min.js',
+  'swiper-css': 'https://cdn.staticfile.org/Swiper/9.4.1/swiper-bundle.min.css',
+  'swiper-js': 'https://cdn.staticfile.org/Swiper/9.4.1/swiper-bundle.min.js',
   // T
   'typewriter-js': 'https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/1.0.0/typewriter.min.js',
   // U
   // V
   'vant-css': 'https://lf26-cdn-tos.bytecdntp.com/cdn/expire-1-M/vant/2.12.44/index.min.css',
   'vant-js': 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vant/2.12.44/vant.min.js',
-  vconsole: 'https://cdn.jsdelivr.net/npm/vconsole@3.15.0/dist/vconsole.min.js',
+  vconsole: 'https://cdn.staticfile.org/vConsole/3.15.1/vconsole.min.js',
   vue: 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js',
-  'vue-cropper': 'https://cdn.jsdelivr.net/npm/vue-cropper@0.5.5/dist/index.min.js',
+  'vue-cropper': 'https://unpkg.com/vue-cropper@0.5.5/dist/index.js',
   'vue-i18n': 'https://unpkg.com/vue-i18n@8.28.2/dist/vue-i18n.js',
-  'vue-lazyload': 'https://cdn.jsdelivr.net/npm/vue-lazyload@1.2.3/vue-lazyload.min.js',
-  'vue-monoplasty-slide-verify': 'https://cdn.jsdelivr.net/npm/vue-monoplasty-slide-verify@1.3.1/dist/slide-verify.js',
+  'vue-lazyload': 'https://unpkg.com/vue-lazyload@1.2.3/vue-lazyload.js',
+  'vue-monoplasty-slide-verify': 'https://unpkg.com/vue-monoplasty-slide-verify@1.3.1/dist/slide-verify.js',
   'vue-preview': 'https://unpkg.com/vue-preview@1.1.3/dist/vue-preview.min.js',
   vue3: 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vue/3.2.31/vue.global.prod.js',
   // W
