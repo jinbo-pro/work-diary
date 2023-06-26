@@ -3,7 +3,7 @@
  * https://unpkg.com/:package@:version/:file
  * 例如：https://unpkg.com/vue@2.6.14
  */
-const cdnConfig = require('./cdnConfig.json')
+const cdnConfig = require('./cdnConfig.js')
 
 /**
  * 解析 html 里面的 cdn
