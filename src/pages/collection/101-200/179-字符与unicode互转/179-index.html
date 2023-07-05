@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <meta name="cdnload" content="vue,element-ui-js,element-ui-css" />
+    <title>179-字符与unicode互转</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <el-form label-width="120px">
+        <el-form-item label="字符">
+          <el-input v-model="text" @blur="transformHandle(1)"></el-input>
+        </el-form-item>
+        <el-form-item label="unicode码">
+          <el-input-number v-model="unicodeText" :min="32" :max="65535" @blur="transformHandle(2)"></el-input-number>
+        </el-form-item>
+        <hr />
+        <p>使用场景：随机密码</p>
+        <el-form-item label="编码区间">
+          <el-input-number v-model="rMin" :min="32" :max="65535" label="unicode码起始值"></el-input-number>
+          <el-input-number v-model="rMax" :min="33" :max="65535" label="unicode码结束值"></el-input-number>
+        </el-form-item>
+        <el-form-item label="字符数量">
+          <el-input-number v-model="rNum" :min="32" :max="65535" label="描述文字"></el-input-number>
+        </el-form-item>
+        <el-form-item label="生成密码">
+          <el-button type="primary" @click="createRandom">生成随机密码</el-button>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input type="textarea" readonly :value="randomText"></el-input>
+        </el-form-item>
+      </el-form>
+    </div>
+    <script type="module" src="./179-main.js"></script>
+  </body>
+</html>
