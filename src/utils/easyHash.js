@@ -84,16 +84,19 @@ export function randomString(len, types) {
   }
   return result
 }
-
-export function randomStringPro(len = 16) {
+/**
+ * 随机字符串-unicode版
+ * @param {number} len 随机字符长度
+ * @param {number} minCode 最小unicode
+ * @param {number} maxCode 最大unicode
+ * @returns
+ */
+export function randomStringUnicode(len = 16, minCode = 32, maxCode = 126) {
   // 可打印的ASCII字符 https://www.runoob.com/tags/html-ascii.html
-  const charCodeList = []
-  for (let i = 32; i <= 126; i++) {
-    charCodeList.push(i)
-  }
   let result = ''
   for (let i = 0; i < len; i++) {
-    result += String.fromCharCode(randomList(charCodeList))
+    const code = parseInt(Math.random() * (maxCode - minCode) + minCode)
+    result += String.fromCharCode(code)
   }
   return result
 }

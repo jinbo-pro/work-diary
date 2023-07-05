@@ -34,7 +34,7 @@
 
 <script>
 const { Toast } = vant
-import { randomString, randomStringPro } from '@/utils/easyHash.js'
+import { randomString, randomStringUnicode } from '@/utils/easyHash.js'
 import { parseTime } from '@/utils/time.js'
 import { copyText } from '@/utils/page.js'
 import { local } from '@/utils/storage'
@@ -82,7 +82,7 @@ export default {
       Toast({ message: '复制成功' })
     },
     randomPro() {
-      this.result = randomStringPro(this.num)
+      this.result = randomStringUnicode(this.num, 33)
     }
   }
 }
