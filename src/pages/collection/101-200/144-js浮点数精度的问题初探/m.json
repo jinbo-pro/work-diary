@@ -1,5 +1,5 @@
 {
 	"sort": "144",
 	"name": "144-js浮点数精度的问题初探",
-	"tag": "浮点数"
+	"tag": "大整数,js精度,bignumber,BigInt"
 }
