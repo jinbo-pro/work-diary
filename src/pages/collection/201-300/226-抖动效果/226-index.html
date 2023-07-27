@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <meta name="cdnload" content="jquery" />
+    <title>226-抖动效果</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        border: 1px solid #57f07e;
+        margin: 10px 0;
+      }
+
+      /* 简单抖动动画 */
+      .shake {
+        animation: shake 800ms ease-in-out;
+      }
+      @keyframes shake {
+        10%,
+        90% {
+          transform: translate3d(-1px, 0, 0);
+        }
+        20%,
+        80% {
+          transform: translate3d(2px, 0, 0);
+        }
+        30%,
+        70% {
+          transform: translate3d(-4px, 0, 0);
+        }
+        40%,
+        60% {
+          transform: translate3d(4px, 0, 0);
+        }
+        50% {
+          transform: translate3d(-4px, 0, 0);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <ul>
+        <li>
+          <button class="btn1">简单的抖动动画</button>
+          <div class="box">1</div>
+        </li>
+        <li>
+          <button class="btn2">jquery抖动动画</button>
+          <div class="box">1</div>
+        </li>
+      </ul>
+    </div>
+    <script type="module" src="./226-main.js"></script>
+  </body>
+</html>
