@@ -70,6 +70,7 @@ module.exports = {
   'vant-js': 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/vant/2.12.44/vant.min.js',
   vconsole: 'https://cdn.staticfile.org/vConsole/3.15.1/vconsole.min.js',
   vue: 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue/2.6.14/vue.min.js',
+  'vue-router': 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-y/vue-router/3.5.3/vue-router.min.js',
   'vue-cropper': 'https://unpkg.com/vue-cropper@0.5.5/dist/index.js',
   'vue-i18n': 'https://unpkg.com/vue-i18n@8.28.2/dist/vue-i18n.js',
   'vue-lazyload': 'https://unpkg.com/vue-lazyload@1.2.3/vue-lazyload.js',
