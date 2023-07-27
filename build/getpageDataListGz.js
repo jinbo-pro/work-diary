@@ -14,7 +14,7 @@ function getpageDataListGz() {
       metaConfig[meta.name] = meta.tag
     }
   }
-  const dirList = ['pages/collection', 'public/notepad', 'public/loading']
+  const dirList = ['pages/collection', 'public/notepad']
   const pageDataList = dirList.reduce((p, c) => {
     const srcFileList = getFileFlatList(resolve(`src/${c}`))
     const resultList = srcFileList.filter((e) => {
