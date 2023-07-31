@@ -78,6 +78,11 @@ export const routes = [
         path: '/echartsCommon',
         meta: { title: 'echarts常用案例', tag: '图表,demo' },
         component: () => import('../pages/libdemo/echartsCommon/index.vue')
+      },
+      {
+        path: '/drag-verify-demo',
+        meta: { title: 'drag-verify-demo', tag: '滑动解锁' },
+        component: () => import('../pages/libdemo/drag-verify-demo.vue')
       }
     ]
   },

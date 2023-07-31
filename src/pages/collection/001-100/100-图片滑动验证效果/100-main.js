@@ -44,7 +44,7 @@ function validBlockPoint() {
 /**鼠标移动同步滑块位置 */
 slider.on('mousedown', function (e) {
   const l = slider.offset().left
-  lv = e.pageX - l
+  let lv = e.pageX - l
   document.onmousemove = function (event) {
     var end = event.clientX
     let left = end - lv
