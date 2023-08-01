@@ -160,7 +160,6 @@ export default {
       }
       addDataItem('pages/collection', (e) => e.isFile == 0 || !e.fileName.endsWith('index.html'))
       addDataItem('public/notepad', (e) => e.isFile)
-      addDataItem('public/loading', (e) => !e.isFile)
     }
   }
 }

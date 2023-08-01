@@ -24,7 +24,7 @@ function getIPAddress() {
  */
 function guid() {
   const S = () => (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1)
-  return `guid${S()}${S()}-${S()}-${S()}-${S()}-${S()}${S()}${S()}`
+  return Array(8).fill(1).map(S).join('')
 }
 /**
  * 校验

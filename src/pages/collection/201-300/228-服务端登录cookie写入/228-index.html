@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="cdnload" content="vue,element-ui-js,element-ui-css" />
+    <meta name="author" content="lijinbo" />
+    <title>228-服务端登录cookie写入</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <el-form v-if="!isLogin" label-width="120px">
+        <el-form-item label="用户名">
+          <el-input v-model="userName"></el-input>
+        </el-form-item>
+        <el-form-item label="密码">
+          <el-input v-model="password"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="loginHandle">登录</el-button>
+        </el-form-item>
+      </el-form>
+
+      <el-result v-else icon="success" title="登录成功">
+        <template slot="extra">
+          <el-button type="info" @click="exitLogin">退出登录</el-button>
+        </template>
+      </el-result>
+    </div>
+    <script type="module" src="./228-main.js"></script>
+  </body>
+</html>

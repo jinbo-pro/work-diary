@@ -16,6 +16,12 @@ router.get('/api/listData', (ctx) => Api.listData(ctx))
 router.post('/api/sendBeacon', (ctx) => Api.sendBeacon(ctx))
 router.post('/api/userListData', (ctx) => Api.userListData(ctx))
 
+// Login
+const Login = require('./controller/Login')
+router.post('/login', (ctx) => Login.login(ctx))
+router.all('/checkAuth', (ctx) => Login.checkAuth(ctx))
+router.all('/exitLogin', (ctx) => Login.exitLogin(ctx))
+
 // Sim
 const Sim = require('./controller/Sim')
 router.post('/sim', (ctx) => Sim.setData(ctx))
