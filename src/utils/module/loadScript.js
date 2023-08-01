@@ -9,13 +9,12 @@ const scriptMap = new Map()
 export function loadScript(src, type = 'script') {
   return new Promise((resolve, reject) => {
     const oId = scriptMap.get(src)
-    if (oId && document.getElementById(oId)) {
-      return resolve()
-    }
-    const id = 'loadScript-' + Date.now() + Math.random()
+    if (oId && document.getElementById(oId)) return resolve(oId)
+    const id = 'loadScript-' + Math.random().toString(36).slice(2)
     const tag = document.createElement(type)
     if (type == 'script') {
       tag.src = src
+      tag.type = 'text/javascript'
     } else {
       tag.href = src
       tag.rel = 'stylesheet'

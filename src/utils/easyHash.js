@@ -37,7 +37,7 @@ export function textHax(str) {
   for (var i = 0, num = 0, len = str.length; i < len; i++) {
     num += str.charCodeAt(i) / (i + Math.PI)
   }
-  return (String(num).replace('.', '') - 0).toString(36)
+  return num.toString(36).replace('.', '')
 }
 /**
  * 随机数字
@@ -99,4 +99,8 @@ export function randomStringUnicode(len = 16, minCode = 32, maxCode = 126) {
     result += String.fromCharCode(code)
   }
   return result
+}
+/** 随机字符串-mini版 */
+export function randomStringMini() {
+  return Math.random().toString(36).slice(2)
 }
