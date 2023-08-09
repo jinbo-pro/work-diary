@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.staticfile.org/driver.js/1.2.1/driver.min.js.iife.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/driver.js/1.2.1/driver.min.css" />
+    <link rel="stylesheet" href="/assets/css/css3-flex.css" />
+    <meta name="cdnload" content="jquery,normalize" />
+    <meta name="author" content="lijinbo" />
+    <title>229-引导页制作</title>
+    <style>
+      #tour1 {
+        position: relative;
+        display: none;
+        margin-top: 32px;
+      }
+
+      .crocodile1 {
+        position: absolute;
+        left: 288px;
+        top: 113px;
+        width: 138px;
+        height: 130px;
+      }
+
+      .koala1 {
+        position: absolute;
+        left: 32px;
+        top: 101px;
+        width: 100px;
+        height: 30px;
+      }
+      .max {
+        width: 300px;
+        height: 300px;
+        border: 1px solid #f1f1f1;
+        border-radius: 10px;
+      }
+      .max .left {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+      }
+      .max .right {
+        width: 100px;
+        height: 100px;
+        background-color: yellow;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        <a href="https://juejin.cn/post/7262542750405804091" target="_blank"> 文章参考 </a>
+      </p>
+      <p>
+        <a href="https://driverjs.com/docs/installation" target="_blank">官方文档</a>
+      </p>
+
+      <div>
+        <p>《I LOVE YOU TOO》。漫画作者 CHOW HON LAM，马来西亚漫画家、插画家。</p>
+        <div>
+          <button id="story1">故事1</button>
+          <button id="story2">故事2</button>
+        </div>
+        <div id="tour1" class="tour">
+          <img width="500" height="auto" src="/assets/img/bg.jpg" />
+          <div class="crocodile1"></div>
+          <div class="koala1"></div>
+        </div>
+
+        <div>
+          <div class="max jsb ac">
+            <div class="left"></div>
+            <div class="right"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      const driver = window.driver.js.driver
+
+      $('#story1').click(() => {
+        $('#tour1').css('display', 'inline-block')
+        const driverObj = driver({
+          showProgress: true,
+          allowClose: false,
+          steps: [
+            { element: '.crocodile1', popover: { description: '跑车左前轮', side: 'left', align: 'start' } },
+            { element: '.koala1', popover: { description: '跑车右后尾翼', side: 'bottom', align: 'start' } },
+            {
+              element: '#tour1',
+              popover: { description: '这是柯尼塞格 jesiko', side: 'bottom', align: 'start' }
+            }
+          ]
+        })
+        driverObj.drive()
+      })
+
+      $('#story2').click(() => {
+        const driverObj = driver({
+          showProgress: true,
+          allowClose: false,
+          steps: [
+            { element: '.left', popover: { description: '左侧', side: 'bottom', align: 'start' } },
+            { element: '.right', popover: { description: '右侧', side: 'bottom', align: 'start' } },
+            {
+              element: '.max',
+              popover: { description: '全部', side: 'bottom', align: 'start' }
+            }
+          ]
+        })
+        driverObj.drive()
+      })
+    </script>
+  </body>
+</html>
