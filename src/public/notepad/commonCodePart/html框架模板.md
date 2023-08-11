@@ -13,9 +13,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/react@17.0.2/umd/react.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/babel-standalone@6.26.0/babel.min.js"></script>
+    <script src="https://cdn.staticfile.org/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdn.staticfile.org/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdn.staticfile.org/babel-standalone/7.22.10/babel.min.js"></script>
     <title>react-hello</title>
   </head>
 
@@ -91,7 +91,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.45/dist/vue.global.prod.js"></script>
+    <script src="https://cdn.staticfile.org/vue/3.3.4/vue.global.prod.min.js"></script>
     <title>vue3-hello</title>
   </head>
   <body>
@@ -236,8 +236,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/layui@2.6.13/dist/css/layui.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/layui@2.6.13/dist/layui.min.js"></script>
+    <link href="https://cdn.staticfile.org/layui/2.8.13/css/layui.min.css" rel="stylesheet" />
+    <script src="https://cdn.staticfile.org/layui/2.8.13/layui.min.js"></script>
     <title>layui-demo</title>
   </head>
   <body>
