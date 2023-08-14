@@ -12,13 +12,6 @@
       .top_title {
         text-align: center;
       }
-      .cover_box {
-        padding: 12px;
-      }
-      .cover {
-        max-width: 100%;
-        border-radius: 10px;
-      }
       .btn_box {
         display: flex;
         margin-top: 50px;
@@ -42,10 +35,7 @@
   </head>
   <body>
     <div id="app">
-      <h3 class="top_title">今日壁纸</h3>
-      <div class="cover_box">
-        <img class="cover" v-if="coverSrc" :src="coverSrc" alt="图片加载失败" @click="previewCover" />
-      </div>
+      <h3 class="top_title">你可以赞一下或者踩一下</h3>
       <div class="btn_box">
         <div :class="['btn', { active: isActive }]" style="margin-right: 16px" @click="send">👍</div>
         <div class="btn" @click="close">👎</div>
@@ -64,20 +54,8 @@
         },
         created() {
           this.help()
-          this.getInitCover()
         },
         methods: {
-          async getInitCover() {
-            const localKey = 'sim-cover-src'
-            const url = localStorage.getItem(localKey)
-            if (url) {
-              this.coverSrc = url
-              return
-            }
-            const r = await fetch('https://api.isoyu.com/bing_images.php')
-            this.coverSrc = r.url
-            localStorage.setItem(localKey, r.url)
-          },
           help() {
             fetch('/sim', {
               method: 'post',

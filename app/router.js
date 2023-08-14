@@ -24,7 +24,7 @@ router.all('/exitLogin', (ctx) => Login.exitLogin(ctx))
 
 // Sim
 const Sim = require('./controller/Sim')
-router.post('/sim', (ctx) => Sim.setData(ctx))
+router.all('/sim', (ctx) => Sim.setData(ctx))
 router.get('/sim/getData', (ctx) => Sim.getData(ctx))
 router.get('/sim/clearData', (ctx) => Sim.clearData(ctx))
 
