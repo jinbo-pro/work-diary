@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>230-Proxy实现简单的响应式数据监听</title>
+  </head>
+
+  <body>
+    <button onclick="changeStore()">修改 store</button>
+    <p id="content"></p>
+    <script>
+      function watch(callBack) {
+        const obj = {}
+        return new Proxy(obj, {
+          set(target, key, newVal) {
+            target[key] = newVal
+            callBack(newVal, key, target)
+          }
+        })
+      }
+
+      const store = watch((value, key, target) => {
+        document.getElementById('content').innerHTML = `key: ${key}  value: ${value}`
+        console.log(target)
+      })
+
+      setTimeout(() => {
+        store.name = 'jack'
+      }, 500)
+
+      function changeStore() {
+        store.time = Date.now()
+      }
+    </script>
+  </body>
+</html>
