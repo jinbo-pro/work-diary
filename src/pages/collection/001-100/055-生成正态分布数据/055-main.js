@@ -1,27 +1,23 @@
-function uniform2NormalDistribution() {
-  var sum = 0.0
-  for (var i = 0; i < 12; i++) {
-    sum = sum + Math.random()
-  }
-  return sum - 6.0
-}
 /**
  * 生成正态分布数据
- * @param {number} mean 标准值
- * @param {number} std_dev 标准差
+ * @param {number} mean 随机数的中心点
+ * @param {number} stdDev 正态分布的标准差
  * @returns
  */
-function getNumberInNormalDistribution(mean, std_dev) {
-  return mean + uniform2NormalDistribution() * std_dev
+function generateNormalRandomNumbers(mean = 0, stdDev = 1) {
+  let u = Math.random()
+  let v = Math.random()
+  let z = Math.sqrt(-2.0 * Math.log(u)) * Math.cos(2.0 * Math.PI * v)
+  return mean + stdDev * z
 }
 
 let data = {}
 for (let i = 0; i < 10000; i++) {
   /**
-   * 获得均值为180，要68.26%左右的学生身高都在[170,190]之内，即1个标准差范围内，因此标准差为10
-   * 可以通过 getNumberInNormalDistribution(180,10) 调用
+   * 获得均值为180，要68.26%左右的学生身高都在[170,190]之内，即10个标准差范围内
+   * 这个算法使用了 Box-Muller 转换来生成正态分布数据
    */
-  let key = ~~getNumberInNormalDistribution(180, 10)
+  let key = ~~generateNormalRandomNumbers(180, 10)
   if (data[key]) {
     data[key]++
   } else {
