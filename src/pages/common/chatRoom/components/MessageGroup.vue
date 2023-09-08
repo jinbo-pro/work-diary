@@ -20,7 +20,7 @@
 
 <script>
 const { ImagePreview } = vant
-import { IsPC } from '../tools.js'
+import { isPC } from '@/utils/page.js'
 export default {
   name: 'MessageGroup',
   props: {
@@ -44,7 +44,7 @@ export default {
   },
   methods: {
     lookInfo(e) {
-      if (IsPC()) return
+      if (isPC()) return
       const img = e.srcElement
       if (img.tagName == 'IMG') {
         ImagePreview([img.src])

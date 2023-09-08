@@ -1,6 +1,12 @@
 /**
  * 页面相关
  */
+/**判断是否为pc端 */
+export function isPC() {
+  const agents = ['Android', 'iPhone', 'SymbianOS', 'Windows Phone', 'iPod']
+  return !agents.some((x) => navigator.userAgent.includes(x)) || window.screen.width >= 768
+}
+
 /**
  * queryString转queryObject
  * @param {string} url
