@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>232-浏览器调起桌面通知</title>
+  </head>
+
+  <body>
+    <p>
+      文章参考：
+      <a href="https://blog.csdn.net/m0_63823719/article/details/131514801" target="_blank">
+        浏览器使用Notification桌面通知消息推送
+      </a>
+    </p>
+    <button id="btn">打开通知</button>
+    <script>
+      document.getElementById('btn').onclick = function () {
+        // 请求用户授权
+        Notification.requestPermission().then(function (permission) {
+          if (permission === 'granted') {
+            // 创建一个新的通知
+            var notification = new Notification('这是一个桌面通知', {
+              body: '这是通知的正文内容',
+              icon: 'notification-icon.png' // 通知图标
+            })
+
+            // 点击通知时触发的事件
+            notification.onclick = function () {
+              // 在用户点击通知时执行的操作
+              console.log('用户点击了通知')
+            }
+          }
+        })
+      }
+    </script>
+  </body>
+</html>
