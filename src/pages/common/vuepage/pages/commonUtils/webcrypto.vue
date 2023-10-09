@@ -40,10 +40,10 @@
         </p>
         <el-row>
           <el-col :span="12">
-            <CardContent title="aes 内容" v-model="aes.content" @blur="aesHandel('encrypt')" />
+            <CardContent title="原文" v-model="aes.content" @blur="aesHandel('encrypt')" />
           </el-col>
           <el-col :span="12">
-            <CardContent title="aes 加密" v-model="aes.encryptedVal" @blur="aesHandel('decrypt')" />
+            <CardContent title="密文" v-model="aes.encryptedVal" @blur="aesHandel('decrypt')" />
           </el-col>
         </el-row>
       </el-tab-pane>
