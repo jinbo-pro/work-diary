@@ -19,6 +19,9 @@
       </p>
       <p>注意：该加密方式每次输出的密文是动态的，但是解密都能获得正确的原文</p>
       <p>密匙长度：1024 ;密匙格式：PKCS#8 ;填充标志：OPENSSL PKCS1_ PADDING</p>
+      <p style="color: red">
+        注意：rsa加解密有长度限制最大支持128个字符，超过这个字符可以选择使用分段加密分段解密的方式
+      </p>
 
       <hr />
       <el-tabs v-model="activeName" type="card" @tab-click="handleTabClick">
