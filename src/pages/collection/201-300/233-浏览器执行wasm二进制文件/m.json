@@ -1,0 +1,5 @@
+{
+	"sort": "233",
+	"name": "233-浏览器执行wasm二进制文件",
+	"tag": "WebAssembly,emscripten,assemblyscript"
+}
