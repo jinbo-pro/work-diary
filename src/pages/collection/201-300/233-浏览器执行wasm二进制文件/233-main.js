@@ -28,7 +28,7 @@ WebAssembly.compile(
  * 2. .wasm 文件加载
  */
 ;(async function () {
-  const response = await fetch('/add.wasm')
+  const response = await fetch('/assets/add.wasm')
   const buffer = await response.arrayBuffer()
   const module = await WebAssembly.instantiate(buffer)
   console.log(module.instance.exports, '-->>> add.wasm')

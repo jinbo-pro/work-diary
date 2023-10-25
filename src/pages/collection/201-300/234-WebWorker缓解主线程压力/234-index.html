@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>234-WebWorker缓解主线程压力</title>
+  </head>
+
+  <body>
+    <p>
+      Web Worker 文章参考：
+      <a href="https://mp.weixin.qq.com/s/1Wwvt2jlLczBVvSCIC9ugQ" target="_blank">
+        导入个Excel页面直接卡死，看我如何处理T0生产事故~
+      </a>
+      <br />
+      <a href="https://www.npmjs.com/package/comlink" target="_blank"> comlink Web Worker 接口封装库 </a>
+    </p>
+    <h1>Web Worker 示例</h1>
+    <p>计算斐波那契数列的第 <input type="number" id="num" min="1" max="50" value="42" /> 项</p>
+    <button id="calculate">worker计算</button>
+    <p>
+      <br />
+    </p>
+    <button id="pageTestFn">主页面按钮</button>
+    <p id="result"></p>
+    <script type="module" src="./234-main.js"></script>
+  </body>
+</html>
