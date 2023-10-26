@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="cdnload" content="vue" />
+    <script src="https://unpkg.com/vue-grid-layout@2.4.0/dist/vue-grid-layout.umd.min.js"></script>
+    <title>拖拽布局</title>
+    <style>
+      body {
+        background: #f7f6fa;
+      }
+
+      .vue-grid-item:not(.vue-grid-placeholder) {
+        padding: 8px;
+        border-radius: 6px;
+        box-sizing: border-box;
+        background-color: #fff;
+        box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      }
+
+      .vue-grid-item .text {
+        font-size: 24px;
+        text-align: center;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        height: 100%;
+        width: 100%;
+      }
+
+      .vue-grid-item {
+        touch-action: none;
+      }
+      .remove {
+        position: absolute;
+        right: 2px;
+        top: 0;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <input type="number" v-model="blockCount" />
+      <button @click="createLayout">创建网格</button>
+      <button @click="addItem">新增</button>
+      <grid-layout
+        :layout.sync="layout"
+        :col-num="colNum"
+        :row-height="30"
+        :is-draggable="draggable"
+        :is-resizable="resizable"
+        :vertical-compact="true"
+        :use-css-transforms="true"
+        @layout-updated="layoutUpdatedEvent"
+      >
+        <grid-item
+          v-for="(item, index) in layout"
+          :key="item.i"
+          :x="item.x"
+          :y="item.y"
+          :w="item.w"
+          :h="item.h"
+          :i="item.i"
+        >
+          <span class="text">{{ index + 1 }}</span>
+          <span class="remove" @click="removeItem(item.i)">x</span>
+        </grid-item>
+      </grid-layout>
+    </div>
+    <script>
+      const getId = () => Math.random().toString(36).replace('0.', '')
+      new Vue({
+        el: '#app',
+        data: {
+          colNum: 24,
+          blockCount: 15,
+          layout: [],
+          draggable: true,
+          resizable: true
+        },
+        created() {
+          const l = sessionStorage.getItem('vue-layout-newLayout')
+          if (l) {
+            this.layout = JSON.parse(l)
+          }
+        },
+        methods: {
+          createLayout() {
+            const layout = []
+            const result = []
+
+            let x = 0
+            let y = 0
+            const w = 2
+
+            for (let i = 0; i < this.blockCount; i++) {
+              x += w
+              if (i % (this.colNum / w) == 0) {
+                x = 0
+                y++
+              }
+              layout.push({
+                x: x,
+                y: y,
+                w: w,
+                h: w,
+                i: getId()
+              })
+            }
+            this.layout = layout
+          },
+          layoutUpdatedEvent(newLayout) {
+            console.log('Updated layout: ', newLayout)
+            if (newLayout.length) {
+              sessionStorage.setItem('vue-layout-newLayout', JSON.stringify(newLayout))
+            }
+          },
+          addItem() {
+            this.layout.push({
+              x: (this.layout.length * 2) % this.colNum,
+              y: this.layout.length + this.colNum, // puts it at the bottom
+              w: 2,
+              h: 2,
+              i: getId()
+            })
+          },
+          removeItem(val) {
+            this.layout = this.layout.filter((x) => x.i != val)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
