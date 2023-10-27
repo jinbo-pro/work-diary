@@ -10,9 +10,11 @@
   <body>
     我是子页面
     <button id="btn">子传给父</button>
+    <ul id="box"></ul>
     <script>
       window.addEventListener('message', function (event) {
         console.log('子页面接收到信息', event.data)
+        document.getElementById('box').innerHTML += `<li>${JSON.stringify(event.data)}</li>`
       })
 
       document.getElementById('btn').addEventListener('click', () => {

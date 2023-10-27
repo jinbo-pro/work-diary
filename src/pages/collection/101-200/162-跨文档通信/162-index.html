@@ -6,27 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="author" content="lijinbo" />
     <title>162-跨文档通信</title>
-    <style></style>
+    <style>
+      .max {
+        display: flex;
+        width: 100%;
+      }
+      .box {
+        width: 50%;
+      }
+    </style>
   </head>
 
   <body>
     <div id="app">
-      我是父页面
-      <button id="btn">父传给子</button>
-      <iframe id="childHtmlId" src=""></iframe>
-      <hr />
-      <p>
-        对于 postMessage 有封装的第三方库参考：
-        <a href="https://www.npmjs.com/package/penpal" target="_blank">penpal</a>
-      </p>
+      <div class="max">
+        <div class="box">
+          <p>
+            对于 postMessage 有封装的第三方库参考：
+            <a href="https://www.npmjs.com/package/penpal" target="_blank">penpal</a>
+          </p>
+          我是父页面
+          <button id="btn">父传给子</button>
+
+          <hr />
+          <ul id="child-msg"></ul>
+        </div>
+        <div class="box">
+          <iframe id="childHtmlId" src="" style="width: 100%; height: 95vh"></iframe>
+        </div>
+      </div>
     </div>
     <script>
-      const childUrl = `http://${location.host}/collection/101-200/162-跨文档通信/child.html`
+      const childUrl = `${location.origin}/assets/postMessage-child.html`
       const iframeDom = document.getElementById('childHtmlId')
       iframeDom.src = childUrl
 
       window.addEventListener('message', function (event) {
         console.log('父页面接收到信息', event.data)
+        document.getElementById('child-msg').innerHTML += `<li>${Date.now()}-${JSON.stringify(event.data)}</li>`
       })
       document.getElementById('btn').addEventListener('click', () => {
         // 同一网站 postMessage 第二个参数 targetOrigin 可以省略
