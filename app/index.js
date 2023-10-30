@@ -1,7 +1,7 @@
 const Koa = require('koa')
 const router = require('./router')
 const range = require('koa-range')
-const koaBody = require('koa-body')
+const { koaBody } = require('koa-body')
 const compress = require('koa-compress')
 const staticFiles = require('koa-static')
 const tools = require('./utils/tools')
