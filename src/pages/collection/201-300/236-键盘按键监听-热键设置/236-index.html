@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>236-键盘按键监听-热键设置</title>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        文档参考
+        <a href="https://www.npmjs.com/package/hotkeys-js" target="_blank"> hotkeys-js </a>
+      </p>
+    </div>
+    <script>
+      document.addEventListener('keydown', (e) => {
+        if (e.key == 'a' && e.ctrlKey) {
+          console.log(e.key, 'key==')
+          alert('你按下了 ctrl+a')
+        }
+      })
+    </script>
+  </body>
+</html>
