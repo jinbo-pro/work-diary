@@ -51,6 +51,16 @@ async function queueDowload(list, limit = 3) {
   }
 }
 
+/**
+ * 更加完善，更加好用的队列管理器推荐 async 库里面的 queue
+ *
+ * async/queue
+ * https://unpkg.com/async@3.2.4/queue.js
+ *
+ * other documents
+ * https://my.oschina.net/huangsz/blog/176203
+ */
+
 module.exports = {
   concurrencyTask,
   queueDowload
