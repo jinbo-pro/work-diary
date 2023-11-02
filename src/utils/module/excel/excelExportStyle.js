@@ -29,6 +29,7 @@ function workbook2blob(workbook) {
 }
 // 添加表格样式
 async function addStyle(workbookBlob) {
+  /**XlsxPopulate 页面引入 xlsx-populate */
   const workbook = await XlsxPopulate.fromDataAsync(workbookBlob)
   // 循环所有的表
   workbook.sheets().forEach((sheet) => {

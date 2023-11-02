@@ -1,6 +1,6 @@
 import { clickUploadFile } from '@/utils/page.js'
-import { exportHandler } from './display/exportHandler.js'
-import { xlsxFileToJson } from './display/xlsxFileToJson.js'
+import { xlsxFileToJson } from '@/utils/module/excel/xlsxFileToJson.js'
+import { excelExportStyle } from '@/utils/module/excel/excelExportStyle.js'
 
 new Vue({
   el: '#app',
@@ -52,12 +52,7 @@ new Vue({
     exportDataExcel() {
       console.log(this.tableData, '-->>> this.tableData')
       console.log(this.rowKey, '-->>> this.rowKey')
-      exportHandler({
-        list: this.tableData,
-        title: false,
-        headlist: this.rowKey,
-        xlsname: '数据列表-' + this.xlsname
-      })
+      excelExportStyle('tableData', '数据列表-' + this.xlsname)
     },
     // 导入json文件
     async importJsonFile() {

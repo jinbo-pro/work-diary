@@ -1,4 +1,4 @@
-import { excelExportStyle } from './excelExportStyle.js'
+import { excelExportStyle } from '@/utils/module/excel/excelExportStyle.js'
 
 new Vue({
   el: '#app',

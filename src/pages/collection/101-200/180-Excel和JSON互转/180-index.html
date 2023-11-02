@@ -4,13 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- xlsx , xlsx-style -->
-    <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/jszip/2.4.0/jszip.min.js"></script>
-    <script>
-      // 下面 xlsx-style 读取的变量为 jszip 这里中转一下
-      window.jszip = JSZip
-    </script>
-    <meta name="cdnload" content="jszip,xlsx-style,vue,element-ui-js,element-ui-css,mockjs" />
+    <meta name="cdnload" content="vue,element-ui-js,element-ui-css,mockjs" />
+    <script src="https://unpkg.com/xlsx-populate@1.21.0/browser/xlsx-populate.min.js"></script>
     <meta name="author" content="lijinbo" />
     <title>180-Excel和JSON互转</title>
   </head>
@@ -20,18 +15,18 @@
       <el-button @click="dialogVisible = true">导入</el-button>
       <el-button type="success" @click="exportDataExcel" :disabled="!this.tableData.length">导出数据为表格</el-button>
       <el-dialog title="提示" :visible.sync="dialogVisible" width="50%" :close-on-click-modal="false">
-        <el-form label-width="100px">
+        <el-form label-width="120px">
           <el-form-item label="操作">
             <el-button @click="addRow">新增行</el-button>
             <el-button @click="addCol">新增列</el-button>
           </el-form-item>
-          <el-form-item label="导入">
+          <el-form-item label="表格文件导入">
             <el-button type="info" @click="importXlsxFile">导入表格文件</el-button>
           </el-form-item>
-          <el-form-item>
+          <el-form-item label="JSON文件导入">
             <el-button type="primary" @click="importJsonFile">导入JSON文件</el-button>
           </el-form-item>
-          <el-form-item>
+          <el-form-item label="JSON文本导入">
             <el-input type="textarea" placeholder="请输入json文本内容，点击下方按钮导入" v-model="jsonStr"> </el-input>
             <el-button style="margin-top: 16px" type="primary" :disabled="!jsonStr" @click="importJson">
               json文本导入数据
@@ -43,7 +38,7 @@
         </span>
       </el-dialog>
 
-      <el-table stripe :data="tableData">
+      <el-table id="tableData" stripe :data="tableData">
         <el-table-column v-for="(item, index) in rowKey" :key="item.key" :prop="item.key" :label="item.name" />
       </el-table>
       <el-backtop></el-backtop>
