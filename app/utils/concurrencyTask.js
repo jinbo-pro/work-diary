@@ -52,13 +52,18 @@ async function queueDowload(list, limit = 3) {
 }
 
 /**
- * 更加完善，更加好用的队列管理器推荐 async 库里面的 queue
+ * 1. 更加完善的队列管理器可以使用 async 库里面的 queue
  *
  * async/queue
  * https://unpkg.com/async@3.2.4/queue.js
- *
  * other documents
  * https://my.oschina.net/huangsz/blog/176203
+ * 
+ * 2. 轻便好用的队列控制器可以使用 p-limit 库
+ * p-limit
+ * https://www.npmjs.com/package/p-limit
+ * other documents
+ * https://zhuanlan.zhihu.com/p/549829103
  */
 
 module.exports = {
