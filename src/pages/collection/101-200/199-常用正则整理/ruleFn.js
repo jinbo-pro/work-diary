@@ -49,7 +49,8 @@ export function isIDCard(a) {
 /**
  * 密码强度正则
  * 最少6位，包括至少1个大写字母，1个小写字母，1个数字，1个特殊字符
+ * 可根据需要选择四个种类
  */
 export function passwordStrong(v) {
-  return /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*? ]).*$/.test(String(v))
+  return /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[\.!@#$%^&*? ]).*$/.test(String(v))
 }
