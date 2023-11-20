@@ -21,31 +21,13 @@
   </head>
 
   <body>
+    <p>
+      <a href="https://cubic-bezier.com/" target="_blank"> 贝塞尔曲线可视化生成 </a>
+    </p>
     <a href="https://segmentfault.com/a/1190000018597975">详细记录</a>
     <div class="box"></div>
-    <button onclick="run(0)">点击</button>
+    <button id="btn">点击</button>
     <div id="stx" style="margin-left: 180px"></div>
     <script type="module" src="./077-main.js"></script>
-    <script>
-      function sleep(t = 500) {
-        return new Promise((a) => setTimeout(a, t))
-      }
-      function run(i) {
-        const p = twoBezier(i, [0, 100], [150, 50], [200, 200])
-        const [x, y] = p
-        $('.box').animate(
-          {
-            left: x + 'px',
-            top: y + 'px'
-          },
-          30,
-          () => {
-            let next = i + 0.05
-            if (next > 1) return
-            run(i + 0.05)
-          }
-        )
-      }
-    </script>
   </body>
 </html>
