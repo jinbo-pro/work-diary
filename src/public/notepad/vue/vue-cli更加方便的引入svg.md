@@ -9,7 +9,7 @@
 ```json
 {
   "devDependencies": {
-    "svg-sprite-loader": "4.1.3"
+    "svg-sprite-loader": "^6.0.11"
   }
 }
 ```
@@ -20,19 +20,23 @@
 module.exports = {
   // ...
   chainWebpack(config) {
-    // set svg-sprite-loader
-    config.module.rule('svg').exclude.add(resolve('src/icons')).end()
-    config.module
-      .rule('icons')
-      .test(/\.svg$/)
-      .include.add(resolve('src/icons'))
-      .end()
-      .use('svg-sprite-loader')
-      .loader('svg-sprite-loader')
-      .options({
-        symbolId: 'icon-[name]'
-      })
-      .end()
+    const addSvgRule = (p, prefix) => {
+      // set svg-sprite-loader
+      config.module.rule('svg').exclude.add(p).end()
+      config.module
+        .rule('icons')
+        .test(/\.svg$/)
+        .include.add(p)
+        .end()
+        .use('svg-sprite-loader')
+        .loader('svg-sprite-loader')
+        .options({
+          symbolId: `icon-${prefix}[name]`
+        })
+        .end()
+    }
+    addSvgRule(path.resolve(__dirname, 'src/icons/svg'), '')
+    // 添加多个路径...
   }
 }
 ```
@@ -47,17 +51,21 @@ import './icons/index'
 
 ```js
 import Vue from 'vue'
-import SvgIcon from '@/components/SvgIcon.vue' // svg component
+import SvgIcon from './index.vue' // svg component
 
 // register globally
 Vue.component('svg-icon', SvgIcon)
 
-const req = require.context('./svg', false, /\.svg$/)
-const requireAll = (requireContext) => requireContext.keys().map(requireContext)
-requireAll(req)
+const dirList = [
+  // require.context 函数只能是明确路径
+  require.context('./svg', false, /\.svg$/)
+  // 添加多个目录...
+]
+
+dirList.forEach((req) => req.keys().map(req))
 ```
 
-### SvgIcon.vue
+### icons/index.vue
 
 ```vue
 <template>

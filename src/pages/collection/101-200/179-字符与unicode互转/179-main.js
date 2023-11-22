@@ -4,13 +4,18 @@ new Vue({
   el: '#app',
   data() {
     return {
-      text: '',
-      unicodeText: '',
+      text: 'a',
+      unicodeText: 97,
 
       rMin: 32,
       rMax: 126,
       rNum: 16,
       randomText: ''
+    }
+  },
+  computed: {
+    unicode16() {
+      return this.unicodeText ? '\\u' + this.unicodeText.toString(16) : ''
     }
   },
   methods: {

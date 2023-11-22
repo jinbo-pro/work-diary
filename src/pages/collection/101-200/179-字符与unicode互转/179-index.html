@@ -13,10 +13,13 @@
     <div id="app">
       <el-form label-width="120px">
         <el-form-item label="字符">
-          <el-input v-model="text" @blur="transformHandle(1)"></el-input>
+          <el-input v-model="text" @input="transformHandle(1)" :maxlength="1"></el-input>
         </el-form-item>
         <el-form-item label="unicode码">
-          <el-input-number v-model="unicodeText" :min="32" :max="65535" @blur="transformHandle(2)"></el-input-number>
+          <el-input-number v-model="unicodeText" :min="32" :max="65535" @input="transformHandle(2)"></el-input-number>
+        </el-form-item>
+        <el-form-item label="unicode16进制">
+          <el-input :value="unicode16" readonly></el-input>
         </el-form-item>
         <hr />
         <p>使用场景：随机密码</p>
