@@ -11,7 +11,6 @@
         <el-button @click="exportJsonConfig">导出json配置</el-button>
       </el-form-item>
       <el-form-item label="操作：">
-        <el-button size="mini" type="danger" @click="resetConfig">重置</el-button>
         <el-button size="mini" type="warning" @click="clearList">清空字段</el-button>
       </el-form-item>
     </el-form>
@@ -43,9 +42,6 @@
       </el-table-column>
       <el-table-column label="必填">
         <div slot-scope="{ row }"><el-switch v-model="row.isRule"></el-switch></div>
-      </el-table-column>
-      <el-table-column label="查询字段">
-        <div slot-scope="{ row }"><el-switch v-model="row.fieldShow"></el-switch></div>
       </el-table-column>
       <el-table-column label="操作">
         <div slot-scope="{ row }">
@@ -80,14 +76,14 @@ export default {
       dialogVisible: false,
       tableData: [],
       renderTypeList: [
-        { label: '输入框', value: 'input' },
-        { label: '文字域', value: 'textarea' },
-        { label: '下拉选择', value: 'select' },
-        { label: '日期', value: 'date' },
-        { label: '日期范围', value: 'daterange' },
-        { label: '开关', value: 'switch' },
-        { label: '单选', value: 'radio' },
-        { label: '数字输入框', value: 'inputNumber' }
+        { label: '输入框', value: 'InputWidget' },
+        { label: '文字域', value: 'TextareaWidget' },
+        { label: '下拉选择', value: 'SelectWidget' },
+        { label: '日期', value: 'DateWidget' },
+        { label: '日期范围', value: 'DaterangeWidget' },
+        { label: '开关', value: 'SwitchWidget' },
+        { label: '单选', value: 'RadioWidget' },
+        { label: '数字输入框', value: 'InputNumberWidget' }
       ]
     }
   },
@@ -123,11 +119,6 @@ export default {
     async clearList() {
       await this.$confirm('确认清空所有字段吗？', '提示', { type: 'warning' })
       this.tableData = []
-    },
-    async resetConfig() {
-      await this.$confirm('确认重置所有配置吗？', '提示', { type: 'warning' })
-      this.tableData = []
-      local.clear()
     },
     exportJsonConfig() {
       const fileName = `elementFormCreate-config-${Date.now()}.txt`
