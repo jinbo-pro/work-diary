@@ -7,15 +7,19 @@
       <el-form-item label="导入：">
         <ImportDialog @change="importTableData" />
       </el-form-item>
+      <el-form-item label="导出：">
+        <el-button @click="exportJsonConfig">导出json配置</el-button>
+      </el-form-item>
+      <el-form-item label="操作：">
+        <el-button size="mini" type="danger" @click="resetConfig">重置</el-button>
+        <el-button size="mini" type="warning" @click="clearList">清空字段</el-button>
+      </el-form-item>
     </el-form>
 
     <p>字段生成配置</p>
-    <div class="jsb ac">
-      <div>
-        <el-button type="primary" @click="addRow">新建字段</el-button>
-        <el-button type="success" @click="codePrview">代码预览</el-button>
-      </div>
-      <el-button type="danger" @click="tableData = []">清空</el-button>
+    <div>
+      <el-button type="primary" @click="addRow">新建字段</el-button>
+      <el-button type="success" @click="codePrview">代码预览</el-button>
     </div>
     <el-table :data="tableData">
       <el-table-column label="字段">
@@ -83,7 +87,7 @@ export default {
         { label: '日期范围', value: 'daterange' },
         { label: '开关', value: 'switch' },
         { label: '单选', value: 'radio' },
-        { label: '计数器', value: 'inputNumber' }
+        { label: '数字输入框', value: 'inputNumber' }
       ]
     }
   },
@@ -115,6 +119,23 @@ export default {
     saveTableData(tableData) {
       console.log(tableData, 'tableData')
       local.set('elementFormCreate-tableData', tableData)
+    },
+    async clearList() {
+      await this.$confirm('确认清空所有字段吗？', '提示', { type: 'warning' })
+      this.tableData = []
+    },
+    async resetConfig() {
+      await this.$confirm('确认重置所有配置吗？', '提示', { type: 'warning' })
+      this.tableData = []
+      local.clear()
+    },
+    exportJsonConfig() {
+      const fileName = `elementFormCreate-config-${Date.now()}.txt`
+      const file = new File([JSON.stringify(this.tableData)], fileName, { type: 'text/plain;charset=utf-8' })
+      const a = document.createElement('a')
+      a.href = URL.createObjectURL(file)
+      a.download = fileName
+      a.click()
     }
   }
 }
