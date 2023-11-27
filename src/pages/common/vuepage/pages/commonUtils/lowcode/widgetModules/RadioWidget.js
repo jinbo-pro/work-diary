@@ -11,4 +11,11 @@ export class RadioWidget extends BaseWidget {
   formDataRules() {
     return `${this.key}: [{ required: true, message: '请选择${this.title}', trigger: 'change' }],`
   }
+  selectDataKey() {
+    return `
+          ${this.key}: [
+            { label: '${this.title}-选项1', value: '${this.key}-1' },
+            { label: '${this.title}-选项2', value: '${this.key}-2' },
+          ],`
+  }
 }

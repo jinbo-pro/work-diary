@@ -26,7 +26,10 @@ function createElFormMain(fieldList, options) {
     /**@type {BaseWidget} */
     const node = new Widget(formDataName, config.key, config.title, config.defaultValue)
     code.initForm.push(node.initFormKey())
-    code.formStr.push(node.formItemHtml())
+    const formHtml = `      <el-form-item label="${node.title}" prop="${node.key}">
+        ${node.formItemHtml()}
+      </el-form-item>`
+    code.formStr.push(formHtml)
     code.selectConfig.push(node.selectDataKey())
     code.tableStr.push(node.tableHtml(config.tableShow))
     code.rulesStr.push(node.formDataRules(config.isRule))
