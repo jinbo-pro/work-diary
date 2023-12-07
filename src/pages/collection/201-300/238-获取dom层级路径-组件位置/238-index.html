@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <meta name="cdnload" content="vue,element-ui-js,element-ui-css" />
+    <title>238-获取dom层级路径-组件位置</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <div class="box">
+        <p>需求场景：</p>
+        <p>vue组件中某个组件生成一个id，这个id每个实例都不同，且每个实例的id不会因为重新渲染发生变化</p>
+        <p>想到的方式：</p>
+        <ol>
+          <li>每次传入固定的id，全局维护一个统一的id管理器</li>
+          <li>组件每次获取dom层级路径，计算一个hash值作为id</li>
+        </ol>
+        <p>综合考虑第二种方式较为省时省力</p>
+      </div>
+
+      <el-form :model="formData" ref="formData" label-width="120px">
+        <el-form-item label="活动名称" prop="name">
+          <el-input v-model="formData.name"></el-input>
+        </el-form-item>
+        <el-form-item label="活动形式" prop="desc">
+          <el-input type="textarea" v-model="formData.desc"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <div ref="aaa">组件</div>
+          <p>path：{{ domPath }}</p>
+        </el-form-item>
+      </el-form>
+      <el-button type="primary" @click="handle">获取组件层级路径</el-button>
+    </div>
+
+    <script>
+      function printElementPath(element) {
+        const parentNodeList = []
+        while (element) {
+          parentNodeList.unshift(element)
+          element = element.parentNode
+        }
+        return parentNodeList.map((node) => {
+          const attributes = node.attributes
+            ? Array.from(node.attributes).reduce((p, c) => {
+                p += `${c.name}=${c.value};`
+                return p
+              }, '')
+            : ''
+          return `${node.nodeName} ${attributes}`
+        })
+      }
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            formData: {
+              name: '',
+              desc: ''
+            },
+            domPath: ''
+          }
+        },
+        created() {},
+        methods: {
+          handle() {
+            const p = printElementPath(this.$refs.aaa)
+            console.log(p)
+            this.domPath = p.toString()
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
