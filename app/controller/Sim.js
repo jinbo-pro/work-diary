@@ -11,7 +11,7 @@ class Sim extends BaseController {
     if (list.length > 100) {
       list.shift()
     }
-    ctx.body = this.resSuccess(list)
+    ctx.body = `Hello: ${ip}`
   }
   getData(ctx) {
     ctx.body = list
