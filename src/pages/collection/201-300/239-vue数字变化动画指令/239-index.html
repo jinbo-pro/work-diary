@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <meta name="cdnload" content="vue" />
+    <title>239-vue数字变化动画指令</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <button @click="changeDate">改变数据</button>
+      <p @click="time = Date.now()" v-numberchange="time" id="time">时间戳：{{ time }}</p>
+      <ul>
+        <li v-for="item in list" :key="item.id" v-numberchange="item.count">{{ item.count }}</li>
+      </ul>
+    </div>
+    <script type="module" src="./239-main.js"></script>
+  </body>
+</html>
