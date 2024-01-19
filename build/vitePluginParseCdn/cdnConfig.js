@@ -8,7 +8,7 @@ module.exports = {
   bignumber: 'https://cdn.staticfile.org/bignumber.js/9.1.1/bignumber.min.js',
   // C
   compressor: 'https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/compressorjs/1.1.1/compressor.min.js',
-  'countup.js': 'https://cdn.staticfile.org/countup.js/2.6.0/countUp.umd.min.js',
+  'countup-js': 'https://cdn.staticfile.org/countup.js/2.6.0/countUp.umd.min.js',
   'crypto-js': 'https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/crypto-js/4.1.1/crypto-js.min.js',
   // D
   d3: 'https://cdn.staticfile.org/d3/4.13.0/d3.min.js',
