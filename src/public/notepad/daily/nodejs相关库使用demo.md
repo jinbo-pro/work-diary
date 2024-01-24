@@ -42,7 +42,7 @@ const puppeteer = require('puppeteer')
 
 ## node-sass 安装失败
 
-1. 修改淘宝镜像 `npm config set registry https://registry.npm.taobao.org`
+1. 修改淘宝镜像 `npm config set registry https://registry.npmmirror.com`
 2. 修改 github 地址 `set SASS_BINARY_SITE=https://npm.taobao.org/mirrors/node-sass/`
 3. 对应版本 【Node 13 node-sass 4.13+】，【Node 12 node-sass 4.12+】
 4. 清除已缓存的`binding.node` 输入：`npm rebuild node-sass`
