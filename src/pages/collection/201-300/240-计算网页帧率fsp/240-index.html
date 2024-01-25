@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <meta name="cdnload" content="vue" />
+    <script src="https://cdn.staticfile.net/particles.js/2.0.0/particles.min.js"></script>
+    <title>240-计算网页帧率fsp</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        width: 100vw;
+        box-sizing: border-box;
+        overflow: hidden;
+        user-select: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <div>fsp: {{ fsp }}</div>
+      <p>添加粒子可以有效降低fsp值哦，O(∩_∩)O哈哈~</p>
+      <input v-model="pNum" type="number" min="1" max="99" />
+      <button @click="addPart">添加粒子</button>
+      <span>当前粒子数量： {{ particlesList.length }}</span>
+      <!-- 粒子效果 -->
+      <div id="particles-js" style="background-color: #0078d4">
+        <canvas class="particles-js-canvas-el" style="width: 100%; height: 500px"></canvas>
+      </div>
+    </div>
+    <script>
+      function getFsp(change) {
+        let last = performance.now()
+        let fspList = []
+
+        const update = () => {
+          const now = performance.now()
+          // 计算出一帧用了多久
+          const diff = now - last
+          // 用 1000ms 除以一帧所用的毫秒 可以得出帧数
+          fspList.push(1000 / diff)
+          // 计算最近10帧的平均值
+          if (fspList.length >= 10) {
+            // 计算平均值
+            const fsp = Math.round(fspList.reduce((a, b) => a + b) / fspList.length)
+            if (typeof change === 'function') change(fsp)
+            fspList = []
+          }
+          last = now
+          requestAnimationFrame(update)
+        }
+        requestAnimationFrame(update)
+      }
+
+      var p = null
+
+      new Vue({
+        el: '#app',
+        data() {
+          return {
+            fsp: 0,
+            pNum: 1,
+            particlesList: []
+          }
+        },
+        created() {
+          getFsp((fsp) => {
+            this.fsp = fsp
+          })
+        },
+        mounted() {
+          p = new pJS('particles-js', {
+            // 粒子的基本配置
+            particles: {
+              size: {
+                value: 5, // 粒子大小
+                random: true
+              }
+            }
+          })
+          this.particlesList = p.pJS.particles.array
+        },
+        methods: {
+          addPart() {
+            p.pJS.fn.modes.pushParticles(this.pNum)
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
