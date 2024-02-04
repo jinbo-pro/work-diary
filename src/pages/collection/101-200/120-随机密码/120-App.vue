@@ -1,14 +1,10 @@
 <template>
   <div>
-    <van-radio-group v-model="num" @change="createPassword">
-      <van-cell-group>
-        <van-cell v-for="item in numList" :key="item" :title="`${item} 位`" clickable @click="num = item">
-          <template #right-icon>
-            <van-radio :name="item" />
-          </template>
-        </van-cell>
-      </van-cell-group>
-    </van-radio-group>
+    <div class="form_item_box">
+      <van-radio-group v-model="num" direction="horizontal" @change="createPassword">
+        <van-radio v-for="item in numList" :key="item" :name="item">{{ item }}</van-radio>
+      </van-radio-group>
+    </div>
     <div class="form_item_box">
       <van-checkbox-group v-model="type" direction="horizontal" @change="createPassword">
         <van-checkbox v-for="item in typeList" :key="item.value" :name="item.value">{{ item.label }}</van-checkbox>
