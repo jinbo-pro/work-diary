@@ -15,9 +15,9 @@
       </van-checkbox-group>
     </div>
     <div class="form_item_box handle_box">
-      <van-button size="small" style="margin-right: 12px" @click="randomPro">随机PRO</van-button>
-      <van-button size="small" type="info" style="margin-right: 12px" @click="copyResult">复制</van-button>
-      <van-button size="small" type="primary" @click="createPassword">生成</van-button>
+      <van-button style="margin-right: 12px" @click="randomPro" round>随机PRO</van-button>
+      <van-button type="info" style="margin-right: 12px" @click="copyResult" round>复制</van-button>
+      <van-button type="primary" @click="createPassword" round>生成</van-button>
     </div>
     <van-field v-model="result" rows="3" autosize label="结果" type="textarea" readonly />
 
@@ -94,6 +94,6 @@ export default {
 }
 .handle_box {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
 }
 </style>

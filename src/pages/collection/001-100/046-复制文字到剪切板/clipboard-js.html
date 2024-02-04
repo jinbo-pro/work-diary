@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <meta name="cdnload" content="clipboard" />
+    <title>clipboard.js</title>
+  </head>
+  <body>
+    <ul>
+      <li>
+        <p id="bar">html方式设置：我是要复制的文本</p>
+        <button class="btn1">点击复制</button>
+      </li>
+    </ul>
+
+    <script>
+      const clipboard = new ClipboardJS('.btn1', {
+        // 动态设置内容
+        text: function (trigger) {
+          return document.getElementById('bar').innerText + Date.now()
+        }
+      })
+      clipboard.on('success', function (e) {
+        console.info('Action:', e.action)
+        console.info('Text:', e.text)
+        console.info('Trigger:', e.trigger)
+
+        e.clearSelection()
+      })
+
+      clipboard.on('error', function (e) {
+        console.error('Action:', e.action)
+        console.error('Trigger:', e.trigger)
+      })
+    </script>
+  </body>
+</html>
