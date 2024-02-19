@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <meta name="cdnload" content="vue,element-ui-js,element-ui-css" />
+    <title>241-公历年转天干地支年</title>
+    <style>
+      .jz_max {
+        width: 500px;
+      }
+      .el-tag {
+        margin-right: 4px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="app">
+      <el-form label-width="90px">
+        <el-form-item label="天干">
+          <el-tag v-for="t in tg" :key="t">{{ t }}</el-tag>
+        </el-form-item>
+        <el-form-item label="地支">
+          <el-tag v-for="d in dz" :key="d">{{ d }}</el-tag>
+        </el-form-item>
+        <el-form-item label="一个甲子">
+          <div class="jz_max">
+            <el-tag v-for="e in jzList" :key="e">{{ e }}</el-tag>
+          </div>
+        </el-form-item>
+        <el-form-item label="任意年转换">
+          <el-date-picker v-model="year" type="year" value-format="yyyy" placeholder="选择年份"></el-date-picker>
+          <span>对应的天干地支年为：{{ year | formatYear }}</span>
+        </el-form-item>
+      </el-form>
+    </div>
+    <script src="./241-main.js"></script>
+  </body>
+</html>
