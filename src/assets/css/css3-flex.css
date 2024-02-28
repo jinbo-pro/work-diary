@@ -84,9 +84,7 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  /*! autoprefixer: off */
   -webkit-box-orient: vertical;
-  /* autoprefixer: on */
 }
 
 /* 三行显示 */
@@ -95,16 +93,13 @@
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  /*! autoprefixer: off */
   -webkit-box-orient: vertical;
-  /* autoprefixer: on */
 }
 
 /* 文字换行 */
 .word_back {
   word-wrap: break-word;
   word-break: break-all;
-  /* white-space: pre-line; */
 }
 
 /* 三角 */
