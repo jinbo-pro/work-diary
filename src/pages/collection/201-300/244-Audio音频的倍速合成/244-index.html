@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <meta name="cdnload" content="vue,element-ui-js,element-ui-css" />
+    <title>244-Audio音频的倍速合成</title>
+  </head>
+
+  <body>
+    <div id="app">
+      <p>
+        参考文章
+        <a
+          href="https://www.zhangxinxu.com/wordpress/2024/02/js-audioencoder-backplayrate-audiobuffer/"
+          target="_blank"
+        >
+          不改变音调情况下Audio音频的倍速合成JS实现
+        </a>
+      </p>
+      <el-form label-width="120px">
+        <el-form-item label="原始音频">
+          <audio :src="orgAudioUrl" controls></audio>
+        </el-form-item>
+        <el-form-item label="选择播放速率">
+          <el-radio-group v-model="rate">
+            <el-radio v-for="item in rateList" :key="item" :label="item">{{ item }}</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="displayHandle">开始转换</el-button>
+        </el-form-item>
+        <el-form-item label="转换音频预览">
+          <p>简单转换</p>
+          <audio v-if="distAudioUrl" :src="distAudioUrl" controls></audio>
+          <p>保持音调不变</p>
+          <audio v-if="distProAudioUrl" :src="distProAudioUrl" controls></audio>
+        </el-form-item>
+      </el-form>
+    </div>
+    <script type="module" src="./244-main.js"></script>
+  </body>
+</html>
