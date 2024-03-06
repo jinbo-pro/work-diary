@@ -37,7 +37,7 @@ class StorageBase {
     var setData = {
       data: val,
       time: Date.now(),
-      type: typeof val
+      type: Object.prototype.toString.call(val).slice(8, -1)
     }
     expire = expire ? expire : this.expire
     if (expire > 0) {
