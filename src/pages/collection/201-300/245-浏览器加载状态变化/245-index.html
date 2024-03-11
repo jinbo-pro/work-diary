@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>245-浏览器加载状态变化</title>
+  </head>
+
+  <body>
+    <div class="controls">
+      <button id="reload" type="button">Reload</button>
+    </div>
+
+    <div class="event-log">
+      <label>Event log:</label>
+      <ul id="log"></ul>
+    </div>
+    <script>
+      const log = document.querySelector('.event-log-contents')
+      const reload = document.querySelector('#reload')
+
+      const ul = document.getElementById('log')
+      function tips(content) {
+        const li = document.createElement('li')
+        li.innerText = content
+        ul.appendChild(li)
+      }
+
+      reload.addEventListener('click', () => {
+        ul.innerHTML = ''
+        window.setTimeout(() => {
+          window.location.reload(true)
+        }, 200)
+      })
+      // 当一个资源及其依赖资源已完成加载时，将触发 load 事件。
+      window.addEventListener('load', (event) => {
+        tips('load：当一个资源及其依赖资源已完成加载时，将触发 load 事件。')
+      })
+      // 当页面加载状态变化的事件。
+      document.addEventListener('readystatechange', (event) => {
+        tips(`readystate: ${document.readyState}`)
+      })
+      // 当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载。
+      document.addEventListener('DOMContentLoaded', (event) => {
+        tips(
+          'DOMContentLoaded：当初始的 HTML 文档被完全加载和解析完成之后，DOMContentLoaded 事件被触发，而无需等待样式表、图像和子框架的完成加载。'
+        )
+      })
+    </script>
+  </body>
+</html>

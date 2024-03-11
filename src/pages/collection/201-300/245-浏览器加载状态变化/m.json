@@ -1,0 +1,5 @@
+{
+	"sort": "245",
+	"name": "245-浏览器加载状态变化",
+	"tag": "load,readystatechange,DOMContentLoaded"
+}
