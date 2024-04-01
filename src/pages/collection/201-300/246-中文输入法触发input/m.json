@@ -1,0 +1,5 @@
+{
+	"sort": "246",
+	"name": "246-中文输入法触发input",
+	"tag": "compositionstart,compositionend"
+}

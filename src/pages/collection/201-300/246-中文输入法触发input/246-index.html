@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>246-中文输入法触发input</title>
+  </head>
+
+  <body>
+    <div class="box">
+      <p>
+        文章参考：
+        <a href="https://www.douyin.com/video/7343538677311655222" target="_blank">中文输入法触发input</a>
+      </p>
+      <textarea id="inp" cols="30" rows="10"></textarea>
+
+      <script>
+        const inp = document.getElementById('inp')
+        function search() {
+          const value = inp.value
+          console.log(value)
+        }
+        let isComposing = false
+        inp.addEventListener('input', function () {
+          if (!isComposing) {
+            search()
+          }
+        })
+        inp.addEventListener('compositionstart', function () {
+          isComposing = true
+        })
+        inp.addEventListener('compositionstart', function () {})
+        inp.addEventListener('compositionupdate', function (e) {
+          console.log('%c%s', 'color:#999', 'compositionupdate:' + e.data)
+        })
+        inp.addEventListener('compositionend', function () {
+          isComposing = false
+          search()
+        })
+      </script>
+    </div>
+  </body>
+</html>
