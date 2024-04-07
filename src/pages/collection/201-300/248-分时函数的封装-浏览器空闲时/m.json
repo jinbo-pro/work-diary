@@ -1,0 +1,5 @@
+{
+	"sort": "248",
+	"name": "248-分时函数的封装-浏览器空闲时",
+	"tag": "requestIdleCallback,分片任务"
+}
