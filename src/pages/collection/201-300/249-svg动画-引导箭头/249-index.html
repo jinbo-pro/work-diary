@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="author" content="lijinbo" />
+    <title>249-svg动画-引导箭头</title>
+    <style>
+      .dl-container,
+      .dl-container .dl-btn {
+        position: relative;
+      }
+
+      .whitespace-nowrap {
+        display: inline-block;
+      }
+
+      .dl-container .guide-arrow {
+        position: absolute;
+        top: calc(-115px + 70%);
+        transform-origin: center;
+        transform: scaleX(-1);
+        right: -221px;
+        pointer-events: none;
+      }
+
+      .dl-container .guide-arrow svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      .dl-container .guide-arrow path:first-child {
+        stroke-dasharray: 500;
+        stroke-dashoffset: 500;
+        animation: show 1s ease-in-out forwards;
+        animation-delay: 1.12s;
+      }
+
+      .dl-container .guide-arrow g {
+        offset-path: path(
+          'M9 -5C12.81 18.4908 29.7263 57.0844 66.9119 71.5317C113.394 89.5909 142.026 65.61 141.581 42.0836C141.136 18.5572 85.8566 15.2201 95.8675 49.5781C105.878 83.936 154.71 115.194 198.48 107.03'
+        );
+        offset-distance: 0;
+        animation: move 0.76s ease-in-out forwards;
+        animation-delay: 1.12s;
+      }
+
+      @keyframes show {
+        to {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes move {
+        to {
+          offset-distance: 100%;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <p>stroke-dashoffset</p>
+    <p>stroke-dashoffset</p>
+    <p>stroke-dashoffset</p>
+    <p>stroke-dashoffset</p>
+    <div class="dl-container wfit relaive">
+      <div class="dl-btn w-fit whitespace-nowrap">
+        添加到Edge
+        <div class="guide-arrow">
+          <svg width="207" height="115" viewBox="0 0 207 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              id="motionPath"
+              d="M9 1C12.81 18.4908 29.7263 57.0844 66.9119 71.5317C113.394 89.5909 142.026 65.61 141.581 42.0836C141.136 18.5572 85.8566 15.2201 95.8675 49.5781C105.878 83.936 154.71 115.194 198.48 107.03"
+              stroke="#FF6154"
+              stroke-width="2.00196"
+            ></path>
+            <g>
+              <path
+                d="M194.733 101.418C196.411 102.557 198.106 103.668 199.818 104.754C200.749 105.444 202.266 106.042 202.105 107.438C202.017 107.778 201.856 108.094 201.634 108.364C201.412 108.634 201.134 108.852 200.819 109.002C199.738 109.664 198.62 110.262 197.527 110.902C195.453 112.136 193.314 113.258 191.121 114.262C190.745 114.494 190.31 114.61 189.87 114.597C189.677 114.566 189.495 114.491 189.335 114.378C189.176 114.265 189.043 114.117 188.948 113.946C188.853 113.774 188.798 113.584 188.786 113.388C188.775 113.192 188.807 112.996 188.882 112.815C189.432 111.867 190.468 111.795 191.883 110.9C193.179 110.158 196.579 107.831 197.855 107.105L197.288 106.659C194.825 104.977 191.765 102.643 189.311 100.948C189.174 100.84 189.059 100.706 188.973 100.553C188.887 100.401 188.832 100.233 188.811 100.059C188.789 99.8851 188.802 99.7088 188.848 99.5402C188.894 99.3715 188.973 99.2138 189.08 99.076C189.187 98.9382 189.319 98.823 189.47 98.737C189.621 98.6511 189.788 98.596 189.96 98.5749C190.133 98.5538 190.308 98.5672 190.475 98.6143C190.643 98.6614 190.8 98.7412 190.937 98.8492C192.203 99.7037 193.469 100.56 194.733 101.418Z"
+                fill="#FF6154"
+                transform="translate(-198, -107)"
+              ></path>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
