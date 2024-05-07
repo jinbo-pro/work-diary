@@ -94,20 +94,24 @@
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       }
       .code_max {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
+        display: flex;
       }
       .code_item {
-        overflow-x: scroll;
+        flex-basis: auto;
+        flex-grow: 1;
+        margin: 0 4px;
+        transition: 0.2s;
       }
-      .code_item::-webkit-scrollbar {
-        display: none;
+      .code_item.is_collapse {
+        flex-grow: 0;
+        flex-basis: 50px;
+        transition: 0.2s;
       }
       .mode_title {
         padding: 4px 0;
         font-size: 20px;
         font-weight: bold;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -128,23 +132,15 @@
       <el-select v-model="temp" placeholder="请选择模板" @change="templateChange">
         <el-option v-for="item in codeTemplateList" :key="item.name" :label="item.name" :value="item.name"></el-option>
       </el-select>
+      <div class="code_max">
+        <div v-for="item in modeList" :key="item.name" :class="['code_item', { is_collapse: item.isCollapse } ]">
+          <div class="mode_title" @click="item.isCollapse = !item.isCollapse">{{ item.name }}</div>
+          <textarea hidden :id="item.name"></textarea>
+        </div>
+      </div>
+      <div id="result"></div>
     </div>
 
-    <div class="code_max">
-      <div class="code_item">
-        <div class="mode_title">html</div>
-        <textarea hidden id="html"></textarea>
-      </div>
-      <div class="code_item">
-        <div class="mode_title">css</div>
-        <textarea hidden id="css"></textarea>
-      </div>
-      <div class="code_item">
-        <div class="mode_title">js</div>
-        <textarea hidden id="js"></textarea>
-      </div>
-    </div>
-    <div id="result"></div>
-    <script type="module" src="./224-main.js"></script>
+    <script type="module" src="./main.js"></script>
   </body>
 </html>

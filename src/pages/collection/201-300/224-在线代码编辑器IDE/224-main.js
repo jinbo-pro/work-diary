@@ -1,57 +1,74 @@
+import { CodeMirrorEditor } from './CodeMirrorEditor.js'
+import { codeTemplateList } from './codeTemplate.js'
+
+const htmlEdit = new CodeMirrorEditor(document.getElementById('html'), 'html')
+const cssEdit = new CodeMirrorEditor(document.getElementById('css'), 'css')
+const jsEdit = new CodeMirrorEditor(document.getElementById('js'), 'js')
+
+function previewCode(html = '', css = '', js = '', lib = '') {
+  const result = document.getElementById('result')
+  const iframe = document.createElement('iframe')
+  iframe.style.border = 'none'
+  iframe.style.width = '100%'
+  iframe.style.height = '100%'
+  result.innerHTML = ''
+
+  const htmlPageCode = `
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+${lib}
+<style>
+${css}
+</style>
+</head>
+<body>
+${html}
+<script type="${js.includes('import') ? 'module' : 'text/javascript'}">
+${js}
+</script>
+</body>
+</html>
+  `
+  const htmlPageFile = new File([htmlPageCode], 'preview.html', { type: 'text/html;charset=utf-8' })
+  iframe.src = URL.createObjectURL(htmlPageFile)
+  result.append(iframe)
+}
+/**创建依赖标签 */
+function createLibTag(libList) {
+  return libList.reduce((p, c) => {
+    p += c.endsWith('.js') ? `<script src="${c}"></script>` : `<link rel="stylesheet" href="${c}"/>`
+    return p
+  }, '')
+}
+
 new Vue({
   el: '#app',
   data() {
     return {
-      code: ''
+      dialogVisible: false,
+      temp: '',
+      codeTemplateList
     }
   },
-  mounted() {
-    this.initEdit()
-  },
   methods: {
-    initEdit() {
-      this.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-        // Java 编辑器模式
-        mode: 'text/x-java',
-        // 显示行号
-        lineNumbers: true,
-        // 设置主题
-        theme: 'darcula',
-        // 括号匹配
-        matchBrackets: true,
-        // 全屏模式
-        // fullScreen: true,
-        // 自动聚焦
-        autofocus: true,
-        // 代码校验
-        // lint: true,
-        // 自动缩进
-        smartIndent: true,
-        // 自动补全括号
-        autoCloseBrackets: true,
-        // 代码折叠
-        lineWrapping: true,
-        foldGutter: true,
-        gutters: ['CodeMirror-linenumbers', 'CodeMirror-foldgutter']
-      })
-      this.editor.on('change', (coder) => {
-        this.code = coder.getValue()
-      })
-      this.editor.on('keyup', function (cm, event) {
-        // 所有的字母和 '.' 在键按下之后都将显示智能代码提示
-        if (!cm.state.completionActive && ((event.keyCode >= 65 && event.keyCode <= 90) || event.keyCode == 190)) {
-          CodeMirror.commands.autocomplete(cm, null, {
-            completeSingle: false
-            // hint: handleShowHint // 自定义代码提示参考： https://blog.gavinzh.com/2020/12/13/codemirror-getting-started/
-          })
-        }
-      })
+    previewHandle() {
+      let libStr = ''
+      if (this.temp) {
+        const cur = codeTemplateList.find((x) => x.name == this.temp)
+        libStr = createLibTag(cur.lib)
+      }
+      previewCode(htmlEdit.getValue(), cssEdit.getValue(), jsEdit.getValue(), libStr)
     },
-    getCode() {
-      console.log(this.code)
-    },
-    clearCode() {
-      this.editor.setValue('')
+    templateChange(e) {
+      const cur = codeTemplateList.find((x) => x.name == e)
+      const { html, css, js } = cur.code
+      htmlEdit.setValue(html)
+      cssEdit.setValue(css)
+      jsEdit.setValue(js)
+      previewCode(html, css, js, createLibTag(cur.lib))
     }
   }
 })
