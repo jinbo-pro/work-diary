@@ -1,12 +1,16 @@
-import { guid } from '@/utils/easyHash.js'
-import { parseTime } from '@/utils/time.js'
+import { randomStringMini } from '@/utils/easyHash.js'
+import { CrossPageInfo } from './CrossPageInfo.js'
+const cros = new CrossPageInfo('cros-page-test')
 
 new Vue({
   el: '#app',
   data() {
     return {
-      createId: guid(),
-      messageList: []
+      isAdd: location.href.includes('isAdd=1'),
+      tableData: [
+        { id: 1, name: '张三' },
+        { id: 2, name: '李四' }
+      ]
     }
   },
   created() {
@@ -15,14 +19,21 @@ new Vue({
       this.messageList.push(e.data)
     }
   },
+  mounted() {
+    cros.on((data) => {
+      console.log(data, '1')
+      this.tableData.push(data)
+    })
+  },
   methods: {
-    send() {
-      this.card.postMessage({
-        createId: this.createId,
-        time: parseTime(new Date()),
-        content: Math.random()
+    openAddPage() {
+      window.open(location.href + '?isAdd=1')
+    },
+    addHandle() {
+      cros.emit({
+        id: Date.now(),
+        name: '名字' + randomStringMini()
       })
-      console.log('发送成功')
     }
   }
 })
